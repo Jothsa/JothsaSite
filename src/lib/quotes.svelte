@@ -2,7 +2,8 @@
   import { onMount, onDestroy } from 'svelte';
   import { pb } from './pocketbase';
   import QuoteCard from './quoteCard.svelte';
-  import { Grid } from '@svelteuidev/core';
+  // import { Grid } from '@svelteuidev/core';
+  import Masonry from './Masonry.svelte';
 
   // TODO maybe set type
   let quotes: any[] = [];
@@ -41,24 +42,21 @@
 </script>
 
 <div class="quotes">
-  <Grid spacing="md">
+  <Masonry colWidth="minmax(Min(25em, 100%), 1fr);" gridGap="1em;">
     {#each quotes as quote (quote.id)}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
-        <Grid.Col sm={12} md={6} lg={4}>
-          <QuoteCard>
-            <svelte:fragment slot="quoteText">
-              {quote.text}
-            </svelte:fragment>
-            <svelte:fragment slot="quoteAuthor">
-              {quote.expand?.author?.name}
-            </svelte:fragment>
-            <svelte:fragment slot="quoteSource">
-              {quote.expand?.source?.title}
-            </svelte:fragment>
-          </QuoteCard>
-        </Grid.Col>
+        <QuoteCard>
+          <svelte:fragment slot="quoteText">
+            {quote.text}
+          </svelte:fragment>
+          <svelte:fragment slot="quoteAuthor">
+            {quote.expand?.author?.name}
+          </svelte:fragment>
+          <svelte:fragment slot="quoteSource">
+            {quote.expand?.source?.title}
+          </svelte:fragment>
+        </QuoteCard>
       {:else if quote.expand?.author?.name}
-      <Grid.Col sm={12} md={6} lg={4}>
         <QuoteCard>
           <svelte:fragment slot="quoteText">
             {quote.text}
@@ -67,9 +65,7 @@
             {quote.expand?.author?.name}
           </svelte:fragment>
         </QuoteCard>
-        </Grid.Col>
       {:else if quote.expand?.source?.title}
-      <Grid.Col sm={12} md={6} lg={4}>
         <QuoteCard>
           <svelte:fragment slot="quoteText">
             {quote.text}
@@ -78,10 +74,9 @@
             {quote.expand?.source?.title}
           </svelte:fragment>
         </QuoteCard>
-        </Grid.Col>
       {/if}
     {/each}
-  </Grid>
+  </Masonry>
 </div>
 
 <style>
