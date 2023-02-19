@@ -58,7 +58,7 @@
       grids = _masonryArr.map((grid) => {
         return {
           _el: grid,
-          gap: parseFloat(getComputedStyle(grid).gridRowGap),
+          gap: parseFloat(getComputedStyle(grid).rowGap),
           items: [...grid.childNodes].filter(
             (c) => c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1
           ),
