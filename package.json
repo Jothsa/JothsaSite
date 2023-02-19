@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "vite dev",
+    "dev": "./pb/pocketbase serve --http '127.0.0.1:8090' & vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "test": "playwright test",
