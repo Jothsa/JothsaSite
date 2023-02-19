@@ -46,4 +46,7 @@
 </div>
 
 <style>
+  /* div.quoteContainer {
+    display: flex;
+  } */
 </style>

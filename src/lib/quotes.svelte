@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
-  import { pb } from '../lib/pocketbase';
+  import { pb } from './pocketbase';
   import QuoteCard from './quoteCard.svelte';
+  import { Grid } from '@svelteuidev/core';
 
   // TODO maybe set type
   let quotes: any[] = [];
@@ -40,38 +41,48 @@
 </script>
 
 <div class="quotes">
-  {#each quotes as quote (quote.id)}
-    {@debug quote}
-    {#if quote.expand?.author?.name && quote.expand?.source?.title}
-      <QuoteCard>
-        <svelte:fragment slot="quoteText">
-          {quote.text}
-        </svelte:fragment>
-        <svelte:fragment slot="quoteAuthor">
-          {quote.expand?.author?.name}
-        </svelte:fragment>
-        <svelte:fragment slot="quoteSource">
-          {quote.expand?.source?.title}
-        </svelte:fragment>
-      </QuoteCard>
-    {:else if quote.expand?.author?.name}
-      <QuoteCard>
-        <svelte:fragment slot="quoteText">
-          {quote.text}
-        </svelte:fragment>
-        <svelte:fragment slot="quoteAuthor">
-          {quote.expand?.author?.name}
-        </svelte:fragment>
-      </QuoteCard>
-    {:else if quote.expand?.source?.title}
-      <QuoteCard>
-        <svelte:fragment slot="quoteText">
-          {quote.text}
-        </svelte:fragment>
-        <svelte:fragment slot="quoteSource">
-          {quote.expand?.source?.title}
-        </svelte:fragment>
-      </QuoteCard>
-    {/if}
-  {/each}
+  <Grid spacing="md">
+    {#each quotes as quote (quote.id)}
+      {#if quote.expand?.author?.name && quote.expand?.source?.title}
+        <Grid.Col sm={12} md={6} lg={4}>
+          <QuoteCard>
+            <svelte:fragment slot="quoteText">
+              {quote.text}
+            </svelte:fragment>
+            <svelte:fragment slot="quoteAuthor">
+              {quote.expand?.author?.name}
+            </svelte:fragment>
+            <svelte:fragment slot="quoteSource">
+              {quote.expand?.source?.title}
+            </svelte:fragment>
+          </QuoteCard>
+        </Grid.Col>
+      {:else if quote.expand?.author?.name}
+      <Grid.Col sm={12} md={6} lg={4}>
+        <QuoteCard>
+          <svelte:fragment slot="quoteText">
+            {quote.text}
+          </svelte:fragment>
+          <svelte:fragment slot="quoteAuthor">
+            {quote.expand?.author?.name}
+          </svelte:fragment>
+        </QuoteCard>
+        </Grid.Col>
+      {:else if quote.expand?.source?.title}
+      <Grid.Col sm={12} md={6} lg={4}>
+        <QuoteCard>
+          <svelte:fragment slot="quoteText">
+            {quote.text}
+          </svelte:fragment>
+          <svelte:fragment slot="quoteSource">
+            {quote.expand?.source?.title}
+          </svelte:fragment>
+        </QuoteCard>
+        </Grid.Col>
+      {/if}
+    {/each}
+  </Grid>
 </div>
+
+<style>
+</style>
