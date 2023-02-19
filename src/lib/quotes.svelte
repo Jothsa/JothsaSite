@@ -10,6 +10,6 @@
       sort: '',
       expand: 'author,source',
     });
+    quotes = quotesList.items;
   });
-  quotes = quotesList.items;
 </script>
