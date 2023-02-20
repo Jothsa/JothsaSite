@@ -1,4 +1,5 @@
-<script lang="ts">
+<script>
+  import '../app.postcss';
   import { SvelteUIProvider } from '@svelteuidev/core';
 </script>
 
