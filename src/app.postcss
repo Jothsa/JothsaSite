@@ -7,25 +7,20 @@
 
 body {
   background-color: darkblue;
-  --bg-size: 400%;
   background: linear-gradient(
-      -45deg,
-      oklch(70.15% 0.168 263.12),
-      oklch(41.03% 0.254 263.12),
-      oklch(82.5% 0.094 263.12),
-      oklch(47.79% 0.308 267.35)
-    )
-    0 0 / var(--bg-size) 100%;
+    -45deg,
+    oklch(70.15% 0.168 263.12),
+    oklch(41.03% 0.254 263.12),
+    oklch(82.5% 0.094 263.12),
+    oklch(47.79% 0.308 267.35)
+  );
+  background-size: 400% 400%;
+  height: 100vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   body {
-    animation: gradient 120s ease infinite;
-  }
-  @keyframes move-bg {
-    to {
-      background-position: var(--bg-size) 0;
-    }
+    animation: gradient 45s ease infinite;
   }
   @keyframes gradient {
     0% {
