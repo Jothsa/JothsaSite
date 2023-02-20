@@ -42,7 +42,11 @@
 </script>
 
 <div class="quotes">
-  <Masonry colWidth="minmax(Min(25em, 100%), 1fr);" gridGap="1em;">
+  <Masonry
+    gridGap={'1rem'}
+    colWidth={'minmax(Min(25em, 100%), 1fr)'}
+    items={quotes}
+  >
     {#each quotes as quote (quote.id)}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
         <QuoteCard>
