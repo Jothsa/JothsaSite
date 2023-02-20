@@ -46,7 +46,10 @@
 </div>
 
 <style>
-  /* div.quoteContainer {
-    display: flex;
-  } */
+  div.quoteContainer {
+    border: solid 3px darkblue;
+    border-radius: 0.5em;
+    padding: 0.25em;
+    background-color: #f5f5f5;
+  }
 </style>
