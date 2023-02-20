@@ -46,10 +46,15 @@
 </div>
 
 <style>
-  div.quoteContainer {
-    border: solid 3px darkblue;
+  .quoteContainer {
     border-radius: 0.5em;
     padding: 0.25em;
-    background-color: #f5f5f5;
+    position: relative;
+    border: double 4px transparent;
+    background-image: linear-gradient(white, white),
+      radial-gradient(circle at top left, #f00, #3020ff);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-color: #f9f9f9;
   }
 </style>
