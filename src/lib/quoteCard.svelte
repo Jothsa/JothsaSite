@@ -60,7 +60,7 @@
     padding: 0.25em;
     position: relative;
     transform-style: preserve-3d;
-    border: double 4px transparent;
+    border: double var(--border-size-4) transparent;
     background-image: linear-gradient(var(--bg-color), var(--bg-color)),
       var(--grad);
     background-origin: border-box;
