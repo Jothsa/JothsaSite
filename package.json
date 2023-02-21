@@ -39,6 +39,7 @@
   "dependencies": {
     "@svelteuidev/composables": "^0.10.0",
     "@svelteuidev/core": "^0.10.0",
-    "pocketbase": "^0.10.2"
+    "pocketbase": "^0.10.2",
+    "svelte-preprocess-import-assets": "^0.2.5"
   }
 }
