@@ -14,7 +14,7 @@
     // get quotes in list format
     const quotesList = await pb.collection('quotes').getList(1, 50, {
       // sort: '',
-      expand: 'author,source,universe',
+      expand: 'author, source, author.universe',
     });
     quotes = quotesList.items;
 
@@ -61,7 +61,11 @@
     items={quotes}
   >
     {#each quotes as quote (quote.id)}
-      {@const theme = quote.expand?.universe?.name}
+      {@const theme = quote.expand?.author?.expand?.universe?.name.replace(
+        /\s+/g,
+        ''
+      )}
+      {@debug theme}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
         <QuoteCard {theme}>
           <svelte:fragment slot="quoteText">
