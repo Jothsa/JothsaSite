@@ -11,4 +11,4 @@ vite.config.ts.timestamp-*
 pb/
 pb/pb_data/logs.db
 yarn.lock
-yarn.error.log
+yarn-error.log
