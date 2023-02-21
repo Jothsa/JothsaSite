@@ -46,6 +46,14 @@
 </div>
 
 <style lang="postcss">
+  @font-face {
+    font-family: 'Star Jedi';
+    src: url('/fonts/StarJedi.woff2') format('woff2'),
+      url('/fonts/StarJedi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
   .quoteContainer {
     --bg-color: #f5f5f5;
     --grad: linear-gradient(
@@ -96,5 +104,11 @@
         scale: 1;
       }
     }
+  }
+
+  .quoteSource {
+    font-family: 'Star Jedi', serif;
+    font-weight: normal;
+    font-size: normal;
   }
 </style>

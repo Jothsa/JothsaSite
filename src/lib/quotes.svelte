@@ -41,6 +41,15 @@
   });
 </script>
 
+<svelte:head>
+  <link
+    rel="preload"
+    href="/fonts/StarJedi.woff2"
+    as="font"
+    type="font/woff2"
+  />
+</svelte:head>
+
 <div class="quotes">
   <Masonry
     gridGap={'1rem'}
