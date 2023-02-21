@@ -48,6 +48,11 @@
 </div>
 
 <style lang="postcss">
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
   @font-face {
     font-family: 'Star Jedi';
     src: url('/fonts/StarJedi.woff2') format('woff2'),
@@ -95,6 +100,11 @@
     background-clip: padding-box, border-box;
     transition: var(--transition);
 
+    &.StarWars {
+      --angle: 0deg;
+      --grad: linear-gradient(var(--angle), blue, silver, navy, red);
+    }
+
     &::before {
       scale: 0.9; /* This way the shadow isn't visible at first. */
       transition: var(--transition);
@@ -126,15 +136,53 @@
     }
   }
 
-  .StarWars .quoteSource {
-    font-family: 'Star Jedi', serif;
-  }
-  .TheLordoftheRings .quoteSource {
-    font-family: 'Tengwar Telcontar';
-  }
   .quoteSource {
     font-weight: normal;
     font-size: normal;
     font-family: 'Tengwar Telcontar';
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .quoteSource {
+      animation: move-bg 8s linear infinite;
+    }
+
+    .StarWars {
+      animation: 10s rotate linear infinite;
+    }
+    @keyframes move-bg {
+      to {
+        background-position: var(--bg-size) 0;
+      }
+    }
+    @keyframes rotate {
+      to {
+        --angle: 360deg;
+      }
+    }
+  }
+
+  /* TODO Better fallback fonts */
+  .StarWars .quoteSource {
+    --color-one: #000;
+    --color-two: #ffe81f;
+    font-family: 'Star Jedi', serif;
+  }
+  .TheLordoftheRings .quoteSource {
+    --color-one: silver;
+    --color-two: #d4af37;
+    --bg-move-dur: 35s;
+    --angle: 90deg;
+    --bg-size: 400%;
+    background: linear-gradient(
+        var(--angle),
+        var(--color-one),
+        var(--color-two),
+        var(--color-one)
+      )
+      0 0 / var(--bg-size) 100%;
+    color: transparent;
+    background-clip: text;
+    font-family: 'Tengwar Telcontar', serif;
   }
 </style>
