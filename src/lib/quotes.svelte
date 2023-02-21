@@ -14,7 +14,7 @@
     // get quotes in list format
     const quotesList = await pb.collection('quotes').getList(1, 50, {
       // sort: '',
-      expand: 'author,source',
+      expand: 'author,source,universe',
     });
     quotes = quotesList.items;
 
@@ -26,7 +26,10 @@
           // Fetch associated author
           const author = await pb.collection('author').getOne(record.author);
           const source = await pb.collection('source').getOne(record.source);
-          record.expand = { author, source };
+          const universe = await pb
+            .collection('universes')
+            .getOne(record.source);
+          record.expand = { author, source, universe };
           quotes = [...quotes, record];
         }
         if (action === 'delete') {
@@ -48,6 +51,7 @@
     as="font"
     type="font/woff2"
   />
+  <link rel="preload" href="fonts/tengtelc.woff2" as="font" type="font/woff2" />
 </svelte:head>
 
 <div class="quotes">
@@ -57,8 +61,9 @@
     items={quotes}
   >
     {#each quotes as quote (quote.id)}
+      {@const theme = quote.expand?.universe?.name}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
-        <QuoteCard>
+        <QuoteCard {theme}>
           <svelte:fragment slot="quoteText">
             {quote.text}
           </svelte:fragment>

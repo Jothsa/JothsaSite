@@ -1,7 +1,8 @@
 <script lang="ts">
+  export let theme = 'default';
 </script>
 
-<div class="quoteContainer">
+<div class="quoteContainer {theme}">
   <blockquote>
     <slot name="quoteText">
       <!-- All right. Well, take care of yourself, Han. I guess that's what you're
@@ -54,6 +55,24 @@
     font-style: normal;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'Tengwar Telcontar';
+    src: url('fonts/tengtelc.woff2') format('woff2'),
+      url('fonts/tengtelc.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Tengwar Telcontar';
+    src: url('fonts/tengtelcb.woff2') format('woff2'),
+      url('fonts/tengtelcb.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
   .quoteContainer {
     --bg-color: #f5f5f5;
     --grad: linear-gradient(
