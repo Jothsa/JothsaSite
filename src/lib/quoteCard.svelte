@@ -48,9 +48,15 @@
 <style lang="postcss">
   .quoteContainer {
     --bg-color: #f5f5f5;
-    --grad: radial-gradient(circle at top left, #f00, #3020ff);
+    --grad: linear-gradient(
+      -45deg,
+      oklch(70.15% 0.168 263.12),
+      oklch(41.03% 0.254 263.12),
+      oklch(82.5% 0.094 263.12),
+      oklch(47.79% 0.308 267.35)
+    );
     --transition: 400ms scale 120ms ease-in-out;
-    border-radius: 0.5em;
+    border-radius: var(--radius-3);
     padding: 0.25em;
     position: relative;
     transform-style: preserve-3d;
