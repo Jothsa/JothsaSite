@@ -1,8 +1,9 @@
 <script lang="ts">
   export let theme = 'default';
+  let classes = theme + ' quoteContainer';
 </script>
 
-<div class="quoteContainer {theme}">
+<div class={classes}>
   <blockquote>
     <slot name="quoteText">
       <!-- All right. Well, take care of yourself, Han. I guess that's what you're
@@ -125,9 +126,15 @@
     }
   }
 
-  .quoteSource {
+  .StarWars .quoteSource {
     font-family: 'Star Jedi', serif;
+  }
+  .TheLordoftheRings .quoteSource {
+    font-family: 'Tengwar Telcontar';
+  }
+  .quoteSource {
     font-weight: normal;
     font-size: normal;
+    font-family: 'Tengwar Telcontar';
   }
 </style>
