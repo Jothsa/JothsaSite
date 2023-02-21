@@ -106,7 +106,7 @@
     }
 
     &::before {
-      scale: 0.9; /* This way the shadow isn't visible at first. */
+      scale: 1.025; /* This can make the shadow invisible at first if <1. */
       transition: var(--transition);
       --spread: -3px;
       --grad-shadow: var(--grad);
@@ -129,9 +129,9 @@
     /* technically the card isn't focusable. Maybe i should change that? */
     &:hover,
     &:focus-within {
-      scale: 1.025;
+      scale: 1.04;
       &::before {
-        scale: 1;
+        scale: 1.025;
       }
     }
   }
