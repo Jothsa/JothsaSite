@@ -26,6 +26,7 @@
           // Fetch associated author
           const author = await pb.collection('author').getOne(record.author);
           const source = await pb.collection('source').getOne(record.source);
+          // TODO Universe might not be correctly implemented here idk
           const universe = await pb
             .collection('universes')
             .getOne(record.source);
@@ -56,7 +57,7 @@
 
 <div class="quotes">
   <Masonry
-    gridGap={'1rem'}
+    gridGap={'2rem'}
     colWidth={'minmax(Min(25em, 100%), 1fr)'}
     items={quotes}
   >
@@ -65,7 +66,6 @@
         /\s+/g,
         ''
       )}
-      {@debug theme}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
         <QuoteCard {theme}>
           <svelte:fragment slot="quoteText">
