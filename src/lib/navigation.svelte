@@ -18,18 +18,18 @@
     place-items: center;
     -webkit-mask: var(--mask-edge-drip-bottom);
 
-    ul {
+    & ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: grid;
 
-      li {
+      & li {
         padding: 0;
       }
     }
 
-    a {
+    & a {
       text-decoration: none;
       text-align: center;
       display: inline-block;
