@@ -1,12 +1,10 @@
 <script lang="ts">
-  import Quotes from '../lib/quotes.svelte';
+  import Nav from '../lib/navigation.svelte';
 </script>
 
 <header>
-  <h1>Quotes</h1>
+  <h1>Home</h1>
 </header>
-
-<Quotes />
 
 <style>
 </style>
