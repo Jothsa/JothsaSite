@@ -1,7 +1,7 @@
-/* Write your global styles here, in PostCSS syntax */
+@import '/node_modules/modern-normalize/modern-normalize.css';
 *,
-:after,
-:before {
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -10,6 +10,7 @@ h1 {
 }
 
 body {
+  margin: 0;
   background-color: darkblue;
   /* background: linear-gradient(
     -45deg,
