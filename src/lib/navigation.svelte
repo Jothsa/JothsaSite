@@ -13,7 +13,8 @@
   @import 'open-props/masks/edges';
   nav {
     background-color: #eee;
-    padding: 0 1rem;
+    padding: 0 1rem 5rem 1rem;
+    width: 100vw;
     display: grid;
     place-items: center;
     -webkit-mask: var(--mask-edge-drip-bottom);
@@ -23,6 +24,7 @@
       margin: 0;
       padding: 0;
       display: grid;
+      grid-auto-flow: column;
 
       & li {
         padding: 0;
@@ -37,5 +39,11 @@
       font-size: 1.125rem;
       padding: 1rem 0.5rem;
     }
+  }
+
+  body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
   }
 </style>
