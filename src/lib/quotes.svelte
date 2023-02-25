@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import { pb } from './pocketbase';
-  import QuoteCard from './quoteCard.svelte';
+  import QuoteCard from '$lib/quoteCard.svelte';
   // import { Grid } from '@svelteuidev/core';
   import Masonry from './Masonry.svelte';
 
@@ -9,6 +9,12 @@
   let quotes: any[] = [];
   let newQuote: string;
   let unsubscribe: () => void;
+
+  interface $$Slots {
+    default: never;
+  }
+
+  interface $$Props {}
 
   onMount(async () => {
     // get quotes in list format
