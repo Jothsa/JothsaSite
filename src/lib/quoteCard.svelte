@@ -1,6 +1,18 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   export let theme = 'default';
   let classes = theme + ' quoteContainer';
+  interface $$Slots {
+    default: never;
+    quoteText: {};
+    quoteAuthor: {};
+    quoteSource: {};
+  }
+
+  interface $$Props {
+    theme?: string;
+  }
 </script>
 
 <div class={classes}>
@@ -101,8 +113,9 @@
     transition: var(--transition);
 
     &.StarWars {
-      --angle: 0deg;
-      --grad: linear-gradient(var(--angle), blue, silver, navy, red);
+      --angle: calc(0 deg + var(--offset));
+      --offset: 0deg;
+      --grad: conic-gradient(var(--angle), blue, silver, navy, red, blue);
     }
 
     &::before {
@@ -184,5 +197,49 @@
     color: transparent;
     background-clip: text;
     font-family: 'Tengwar Telcontar', serif;
+  }
+
+  /*TODO Randomize starting angle (use cicada principle maybe) */
+  @supports (background: paint(worklet)) {
+    /* maybe this could be in .radGradBorderAnimated? It shouldn't matter ig */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .radGradBorderAnimated {
+      /* gradient border animation */
+      animation: 10s rotate linear infinite;
+    }
+  }
+
+  @supports not (color: oklch(70.15% 0.168 263.12)) {
+    /* fallback colors */
+
+    .StarWars {
+      /* default colors */
+      --colors: rgb(102, 155, 255), rgb(0, 36, 208), rgb(166, 198, 255),
+        rgb(35, 25, 255), rgb(102, 155, 255);
+    }
+  }
+
+  .StarWars {
+    /* the below styles are only needed on the shadows(I think), but adding them here makes sure everything is consistent and prevents unexpected behavior  */
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .StarWars {
+    --bg-color: #f5f5f5;
+    /* This will be where the gradient border is clipped, so you can adjust this border's size and you'll adjust the gradient border's size */
+    /* I'm not sure if it has to be double */
+    border: double 2rem transparent;
+    /* this defines one gradient for the element background and another for the border. I have a solid background now, but you could do a gradient background and a gradient border */
+    background-image: linear-gradient(var(--bg-color), var(--bg-color)),
+      var(--grad);
+  }
+  .StarWars {
+    --grad: conic-gradient(from 0deg, var(--colors));
   }
 </style>
