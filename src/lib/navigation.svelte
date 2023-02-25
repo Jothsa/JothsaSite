@@ -1,6 +1,7 @@
 <script lang="ts">
-  interface $$Props {}
-  interface $$Slots {}
+  interface $$Slots {
+    default: never;
+  }
 </script>
 
 <nav aria-label="Main Navigation">

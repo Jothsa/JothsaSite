@@ -4,17 +4,14 @@
   import QuoteCard from '$lib/quoteCard.svelte';
   // import { Grid } from '@svelteuidev/core';
   import Masonry from './Masonry.svelte';
-
   // TODO maybe set type
-  let quotes: any[] = [];
-  let newQuote: string;
+  let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
+  //let newQuote: string;
   let unsubscribe: () => void;
 
   interface $$Slots {
     default: never;
   }
-
-  interface $$Props {}
 
   onMount(async () => {
     // get quotes in list format
@@ -50,6 +47,9 @@
     unsubscribe?.();
   });
 </script>
+
+<!-- <style>
+</style> -->
 
 <svelte:head>
   <link
@@ -106,6 +106,3 @@
     {/each}
   </Masonry>
 </div>
-
-<style>
-</style>

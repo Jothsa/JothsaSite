@@ -31,9 +31,9 @@
   let classes = theme + ' quoteContainer';
   interface $$Slots {
     default: never;
-    quoteText: {};
-    quoteAuthor: {};
-    quoteSource: {};
+    quoteText: unknown;
+    quoteAuthor: unknown;
+    quoteSource: unknown;
   }
 
   interface $$Props {
@@ -86,6 +86,7 @@
 </div>
 
 <style lang="postcss">
+  @import 'open-props/masks/corner-cuts';
   @font-face {
     font-family: 'Star Jedi';
     src: url('/fonts/StarJedi.woff2') format('woff2'),
@@ -133,6 +134,10 @@
       border: double var(--border-size-4) transparent;
       background-image: linear-gradient(var(--bg-color), var(--bg-color)),
         var(--border-grad);
+    }
+    &.TheLordoftheRings {
+      background: var(--bg-color);
+      -webkit-mask: var(--mask-corner-cut-angles-1);
     }
   }
 
