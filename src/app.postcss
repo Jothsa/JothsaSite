@@ -11,14 +11,8 @@ h1 {
 
 body {
   margin: 0;
+  height: 100vh;
   background-color: darkblue;
-  /* background: linear-gradient(
-    -45deg,
-    oklch(70.15% 0.168 263.12),
-    oklch(41.03% 0.254 263.12),
-    oklch(82.5% 0.094 263.12),
-    oklch(47.79% 0.308 267.35)
-  ); */
   background: linear-gradient(
     -45deg,
     oklch(65% 0.195 251.47),
@@ -33,11 +27,10 @@ body {
   /* I think this should be the number of colors in the gradient times 100%
   that gives each color one screen size */
   background-size: 800% 800%;
-  height: 100vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  body {
+  .gradBGAnim {
     animation: gradient 90s linear infinite;
   }
   @keyframes gradient {
