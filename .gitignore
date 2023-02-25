@@ -12,3 +12,4 @@ pb/
 pb/pb_data/logs.db
 yarn.lock
 yarn-error.log
+.stylelintcache
