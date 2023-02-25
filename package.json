@@ -11,7 +11,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "pb-typegen": "pocketbase-typegen --db ./pb/pb_data/data.db"
+    "pb-typegen": "pocketbase-typegen --db ./pb/pb_data/data.db -o ./lib/pocketbase-types.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.31.1",
