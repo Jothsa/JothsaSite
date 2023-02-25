@@ -1,35 +1,23 @@
-<script>
+<script lang="ts">
+  interface $$Props {}
+  interface $$Slots {}
 </script>
 
 <nav aria-label="Main Navigation">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/quotes">Quotes</a></li>
-    <li><a href="#">About</a></li>
-  </ul>
+  <a href="/">Home</a>
+  <a href="/quotes">Quotes</a>
+  <a href="#">About</a>
 </nav>
 
 <style lang="postcss">
   @import 'open-props/masks/edges';
   nav {
     background-color: #eee;
-    padding: 0 1rem 5rem 1rem;
-    width: 100vw;
+    padding: 0.25rem 2rem 5rem 2rem;
     display: grid;
     place-items: center;
     -webkit-mask: var(--mask-edge-drip-bottom);
-
-    & ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-auto-flow: column;
-
-      & li {
-        padding: 0;
-      }
-    }
+    grid-auto-flow: column;
 
     & a {
       text-decoration: none;
@@ -39,11 +27,5 @@
       font-size: 1.125rem;
       padding: 1rem 0.5rem;
     }
-  }
-
-  body {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
   }
 </style>
