@@ -1,3 +1,29 @@
+<script lang="ts" context="module">
+  const generateConicCSS = () => {
+    let css = '@keyframes conic-rotate {';
+    for (let i = 0; i <= 100; i++) {
+      css = `${css}
+  ${i}% { background-image: linear-gradient(var(--bg-color), var(--bg-color)) conic-gradient(from ${(
+        (360 * i) /
+        100
+      ).toFixed(2)}deg, var(--border-grad-colors)); }`;
+    }
+
+    return `${css}
+    }`;
+  };
+
+  const injectCSS = (css: string) => {
+    const style = document.createElement('style');
+    style.innerHTML = css;
+    document.head.appendChild(style);
+  };
+
+  // injectCSS(generateConicCSS());
+  // console.log(generateCSS());
+  // console.log(generateShadowCSS());
+</script>
+
 <script lang="ts">
   import { onMount } from 'svelte';
 
@@ -60,11 +86,6 @@
 </div>
 
 <style lang="postcss">
-  @property --angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-  }
   @font-face {
     font-family: 'Star Jedi';
     src: url('/fonts/StarJedi.woff2') format('woff2'),
@@ -93,75 +114,41 @@
 
   .quoteContainer {
     --bg-color: #f5f5f5;
-    --grad: linear-gradient(
-      -45deg,
-      oklch(70.15% 0.168 263.12),
-      oklch(41.03% 0.254 263.12),
-      oklch(82.5% 0.094 263.12),
-      oklch(47.79% 0.308 267.35)
-    );
-    --transition: 400ms scale 120ms ease-in-out;
+    background-color: (var(--bg-color));
     border-radius: var(--radius-3);
     padding: 0.25em;
-    position: relative;
-    transform-style: preserve-3d;
-    border: double var(--border-size-4) transparent;
-    background-image: linear-gradient(var(--bg-color), var(--bg-color)),
-      var(--grad);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    transition: var(--transition);
 
     &.StarWars {
-      --angle: calc(0 deg + var(--offset));
-      --offset: 0deg;
-      --grad: conic-gradient(var(--angle), blue, silver, navy, red, blue);
-    }
-
-    &::before {
-      scale: 1.025; /* This can make the shadow invisible at first if <1. */
-      transition: var(--transition);
-      --spread: -3px;
-      --grad-shadow: var(--grad);
-      --x-offset: 8px;
-      --y-offset: 6px;
-      --blur: 10px;
-      content: '';
-      position: absolute;
-      border-radius: inherit;
-      inset: var(--spread);
-      transform: translate3d(
-        var(--x-offset),
-        var(--y-offset),
-        -1px
-      ); /* (X, Y, Z) */
-      background: var(--grad-shadow);
-      filter: blur(var(--blur));
-    }
-
-    /* technically the card isn't focusable. Maybe i should change that? */
-    &:hover,
-    &:focus-within {
-      scale: 1.04;
-      &::before {
-        scale: 1.025;
-      }
+      --grad-angle: 0deg;
+      --grad-offset: 0deg;
+      --border-grad-colors: oklch(70.15% 0.168 263.12),
+        oklch(41.03% 0.254 263.12), oklch(82.5% 0.094 263.12),
+        oklch(47.79% 0.308 267.35), oklch(70.15% 0.168 263.12);
+      --border-grad: conic-gradient(
+        from var(--grad-angle),
+        var(--border-grad-colors)
+      );
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      border: double var(--border-size-4) transparent;
+      background-image: linear-gradient(var(--bg-color), var(--bg-color)),
+        var(--border-grad);
     }
   }
 
   .quoteSource {
     font-weight: normal;
     font-size: normal;
-    font-family: 'Tengwar Telcontar';
+    font-family: 'Tengwar Telcontar', serif;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .quoteSource {
+    .TheLordoftheRings .quoteSource {
       animation: move-bg 8s linear infinite;
     }
 
     .StarWars {
-      animation: 10s rotate linear infinite;
+      animation: rotate 10s linear infinite;
     }
     @keyframes move-bg {
       to {
@@ -170,15 +157,13 @@
     }
     @keyframes rotate {
       to {
-        --angle: 360deg;
+        --grad-angle: 360deg;
       }
     }
   }
 
   /* TODO Better fallback fonts */
   .StarWars .quoteSource {
-    --color-one: #000;
-    --color-two: #ffe81f;
     font-family: 'Star Jedi', serif;
   }
   .TheLordoftheRings .quoteSource {
@@ -202,44 +187,19 @@
   /*TODO Randomize starting angle (use cicada principle maybe) */
   @supports (background: paint(worklet)) {
     /* maybe this could be in .radGradBorderAnimated? It shouldn't matter ig */
-    @property --angle {
+    @property --grad-angle {
       syntax: '<angle>';
       initial-value: 0deg;
       inherits: false;
     }
-
-    .radGradBorderAnimated {
-      /* gradient border animation */
-      animation: 10s rotate linear infinite;
-    }
   }
 
-  @supports not (color: oklch(70.15% 0.168 263.12)) {
-    /* fallback colors */
-
+  @supports not (background: paint(worklet)) {
     .StarWars {
-      /* default colors */
-      --colors: rgb(102, 155, 255), rgb(0, 36, 208), rgb(166, 198, 255),
-        rgb(35, 25, 255), rgb(102, 155, 255);
+      --border-grad: conic-gradient(from 0deg, var(--border-grad-colors));
+      @media (prefers-reduced-motion: no-preference) {
+        animation: 10s rotate-fallback linear infinite;
+      }
     }
-  }
-
-  .StarWars {
-    /* the below styles are only needed on the shadows(I think), but adding them here makes sure everything is consistent and prevents unexpected behavior  */
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-  }
-
-  .StarWars {
-    --bg-color: #f5f5f5;
-    /* This will be where the gradient border is clipped, so you can adjust this border's size and you'll adjust the gradient border's size */
-    /* I'm not sure if it has to be double */
-    border: double 2rem transparent;
-    /* this defines one gradient for the element background and another for the border. I have a solid background now, but you could do a gradient background and a gradient border */
-    background-image: linear-gradient(var(--bg-color), var(--bg-color)),
-      var(--grad);
-  }
-  .StarWars {
-    --grad: conic-gradient(from 0deg, var(--colors));
   }
 </style>

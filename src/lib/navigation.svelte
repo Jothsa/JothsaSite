@@ -6,7 +6,7 @@
 <nav aria-label="Main Navigation">
   <a href="/">Home</a>
   <a href="/quotes">Quotes</a>
-  <a href="#">About</a>
+  <a href="/about">About</a>
 </nav>
 
 <style lang="postcss">
