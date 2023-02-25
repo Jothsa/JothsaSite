@@ -13,4 +13,10 @@
   "cssvar.extensions": ["css", "postcss", "jsx", "tsx"],
   // "typescript.suggest.paths": false,
   // "javascript.suggest.paths": false
+  "stylelint.validate": [
+    // ↓ Add "html" language.
+    "html",
+    // ↓ Add "svelte" language.
+    "svelte"
+  ]
 }
