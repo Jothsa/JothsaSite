@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-  /* eslint disable @typescript-eslint/no-unused-vars */
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const generateConicCSS = () => {
     let css = '@keyframes conic-rotate {';
     for (let i = 0; i <= 100; i++) {
@@ -19,7 +19,7 @@
     style.innerHTML = css;
     document.head.appendChild(style);
   };
-  /* eslint enable @typescript-eslint/no-unused-vars */
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   // injectCSS(generateConicCSS());
   // console.log(generateCSS());
