@@ -6,11 +6,11 @@
   import Nav from '../lib/navigation.svelte';
 
   function toggleAnim() {
-    document.body.classList.toggle('gradBGAnim');
+    document.body.classList.toggle('anim');
   }
 
   onMount(async () => {
-    document.body.classList.toggle('gradBGAnim');
+    document.body.classList.toggle('anim');
   });
 </script>
 

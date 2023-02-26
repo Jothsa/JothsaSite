@@ -30,8 +30,12 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .gradBGAnim {
+  body {
     animation: gradient 90s linear infinite;
+    animation-play-state: paused;
+  }
+  body.anim {
+    animation-play-state: running;
   }
   @keyframes gradient {
     0% {
