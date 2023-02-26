@@ -157,8 +157,8 @@
       animation-play-state: paused;
     }
 
-    :global(body.anim) .StarWars {
-      /* animation-play-state: running; */
+    :global(.anim) .StarWars {
+      animation-play-state: running;
     }
 
     @keyframes move-bg {
@@ -209,6 +209,7 @@
     @media (prefers-reduced-motion: no-preference) {
       .StarWars {
         animation: 10s rotate-fallback linear infinite;
+        animation-play-state: paused;
       }
     }
     @keyframes rotate-fallback {
