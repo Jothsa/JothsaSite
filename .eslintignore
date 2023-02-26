@@ -12,8 +12,4 @@ pnpm-lock.yaml
 package-lock.json
 yarn.lock
 
-# ignore the masonry mess
-Masonry.svelte.d.ts
-Masonry
-
 pb

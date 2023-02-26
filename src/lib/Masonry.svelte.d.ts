@@ -1,3 +1,4 @@
+/* eslint-disable */
 /** @typedef {typeof __propDef.props}  MasonryProps */
 /** @typedef {typeof __propDef.events}  MasonryEvents */
 /** @typedef {typeof __propDef.slots}  MasonrySlots */

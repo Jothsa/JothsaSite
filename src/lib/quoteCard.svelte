@@ -27,8 +27,6 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from 'svelte';
-
   export let theme = 'default';
   let classes = theme + ' quoteContainer';
   interface $$Slots {
