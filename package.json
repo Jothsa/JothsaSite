@@ -14,6 +14,10 @@
     "pb-typegen": "pocketbase-typegen --db ./pb/pb_data/data.db --out ./src/lib/pocketbase-types.ts"
   },
   "devDependencies": {
+    "@iconify/icons-material-symbols": "^1.2.30",
+    "@iconify/icons-mdi": "^1.2.41",
+    "@iconify/icons-ph": "^1.2.3",
+    "@iconify/svelte": "^3.1.0",
     "@playwright/test": "^1.31.1",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.8.3",
@@ -47,6 +51,7 @@
   "dependencies": {
     "@svelteuidev/composables": "^0.10.0",
     "@svelteuidev/core": "^0.10.0",
+    "agnostic-svelte": "^1.1.27",
     "modern-normalize": "^1.1.0",
     "pocketbase": "^0.11.1",
     "svelte-preprocess-import-assets": "^0.2.6"

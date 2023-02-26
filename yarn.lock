@@ -361,6 +361,39 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@iconify/icons-material-symbols@^1.2.30":
+  version "1.2.30"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-material-symbols/-/icons-material-symbols-1.2.30.tgz#167ab632f40c6ed50b99ab6d378b6f5bfe91d24b"
+  integrity sha512-5YCfMw87y9Gmf66S84hl/X3226hM85ciATQ9jNCtYng0GfL5rfyB8u9nBu77Ux7bD2SK8yj5lQIaUvyQnbyxOg==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify/icons-mdi@^1.2.41":
+  version "1.2.41"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-mdi/-/icons-mdi-1.2.41.tgz#f6797c4b4d5aeab128bb695242d47c0236fda737"
+  integrity sha512-uQ6S+rvJBLtYJaT7As9fE8Nx3wh8bta+jslScIR7qDq97skHUOJnRQyA+FRczZQCoi5iQ2W5t3IWBNe6d0pxTw==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify/icons-ph@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@iconify/icons-ph/-/icons-ph-1.2.3.tgz#66a48cb3e060523c6964ca23d671f157373ccbf0"
+  integrity sha512-aboyiW3ITc+DY6tKiVAzmkg77QqB15VnmKHVFc3Iwt0rdq/76WIzRDYVSvNXjsPJkO1TLWkGAxuREfvToXMUaA==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify/svelte@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@iconify/svelte/-/svelte-3.1.0.tgz#a295d95b2fefec437b296c25a8059a620c95c029"
+  integrity sha512-G1w1dcO7eiD+JmQJNwNW4qnAn86oQxKLe1P/iAPjJ0qYYuF7Pb60TPrlcj4+2gu4SXe3a0Jrv++8YmceG+gX/g==
+  dependencies:
+    "@iconify/types" "^2.0.0"
+
+"@iconify/types@*", "@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
+
 "@jridgewell/resolve-uri@3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.1.0.tgz#2203b118c157721addfe69d47b70465463066d78"
@@ -647,6 +680,13 @@
     "@typescript-eslint/types" "5.53.0"
     eslint-visitor-keys "^3.3.0"
 
+a11y-dialog@^7.3.0:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/a11y-dialog/-/a11y-dialog-7.5.2.tgz#8174d3f71a05d8d5a02ebae515384c747910391c"
+  integrity sha512-zfWtVvrbGbP3AFnEJ1aJFtu7GvedgjOEKbkyEUSeaNWDzmFJk9O5nuolDQrRDyRDE5fqSJRiBJtD5bUYKveoUg==
+  dependencies:
+    focusable-selectors "^0.4.0"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -685,6 +725,19 @@ aggregate-error@^3.0.0:
   dependencies:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
+
+agnostic-helpers@^1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/agnostic-helpers/-/agnostic-helpers-1.0.3.tgz#d4f2ffe7c359cdaf3be3dbfddd69b53733b0c3a9"
+  integrity sha512-JIw3qhtSe+UqZEbVKQgjKdFNnJ9KphX8voQDGgBAAo1x+Svyj4pAHwVovVtJpXSVoBLIqnTbdQNHetKZk7pTZQ==
+
+agnostic-svelte@^1.1.27:
+  version "1.1.27"
+  resolved "https://registry.yarnpkg.com/agnostic-svelte/-/agnostic-svelte-1.1.27.tgz#279a0959b5c358010bbb7270eda8f7c0792036a9"
+  integrity sha512-wV0JbTr1Jbkh8/YRWVvWsQ2aFY+std/rG0avADm7romk1Zptdyh8j2+507PvQHKSl3lqsCeDx7yLFq5SWfANIw==
+  dependencies:
+    agnostic-helpers "^1.0.2"
+    svelte-a11y-dialog "^0.2.0"
 
 ajv@^6.10.0, ajv@^6.12.4:
   version "6.12.6"
@@ -1476,6 +1529,11 @@ flatted@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
+
+focusable-selectors@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/focusable-selectors/-/focusable-selectors-0.4.0.tgz#c93092bfe65c7cf7ef52aed82fb6f8df31072459"
+  integrity sha512-tc/236hUU3xemsRLu1RKhRQ5UWHjRM9iJTli1zdac43h7b1biRSgG0mILM0qrcsKaGCHcOPJ6NKbk12ouKHLpw==
 
 form-data@^4.0.0:
   version "4.0.0"
@@ -3251,6 +3309,13 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+svelte-a11y-dialog@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/svelte-a11y-dialog/-/svelte-a11y-dialog-0.2.0.tgz#275b2d692ff7b168b53d7ad10767fa7fcb67eb6c"
+  integrity sha512-sVJ6SbLABFfbeNNcsFpHA7VY4S1MXC8rZ9AzNtOMWjxwiwTc0Xl3ZSUYbz7ixbxLr4tDDVoZmb7xQTzLbTyZag==
+  dependencies:
+    a11y-dialog "^7.3.0"
 
 svelte-check@^3.0.4:
   version "3.0.4"
