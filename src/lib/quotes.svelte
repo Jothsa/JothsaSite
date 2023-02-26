@@ -52,6 +52,7 @@
 </style> -->
 
 <svelte:head>
+  <!-- ? Are these needed? Is this the best place for them? -->
   <link
     rel="preload"
     href="/fonts/StarJedi.woff2"
@@ -59,12 +60,18 @@
     type="font/woff2"
   />
   <link rel="preload" href="fonts/tengtelc.woff2" as="font" type="font/woff2" />
+  <link
+    rel="preload"
+    href="fonts/MoonDance-Regular.woff2"
+    as="font"
+    type="font/woff2"
+  />
 </svelte:head>
 
 <div class="quotes">
   <Masonry
     gridGap={'2rem'}
-    colWidth={'minmax(Min(25em, 100%), 1fr)'}
+    colWidth={'minmax(Min(35em, 100%), 1fr)'}
     items={quotes}
   >
     {#each quotes as quote (quote.id)}
