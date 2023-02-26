@@ -4,6 +4,8 @@
   import { Button } from '@svelteuidev/core';
   import { onMount } from 'svelte';
   import Nav from '../lib/navigation.svelte';
+  import Controls from '$lib/Controls.svelte';
+  import 'agnostic-svelte/css/common.min.css';
 
   function toggleAnim() {
     document.body.classList.toggle('anim');
@@ -16,6 +18,7 @@
 
 <SvelteUIProvider>
   <Nav />
+  <Controls />
   <slot />
   <Button on:click={toggleAnim}>Animate?</Button>
 </SvelteUIProvider>
