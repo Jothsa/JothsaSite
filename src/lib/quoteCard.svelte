@@ -113,12 +113,39 @@
     font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Moon Dance';
+    src: url('fonts/MoonDance-Regular.woff2') format('woff2'),
+      url('fonts/MoonDance-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   .quoteContainer {
     --bg-color: #f5f5f5;
     background-color: (var(--bg-color));
     border-radius: var(--radius-3);
     padding: 0.3rem;
+    font-size: var(--font-size-fluid-1);
 
+    & blockquote {
+      &::before {
+        content: '\201C';
+        font-size: clamp(1em, 4em, 15vh);
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        vertical-align: -0.4em;
+      }
+      &::after {
+        content: '\201D';
+        font-size: var(--font-size-fluid-2);
+        font-size: clamp(1em, 4em, 15vh);
+        line-height: 0.1em;
+        margin-right: 0.1em;
+        vertical-align: -0.4em;
+      }
+    }
     &.StarWars {
       --grad-angle: 0deg;
       --grad-offset: 0deg;
@@ -138,12 +165,14 @@
     &.TheLordoftheRings {
       background: var(--bg-color);
       -webkit-mask: var(--mask-corner-cut-angles-1);
+      font-family: 'Moon Dance', serif;
     }
   }
 
   .quoteSource {
     font-weight: normal;
-    font-size: normal;
+    /* should be 1.2 times the quote text size */
+    font-size: 1.2em;
     font-family: 'Tengwar Telcontar', serif;
   }
 
