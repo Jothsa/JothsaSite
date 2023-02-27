@@ -1,2 +1,3 @@
 import PocketBase from 'PocketBase';
-export const pb = new PocketBase('http://192.168.1.90:8090');
+// ! should PB_URL be public?
+export const pb = new PocketBase(import.meta.env.VITE_PB_URL);
