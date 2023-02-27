@@ -122,6 +122,12 @@
     font-display: swap;
   }
 
+  @define-mixin quoteMixin {
+    font-size: 10rem /* clamp(5vh, 4em, 15vh)*/;
+    position: absolute;
+    opacity: 0.2;
+  }
+
   .quoteContainer {
     --bg-color: #f5f5f5;
     background-color: (var(--bg-color));
@@ -129,11 +135,6 @@
     padding: 0.3rem;
     font-size: var(--font-size-fluid-1);
     position: relative;
-    @define-mixin quoteMixin {
-      font-size: 10rem /* clamp(5vh, 4em, 15vh)*/;
-      position: absolute;
-      opacity: 0.2;
-    }
 
     &::before {
       @mixin quoteMixin;
@@ -181,12 +182,13 @@
       animation: move-bg 8s linear infinite;
     }
 
-    .StarWars {
-      animation: rotate 10s linear infinite;
+    .StarWars,
+    .TheLordoftheRings .quoteSource {
       animation-play-state: paused;
     }
 
-    :global(.anim) .StarWars {
+    :global(.anim) .StarWars,
+    :global(.anim) .TheLordoftheRings .quoteSource {
       animation-play-state: running;
     }
 
