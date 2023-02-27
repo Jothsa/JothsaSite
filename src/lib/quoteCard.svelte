@@ -128,24 +128,24 @@
     border-radius: var(--radius-3);
     padding: 0.3rem;
     font-size: var(--font-size-fluid-1);
-
-    & blockquote {
-      &::before {
-        content: '\201C';
-        font-size: clamp(1em, 4em, 15vh);
-        line-height: 0.1em;
-        margin-right: 0.1em;
-        vertical-align: -0.4em;
-      }
-      &::after {
-        content: '\201D';
-        font-size: var(--font-size-fluid-2);
-        font-size: clamp(1em, 4em, 15vh);
-        line-height: 0.1em;
-        margin-right: 0.1em;
-        vertical-align: -0.4em;
-      }
+    position: relative;
+    @define-mixin quoteMixin {
+      font-size: 10rem /* clamp(5vh, 4em, 15vh)*/;
+      position: absolute;
+      opacity: 0.2;
     }
+
+    &::before {
+      @mixin quoteMixin;
+      content: '\201C';
+      top: calc(-2 * var(--font-size-fluid-2));
+    }
+    &::after {
+      @mixin quoteMixin;
+      content: '\201D';
+      bottom: 0;
+    }
+
     &.StarWars {
       --grad-angle: 0deg;
       --grad-offset: 0deg;
