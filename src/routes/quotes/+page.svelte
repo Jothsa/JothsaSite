@@ -7,6 +7,3 @@
 </header>
 
 <Quotes />
-
-<style>
-</style>
