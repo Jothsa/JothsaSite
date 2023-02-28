@@ -17,7 +17,7 @@
         } else if (x == 'true') {
           control.setAttribute('aria-expanded', 'true');
         }
-      }
+      },
     );
   }
 </script>

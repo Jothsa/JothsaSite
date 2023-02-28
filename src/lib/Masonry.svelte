@@ -12,7 +12,7 @@
     grids.forEach(async (grid) => {
       /* get the post relayout number of columns */
       let ncol = getComputedStyle(grid._el).gridTemplateColumns.split(
-        ' '
+        ' ',
       ).length;
 
       grid.items.forEach((c) => {
@@ -59,7 +59,8 @@
           _el: grid,
           gap: parseFloat(getComputedStyle(grid).rowGap),
           items: [...grid.childNodes].filter(
-            (c) => c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1
+            (c) =>
+              c.nodeType === 1 && +getComputedStyle(c).gridColumnEnd !== -1,
           ),
           ncol: 0,
           mod: 0,
@@ -79,7 +80,7 @@
       _window.removeEventListener(
         'resize',
         refreshLayout,
-        false
+        false,
       ); /* on resize */
     }
   });

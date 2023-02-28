@@ -2,7 +2,7 @@
 
 # Formatting
 
-Spaces shall be used instead of tabs with a width of 2. Single quotes shall be used when possible. Notable exceptions include html attributes and json files. Trailing commas shall follow the es5 syntax. Semicolons shall be used whenever possible.
+Spaces shall be used instead of tabs with a width of 2. Single quotes shall be used when possible. Notable exceptions include html attributes and json files. Trailing commas shall be used whenever possible. Semicolons shall be used whenever possible.
 
 ### Naming
 

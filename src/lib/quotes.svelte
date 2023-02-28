@@ -77,7 +77,7 @@
     {#each quotes as quote (quote.id)}
       {@const theme = quote.expand?.author?.expand?.universe?.name.replace(
         /\s+/g,
-        ''
+        '',
       )}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
         <QuoteCard {theme}>
