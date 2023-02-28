@@ -9,8 +9,8 @@
     "test": "playwright test",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --plugin-search-dir . --check . && eslint . && stylelint '**/*.{css,svelte}'",
-    "format": "prettier --plugin-search-dir . --write .; stylelint --fix '**/*.{css,svelte}'",
+    "lint": "prettier --plugin-search-dir . --check . && eslint . && stylelint '**/*.{css,postcss,svelte}'",
+    "format": "prettier --plugin-search-dir . --write .; stylelint --fix '**/*.{css,postcss,svelte}'",
     "pb-typegen": "source .env; pocketbase-typegen -u $VITE_PB_URL -e $PB_EMAIL -p $PB_PASSWORD --out ./src/lib/pocketbase-types.ts"
   },
   "devDependencies": {
