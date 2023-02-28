@@ -56,6 +56,7 @@
   "function-name-case": "lower",
   "alpha-value-notation": "number",
   "selector-not-notation": "complex",
+  "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
   "selector-class-pattern": [
     "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
     {
