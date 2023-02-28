@@ -12,8 +12,6 @@ Use camelCase with a lower first letter in most instances. Boolean variables sha
 
 ### Naming
 
-In css use kebab-case for variables. If needed, the class name of containing elements shall be "container".
-
 ### Colors
 
 All colors shall be in the oklch format.
