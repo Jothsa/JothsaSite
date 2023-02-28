@@ -1,12 +1,31 @@
 {
   "extends": ["stylelint-config-html", "stylelint-config-recommended"],
   "rules": {
+    "font-family-name-quotes": "always-where-recommended",
+    "function-url-quotes": "always",
+    "selector-attribute-quotes": "always",
+    "selector-pseudo-element-colon-notation": "double",
+
+    "selector-type-case": "lower",
+    "value-keyword-case": "lower",
+    "function-name-case": "lower",
+
+    "alpha-value-notation": "number",
+
+    "color-function-notation": "modern",
+    "color-no-hex": true,
+    "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
+    "selector-not-notation": "complex",
+
+    "shorthand-property-no-redundant-values": true,
     "selector-pseudo-class-no-unknown": [
       true,
       {
         "ignorePseudoClasses": ["global"]
       }
     ],
+
+    "at-rule-no-vendor-prefix": true,
     "at-rule-no-unknown": [
       true,
       {
@@ -22,8 +41,7 @@
       "ignore": ["after-comment"]
     }
   ],
-  "at-rule-no-vendor-prefix": true,
-  "color-function-notation": "modern",
+  "comment-whitespace-inside": "always",
   "comment-empty-line-before": [
     "always",
     {
@@ -31,16 +49,7 @@
       "ignore": ["stylelint-commands"]
     }
   ],
-  "comment-whitespace-inside": "always",
-  "custom-property-empty-line-before": [
-    "always",
-    {
-      "except": ["after-custom-property", "first-nested"],
-      "ignore": ["after-comment", "inside-single-line-block"]
-    }
-  ],
-  "font-family-name-quotes": "always-where-recommended",
-  "function-url-quotes": "always",
+
   "rule-empty-line-before": [
     "always-multi-line",
     {
@@ -48,20 +57,18 @@
       "ignore": ["after-comment"]
     }
   ],
-  "selector-attribute-quotes": "always",
-  "selector-pseudo-element-colon-notation": "always",
-  "selector-type-case": "lower",
-  "shorthand-property-no-redundant-values": true,
-  "value-keyword-case": "lower",
-  "function-name-case": "lower",
-  "alpha-value-notation": "number",
-  "selector-not-notation": "complex",
-  "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
-  "selector-class-pattern": [
+
+  "custom-property-pattern": [
     "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
     {
       "message": "Expected custom property name to be kebab-case"
     }
   ],
-  "color-no-hex": true
+  "custom-property-empty-line-before": [
+    "always",
+    {
+      "except": ["after-custom-property", "first-nested"],
+      "ignore": ["after-comment", "inside-single-line-block"]
+    }
+  ]
 }
