@@ -35,43 +35,44 @@
         "ignoreAtRules": ["mixin", "define-mixin"]
       }
     ],
-    "no-empty-source": null
-  },
-  "at-rule-empty-line-before": [
-    "always",
-    {
-      "except": ["blockless-after-same-name-blockless", "first-nested"],
-      "ignore": ["after-comment"]
-    }
-  ],
-  "comment-whitespace-inside": "always",
-  "comment-empty-line-before": [
-    "always",
-    {
-      "except": ["first-nested"],
-      "ignore": ["stylelint-commands"]
-    }
-  ],
+    "no-empty-source": null,
 
-  "rule-empty-line-before": [
-    "always-multi-line",
-    {
-      "except": ["first-nested"],
-      "ignore": ["after-comment"]
-    }
-  ],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": ["blockless-after-same-name-blockless", "first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "comment-whitespace-inside": "always",
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["stylelint-commands"]
+      }
+    ],
 
-  "custom-property-pattern": [
-    "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
-    {
-      "message": "Expected custom property name to be kebab-case"
-    }
-  ],
-  "custom-property-empty-line-before": [
-    "always",
-    {
-      "except": ["after-custom-property", "first-nested"],
-      "ignore": ["after-comment", "inside-single-line-block"]
-    }
-  ]
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+
+    "custom-property-pattern": [
+      "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+      {
+        "message": "Expected custom property name to be kebab-case"
+      }
+    ],
+    "custom-property-empty-line-before": [
+      "always",
+      {
+        "except": ["after-custom-property", "first-nested"],
+        "ignore": ["after-comment", "inside-single-line-block"]
+      }
+    ]
+  }
 }
