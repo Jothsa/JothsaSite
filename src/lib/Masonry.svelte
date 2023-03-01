@@ -135,9 +135,11 @@
     grid-gap: var(--grid-gap);
     padding: var(--grid-gap);
   }
+
   :global(.__grid--masonry > *) {
     align-self: start;
   }
+
   :global(.__grid--masonry.__stretch-first > *:first-child) {
     grid-column: 1/ -1;
   }

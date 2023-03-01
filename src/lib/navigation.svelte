@@ -12,9 +12,10 @@
 
 <style lang="postcss">
   @import 'open-props/masks/edges';
+
   nav {
-    background-color: #eee;
-    padding: 0.25rem 2rem 5rem 2rem;
+    background-color: oklch(94.91% 0 0);
+    padding: 0.25rem 2rem 5rem;
     display: grid;
     place-items: center;
     -webkit-mask: var(--mask-edge-drip-bottom);

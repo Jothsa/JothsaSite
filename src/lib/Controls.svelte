@@ -39,24 +39,31 @@
 <style lang="postcss">
   .controls {
     position: fixed;
-    transition: width 600ms ease;
+
+    /* transition: width 600ms ease; */
     display: flex;
     align-items: center;
     bottom: 3rem;
     width: 2.5rem;
+
     & div {
       display: flex;
     }
-    & Button {
+
+    & button {
       display: none;
+
       .arrow {
         display: inline-block;
       }
     }
+
     .expanded {
       width: 10rem;
-      & Button {
+
+      & button {
         display: inline block;
+
         .arrow {
           rotate: 180deg z;
         }
