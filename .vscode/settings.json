@@ -11,12 +11,25 @@
 
   // add support for autocomplete in JS or JS like files
   "cssvar.extensions": ["css", "postcss", "jsx", "tsx"],
+
+  // "svelte.plugin.css.diagnostics.enable": false,
+
+  // "svelte.plugin.svelte.compilerWarnings": {
+  //   "css-unused-selector": "ignore"
+  // },
+  // "css.validate": false,
+
   // "typescript.suggest.paths": false,
   // "javascript.suggest.paths": false
+
   "stylelint.validate": [
     // ↓ Add "html" language.
     "html",
     // ↓ Add "svelte" language.
     "svelte"
-  ]
+  ],
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }
