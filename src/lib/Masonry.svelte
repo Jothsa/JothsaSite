@@ -1,4 +1,4 @@
-<script></script>
+<script>
   /* eslint-disable */
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   export let stretchFirst = false,
@@ -47,7 +47,6 @@
       }
     });
   };
-
   const calcGrid = async (_masonryArr) => {
     await tick();
     if (
@@ -69,7 +68,6 @@
       refreshLayout(); /* initial load */
     }
   };
-
   let _window;
   onMount(() => {
     _window = window;
