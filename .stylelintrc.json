@@ -1,5 +1,9 @@
 {
-  "extends": ["stylelint-config-html", "stylelint-config-recommended"],
+  "extends": [
+    "stylelint-config-html",
+    "stylelint-config-recommended",
+    "stylelint-config-idiomatic-order"
+  ],
   "plugins": ["stylelint-high-performance-animation"],
   "rules": {
     "font-family-name-quotes": "always-where-recommended",
@@ -73,6 +77,9 @@
         "except": ["after-custom-property", "first-nested"],
         "ignore": ["after-comment", "inside-single-line-block"]
       }
-    ]
+    ],
+    "selector-id-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]+$"
   }
 }

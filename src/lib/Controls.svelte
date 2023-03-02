@@ -39,12 +39,12 @@
 <style lang="postcss">
   .controls {
     position: fixed;
+    bottom: 3rem;
 
     /* transition: width 600ms ease; */
     display: flex;
-    align-items: center;
-    bottom: 3rem;
     width: 2.5rem;
+    align-items: center;
 
     & div {
       display: flex;

@@ -89,67 +89,68 @@
   @import 'open-props/masks/corner-cuts';
 
   @font-face {
+    font-display: swap;
     font-family: 'Star Jedi';
+    font-style: normal;
+    font-weight: normal;
     src: url('/fonts/StarJedi.woff2') format('woff2'),
       url('/fonts/StarJedi.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Tengwar Telcontar';
+    font-style: normal;
+    font-weight: normal;
     src: url('fonts/tengtelc.woff2') format('woff2'),
       url('fonts/tengtelc.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Tengwar Telcontar';
+    font-style: normal;
+    font-weight: bold;
     src: url('fonts/tengtelcb.woff2') format('woff2'),
       url('fonts/tengtelcb.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Moon Dance';
+    font-style: normal;
+    font-weight: normal;
     src: url('fonts/MoonDance-Regular.woff2') format('woff2'),
       url('fonts/MoonDance-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
   }
 
   @define-mixin quoteMixin {
-    font-size: 10rem /* clamp(5vh, 4em, 15vh)*/;
     position: absolute;
+    font-size: 10rem /* clamp(5vh, 4em, 15vh)*/;
     opacity: 0.2;
   }
 
   .quoteContainer {
     --bg-color: oklch(97.02% 0 0);
-    background-color: (var(--bg-color));
-    border-radius: var(--radius-3);
-    padding: 0.3rem;
-    font-size: var(--font-size-fluid-1);
     position: relative;
+    padding: 0.3rem;
+    border-radius: var(--radius-3);
+    background-color: (var(--bg-color));
+    font-size: var(--font-size-fluid-1);
 
     &::before {
       @mixin quoteMixin;
-      content: '\201C';
       top: calc(-2 * var(--font-size-fluid-2));
+      content: '\201C';
     }
 
     &::after {
       @mixin quoteMixin;
-      content: '\201D';
       bottom: 0;
+      content: '\201D';
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     &.StarWars {
       --grad-angle: 0deg;
       --grad-offset: 0deg;
@@ -160,45 +161,51 @@
         from var(--grad-angle),
         var(--border-grad-colors)
       );
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
       border: double var(--border-size-4) transparent;
+      background-clip: padding-box, border-box;
       background-image: linear-gradient(var(--bg-color), var(--bg-color)),
         var(--border-grad);
+      background-origin: border-box;
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     &.TheLordoftheRings {
       background: var(--bg-color);
-      -webkit-mask: var(--mask-corner-cut-angles-1);
       font-family: 'Moon Dance', serif;
+      -webkit-mask: var(--mask-corner-cut-angles-1);
     }
   }
 
   .quoteSource {
-    font-weight: normal;
+    font-family: 'Tengwar Telcontar', serif;
 
     /* should be 1.2 times the quote text size */
     font-size: 1.2em;
-    font-family: 'Tengwar Telcontar', serif;
+    font-weight: normal;
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    /* stylelint-disable-next-line selector-class-pattern */
     .TheLordoftheRings .quoteSource {
-      animation: move-bg 8s linear infinite;
+      animation: moveBG 8s linear infinite;
     }
 
+    /* stylelint-disable selector-class-pattern */
     .StarWars,
     .TheLordoftheRings .quoteSource {
       animation-play-state: paused;
     }
+    /* stylelint-enable selector-class-pattern */
 
+    /* stylelint-disable selector-class-pattern */
     :global(.anim) .StarWars,
     :global(.anim) .TheLordoftheRings .quoteSource {
       animation-play-state: running;
     }
+    /* stylelint-enable selector-class-pattern */
 
     /* stylelint-disable plugin/no-low-performance-animation-properties */
-    @keyframes move-bg {
+    @keyframes moveBG {
       to {
         background-position: var(--bg-size) 0;
       }
@@ -213,10 +220,12 @@
   }
 
   /* TODO Better fallback fonts */
+  /* stylelint-disable-next-line selector-class-pattern */
   .StarWars .quoteSource {
     font-family: 'Star Jedi', serif;
   }
 
+  /* stylelint-disable-next-line selector-class-pattern */
   .TheLordoftheRings .quoteSource {
     --color-one: silver;
     --color-two: oklch(76.65% 0.139 91.06);
@@ -230,8 +239,8 @@
         var(--color-one)
       )
       0 0 / var(--bg-size) 100%;
-    color: transparent;
     background-clip: text;
+    color: transparent;
     font-family: 'Tengwar Telcontar', serif;
   }
 
@@ -239,21 +248,22 @@
   @supports (background: paint(worklet)) {
     /* maybe this could be in .radGradBorderAnimated? It shouldn't matter ig */
     @property --grad-angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
       inherits: false;
+      initial-value: 0deg;
+      syntax: '<angle>';
     }
   }
 
   @supports not (background: paint(worklet)) {
     @media (prefers-reduced-motion: no-preference) {
+      /* stylelint-disable-next-line selector-class-pattern */
       .StarWars {
-        animation: 10s rotate-fallback linear infinite;
+        animation: 10s rotateFallback linear infinite;
         animation-play-state: paused;
       }
     }
     /* stylelint-disable plugin/no-low-performance-animation-properties */
-    @keyframes rotate-fallback {
+    @keyframes rotateFallback {
       0% {
         background-image: linear-gradient(var(--bg-color), var(--bg-color)),
           conic-gradient(from 0deg, var(--border-grad-colors));

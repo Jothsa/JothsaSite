@@ -1,4 +1,4 @@
-<script>
+<script></script>
   /* eslint-disable */
   import { onMount, onDestroy, getContext, setContext, tick } from 'svelte';
   export let stretchFirst = false,
@@ -127,13 +127,14 @@
   $s: var(--grid-gap); // .5em;
  -->
 <style>
+  /* stylelint-disable */
   :global(.__grid--masonry) {
     display: grid;
+    justify-content: center;
+    padding: var(--grid-gap);
+    grid-gap: var(--grid-gap);
     grid-template-columns: repeat(auto-fit, var(--col-width));
     grid-template-rows: masonry;
-    justify-content: center;
-    grid-gap: var(--grid-gap);
-    padding: var(--grid-gap);
   }
 
   :global(.__grid--masonry > *) {
