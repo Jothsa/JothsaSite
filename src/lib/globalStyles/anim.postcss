@@ -1,6 +1,21 @@
+@property --color-1 {
+  inherits: false;
+  initial-value: oklch(65% 0.195 251.47);
+  syntax: '<color>';
+}
+
+@property --color-1 {
+  inherits: false;
+  initial-value: oklch(65% 0.185 160.41);
+  syntax: '<color>';
+}
+
 body::before {
-  content: '';
   position: fixed;
+  z-index: -100;
+  display: block;
+  width: 800%;
+  height: 800%;
   background: border-box,
     linear-gradient(
       -45deg,
@@ -19,22 +34,38 @@ body::before {
   /* I think this should be the number of colors in the gradient times 100%
   that gives each color one screen size */
   background-size: 100% 100%;
-  width: 800%;
-  height: 800%;
+  content: '';
 
-  transform-style: preserve-3d;
+  /* transform: translate3d(-50%, -50%, -1px); */
+  transform: translate(-50%, -50%);
 
   /* transform: translate3d(calc(0% + 100vw), calc(0% + 100vh), -1px); */
 
   /* transform: translate3d(0, 0, -1px); */
   transform-origin: top left;
-  transform: translate3d(-50%, -50%, -1px);
+  transform-style: preserve-3d;
 
   /* top: 0;
   left: 0; */
 }
 
 body {
+  position: relative;
+
+  /* transform-style: preserve-3d; */
+  z-index: 1;
+
+  /* transform: translate3d(0, 0, 1px); */
+
+  /* width: auto;
+  height: auto; */
+
+  /* width: max-content; */
+
+  /* overflow: hidden; */
+  min-width: 100vw;
+  min-height: 100vh;
+
   /* background: border-box,
     linear-gradient(
       -45deg,
@@ -48,15 +79,10 @@ body {
       oklch(82.5% 0.227 166.76)
     ); */
   background: blue;
-  transform-style: preserve-3d;
-  position: relative;
-  transform: translate3d(0, 0, 1px);
-  /* width: auto;
-  height: auto; */
-  /* width: max-content; */
-  /* overflow: hidden; */
-  min-width: 100vw;
-  min-height: 100vh;
+}
+
+nav {
+  z-index: 10;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -83,6 +109,7 @@ body {
 
     50% {
       /* background-position: 100% 50%; */
+
       /* transform: translate3d(100%, 50%, -1px); */
 
       /* transform: translate(100%, 50%); */
