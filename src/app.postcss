@@ -2,6 +2,22 @@
 @import url('$lib/globalStyles/themeTokens.postcss');
 @import url('$lib/globalStyles/anim.postcss');
 
+:root {
+  --main-text-color: oklch(18.22% 0 0);
+  --secondary-text-color: ;
+  --main-text-hightlight-color: ;
+  --secondary-text-hightlight-color: ;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-text-color: oklch(83.9% 0 0);
+    --secondary-text-color: ;
+    --main-text-hightlight-color: ;
+    --secondary-text-hightlight-color: ;
+  }
+}
+
 *,
 ::after,
 ::before {
@@ -14,4 +30,6 @@ h1 {
 
 body {
   margin: 0;
+  /* TODO Add proper theming*/
+  color: oklch(18.22% 0 0);
 }
