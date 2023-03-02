@@ -15,17 +15,18 @@ body {
   @supports not (background: paint(worklet)) {
     /* do something clever to randomize the bg for nonsupported browsers */
     background: linear-gradient(
-      -45deg,
-      oklch(65% 0.195 251.47),
-      oklch(65% 0.185 160.41)
-        /* ,
+        -45deg,
+        oklch(65% 0.195 251.47),
+        oklch(65% 0.185 160.41)
+          /* ,
       oklch(70.15% 0.168 263.12),
       oklch(70.15% 0.19 164.65),
       oklch(75% 0.183 225),
       oklch(75% 0.215 157.24),
       oklch(82.5% 0.094 263.12),
       oklch(82.5% 0.227 166.76) */
-    );
+      )
+      fixed;
   }
 
   --bg-colors: var(--bg-color-1), var(--bg-color-2);
