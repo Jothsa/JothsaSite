@@ -1,12 +1,13 @@
+/* initial values should be supported everyone to avoid issues eg not oklch */
 @property --bg-color-1 {
   inherits: false;
-  initial-value: oklch(65% 0.195 251.47);
+  initial-value: red;
   syntax: '<color>';
 }
 
 @property --bg-color-2 {
   inherits: false;
-  initial-value: oklch(65% 0.185 160.41);
+  initial-value: blue;
   syntax: '<color>';
 }
 
@@ -30,12 +31,13 @@ body {
   --bg-colors: var(--bg-color-1), var(--bg-color-2);
 
   /* background: linear-gradient(-45deg, var(--bg-colors)); */
-  background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2)) fixed;
+  background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2))
+    fixed;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   body {
-    animation: bgGradient 90s linear infinite;
+    animation: bggradient 90s linear infinite;
     animation-play-state: paused;
   }
 
@@ -43,67 +45,82 @@ body {
     animation-play-state: running;
   }
 
-  @keyframes bgGradient {
+  @keyframes bggradient {
     0.000% {
       --bg-color-1: oklch(65% 0.195 251.47);
       --bg-color-2: oklch(65% 0.195 251.47);
     }
+
     6.667% {
       --bg-color-1: oklch(65% 0.185 160.41);
       --bg-color-2: oklch(65% 0.195 251.47);
     }
+
     13.333% {
       --bg-color-1: oklch(65% 0.185 160.41);
       --bg-color-2: oklch(65% 0.185 160.41);
     }
+
     20.000% {
       --bg-color-1: oklch(70.15% 0.168 263.12);
       --bg-color-2: oklch(65% 0.185 160.41);
     }
+
     26.667% {
       --bg-color-1: oklch(70.15% 0.168 263.12);
       --bg-color-2: oklch(70.15% 0.168 263.12);
     }
+
     33.333% {
       --bg-color-1: oklch(70.15% 0.19 164.65);
       --bg-color-2: oklch(70.15% 0.168 263.12);
     }
+
     40.000% {
       --bg-color-1: oklch(70.15% 0.19 164.65);
       --bg-color-2: oklch(70.15% 0.19 164.65);
     }
+
     46.667% {
       --bg-color-1: oklch(75% 0.183 225);
       --bg-color-2: oklch(70.15% 0.19 164.65);
     }
+
     53.333% {
       --bg-color-1: oklch(75% 0.183 225);
       --bg-color-2: oklch(75% 0.183 225);
     }
+
     60.000% {
       --bg-color-1: oklch(75% 0.215 157.24);
       --bg-color-2: oklch(75% 0.183 225);
     }
+
     66.667% {
       --bg-color-1: oklch(75% 0.215 157.24);
       --bg-color-2: oklch(75% 0.215 157.24);
     }
+
     73.333% {
       --bg-color-1: oklch(82.5% 0.094 263.12);
       --bg-color-2: oklch(75% 0.215 157.24);
     }
+
     80.000% {
       --bg-color-1: oklch(82.5% 0.094 263.12);
       --bg-color-2: oklch(82.5% 0.094 263.12);
     }
+
     86.667% {
       --bg-color-1: oklch(82.5% 0.227 166.76);
       --bg-color-2: oklch(82.5% 0.094 263.12);
     }
+
     93.333% {
       --bg-color-1: oklch(82.5% 0.227 166.76);
       --bg-color-2: oklch(82.5% 0.227 166.76);
     }
+
     100.000% {
       --bg-color-1: oklch(65% 0.195 251.47);
       --bg-color-2: oklch(82.5% 0.227 166.76);
