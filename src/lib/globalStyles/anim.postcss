@@ -11,34 +11,59 @@
   syntax: '<color>';
 }
 
-body {
-  @supports not (background: paint(worklet)) {
-    /* do something clever to randomize the bg for nonsupported browsers */
+@supports (background: paint(worklet)) {
+  body {
+    --bg-colors: var(--bg-color-1), var(--bg-color-2);
+
+    /* background: linear-gradient(-45deg, var(--bg-colors)); */
+    background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2))
+      fixed;
+  }
+}
+
+@supports not (background: paint(worklet)) {
+  body {
     background: linear-gradient(
         -45deg,
         oklch(65% 0.195 251.47),
         oklch(65% 0.185 160.41)
-          /* ,
-      oklch(70.15% 0.168 263.12),
-      oklch(70.15% 0.19 164.65),
-      oklch(75% 0.183 225),
-      oklch(75% 0.215 157.24),
-      oklch(82.5% 0.094 263.12),
-      oklch(82.5% 0.227 166.76) */
       )
       fixed;
+
+    &:has(:nth-child(1)):has(> :nth-child(-n + 4):last-child) {
+      background: linear-gradient(
+          -45deg,
+          oklch(70.15% 0.168 263.12),
+          oklch(70.15% 0.19 164.65)
+        )
+        fixed;
+    }
+
+    &:has(:nth-child(5)):has(> :nth-child(-n + 10):last-child) {
+      background: linear-gradient(
+          -45deg,
+          oklch(75% 0.183 225),
+          oklch(75% 0.215 157.24)
+        )
+        fixed;
+    }
+
+    &:has(:nth-child(11)):has(> :nth-child(-n + 17):last-child) {
+      background: linear-gradient(
+          -45deg,
+          oklch(82.5% 0.094 263.12),
+          oklch(82.5% 0.227 166.76)
+        )
+        fixed;
+    }
   }
-
-  --bg-colors: var(--bg-color-1), var(--bg-color-2);
-
-  /* background: linear-gradient(-45deg, var(--bg-colors)); */
-  background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2))
-    fixed;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   body {
-    animation: bggradient 90s linear infinite;
+    @supports (background: paint(worklet)) {
+      animation: bgGradient 90s linear infinite;
+    }
     animation-play-state: paused;
   }
 
@@ -46,7 +71,7 @@ body {
     animation-play-state: running;
   }
 
-  @keyframes bggradient {
+  @keyframes bgGradient {
     0.000% {
       --bg-color-1: oklch(65% 0.195 251.47);
       --bg-color-2: oklch(65% 0.195 251.47);
