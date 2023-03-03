@@ -202,9 +202,10 @@
         );
       background-origin: border-box; */
 
+      border-top: oklch(76.65% 0.139 91.06) solid var(--border-size-3);
+      border-bottom: oklch(76.65% 0.139 91.06) solid var(--border-size-3);
       background: var(--bg-color);
       font-family: 'Moon Dance', serif;
-
       -webkit-mask: var(--mask-corner-cut-angles-1);
     }
   }
