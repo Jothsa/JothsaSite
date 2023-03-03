@@ -23,6 +23,7 @@
     "plugin/no-low-performance-animation-properties": true,
     "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
     "shorthand-property-no-redundant-values": true,
+    "color-named": ["never", { "ignoreProperties": ["initial-value"] }],
     "color-no-hex": true,
 
     "selector-pseudo-class-no-unknown": [

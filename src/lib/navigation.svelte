@@ -24,11 +24,12 @@
     & a {
       display: inline-block;
       padding: 1rem 0.5rem;
-      color: blue;
+      color: oklch(45.2% 0.31321437166460125 264.052020638055);
       font-size: 1.125rem;
       text-align: center;
       text-decoration: none;
 
+      /* TODO add focus styles */
       :hover {
         cursor: pointer;
       }
