@@ -27,7 +27,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-svelte3": "^4.0.0",
     "open-props": "^1.5.5",
-    "pocketbase-typegen": "^1.1.4",
+    "pocketbase-typegen": "^1.1.7",
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
     "postcss-jit-props": "^1.0.11",
@@ -41,7 +41,7 @@
     "stylelint-config-idiomatic-order": "^9.0.0",
     "stylelint-config-standard": "^30.0.1",
     "stylelint-high-performance-animation": "^1.8.0",
-    "svelte": "^3.54.0",
+    
     "svelte-check": "^3.0.4",
     "svelte-masonry-jothsa": "^0.0.5",
     "svelte-preprocess": "^5.0.1",
@@ -56,7 +56,10 @@
     "@svelteuidev/core": "^0.10.0",
     "agnostic-svelte": "^1.1.27",
     "modern-normalize": "^1.1.0",
-    "pocketbase": "^0.11.1",
+    "pocketbase": "^0.12.0",
     "svelte-preprocess-import-assets": "^0.2.6"
+  },
+  "overrides": {
+    "svelte": "npm:@typhonjs-svelte/svelte@3.55.1-cq2"
   }
 }
