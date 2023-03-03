@@ -159,12 +159,12 @@
         content: '\201C';
       }
 
-      &::after {
+      /* &::after {
         @mixin quoteMixin;
         right: min(1rem, 2vmax);
         bottom: 0;
         content: '\201D';
-      }
+      } */
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
