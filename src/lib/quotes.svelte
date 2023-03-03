@@ -92,10 +92,10 @@
     items={quotes}
   >
     {#each quotes as quote (quote.id)}
-      {@const theme = quote.expand?.author?.expand?.universe?.name.replace(
-        /\s+/g,
-        '',
-      )}
+      {@const theme =
+        quote.expand?.author?.expand?.universe?.name.replace(/[\s\.]/g, '') +
+        ' ' +
+        quote.expand?.author?.name.replace(/[\s\.]/g, '')}
       {#if quote.expand?.author?.name && quote.expand?.source?.title}
         <QuoteCard {theme}>
           <svelte:fragment slot="quoteText">
@@ -109,7 +109,7 @@
           </svelte:fragment>
         </QuoteCard>
       {:else if quote.expand?.author?.name}
-        <QuoteCard>
+        <QuoteCard {theme}>
           <svelte:fragment slot="quoteText">
             {quote.text}
           </svelte:fragment>
@@ -118,7 +118,7 @@
           </svelte:fragment>
         </QuoteCard>
       {:else if quote.expand?.source?.title}
-        <QuoteCard>
+        <QuoteCard {theme}>
           <svelte:fragment slot="quoteText">
             {quote.text}
           </svelte:fragment>
