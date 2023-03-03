@@ -124,6 +124,15 @@
       url('fonts/MoonDance-Regular.woff') format('woff');
   }
 
+  @font-face {
+    font-display: swap;
+    font-family: Tolkien;
+    font-style: normal;
+    font-weight: normal;
+    src: url('fonts/Tolkien.woff2') format('woff2'),
+      url('fonts/Tolkien.woff') format('woff');
+  }
+
   @define-mixin quoteMixin {
     /* * kind of hacky, but it works */
     --quote-size: 12rem;
@@ -143,28 +152,31 @@
     --bg-color: oklch(97.02% 0 0);
     padding: clamp(min(0.2rem, 15vmin), 0.3rem, 20vmin);
     border-radius: var(--radius-3);
-    background-color: (var(--bg-color));
+    background: var(--bg-color);
+    container: quote / size;
     font-size: var(--font-size-fluid-1);
 
     & blockquote {
       position: relative;
 
-      &::before {
-        @mixin quoteMixin;
+      @container (min-height: 6ch) {
+        &::before {
+          @mixin quoteMixin;
 
-        /* should be -1/2 of the font size + the offset from the top */
-        top: 0;
-        left: 0;
-        display: inline-block;
-        content: '\201C';
-      }
+          /* should be -1/2 of the font size + the offset from the top */
+          top: 0;
+          left: 0;
+          display: inline-block;
+          content: '\201C';
+        }
 
-      /* &::after {
+        /* &::after {
         @mixin quoteMixin;
         right: min(1rem, 2vmax);
         bottom: 0;
         content: '\201D';
       } */
+      }
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
@@ -206,6 +218,14 @@
       border-bottom: oklch(76.65% 0.139 91.06) solid var(--border-size-3);
       background: var(--bg-color);
       font-family: 'Moon Dance', serif;
+      -webkit-mask: var(--mask-corner-cut-angles-1);
+    }
+
+    /* stylelint-disable-next-line selector-class-pattern */
+    &.JRRTolkien {
+      border-right: oklch(76.65% 0.139 91.06) solid var(--border-size-3);
+      border-left: oklch(76.65% 0.139 91.06) solid var(--border-size-3);
+      font-family: Tolkien, serif;
       -webkit-mask: var(--mask-corner-cut-angles-1);
     }
   }
