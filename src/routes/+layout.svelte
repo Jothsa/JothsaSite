@@ -18,7 +18,7 @@
 
 <SvelteUIProvider>
   <Nav />
-  <Controls />
+  <!-- <Controls /> -->
   <slot />
   <Button on:click={toggleAnim}>Animate?</Button>
 </SvelteUIProvider>
