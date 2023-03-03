@@ -134,7 +134,7 @@
     height: 3rem;
     font-size: clamp(1rem, var(--quote-size), 20vmax);
     line-height: 0.75;
-    opacity: 0.2;
+    opacity: 0.075;
     vertical-align: middle;
   }
 
@@ -161,8 +161,8 @@
 
       &::after {
         @mixin quoteMixin;
-        right: 1.2rem;
-        bottom: 1rem;
+        right: min(1rem, 2vmax);
+        bottom: 0;
         content: '\201D';
       }
     }
@@ -187,8 +187,24 @@
 
     /* stylelint-disable-next-line selector-class-pattern */
     &.TheLordoftheRings {
+      /* --grad-angle: 0deg;
+      --grad-offset: 0deg;
+      --gold: oklch(81.97% 0.156 74.37);
+      --light-shadow: oklch(47.92% 0.085 78.76);
+      border: double var(--border-size-4) transparent;
+      background-clip: padding-box, border-box;
+      background-image: linear-gradient(var(--bg-color), var(--bg-color)),
+        repeating-linear-gradient(
+          105deg,
+          var(--gold) 0%,
+          var(--light-shadow) 20%,
+          var(--gold) 27%
+        );
+      background-origin: border-box; */
+
       background: var(--bg-color);
       font-family: 'Moon Dance', serif;
+
       -webkit-mask: var(--mask-corner-cut-angles-1);
     }
   }
