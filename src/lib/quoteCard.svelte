@@ -125,29 +125,46 @@
   }
 
   @define-mixin quoteMixin {
+    /* * kind of hacky, but it works */
+    --quote-size: 12rem;
     position: absolute;
-    font-size: 10rem /* clamp(5vh, 4em, 15vh)*/;
+    display: inline-block;
+    overflow: visible;
+    width: 3rem;
+    height: 3rem;
+    font-size: clamp(1rem, var(--quote-size), 20vmax);
+    line-height: 0.75;
     opacity: 0.2;
+    vertical-align: middle;
   }
 
+  /* TODO Add max values for rem unit stuff */
   .quoteContainer {
     --bg-color: oklch(97.02% 0 0);
-    position: relative;
-    padding: 0.3rem;
+    padding: clamp(min(0.2rem, 15vmin), 0.3rem, 20vmin);
     border-radius: var(--radius-3);
     background-color: (var(--bg-color));
     font-size: var(--font-size-fluid-1);
 
-    &::before {
-      @mixin quoteMixin;
-      top: calc(-2 * var(--font-size-fluid-2));
-      content: '\201C';
-    }
+    & blockquote {
+      position: relative;
 
-    &::after {
-      @mixin quoteMixin;
-      bottom: 0;
-      content: '\201D';
+      &::before {
+        @mixin quoteMixin;
+
+        /* should be -1/2 of the font size + the offset from the top */
+        top: 0;
+        left: 0;
+        display: inline-block;
+        content: '\201C';
+      }
+
+      &::after {
+        @mixin quoteMixin;
+        right: 1.2rem;
+        bottom: 1rem;
+        content: '\201D';
+      }
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
@@ -227,7 +244,7 @@
 
   /* stylelint-disable-next-line selector-class-pattern */
   .TheLordoftheRings .quoteSource {
-    --color-one: silver;
+    --color-one: oklch(80.78% 0 0);
     --color-two: oklch(76.65% 0.139 91.06);
     --bg-move-dur: 35s;
     --angle: 90deg;
