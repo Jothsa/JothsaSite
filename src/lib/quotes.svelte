@@ -1,45 +1,62 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import { pb } from './pocketbase';
+  import {
+    Collections,
+    type AuthorsResponse,
+    type QuotesResponse,
+    type SourcesResponse,
+    type UniversesResponse,
+  } from './pocketbase-types';
   import QuoteCard from '$lib/quoteCard.svelte';
   // import { Grid } from '@svelteuidev/core';
   import Masonry from './Masonry.svelte';
   // TODO maybe set type
   let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
-  //let newQuote: string;
+  // let newQuote: string;
   let unsubscribe: () => void;
 
   interface $$Slots {
     default: never;
   }
 
+  type Texpand = {
+    author: AuthorsResponse;
+    source: SourcesResponse;
+    universes: UniversesResponse;
+  };
+
   onMount(async () => {
     // get quotes in list format
-    const quotesList = await pb.collection('quotes').getList(1, 50, {
-      // sort: '',
-      expand: 'author, source, author.universe',
-    });
+    const quotesList = await pb
+      .collection(Collections.Quotes)
+      .getList<QuotesResponse<Texpand>>(1, 50, {
+        // sort: '',
+        expand: 'author, source, author.universe',
+      });
     quotes = quotesList.items;
 
     // Subscribe to realtime, think there's an easier way without setting unsubscribe as var
-    unsubscribe = await pb
-      .collection('quotes')
-      .subscribe('*', async ({ action, record }) => {
-        if (action === 'create') {
-          // Fetch associated author
-          const author = await pb.collection('author').getOne(record.author);
-          const source = await pb.collection('source').getOne(record.source);
-          // TODO Universe might not be correctly implemented here idk
-          const universe = await pb
-            .collection('universes')
-            .getOne(record.source);
-          record.expand = { author, source, universe };
-          quotes = [...quotes, record];
-        }
-        if (action === 'delete') {
-          quotes = quotes.filter((m) => m.id !== record.id);
-        }
-      });
+    // TODO Finish typing
+    // Don't technically need this rn
+    // unsubscribe = await pb
+    //   .collection(Collections.Quotes)
+    //   .subscribe('*', async ({ action, record }) => {
+    //     if (action === 'create') {
+    //       // Fetch associated author
+    //       const author = await pb.collection('authors').getOne(record.author);
+    //       const source = await pb.collection('sources').getOne(record.source);
+    //       // TODO Universe might not be correctly implemented here idk
+    //       const universe = await pb
+    //         .collection('universes')
+    //         .getOne(record.source);
+    //       record.expand = { author, source, universe };
+    //       quotes = [...quotes, record];
+    //     }
+    //     if (action === 'delete') {
+    //       quotes = quotes.filter((m) => m.id !== record.id);
+    //     }
+    //   });
   });
 
   // Unsubscribe from realtime
