@@ -150,33 +150,33 @@
   /* TODO Add max values for rem unit stuff */
   .quoteContainer {
     --bg-color: oklch(97.02% 0 0);
+
+    /* height: 15ch; */
     padding: clamp(min(0.2rem, 15vmin), 0.3rem, 20vmin);
     border-radius: var(--radius-3);
     background: var(--bg-color);
-    container: quote / size;
     font-size: var(--font-size-fluid-1);
 
     & blockquote {
       position: relative;
 
-      @container (min-height: 6ch) {
-        &::before {
-          @mixin quoteMixin;
+      &::before {
+        @mixin quoteMixin;
 
-          /* should be -1/2 of the font size + the offset from the top */
-          top: 0;
-          left: 0;
-          display: inline-block;
-          content: '\201C';
-        }
+        /* should be -1/2 of the font size + the offset from the top */
+        top: 0;
+        left: 0;
+        display: inline-block;
+        height: max-content;
+        content: '\201C';
+      }
 
-        /* &::after {
+      /* &::after {
         @mixin quoteMixin;
         right: min(1rem, 2vmax);
         bottom: 0;
         content: '\201D';
       } */
-      }
     }
 
     /* stylelint-disable-next-line selector-class-pattern */
