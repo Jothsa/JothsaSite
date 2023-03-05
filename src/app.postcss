@@ -1,36 +1,55 @@
-@import '/node_modules/modern-normalize/modern-normalize.css';
-@import url('$lib/globalStyles/themeTokens.postcss');
-@import url('$lib/globalStyles/anim.postcss');
+@import '/node_modules/modern-normalize/modern-normalize.css' layer(normalize);
+@import url('$lib/globalStyles/themeTokens.postcss') layer(main);
+@import url('$lib/globalStyles/anim.postcss') layer(main);
 
-:root {
-  --main-text-color: oklch(18.22% 0 0);
-  --secondary-text-color: ;
-  --main-text-hightlight-color: ;
-  --secondary-text-hightlight-color: ;
+@layer normalize, utils, main;
+
+/* normalize stuff */
+@layer normalize {
 }
 
-@media (prefers-color-scheme: dark) {
+/* low priority layer for imported stuff I'll override */
+@layer utils {
+}
+
+/* main layer for changes I've made */
+@layer main {
   :root {
-    --main-text-color: oklch(83.9% 0 0);
+    --main-text-color: oklch(18.22% 0 0);
     --secondary-text-color: ;
     --main-text-hightlight-color: ;
     --secondary-text-hightlight-color: ;
   }
-}
 
-*,
-::after,
-::before {
-  box-sizing: border-box;
-}
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --main-text-color: oklch(83.9% 0 0);
+      --secondary-text-color: ;
+      --main-text-hightlight-color: ;
+      --secondary-text-hightlight-color: ;
+    }
+  }
 
-h1 {
-  font-size: var(--font-size-fluid-3);
-}
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+  }
 
-body {
-  margin: 0;
+  h1 {
+    font-size: var(--font-size-fluid-3);
+  }
 
-  /* TODO Add proper theming */
-  color: oklch(18.22% 0 0);
+  body {
+    margin: 0;
+
+    /* TODO Add proper theming */
+    color: oklch(18.22% 0 0);
+  }
+
+  a,
+  a:focus:not(#\#),
+  a:hover:not(#\#) {
+    text-decoration: none;
+  }
 }
