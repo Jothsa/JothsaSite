@@ -15,6 +15,7 @@
   let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
   // let newQuote: string;
   let unsubscribe: () => void;
+  export let quotesList: Collections<QuotesResponse<Texpand>>;
 
   interface $$Slots {
     default: never;
@@ -28,12 +29,12 @@
 
   onMount(async () => {
     // get quotes in list format
-    const quotesList = await pb
-      .collection(Collections.Quotes)
-      .getList<QuotesResponse<Texpand>>(1, 50, {
-        // sort: '',
-        expand: 'author, source, author.universe',
-      });
+    // const quotesList = await pb
+    //   .collection(Collections.Quotes)
+    //   .getList<QuotesResponse<Texpand>>(1, 50, {
+    //     // sort: '',
+    //     expand: 'author, source, author.universe',
+    //   });
     quotes = quotesList.items;
 
     // Subscribe to realtime, think there's an easier way without setting unsubscribe as var
