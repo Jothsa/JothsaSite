@@ -1,3 +1,3 @@
 import PocketBase from 'pocketbase';
-// ! should PB_URL be public?
-export const pb = new PocketBase(import.meta.env.VITE_PB_URL);
+import { env } from '$env/dynamic/private';
+export const pb = new PocketBase(env.PB_URL);
