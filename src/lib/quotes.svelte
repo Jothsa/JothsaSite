@@ -1,21 +1,20 @@
 <script lang="ts">
+  console.log('hey');
   import { onMount, onDestroy } from 'svelte';
-  import { pb } from './pocketbase';
-  import {
-    Collections,
-    type AuthorsResponse,
-    type QuotesResponse,
-    type SourcesResponse,
-    type UniversesResponse,
-  } from './pocketbase-types';
+  import type {
+    AuthorsResponse,
+    QuotesResponse,
+    SourcesResponse,
+    UniversesResponse,
+  } from './pocketbase/pocketbase-types';
   import QuoteCard from '$lib/quoteCard.svelte';
-  // import { Grid } from '@svelteuidev/core';
   import Masonry from './Masonry.svelte';
+  import type { ListResult } from 'pocketbase';
   // TODO maybe set type
   let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
   // let newQuote: string;
   let unsubscribe: () => void;
-  export let quotesList: Collections<QuotesResponse<Texpand>>;
+  export let quotesList: ListResult<QuotesResponse<Texpand>>;
 
   interface $$Slots {
     default: never;
@@ -26,6 +25,7 @@
     source: SourcesResponse;
     universes: UniversesResponse;
   };
+  console.log('2');
 
   onMount(async () => {
     // get quotes in list format

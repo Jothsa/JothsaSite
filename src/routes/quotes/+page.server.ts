@@ -5,7 +5,7 @@ import {
   type QuotesResponse,
   type SourcesResponse,
   type UniversesResponse,
-} from '$lib/pocketbase-types';
+} from '$lib/pocketbase/pocketbase-types';
 import type { PageServerLoad } from './$types';
 
 type Texpand = {
@@ -15,6 +15,12 @@ type Texpand = {
 };
 
 export const load = (async () => {
+  // const quotesList = pb
+  //   .collection(Collections.Quotes)
+  //   .getList<QuotesResponse<Texpand>>(1, 50, {
+  //     // sort: '',
+  //     expand: 'author, source, author.universe',
+  //   });
   return {
     quotesList: await pb
       .collection(Collections.Quotes)

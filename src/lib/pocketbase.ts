@@ -1,3 +1,3 @@
 import PocketBase from 'pocketbase';
-import { env } from '$env/dynamic/private';
-export const pb = new PocketBase(env.PB_URL);
+import { env } from '$env/dynamic/public';
+export const pb = new PocketBase(env.PUBLIC_PB_URL);
