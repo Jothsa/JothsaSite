@@ -1,12 +1,13 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { onMount } from 'svelte';
-  $: isActive = $page.url.pathname === $$props.href;
+  // $: isActive = $page.url.pathname.split('/')[1] === href.split('/')[1];
+  $: isActive = $page.url.pathname === href;
+  console.log('path: ' + $page.url.pathname);
+  console.log('href: ' + $$props.href);
   export let title: string;
   export let href: string;
 </script>
 
-<!-- svelte-ignore a11y-missing-attribute -->
 <a {href} class:active={isActive}>
   {title}
 </a>
@@ -16,10 +17,23 @@
     position: relative;
     display: inline-block;
     padding-bottom: min(0.3ch, 10vmax);
+    margin-bottom: calc(clamp(2px, 0.5ch, 10vh) + min(5vh, 0.2rem));
     color: oklch(45.2% 0.31321437166460125 264.052020638055);
     font-size: var(--font-size-fluid-1);
     text-align: center;
     text-decoration: none;
+
+    &.active {
+      background: linear-gradient(
+        90deg,
+        var(--random-color-1),
+        var(--random-color-2)
+      );
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+      transition: none;
+    }
 
     &::after {
       @property --color-1 {
