@@ -1,18 +1,10 @@
+/* layers are normalize for normalize, libs for component stuff like agnostic ui, and my other styles in this file go in main */
+@layer normalize, libs, main;
 @import '/node_modules/modern-normalize/modern-normalize.css' layer(normalize);
 @import url('$lib/globalStyles/themeTokens.postcss') layer(main);
 @import url('$lib/globalStyles/anim.postcss') layer(main);
+/* @import url('/node_modules/agnostic-svelte/css/common.min.css') layer(libs); */
 
-@layer normalize, utils, main;
-
-/* normalize stuff */
-@layer normalize {
-}
-
-/* low priority layer for imported stuff I'll override */
-@layer utils {
-}
-
-/* main layer for changes I've made */
 @layer main {
   :root {
     --main-text-color: oklch(18.22% 0 0);
@@ -30,26 +22,16 @@
     }
   }
 
-  *,
-  ::after,
-  ::before {
-    box-sizing: border-box;
-  }
-
   h1 {
     font-size: var(--font-size-fluid-3);
   }
 
   body {
-    margin: 0;
-
     /* TODO Add proper theming */
     color: oklch(18.22% 0 0);
   }
 
-  a,
-  a:focus:not(#\#),
-  a:hover:not(#\#) {
+  a {
     text-decoration: none;
   }
 }
