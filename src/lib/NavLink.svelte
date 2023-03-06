@@ -80,7 +80,7 @@
 
       @media (prefers-reduced-motion) {
         opacity: 0;
-        transition: opacity 0.25s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
       }
     }
 
@@ -88,13 +88,11 @@
 
     &:hover,
     &:focus {
-      background-position: 0;
-      cursor: pointer;
-      outline: none;
-
-      &::before {
-        width: 100%;
+      @media (prefers-reduced-motion: no-preference) {
+        background-position: 0;
+        outline: none;
       }
+      cursor: pointer;
 
       &::after {
         @media (prefers-reduced-motion: no-preference) {
