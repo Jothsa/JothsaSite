@@ -13,41 +13,55 @@
 </a>
 
 <style lang="postcss">
+  @property --color-1 {
+    inherits: false;
+    initial-value: blue;
+    syntax: '<color>';
+  }
+
+  @property --color-2 {
+    inherits: false;
+    initial-value: blue;
+    syntax: '<color>';
+  }
+
   a {
+    --nav-link-color: oklch(45.2% 0.31321437166460125 264.052020638055);
+    --nav-transition-time: 0.3s;
     position: relative;
     display: inline-block;
     padding-bottom: min(0.3ch, 10vmax);
     margin-bottom: calc(clamp(2px, 0.5ch, 10vh) + min(5vh, 0.2rem));
-    color: oklch(45.2% 0.31321437166460125 264.052020638055);
+    -webkit-background-clip: text;
+    background-image: linear-gradient(
+      90deg,
+      var(--random-color-1),
+      var(--random-color-2) 50%,
+      var(--nav-link-color) 50%
+    );
+    background-position: -100%;
+    background-size: 200% 100%;
+
+    color: var(--nav-link-color);
     font-size: var(--font-size-fluid-1);
     text-align: center;
     text-decoration: none;
+    -webkit-text-fill-color: transparent;
+
+    @media (prefers-reduced-motion: no-preference) {
+      /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
+      transition: background-position var(--nav-transition-time) ease-in-out;
+    }
 
     &.active {
-      background: linear-gradient(
-        90deg,
-        var(--random-color-1),
-        var(--random-color-2)
-      );
-      background-clip: text;
-      color: transparent;
+      @media (prefers-contrast: no-preference) and (prefers-reduced-motion: no-preference) {
+        background-position: 0;
+      }
       font-weight: 600;
       transition: none;
     }
 
     &::after {
-      @property --color-1 {
-        inherits: false;
-        initial-value: blue;
-        syntax: '<color>';
-      }
-
-      @property --color-2 {
-        inherits: false;
-        initial-value: blue;
-        syntax: '<color>';
-      }
-
       --color-1: var(--random-color-1);
       --color-2: var(--random-color-2);
       position: absolute;
@@ -60,8 +74,8 @@
 
       @media (prefers-reduced-motion: no-preference) {
         transform: scaleX(0);
-        transform-origin: bottom right;
-        transition: transform 0.25s ease-out;
+        transform-origin: bottom left;
+        transition: transform var(--nav-transition-time) ease-out;
       }
 
       @media (prefers-reduced-motion) {
@@ -74,8 +88,13 @@
 
     &:hover,
     &:focus {
+      background-position: 0;
       cursor: pointer;
       outline: none;
+
+      &::before {
+        width: 100%;
+      }
 
       &::after {
         @media (prefers-reduced-motion: no-preference) {

@@ -8,7 +8,10 @@
 <div class="mainNavContainer">
   <nav aria-label="Main Navigation">
     <NavLink href={'/'} title="Home" />
+    <NavLink href={'/blog'} title="Blog" />
     <NavLink href={'/quotes'} title="Quotes" />
+    <NavLink href={'/prayers'} title="Prayers" />
+    <NavLink href={'/comics'} title="Comics" />
     <NavLink href={'/about'} title="About" />
   </nav>
 </div>
