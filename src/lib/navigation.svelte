@@ -7,9 +7,9 @@
 
 <div class="mainNavContainer">
   <nav aria-label="Main Navigation">
-    <NavLink href="/" title="Home" />
-    <NavLink href="/quotes" title="Quotes" />
-    <NavLink href="/about" title="About" />
+    <NavLink href={'/'} title="Home" />
+    <NavLink href={'/quotes'} title="Quotes" />
+    <NavLink href={'/about'} title="About" />
   </nav>
 </div>
 
