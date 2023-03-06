@@ -104,27 +104,19 @@
           opacity: 1;
         }
       }
-    }
 
-    &:active {
-      outline: none;
-
-      &::after {
-        outline: none;
+      &:nth-child(even) {
+        &:active::after {
+          --color-1: var(--random-color-1);
+          --color-2: var(--random-color-1);
+        }
       }
-    }
 
-    &:nth-child(even) {
-      &:active::after {
-        --color-1: var(--random-color-1);
-        --color-2: var(--random-color-1);
-      }
-    }
-
-    &:nth-child(odd) {
-      &:active::after {
-        --color-1: var(--random-color-2);
-        --color-2: var(--random-color-2);
+      &:nth-child(odd) {
+        &:active::after {
+          --color-1: var(--random-color-2);
+          --color-2: var(--random-color-2);
+        }
       }
     }
   }

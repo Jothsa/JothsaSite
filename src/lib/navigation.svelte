@@ -19,11 +19,11 @@
 <style lang="postcss">
   @import 'open-props/masks/edges';
 
-  .mainNavContainer {
+  /* .mainNavContainer {
     backdrop-filter: blur(0);
     filter: drop-shadow(0px 10px 5px oklch(0 0 0 / 0.1));
     transform: translateZ(0);
-  }
+  } */
 
   nav {
     display: grid;
@@ -35,6 +35,15 @@
 
     @media (width < 25rem) {
       grid-auto-flow: row;
+    }
+
+    &::before {
+      position: absolute;
+      bottom: -2rem;
+      left: 1rem;
+      background: oklch(0 0 0);
+
+      /* filter: blur(3px); */
     }
   }
 </style>
