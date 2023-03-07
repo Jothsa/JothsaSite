@@ -13,15 +13,6 @@
 </a>
 
 <style lang="postcss">
-  @font-face {
-    font-display: swap;
-    font-family: 'Carter One';
-    font-style: normal;
-    font-weight: normal;
-    src: url('fonts/CarterOne.woff2') format('woff2'),
-      url('fonts/CarterOne.woff') format('woff');
-  }
-
   @property --color-1 {
     inherits: false;
     initial-value: blue;
