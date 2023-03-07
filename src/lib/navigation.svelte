@@ -27,13 +27,13 @@
 
   nav {
     display: grid;
-    padding: min(2rem, 15vh) min(2rem, 15vh) min(5rem, 20vw);
+    padding: min(2rem, 5vh) min(2rem, 15vh) min(2.25rem, 6vw);
     background-color: oklch(94.91% 0 0);
     grid-auto-flow: column;
     -webkit-mask: var(--mask-edge-drip-bottom);
     place-items: center;
 
-    @media (width < 25rem) {
+    @media (width < 35em) {
       grid-auto-flow: row;
     }
 
