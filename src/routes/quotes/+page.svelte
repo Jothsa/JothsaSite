@@ -9,8 +9,5 @@
   $: ({ quotesList } = data);
 </script>
 
-<header>
-  <h1>Quotes</h1>
-</header>
 
 <Quotes {quotesList} />

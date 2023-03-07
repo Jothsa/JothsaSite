@@ -1,9 +1,6 @@
 <script lang="ts">
 </script>
 
-<header>
-  <h1>Home</h1>
-</header>
 
 <p>
   Command station, this is ST 321. Code Clearance Blue. We're starting our
