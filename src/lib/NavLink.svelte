@@ -53,7 +53,12 @@
 
     color: var(--nav-link-color);
     font-family: 'Carter One', serif;
-    font-size: var(--font-size-fluid-1);
+
+    font-size: var(--font-size-fluid-2);
+
+    /* font-size: max(1.25rem, min(5vw, 2rem)); */
+
+    /* font-size: max(1.5rem, min(6vw, 2.5rem)); */
     text-align: center;
     text-decoration: none;
     -webkit-text-fill-color: transparent;
