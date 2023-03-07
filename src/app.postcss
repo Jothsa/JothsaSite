@@ -5,6 +5,15 @@
 @import url('$lib/globalStyles/anim.postcss') layer(main);
 /* @import url('/node_modules/agnostic-svelte/css/common.min.css') layer(libs); */
 
+@font-face {
+  font-display: swap;
+  font-family: 'Carter One';
+  font-style: normal;
+  font-weight: normal;
+  src: url('fonts/CarterOne.woff2') format('woff2'),
+    url('fonts/CarterOne.woff') format('woff');
+}
+
 @layer main {
   :root {
     --main-text-color: oklch(18.22% 0 0);
@@ -24,6 +33,7 @@
 
   h1 {
     font-size: var(--font-size-fluid-3);
+    font-family: 'Carter One', serif;
   }
 
   body {
