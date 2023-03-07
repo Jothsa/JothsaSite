@@ -37,13 +37,13 @@
       grid-auto-flow: row;
     }
 
-    &::before {
+    /* &::before {
       position: absolute;
       bottom: -2rem;
       left: 1rem;
       background: oklch(0 0 0);
 
-      /* filter: blur(3px); */
-    }
+      filter: blur(3px);
+    } */
   }
 </style>
