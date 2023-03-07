@@ -24,6 +24,8 @@
   }
 
   a {
+    --color-1: var(--random-color-1);
+    --color-2: var(--random-color-2);
     --nav-link-color: oklch(45.2% 0.31321437166460125 264.052020638055);
     --nav-transition-time: 0.3s;
     position: relative;
@@ -33,8 +35,8 @@
     -webkit-background-clip: text;
     background-image: linear-gradient(
       90deg,
-      var(--random-color-1),
-      var(--random-color-2) 50%,
+      var(--color-1),
+      var(--color-2) 50%,
       var(--nav-link-color) 50%
     );
     background-position: -100%;
@@ -65,9 +67,12 @@
       transition: none;
     }
 
+    &:active {
+      --color-1: var(--random-color-2);
+      --color-2: var(--random-color-1);
+    }
+
     &::after {
-      --color-1: var(--random-color-1);
-      --color-2: var(--random-color-2);
       position: absolute;
       bottom: 0;
       left: 0;
@@ -106,20 +111,6 @@
 
         @media (prefers-reduced-motion) {
           opacity: 1;
-        }
-      }
-
-      &:nth-child(even) {
-        &:active::after {
-          --color-1: var(--random-color-1);
-          --color-2: var(--random-color-1);
-        }
-      }
-
-      &:nth-child(odd) {
-        &:active::after {
-          --color-1: var(--random-color-2);
-          --color-2: var(--random-color-2);
         }
       }
     }
