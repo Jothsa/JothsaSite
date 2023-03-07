@@ -2,8 +2,6 @@
   import { page } from '$app/stores';
   // $: isActive = $page.url.pathname.split('/')[1] === href.split('/')[1];
   $: isActive = $page.url.pathname === href;
-  console.log('path: ' + $page.url.pathname);
-  console.log('href: ' + $$props.href);
   export let title: string;
   export let href: string;
 </script>
