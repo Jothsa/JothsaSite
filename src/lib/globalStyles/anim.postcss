@@ -21,26 +21,6 @@
   }
 }
 
-body {
-  --random-color-1: oklch(65% 0.195 251.47);
-  --random-color-2: oklch(65% 0.185 160.41);
-
-  &:has(:nth-child(1)):has(> :nth-child(-n + 4):last-child) {
-    --random-color-1: oklch(70.15% 0.168 263.12);
-    --random-color-2: oklch(70.15% 0.19 164.65);
-  }
-
-  &:has(:nth-child(5)):has(> :nth-child(-n + 10):last-child) {
-    --random-color-1: oklch(75% 0.183 225);
-    --random-color-2: oklch(75% 0.215 157.24);
-  }
-
-  &:has(:nth-child(11)):has(> :nth-child(-n + 17):last-child) {
-    --random-color-1: oklch(82.5% 0.094 263.12);
-    --random-color-2: oklch(82.5% 0.227 166.76);
-  }
-}
-
 @define-mixin randomStaticBG {
   background: linear-gradient(
       -45deg,
