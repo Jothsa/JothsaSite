@@ -25,10 +25,14 @@
 <SvelteUIProvider>
   <Nav />
   <!-- TODO add transition for header -->
-  <header><h1>{$page.data.title}</h1></header>
-  <!-- <Controls /> -->
-  <PageTransition pathname={data.pathname}>
-    <slot />
-    <Button on:click={toggleAnim}>Animate?</Button>
-  </PageTransition>
+  <main>
+    {#if $page.data.title}
+      <h1>{$page.data.title}</h1>
+    {/if}
+    <!-- <Controls /> -->
+    <PageTransition pathname={data.pathname}>
+      <slot />
+      <Button on:click={toggleAnim}>Animate?</Button>
+    </PageTransition>
+  </main>
 </SvelteUIProvider>
