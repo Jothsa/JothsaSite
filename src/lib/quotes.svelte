@@ -1,12 +1,14 @@
 <script lang="ts">
   console.log('hey');
   import { onMount, onDestroy } from 'svelte';
-  import type {
-    AuthorsResponse,
-    QuotesResponse,
-    SourcesResponse,
-    UniversesResponse,
+  import {
+    Collections,
+    type AuthorsResponse,
+    type QuotesResponse,
+    type SourcesResponse,
+    type UniversesResponse,
   } from './pocketbase/pocketbase-types';
+  import { pb } from '$lib/pocketbase';
   import QuoteCard from '$lib/quoteCard.svelte';
   import Masonry from './Masonry.svelte';
   import type { ListResult } from 'pocketbase';
@@ -14,7 +16,7 @@
   let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
   // let newQuote: string;
   let unsubscribe: () => void;
-  export let quotesList: ListResult<QuotesResponse<Texpand>>;
+  // export let quotesList: ListResult<QuotesResponse<Texpand>>;
 
   interface $$Slots {
     default: never;
@@ -29,12 +31,12 @@
 
   onMount(async () => {
     // get quotes in list format
-    // const quotesList = await pb
-    //   .collection(Collections.Quotes)
-    //   .getList<QuotesResponse<Texpand>>(1, 50, {
-    //     // sort: '',
-    //     expand: 'author, source, author.universe',
-    //   });
+    const quotesList = await pb
+      .collection(Collections.Quotes)
+      .getList<QuotesResponse<Texpand>>(1, 50, {
+        // sort: '',
+        expand: 'author, source, author.universe',
+      });
     quotes = quotesList.items;
 
     // Subscribe to realtime, think there's an easier way without setting unsubscribe as var

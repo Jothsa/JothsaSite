@@ -6,8 +6,7 @@
   console.log('2');
 
   export let data: PageData;
-  $: ({ quotesList } = data);
+  $: quotesList = data.quotesList;
 </script>
-
 
 <Quotes {quotesList} />
