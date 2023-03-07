@@ -22,6 +22,7 @@ export const load = (async () => {
   //     expand: 'author, source, author.universe',
   //   });
   return {
+    title: 'Quotes',
     quotesList: await pb
       .collection(Collections.Quotes)
       .getList<QuotesResponse<Texpand>>(1, 50, {
