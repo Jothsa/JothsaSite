@@ -57,10 +57,7 @@
 </script>
 
 {#key pathname}
-  <div
-    in:typewriter={transitionInTypewriter}
-    out:typewriter={transitionOutFlipboard}
-  >
+  <div in:blur={transitionInBlur} out:blur={transitionOutBlur}>
     <slot />
   </div>
 {/key}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fly, fade } from 'svelte/transition';
   import { cubicIn, cubicOut } from 'svelte/easing';
-  import { reducedMotion } from '$lib/reducedMotion';
+  // import { reducedMotion } from '$lib/reducedMotion';
   import type { FadeParams } from 'svelte/transition';
   export let pathname: string;
   export let duration = 300;
@@ -15,8 +15,8 @@
     delay,
   };
   const transitionOutFly = { easing: cubicIn, y: -y, duration };
-  const customFade = (node: Element, params: FadeParams) =>
-    fade(node, { duration: duration });
+  // const customFade = (node: Element, params: FadeParams) =>
+  //   fade(node, { duration: duration });
 
   // $: transitionIn = $reducedMotion ? customFade : fly;
   // $: transitionOut = $reducedMotion ? customFade : fly;
