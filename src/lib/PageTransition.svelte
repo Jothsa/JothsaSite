@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { fly, blur } from 'svelte/transition';
-  import { page } from '$app/stores';
+  import { fly } from 'svelte/transition';
   import { cubicIn, cubicOut } from 'svelte/easing';
   export let pathname: string;
   export let duration = 300;
