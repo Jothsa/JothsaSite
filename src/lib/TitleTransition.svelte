@@ -1,12 +1,15 @@
 <script lang="ts">
   import { blur } from 'svelte/transition';
-  import { quintIn, quintOut, cubicIn, cubicOut } from 'svelte/easing';
+  import { cubicIn, cubicOut } from 'svelte/easing';
+  import { flipboard, typewriter } from '@svelteuidev/motion';
   export let pathname: string;
-  export let duration = 200;
+  export let duration = 500;
   // export let axis = 'x';
   export let amount = 5;
   export let opacity = 0;
   let delay = duration + 100;
+
+  // TODO play around with easing
 
   const transitionInBlur = {
     easing: cubicOut,
@@ -20,6 +23,24 @@
     duration,
     amount,
     opacity: opacity,
+  };
+
+  const transitionInFlipboard = {
+    easing: cubicOut,
+    speed: 1,
+  };
+  const transitionOutFlipboard = {
+    easing: cubicIn,
+    duration,
+  };
+
+  const transitionInTypewriter = {
+    easing: cubicOut,
+    duration,
+  };
+  const transitionOutTypewriter = {
+    easing: cubicIn,
+    duration,
   };
 
   // const transitionInSlide = {
@@ -36,7 +57,10 @@
 </script>
 
 {#key pathname}
-  <div in:blur={transitionInBlur} out:blur={transitionOutBlur}>
+  <div
+    in:typewriter={transitionInTypewriter}
+    out:typewriter={transitionOutFlipboard}
+  >
     <slot />
   </div>
 {/key}
