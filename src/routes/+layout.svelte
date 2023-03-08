@@ -6,9 +6,14 @@
   import Nav from '$lib/Navigation.svelte';
   import Controls from '$lib/Controls.svelte';
   import PageTransition from '$lib/PageTransition.svelte';
+  import TitleTransition from '$lib/TitleTransition.svelte';
   import type { LayoutData } from './$types';
   import { page } from '$app/stores';
   export let data: LayoutData;
+
+  function randomizeColors() {
+    let colors = ['oklch'];
+  }
 
   function toggleAnim() {
     document.body.classList.toggle('anim');
@@ -27,7 +32,9 @@
   <!-- TODO add transition for header -->
   <main>
     {#if $page.data.title}
-      <h1>{$page.data.title}</h1>
+      <TitleTransition pathname={data.pathname}>
+        <h1>{$page.data.title}</h1>
+      </TitleTransition>
     {/if}
     <!-- <Controls /> -->
     <PageTransition pathname={data.pathname}>
