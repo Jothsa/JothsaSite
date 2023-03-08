@@ -13,9 +13,10 @@ const fontaineOptions = {
     'Impact',
   ],
   // You may need to resolve assets like `/fonts/Roboto.woff2` to a particular directory
-  //resolvePath: (id) => 'file:///path/to/public/dir' + id,
+  // resolvePath: (id: string) =>
+  // 'file:///Users/josephsaab/Projects/JothsaSite/static/fonts' + id,
   // overrideName: (originalName) => `${name} override`
-  // sourcemap: false
+  // sourcemap: true,
 };
 
 export default defineConfig({
