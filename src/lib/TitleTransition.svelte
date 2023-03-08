@@ -1,18 +1,38 @@
 <script lang="ts">
   import { blur } from 'svelte/transition';
-  import { cubicIn, cubicOut } from 'svelte/easing';
+  import { quintIn, quintOut, cubicIn, cubicOut } from 'svelte/easing';
   export let pathname: string;
-  export let duration = 300;
+  export let duration = 200;
+  // export let axis = 'x';
+  export let amount = 5;
+  export let opacity = 0;
   let delay = duration + 100;
-  export let y = 10;
 
   const transitionInBlur = {
     easing: cubicOut,
-    y,
-    duration: duration,
+    duration,
     delay,
+    amount,
+    opacity,
   };
-  const transitionOutBlur = { easing: cubicIn, y: -y, duration };
+  const transitionOutBlur = {
+    easing: cubicIn,
+    duration,
+    amount,
+    opacity: opacity,
+  };
+
+  // const transitionInSlide = {
+  //   easing: quintOut,
+  //   duration,
+  //   delay,
+  //   axis,
+  // };
+  // const transitionOutSlide = {
+  //   easing: quintIn,
+  //   duration,
+  //   axis,
+  // };
 </script>
 
 {#key pathname}
