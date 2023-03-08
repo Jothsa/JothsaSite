@@ -31,11 +31,9 @@
   <Nav />
   <!-- TODO add transition for header -->
   <main>
-    {#if $page.data.title}
-      <TitleTransition pathname={data.pathname}>
-        <h1>{$page.data.title}</h1>
-      </TitleTransition>
-    {/if}
+    <TitleTransition pathname={data.pathname}>
+      <h1>{$page.data.title}</h1>
+    </TitleTransition>
     <!-- <Controls /> -->
     <PageTransition pathname={data.pathname}>
       <slot />
