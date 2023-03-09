@@ -1,7 +1,6 @@
 <script lang="ts">
 </script>
 
-
 <p>
   Command station, this is ST 321. Code Clearance Blue. We're starting our
   approach. Deactivate the security shield.
