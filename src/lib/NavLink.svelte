@@ -12,13 +12,19 @@
 
 <style lang="postcss">
   @property --color-1 {
-    inherits: false;
+    inherits: true;
     initial-value: blue;
     syntax: '<color>';
   }
 
   @property --color-2 {
-    inherits: false;
+    inherits: true;
+    initial-value: blue;
+    syntax: '<color>';
+  }
+
+  @property --nav-link-color {
+    inherits: true;
     initial-value: blue;
     syntax: '<color>';
   }

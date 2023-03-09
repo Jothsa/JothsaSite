@@ -1,8 +1,10 @@
 /* layers are normalize for normalize, libs for component stuff like agnostic ui, and my other styles in this file go in main */
 @layer normalize, libs, main;
+
 @import '/node_modules/modern-normalize/modern-normalize.css' layer(normalize);
 @import url('$lib/globalStyles/themeTokens.postcss') layer(main);
 @import url('$lib/globalStyles/anim.postcss') layer(main);
+
 /* @import url('/node_modules/agnostic-svelte/css/common.min.css') layer(libs); */
 
 @font-face {
@@ -12,6 +14,18 @@
   font-weight: normal;
   src: url('fonts/CarterOne.woff2') format('woff2'),
     url('fonts/CarterOne.woff') format('woff');
+}
+
+@property --random-color-1 {
+  inherits: true;
+  initial-value: blue;
+  syntax: '<color>';
+}
+
+@property --random-color-2 {
+  inherits: true;
+  initial-value: blue;
+  syntax: '<color>';
 }
 
 @layer main {
@@ -32,8 +46,8 @@
   }
 
   h1 {
-    font-size: var(--font-size-fluid-3);
     font-family: 'Carter One', serif;
+    font-size: var(--font-size-fluid-3);
   }
 
   body {
