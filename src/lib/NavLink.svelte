@@ -84,7 +84,11 @@
       left: 0;
       width: 100%;
       height: clamp(2px, 0.5ch, 10vh);
-      background: linear-gradient(90deg, var(--link-grad-color-1), var(--link-grad-color-2));
+      background: linear-gradient(
+        90deg,
+        var(--link-grad-color-1),
+        var(--link-grad-color-2)
+      );
       content: '';
 
       @media (prefers-reduced-motion: no-preference) {
