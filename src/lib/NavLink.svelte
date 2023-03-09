@@ -11,13 +11,13 @@
 </a>
 
 <style lang="postcss">
-  @property --color-1 {
+  @property --link-grad-color-1 {
     inherits: true;
     initial-value: blue;
     syntax: '<color>';
   }
 
-  @property --color-2 {
+  @property --link-grad-color-2 {
     inherits: true;
     initial-value: blue;
     syntax: '<color>';
@@ -30,8 +30,8 @@
   }
 
   a {
-    --color-1: var(--random-color-1);
-    --color-2: var(--random-color-2);
+    --link-grad-color-1: var(--random-color-1);
+    --link-grad-color-2: var(--random-color-2);
     --nav-link-color: oklch(45.2% 0.31321437166460125 264.052020638055);
     --nav-transition-time: 0.3s;
     position: relative;
@@ -41,8 +41,8 @@
     -webkit-background-clip: text;
     background-image: linear-gradient(
       90deg,
-      var(--color-1),
-      var(--color-2) 50%,
+      var(--link-grad-color-1),
+      var(--link-grad-color-2) 50%,
       var(--nav-link-color) 50%
     );
     background-position: -100%;
@@ -74,8 +74,8 @@
     }
 
     &:active {
-      --color-1: var(--random-color-2);
-      --color-2: var(--random-color-1);
+      --link-grad-color-1: var(--random-color-2);
+      --link-grad-color-2: var(--random-color-1);
     }
 
     &::after {
@@ -84,7 +84,7 @@
       left: 0;
       width: 100%;
       height: clamp(2px, 0.5ch, 10vh);
-      background: linear-gradient(90deg, var(--color-1), var(--color-2));
+      background: linear-gradient(90deg, var(--link-grad-color-1), var(--link-grad-color-2));
       content: '';
 
       @media (prefers-reduced-motion: no-preference) {
