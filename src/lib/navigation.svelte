@@ -26,16 +26,13 @@
   } */
 
   nav {
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     padding: min(2rem, 5vh) min(2rem, 15vh) min(2.25rem, 6vw);
     background-color: oklch(94.91% 0 0);
-    grid-auto-flow: column;
+    column-gap: min(10vh, 3rem);
     -webkit-mask: var(--mask-edge-drip-bottom);
-    place-items: center;
-
-    @media (width < 35em) {
-      grid-auto-flow: row;
-    }
 
     /* &::before {
       position: absolute;
