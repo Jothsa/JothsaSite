@@ -15,12 +15,12 @@
 // };
 
 // export const load = (async () => {
-  // const response = await pb
-  //   .collection(Collections.Quotes)
-  //   .getList<QuotesResponse<Texpand>>(1, 50, {
-  //     sort: '',
-  //     expand: 'author, source, author.universe',
-  //   });
+// const response = await pb
+//   .collection(Collections.Quotes)
+//   .getList<QuotesResponse<Texpand>>(1, 50, {
+//     sort: '',
+//     expand: 'author, source, author.universe',
+//   });
 //   const response = await pb
 //     .collection(Collections.Quotes)
 //     .getFullList<QuotesResponse<Texpand>>({
