@@ -18,6 +18,7 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   fontaine: ^0.3.0
+  fractils: ^3.1.1
   modern-normalize: ^1.1.0
   open-props: ^1.5.5
   pocketbase: ^0.12.0
@@ -41,6 +42,7 @@ specifiers:
   svelte: ^3.55.1
   svelte-check: ^3.0.4
   svelte-masonry-jothsa: ^0.0.5
+  svelte-media-queries: ^1.5.4
   svelte-preprocess: ^5.0.1
   svelte-preprocess-import-assets: ^0.2.6
   tslib: ^2.4.1
@@ -53,9 +55,11 @@ dependencies:
   '@svelteuidev/core': 0.10.0_oi3kedtnefkf3b7n3qiyvyj76i
   '@svelteuidev/motion': 0.10.0_svelte@3.55.1
   agnostic-svelte: 1.1.27_svelte@3.55.1
+  fractils: 3.1.1
   modern-normalize: 1.1.0
   pocketbase: 0.12.1
   stylelint-config-recommended: 10.0.1_stylelint@15.2.0
+  svelte-media-queries: 1.5.4
   svelte-preprocess-import-assets: 0.2.6_svelte@3.55.1
 
 devDependencies:
@@ -1942,6 +1946,10 @@ packages:
       combined-stream: 1.0.8
       mime-types: 2.1.35
     dev: true
+
+  /fractils/3.1.1:
+    resolution: {integrity: sha512-0PuMChqXOjyfbfIeTrBe2hOzzwEzuYkjFyQEwjD61VxOWRD80DHZ0E5FWnj5elSMr+pAA5on1JbEgMoZ7A133w==}
+    dev: false
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
@@ -3946,6 +3954,10 @@ packages:
     transitivePeerDependencies:
       - typescript
     dev: true
+
+  /svelte-media-queries/1.5.4:
+    resolution: {integrity: sha512-+qH3lDk3DhAC3Gsuw05P30+LMjp9gmF/4+fsnVHLYYsx8fM56f4ZJ0SZjm+lp+PSLot5N3uQXYDTvPcYGGC40Q==}
+    dev: false
 
   /svelte-parse-markup/0.1.1_svelte@3.55.1:
     resolution: {integrity: sha512-xCBSldaZdwi0u0ANASVCUFynCaV8z5D6sQOnzPcYSEoD9dd40MLzOKMBVmuTf/LUuPvc+cUvF132MnwdG7mDig==}

@@ -9,18 +9,52 @@
   import TitleTransition from '$lib/TitleTransition.svelte';
   import type { LayoutData } from './$types';
   import { page } from '$app/stores';
+  import { browser } from '$app/environment';
   export let data: LayoutData;
+  import { Fractils, localStorageStore } from 'fractils';
+  import { anim } from '$lib/stores/anim';
 
   function randomizeColors() {
     let colors = ['oklch'];
   }
 
   function toggleAnim() {
-    document.body.classList.toggle('anim');
+    $anim = !$anim;
+    if (anim) {
+      localStorage.setItem('anim', 'true');
+    } else {
+      localStorage.setItem('anim', 'false');
+    }
+    setAnimClass();
+  }
+
+  function setAnimClass() {
+    console.log('anim: ' + anim);
+    if (anim) {
+      document.body.classList.add('anim');
+      localStorage.setItem('anim', 'true');
+      console.log('added anim');
+    } else {
+      document.body.classList.remove('anim');
+      console.log('removed anim');
+    }
   }
 
   onMount(async () => {
-    document.body.classList.toggle('anim');
+    if (browser) {
+      console.log('checking motion and prefs for anim');
+      if (window.matchMedia('prefers-reduced-motion: reduced')) {
+        $anim = false;
+      } else {
+        $anim = true;
+      }
+      if (localStorage.getItem('anim') === 'true') {
+        $anim = true;
+      } else if (localStorage.getItem('anim') === 'false') {
+        $anim = false;
+      }
+      setAnimClass();
+    }
   });
 </script>
 
