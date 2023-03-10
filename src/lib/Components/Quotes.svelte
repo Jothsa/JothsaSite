@@ -6,10 +6,10 @@
     type QuotesResponse,
     type SourcesResponse,
     type UniversesResponse,
-  } from './pocketbase/pocketbase-types';
-  import { pb } from '$lib/pocketbase';
+  } from '$lib/pocketbase/pocketbase-types';
+  import { pb } from '$lib/pocketbase/pocketbase';
   import QuoteCard from '$lib/Components/quoteCard.svelte';
-  import Masonry from '$lib/ComponentsMasonry.svelte';
+  import Masonry from '$lib/Components/Masonry.svelte';
   import type { ListResult } from 'pocketbase';
   // TODO maybe set type
   let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
