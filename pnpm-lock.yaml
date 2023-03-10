@@ -13,12 +13,10 @@ specifiers:
   '@svelteuidev/motion': ^0.10.0
   '@typescript-eslint/eslint-plugin': ^5.53.0
   '@typescript-eslint/parser': ^5.45.0
-  agnostic-svelte: ^1.1.27
   eslint: ^8.28.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   fontaine: ^0.3.0
-  fractils: ^3.1.1
   modern-normalize: ^1.1.0
   open-props: ^1.5.5
   pocketbase: ^0.12.0
@@ -54,8 +52,6 @@ dependencies:
   '@svelteuidev/composables': 0.10.0
   '@svelteuidev/core': 0.10.0_oi3kedtnefkf3b7n3qiyvyj76i
   '@svelteuidev/motion': 0.10.0_svelte@3.55.1
-  agnostic-svelte: 1.1.27_svelte@3.55.1
-  fractils: 3.1.1
   modern-normalize: 1.1.0
   pocketbase: 0.12.1
   stylelint-config-recommended: 10.0.1_stylelint@15.2.0
@@ -1043,12 +1039,6 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /a11y-dialog/7.5.2:
-    resolution: {integrity: sha512-zfWtVvrbGbP3AFnEJ1aJFtu7GvedgjOEKbkyEUSeaNWDzmFJk9O5nuolDQrRDyRDE5fqSJRiBJtD5bUYKveoUg==}
-    dependencies:
-      focusable-selectors: 0.4.0
-    dev: false
-
   /abbrev/1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
     dev: true
@@ -1096,19 +1086,6 @@ packages:
       indent-string: 4.0.0
     dev: true
     optional: true
-
-  /agnostic-helpers/1.0.3:
-    resolution: {integrity: sha512-JIw3qhtSe+UqZEbVKQgjKdFNnJ9KphX8voQDGgBAAo1x+Svyj4pAHwVovVtJpXSVoBLIqnTbdQNHetKZk7pTZQ==}
-    dev: false
-
-  /agnostic-svelte/1.1.27_svelte@3.55.1:
-    resolution: {integrity: sha512-wV0JbTr1Jbkh8/YRWVvWsQ2aFY+std/rG0avADm7romk1Zptdyh8j2+507PvQHKSl3lqsCeDx7yLFq5SWfANIw==}
-    dependencies:
-      agnostic-helpers: 1.0.3
-      svelte-a11y-dialog: 0.2.0_svelte@3.55.1
-    transitivePeerDependencies:
-      - svelte
-    dev: false
 
   /ajv/6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -1906,10 +1883,6 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
 
-  /focusable-selectors/0.4.0:
-    resolution: {integrity: sha512-tc/236hUU3xemsRLu1RKhRQ5UWHjRM9iJTli1zdac43h7b1biRSgG0mILM0qrcsKaGCHcOPJ6NKbk12ouKHLpw==}
-    dev: false
-
   /fontaine/0.3.0:
     resolution: {integrity: sha512-+addt89/FdW/j+sGbFqGnteR/PpGgCZ4QwS0yiEdmVzolFSPseGz+2QHrpwkW/tlA0pxBEpz5ZsDZ38vGhAwsw==}
     dependencies:
@@ -1946,10 +1919,6 @@ packages:
       combined-stream: 1.0.8
       mime-types: 2.1.35
     dev: true
-
-  /fractils/3.1.1:
-    resolution: {integrity: sha512-0PuMChqXOjyfbfIeTrBe2hOzzwEzuYkjFyQEwjD61VxOWRD80DHZ0E5FWnj5elSMr+pAA5on1JbEgMoZ7A133w==}
-    dev: false
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
@@ -3898,15 +3867,6 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
-
-  /svelte-a11y-dialog/0.2.0_svelte@3.55.1:
-    resolution: {integrity: sha512-sVJ6SbLABFfbeNNcsFpHA7VY4S1MXC8rZ9AzNtOMWjxwiwTc0Xl3ZSUYbz7ixbxLr4tDDVoZmb7xQTzLbTyZag==}
-    peerDependencies:
-      svelte: ^3.44.0
-    dependencies:
-      a11y-dialog: 7.5.2
-      svelte: 3.55.1
-    dev: false
 
   /svelte-check/3.1.0_gqx7lw3sljhsd4bstor5m2aa2u:
     resolution: {integrity: sha512-aSdnsGtndfqtb0dmN5qm9Zjl7wGpqh3cWF35WVCcK96TmGn2NEar4M40QW6bvaPPu089mrkZdpeD3Yar2SERBg==}
