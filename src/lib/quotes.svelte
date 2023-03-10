@@ -1,5 +1,4 @@
 <script lang="ts">
-  console.log('hey');
   import { onMount, onDestroy } from 'svelte';
   import {
     Collections,
@@ -27,7 +26,6 @@
     source: SourcesResponse;
     universes: UniversesResponse;
   };
-  console.log('2');
 
   onMount(async () => {
     // get quotes in list format

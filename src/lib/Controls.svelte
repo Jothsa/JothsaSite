@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { Button } from 'agnostic-svelte';
   import Icon from '@iconify/svelte';
   import doubleArrowRounded from '@iconify/icons-material-symbols/double-arrow-rounded';
@@ -70,4 +70,4 @@
       }
     }
   }
-</style>
+</style> -->

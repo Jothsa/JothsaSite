@@ -30,6 +30,7 @@
   import { anim } from '$lib/stores/anim';
   export let theme = 'default';
   let classes = theme + ' quoteContainer';
+  let isAnim = true;
 
   interface $$Slots {
     default: never;
@@ -41,26 +42,30 @@
   interface $$Props {
     theme?: string;
   }
+
+  $: {
+    if ($anim === 'true') {
+      isAnim = true;
+    } else {
+      isAnim = false;
+    }
+  }
 </script>
 
-<div class={classes} class:anim={$anim}>
+<div class={classes} class:anim={isAnim}>
   <blockquote>
     <slot name="quoteText" />
   </blockquote>
   <cite>
+    {#if $$slots.quoteAuthor}
+      <span class="quoteAuthor">
+        <slot name="quoteAuthor" />
+      </span>
+    {/if}
     {#if $$slots.quoteAuthor && $$slots.quoteSource}
-      <span class="quoteAuthor">
-        <slot name="quoteAuthor" />
-      </span>
       in
-      <span class="quoteSource">
-        <slot name="quoteSource" />
-      </span>
-    {:else if $$slots.quoteAuthor}
-      <span class="quoteAuthor">
-        <slot name="quoteAuthor" />
-      </span>
-    {:else if $$slots.quoteSource}
+    {/if}
+    {#if $$slots.quoteSource}
       <span class="quoteSource">
         <slot name="quoteSource" />
       </span>
@@ -235,8 +240,8 @@
     /* stylelint-enable selector-class-pattern */
 
     /* stylelint-disable selector-class-pattern */
-    :global(.anim) .StarWars,
-    :global(.anim) .TheLordoftheRings .quoteSource {
+    .anim.StarWars,
+    .anim.TheLordoftheRings .quoteSource {
       animation-play-state: running;
     }
     /* stylelint-enable selector-class-pattern */
