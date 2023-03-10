@@ -7,13 +7,7 @@ import importAssets from 'svelte-preprocess-import-assets';
 const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
-  preprocess: [
-    vitePreprocess(),
-    preprocess({
-      importAssets,
-      postcss: true,
-    }),
-  ],
+  preprocess: [vitePreprocess()],
 
   kit: {
     adapter: adapter(),
