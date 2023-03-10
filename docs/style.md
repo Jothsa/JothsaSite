@@ -2,11 +2,13 @@
 
 # Formatting
 
-Spaces shall be used instead of tabs with a width of 2. Single quotes shall be used when possible. Notable exceptions include html attributes and json files. Trailing commas shall be used whenever possible. Semicolons shall be used whenever possible.
+Two Spaces shall be used instead of tabs. Single quotes shall be used whenever possible. Notable exceptions include html attributes and json files. Trailing commas shall be used whenever possible. Semicolons shall be used whenever possible.
 
 ### Naming
 
-Use camelCase with a lower first letter in most instances. Boolean variables shall be prefixed with is as in isDark.
+Use lower camelCase in most instances. Boolean variables shall be prefixed with is as in isDark.
+
+Filenames of components shall be in UpperCamelCase.
 
 ## CSS
 
