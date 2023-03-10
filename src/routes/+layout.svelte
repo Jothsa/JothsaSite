@@ -3,10 +3,10 @@
   import { SvelteUIProvider } from '@svelteuidev/core';
   import { Button } from '@svelteuidev/core';
   import { onMount } from 'svelte';
-  import Nav from '$lib/Navigation.svelte';
-  import Controls from '$lib/Controls.svelte';
-  import PageTransition from '$lib/PageTransition.svelte';
-  import TitleTransition from '$lib/TitleTransition.svelte';
+  import Nav from '$lib/Components/Navigation.svelte';
+  import Controls from '$lib/Components/Controls.svelte';
+  import PageTransition from '$lib/Components/PageTransition.svelte';
+  import TitleTransition from '$lib/Components/TitleTransition.svelte';
   import type { LayoutData } from './$types';
   import { page } from '$app/stores';
   import { browser } from '$app/environment';

@@ -8,8 +8,8 @@
     type UniversesResponse,
   } from './pocketbase/pocketbase-types';
   import { pb } from '$lib/pocketbase';
-  import QuoteCard from '$lib/quoteCard.svelte';
-  import Masonry from './Masonry.svelte';
+  import QuoteCard from '$lib/Components/quoteCard.svelte';
+  import Masonry from '$lib/ComponentsMasonry.svelte';
   import type { ListResult } from 'pocketbase';
   // TODO maybe set type
   let quotes: any[] = []; // eslint-disable-line  @typescript-eslint/no-explicit-any
