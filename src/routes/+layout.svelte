@@ -5,6 +5,11 @@
   import { page } from '$app/stores';
   import type { LayoutData } from './$types';
   export let data: LayoutData;
+
+  import cssBlankPseudoInit from 'css-blank-pseudo/browser';
+  onMount(async () => {
+    cssBlankPseudoInit();
+  });
 </script>
 
 <svelte:head>

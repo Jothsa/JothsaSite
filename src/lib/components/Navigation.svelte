@@ -3,22 +3,17 @@
   import DisclosureNav from '$scripts/DisclosureNav';
 
   onMount(async () => {
-		const navMenu: HTMLElement = document.getElementById(
-    'mainNav',
-  ) as HTMLElement;
+    const navMenu: HTMLElement = document.getElementById(
+      'mainNav',
+    ) as HTMLElement;
 
-  const nav = new DisclosureNav(navMenu, {
-    mainNavMenu: {
-      openedLabel: 'close the main nav menu',
-      closedLabel: 'open the main nav menu',
-    },
-    booksDropdownMenu: {
-      openedLabel: 'close the books dropdown menu',
-      closedLabel: 'open the books dropdown menu',
-    },
+    const nav = new DisclosureNav(navMenu, {
+      mainNavMenu: {
+        openedLabel: 'close the main nav menu',
+        closedLabel: 'open the main nav menu',
+      },
+    });
   });
-	});
-  
 </script>
 
 <nav aria-label="Main Navigation" id="mainNav">
@@ -39,7 +34,7 @@
     <li>
       <span><a href="/" rel="preload">Home</a></span>
     </li>
-    <li>
+    <!-- <li>
       <span
         ><a href="/books" id="booksLink" rel="preload">Books</a>
         <button
@@ -56,37 +51,17 @@
               d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1c.3-.3.8-.3 1.1 0l2.7 2.7l2.7-2.7c.3-.3.8-.3 1.1 0c.3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z" /></svg
           ></button
         ></span>
-      <ul class="subMenu" id="booksDropdownMenu">
-        <li>
-          <span
-            ><a href="/b1" rel="preload" style="--link-stagger: 1"
-              >The Last Checkmate</a
-            ></span>
-        </li>
-        <li>
-          <span
-            ><a href="/b2" rel="preload" style="--link-stagger: 2"
-              >Daughters of Victory</a
-            ></span>
-        </li>
-      </ul>
-    </li>
+    </li> -->
     <li>
       <span><a href="/blog" rel="preload">Blog</a></span>
     </li>
     <li>
-      <span><a href="/events" rel="preload">Events</a></span>
-    </li>
-    <li>
       <span><a href="/about" rel="preload">About</a></span>
-    </li>
-    <li>
-      <span><a href="/contact" rel="preload">Contact</a></span>
     </li>
   </ul>
 </nav>
 
-<style>
+<style lang="postcss">
   /* ! Firefox doesn't support :has :( w/o flag */
 
   /* nav contain: inline-size
@@ -178,11 +153,12 @@
 
     & button {
       --button-size: var(--step-2);
+      --_button-size: var(--button-size, 1.25em);
       --wiggle-rotation-init: 360deg;
       --wiggle: 10deg;
       display: inline-flex;
-      width: var(--button-size);
-      height: var(--button-size);
+      width: var(--_button-size);
+      height: var(--_button-size);
       align-items: center;
       justify-content: center;
       padding: 0.1em;
@@ -198,7 +174,7 @@
       transform: rotate(360deg);
 
       @media (prefers-reduced-motion: no-preference) {
-        transition: transform 240ms var(--ease-elastic-4);
+        transition: transform 240ms ease-in-out;
       }
 
       & svg {
@@ -238,14 +214,15 @@
 
     /* stylelint-disable-next-line no-descending-specificity */
     & > button {
-      --button-size: var(--step-4);
+      --_button-size: var(--step-4);
+
       display: inline-flex;
       margin-block-end: var(--space-m);
       place-self: center;
       visibility: visible;
 
-      @container nav (width > 30ch) {
-        display: none;
+      @container nav (inline-size > 30ch) {
+        display: none !important;
         visibility: hidden;
       }
     }
@@ -372,7 +349,7 @@
         visibility: visible;
       }
 
-      @container nav (width > 30ch) {
+      @container nav (inline-size > 30ch) {
         display: inherit;
         height: auto;
         grid-auto-flow: column;
@@ -382,7 +359,7 @@
 
       /* stylelint-disable-next-line no-descending-specificity */
       & button {
-        --button-size: var(--step-2);
+        --_button-size: var(--step-2);
       }
 
       & > li {
@@ -393,7 +370,7 @@
         place-content: center;
         place-items: center;
 
-        @container nav (width > 30ch) {
+        @container nav (inline-size > 30ch) {
           grid-column: initial;
         }
 
@@ -404,7 +381,7 @@
         & > span {
           grid-column: 2 / 3;
 
-          @container nav (width > 30ch) {
+          @container nav (inline-size > 30ch) {
             grid-column: initial;
           }
         }
@@ -432,7 +409,7 @@
             opacity 300ms 120ms ease-in-out;
           visibility: hidden;
 
-          @container nav (width > 30ch) {
+          @container nav (inline-size > 30ch) {
             position: absolute;
             top: calc(100% - 0.25rem);
             left: 0;
