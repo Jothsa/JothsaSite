@@ -15,9 +15,9 @@ const config = {
       stage: 2,
       features: {
         'nesting-rules': true,
-        'custom-media': true,
-        'custom-selector': true,
-        'blank-pseudo-class': true
+        // 'custom-media': true,
+        // 'custom-selectors': true,
+        // 'blank-pseudo-class': true
       },
     }),
     // jit({

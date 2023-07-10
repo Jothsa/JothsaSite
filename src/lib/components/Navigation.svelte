@@ -132,12 +132,12 @@
   }
 
   nav {
-    --font: 'Carter One';
+    --_font: var(--header-font), 'Carter One';
     --font-size: var(--step-2);
     --link-grad-color-1: oklch(49.56% 0.298 279);
     --link-grad-color-2: oklch(80% 0 0);
     --nav-link-color: oklch(45.2% 0.31321437166460125 264.052020638055);
-    --bg-color: oklch(94.91% 0 0);
+    --bg-color: transparent;
     --nav-transition-time: 300;
     --underline-height: var(--space-xs);
 
@@ -148,7 +148,7 @@
     background-color: var(--bg-color);
     color: var(--nav-link-color);
     container: nav / inline-size;
-    font-family: var(--font), sans-serif;
+    font-family: var(--_font), sans-serif;
     font-size: var(--font-size);
 
     & button {
