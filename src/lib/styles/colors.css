@@ -8,6 +8,7 @@
     --primary-bg: var(--primary-bg-l);
     --primary-text: var(--primary-text-l);
   }
+
   @media (prefers-color-scheme: dark){
     --primary-bg: var(--primary-bg-d);
     --primary-text: var(--primary-text-d);
