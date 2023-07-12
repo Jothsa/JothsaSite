@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import DisclosureNav from '$scripts/DisclosureNav';
+  import NavLink from './NavLink.svelte';
 
+  let navButtonLabel = "expand the main navigation menu";
+  let navExpanded = true;
   onMount(async () => {
     const navMenu: HTMLElement = document.getElementById(
       'mainNav',
@@ -14,14 +17,19 @@
       },
     });
   });
+
+  function navButtonOnClick() {
+    navExpanded = !navExpanded;
+  }
 </script>
 
 <nav aria-label="Main Navigation" id="mainNav">
   <button
     aria-controls="mainNavMenu"
     id="mainNavMenuButton"
-    aria-label="expand or collapse the main navigation menu"
-    aria-expanded="false"
+    aria-label={navButtonLabel}
+    aria-expanded={navExpanded}
+    on:click={navButtonOnClick}
     ><svg
       aria-hidden="true"
       focusable="false"
@@ -30,37 +38,19 @@
       ><path
         d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1c.3-.3.8-.3 1.1 0l2.7 2.7l2.7-2.7c.3-.3.8-.3 1.1 0c.3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z" /></svg
     ></button>
-  <ul id="mainNavMenu">
+  <ul id="mainNavMenu" class:expanded={navExpanded}>
     <li>
-      <span><a href="/" rel="preload">Home</a></span>
-    </li>
-    <!-- <li>
-      <span
-        ><a href="/books" id="booksLink" rel="preload">Books</a>
-        <button
-          aria-controls="booksDropdownMenu"
-          id="booksDropdownButton"
-          aria-label="expand or collapse books dropdown menu"
-          aria-expanded="false"
-          ><svg
-            aria-hidden="true"
-            focusable="false"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 12 12"
-            ><path
-              d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1c.3-.3.8-.3 1.1 0l2.7 2.7l2.7-2.7c.3-.3.8-.3 1.1 0c.3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z" /></svg
-          ></button
-        ></span>
-    </li> -->
-    <li>
-      <span><a href="/blog" rel="preload">Blog</a></span>
+      <NavLink href="/" title="Home" />
     </li>
     <li>
-      <span><a href="/about" rel="preload">About</a></span>
+      <NavLink href="/blog" title="Blog" />
+    </li>
+    <li>
+      <NavLink href="/about" title="About" />
     </li>
   </ul>
 </nav>
-
+<!-- 
 <style>
   /* idk why lang="postcss" breaks it :sob:
    ! Firefox doesn't support :has :( w/o flag */
@@ -90,23 +80,6 @@
       ...
               */
 
-  @property --link-grad-color-1 {
-    inherits: true;
-    initial-value: blue;
-    syntax: '<color>';
-  }
-
-  @property --link-grad-color-2 {
-    inherits: true;
-    initial-value: blue;
-    syntax: '<color>';
-  }
-
-  @property --nav-link-color {
-    inherits: true;
-    initial-value: blue;
-    syntax: '<color>';
-  }
 
   @keyframes wiggle {
     0% {
@@ -447,4 +420,4 @@
       }
     }
   }
-</style>
+</style> -->

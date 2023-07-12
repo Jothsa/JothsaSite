@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Navigation from './NavigationOlde.svelte';
+  import Navigation from './NavNew.svelte';
 </script>
 
 <header>
@@ -7,7 +7,7 @@
   <Navigation />
 </header>
 
-<style lang="postcss">
+<style>
   header {
     --_font: var(--header-font), 'Carter One', system-ui;
     display: grid;
