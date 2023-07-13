@@ -11,11 +11,12 @@
   header {
     --_font: var(--header-font), 'Carter One', system-ui;
     display: grid;
-    background-image: radial-gradient(
+
+    /* background-image: radial-gradient(
       farthest-corner circle at 100% 0% in oklab,
       oklch(80% 0.4 222) 0%,
       oklch(35% 0.5 313) 100%
-    );
+    ); */
   }
 
   h1 {
