@@ -1,25 +1,13 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import DisclosureNav from '$scripts/DisclosureNav';
   import NavLink from './NavLink.svelte';
 
-  let navButtonLabel = "expand the main navigation menu";
+  let navButtonLabel = 'collapse the main navigation menu';
   let navExpanded = true;
-  onMount(async () => {
-    const navMenu: HTMLElement = document.getElementById(
-      'mainNav',
-    ) as HTMLElement;
-
-    const nav = new DisclosureNav(navMenu, {
-      mainNavMenu: {
-        openedLabel: 'close the main nav menu',
-        closedLabel: 'open the main nav menu',
-      },
-    });
-  });
 
   function navButtonOnClick() {
     navExpanded = !navExpanded;
+    if (navExpanded) navButtonLabel = 'collapse the main navigation menu';
+    else navButtonLabel = 'expand the main navigation menu';
   }
 </script>
 
@@ -50,7 +38,7 @@
     </li>
   </ul>
 </nav>
-<!-- 
+
 <style>
   /* idk why lang="postcss" breaks it :sob:
    ! Firefox doesn't support :has :( w/o flag */
@@ -59,27 +47,11 @@
       button [aria-expanded]
       ul .expanded
         li
-          span
             a [aria-current]
-      ...
         li
-          span
-            a [aria-current]
-            button [aria-expanded]
-          ul .expanded
-            li
-              span
-                a [aria-current]
-            li
-              span
-                a [aria-current]    
-      ul
-        li
-          span
             a [aria-current]
       ...
               */
-
 
   @keyframes wiggle {
     0% {
@@ -196,7 +168,8 @@
       visibility: visible;
 
       @container nav (inline-size > 30ch) {
-        /* I had !important here, don't think that's needed */
+        /* I had !important here, don't think that's needed 
+        I think display and vis is redundant */
         display: none;
         visibility: hidden;
       }
@@ -226,7 +199,7 @@
           gap: var(--space-2xs);
         }
 
-        & a {
+        & n {
           --_nav-transition-time: calc(var(--nav-transition-time) * 1ms);
           position: relative;
           display: inline-block;
@@ -420,4 +393,4 @@
       }
     }
   }
-</style> -->
+</style>
