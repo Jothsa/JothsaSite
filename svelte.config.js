@@ -5,12 +5,12 @@ import path from 'path';
 
 /**  @type {import('mdsvex').MdsvexOptions  } */
 const mdsvexOptions = {
-  extension: ['.md'],
+  extensions: ['.md'],
 };
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: ['.svelte', '.svx'],
+  extensions: ['.svelte', '.md'],
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
   // for more information about preprocessors
   preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
