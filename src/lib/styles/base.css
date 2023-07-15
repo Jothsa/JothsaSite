@@ -8,7 +8,7 @@ and @mayank99
 *,
 *::before,
 *::after {
-  /* * ::before and ::after are needed */
+  /* * ::before and ::after are needed, * doesn't select pseudo elements */
 
   box-sizing: border-box;
 }

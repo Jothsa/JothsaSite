@@ -127,7 +127,7 @@
     }
 
     @media (prefers-contrast: more) {
-      /* TODO Change gradient for contrast or something ig */
+      /* TODO Change gradient for contrast or something maybe idk */
       &[aria-current='page']::after {
         opacity: 1;
         transform: scaleX(1);

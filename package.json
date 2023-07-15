@@ -26,9 +26,10 @@
     "@sveltejs/kit": "^1.22.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.44.0",
+    "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-svelte": "^2.32.2",
+    "mdsvex": "^0.11.0",
     "prettier": "2.8.8",
     "prettier-plugin-svelte": "^2.10.1",
     "stylelint": "^15.10.1",
@@ -36,8 +37,12 @@
     "svelte-check": "^3.4.6",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6",
-    "vite": "^4.4.3",
+    "vite": "^4.4.4",
     "vitest": "^0.33.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "postcss": "^8.4.26",
+    "postcss-preset-env": "^9.0.0"
+  }
 }
