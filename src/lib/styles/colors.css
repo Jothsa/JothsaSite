@@ -4,12 +4,12 @@
   --primary-text-l: oklch(23.53% 0.094 336.71);
   --primary-text-d: oklch(81.4% 0.099 336.71);
 
-  @media (prefers-color-scheme: light){
+  @media (prefers-color-scheme: light) {
     --primary-bg: var(--primary-bg-l);
     --primary-text: var(--primary-text-l);
   }
 
-  @media (prefers-color-scheme: dark){
+  @media (prefers-color-scheme: dark) {
     --primary-bg: var(--primary-bg-d);
     --primary-text: var(--primary-text-d);
   }
