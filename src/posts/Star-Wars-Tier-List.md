@@ -4,7 +4,7 @@ description: My Star Wars tier list
 date: '2023-07-14'
 categories:
   - personal
-  - star wars
+  - star-wars
 published: true
 ---
 
