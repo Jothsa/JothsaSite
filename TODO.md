@@ -4,3 +4,7 @@
 - [ ] add contrast and theme to prefs
 - [ ] aria-expanded acting weird on nav button
 - [ ] view transitions
+- [ ] cleanup categories (no spaces maybe)
+- [ ] switch dates to actual date obj (maybe)
+- [ ] make sure md linting works
+- [ ] add md plugins
