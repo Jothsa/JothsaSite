@@ -23,7 +23,5 @@ export const GET = (async ({ request }) => {
       posts = await getPostsByCategory(categories);
     }
   }
-
-  // create a JSON Response using a header we received
   return json(posts);
 }) satisfies RequestHandler;
