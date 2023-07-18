@@ -1,5 +1,8 @@
 /** make sure no conflicts with nav, etc */
-:where([data-theme='normal'] .styled-links a) {
+:where(
+    [data-theme='normal'] .styled-links a:not(.unstyled-link),
+    [data-theme='normal'] a.styled-link
+  ) {
   position: relative;
   color: var(--primary-link);
 
@@ -13,11 +16,11 @@
       height: 4px;
       border-radius: 4px;
       background-color: currentcolor;
-      bottom: 0;
-      left: 0;
+      inset-block-end: 0;
+      inset-inline-start: 0;
       transform-origin: right;
       transform: scaleX(0);
-      transition: transform 300ms ease-in-out;
+      transition: transform 300ms 120ms ease-in-out;
     }
 
     &:hover {
