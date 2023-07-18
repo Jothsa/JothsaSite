@@ -8,3 +8,4 @@
 - [ ] switch dates to actual date obj (maybe)
 - [ ] make sure md linting works
 - [ ] add md plugins
+- [ ] decide on post and slug naming scheme
