@@ -55,7 +55,8 @@
     -webkit-text-fill-color: transparent;
 
     @media (prefers-reduced-motion: no-preference) {
-      transition: background-position var(--nav-transition-time) ease-in-out;
+      transition: background-position var(--nav-transition-time) 120ms
+        ease-in-out;
     }
 
     &::after {
@@ -82,7 +83,7 @@
       &::after {
         transform: scaleX(0);
         transform-origin: bottom left;
-        transition: transform var(--nav-transition-time) ease-in-out;
+        transition: transform var(--nav-transition-time) 120ms ease-in-out;
       }
     }
 

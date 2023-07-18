@@ -14,7 +14,6 @@ export async function load({ params, fetch }) {
     const headers = { 'post-categories': category };
     const response = await fetch('/api/posts', { headers: headers });
     const posts: Post[] = await response.json();
-    // setHeaders(headers);
     console.log(posts);
 
     return {

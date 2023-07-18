@@ -1,5 +1,8 @@
 @import url('./fonts.css');
 @import url('./props.css');
+@import 'open-props/style';
+@import 'open-props/masks/edges';
+@import 'open-props/masks/corner-cuts';
 @import url('./sizing.css');
 @import url('./colors.css');
 @import url('./base.css');

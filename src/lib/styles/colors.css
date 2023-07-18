@@ -1,16 +1,62 @@
 :root {
   --primary-bg-l: oklch(71.3% 0.178 240.35);
   --primary-bg-d: oklch(19.41% 0.123 275.29);
+  --secondary-bg-l: oklch(82% 0.067 141.35);
+  --secondary-bg-d: oklch(39.56% 0.126 27);
   --primary-text-l: oklch(23.53% 0.094 336.71);
   --primary-text-d: oklch(81.4% 0.099 336.71);
+  --secondary-text-l: oklch(45.2% 0.31321437166460125 264.052020638055);
+  --secondary-text-d: oklch(55.44% 0.252 264.052020638055);
+  --contrast-l: oklch(57.6% 0.183 153);
+  --contrast-d: oklch(48.68% 0.31 275.29);
+  --accent-l: oklch(65.3% 0.119 280.9);
+  --accent-d: oklch(38.3% 0.096 159.35);
+  --increase-contrast-l: oklch(1% 0 0);
+  --increase-contrast-d: oklch(99% 0 0);
+  --decrease-contrast-l: oklch(99% 0 0);
+  --decrease-contrast-d: oklch(1% 0 0);
 
   @media (prefers-color-scheme: light) {
     --primary-bg: var(--primary-bg-l);
+    --secondary-bg: var(--secondary-bg-l);
     --primary-text: var(--primary-text-l);
+    --secondary-text: var(--secondary-text-l);
+    --contrast: var(--contrast-l);
+    --accent: var(--accent-l);
+    --increase-contrast: var(--increase-contrast-l);
+    --decrease-contrast: var(--decrease-contrast-l);
   }
 
   @media (prefers-color-scheme: dark) {
     --primary-bg: var(--primary-bg-d);
+    --secondary-bg: var(--secondary-bg-d);
     --primary-text: var(--primary-text-d);
+    --secondary-text: var(--secondary-text-d);
+    --contrast: var(--contrast-d);
+    --accent: var(--accent-d);
+    --increase-contrast: var(--increase-contrast-d);
+    --decrease-contrast: var(--decrease-contrast-d);
+  }
+
+  &:has([data-theme-mode='light']) {
+    --primary-bg: var(--primary-bg-l);
+    --secondary-bg: var(--secondary-bg-l);
+    --primary-text: var(--primary-text-l);
+    --secondary-text: var(--secondary-text-l);
+    --contrast: var(--contrast-l);
+    --accent: var(--accent-l);
+    --increase-contrast: var(--increase-contrast-l);
+    --decrease-contrast: var(--decrease-contrast-l);
+  }
+
+  &:has([data-theme-mode='dark']) {
+    --primary-bg: var(--primary-bg-d);
+    --secondary-bg: var(--secondary-bg-d);
+    --primary-text: var(--primary-text-d);
+    --secondary-text: var(--secondary-text-d);
+    --contrast: var(--contrast-d);
+    --accent: var(--accent-d);
+    --increase-contrast: var(--increase-contrast-d);
+    --decrease-contrast: var(--decrease-contrast-d);
   }
 }

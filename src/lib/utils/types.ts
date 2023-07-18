@@ -1,4 +1,4 @@
-export const CategoriesList = ['personal', 'programming', 'star-wars'] as const;
+export const CategoriesList = ['personal', 'programming', 'star-wars', 'catholicism', 'reading'] as const;
 export type Categories = (typeof CategoriesList)[number];
 export function isCategories(
   cats: string[] | undefined | null,
