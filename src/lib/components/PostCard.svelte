@@ -13,12 +13,10 @@
     ><!-- svelte-ignore a11y-missing-content --><a
       class="unread-l"
       href={`/blog/${post.slug}`}
-      aria-hidden="true"
-      inert />(unread!)<!-- svelte-ignore a11y-missing-content --><a
+      aria-hidden="true" />(unread!)<!-- svelte-ignore a11y-missing-content --><a
       class="unread-r"
       href={`/blog/${post.slug}`}
-      aria-hidden="true"
-      inert /></a>
+      aria-hidden="true" /></a>
   <div class="post-border" />
   <span class="post-link">
     <a href={`/blog/${post.slug}`} class="title styled-link">{post.title}</a>
@@ -135,10 +133,10 @@
       }
 
       & .unread-l {
-       inset-inline-end: 100%;
+        inset-inline-end: 100%;
       }
 
-       & .unread-r {
+      & .unread-r {
         inset-inline-start: 100%;
       }
 
