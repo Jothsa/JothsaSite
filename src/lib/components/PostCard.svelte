@@ -12,11 +12,9 @@
   <a class="unread" href={`/blog/${post.slug}`} aria-hidden="true" inert
     ><!-- svelte-ignore a11y-missing-content --><a
       class="unread-l"
-      href={`/blog/${post.slug}`}
-      aria-hidden="true" />(unread!)<!-- svelte-ignore a11y-missing-content --><a
+      href={`/blog/${post.slug}`} />(unread!)<!-- svelte-ignore a11y-missing-content --><a
       class="unread-r"
-      href={`/blog/${post.slug}`}
-      aria-hidden="true" /></a>
+      href={`/blog/${post.slug}`} /></a>
   <div class="post-border" />
   <span class="post-link">
     <a href={`/blog/${post.slug}`} class="title styled-link">{post.title}</a>
