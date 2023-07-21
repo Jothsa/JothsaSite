@@ -5,12 +5,13 @@
 
   import Category from './Category.svelte';
   export let categories: Categories[] = [...CategoriesList];
+  export let catClasses: 'large' | 'compact' | '' = '';
 </script>
 
 <div class="categories-container">
   <ul class="categories">
     {#each categories as category}
-      <Category {category} />
+      <Category {category} classNames={catClasses} />
     {/each}
   </ul>
 </div>
@@ -23,9 +24,11 @@
 
     & .categories {
       display: flex;
+      flex-wrap: wrap;
+      padding-block: var(--space-s);
+      padding-inline: var(--space-xs);
 
       /* browser default list styles are messing with this */
-      padding: 0;
       margin: 0;
 
       /* could make s-xl pair maybe */

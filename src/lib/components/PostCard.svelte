@@ -103,12 +103,9 @@
     & .unread {
       --ribbon-bg: var(--contrast);
       position: absolute;
-      top: 0;
-      right: 0;
-
-      padding: 0;
+      inset-block-start: 0;
+      inset-inline-end: 0;
       padding-block: 0.5ch;
-
       margin: 0;
       background-color: var(--ribbon-bg);
       font-size: var(--step--1-cqi);
@@ -117,7 +114,6 @@
       text-decoration: none;
       transform: translateX(30%) translateY(0%) rotate(45deg);
       transform-origin: top left;
-      user-select: none;
 
       & .unread-l,
       & .unread-r {
@@ -138,11 +134,7 @@
         inset-inline-start: 100%;
       }
 
-      &:visited {
-        background-color: var(--card-bg);
-        color: var(--card-bg);
-      }
-
+      &:visited,
       & :is(.unread-l, .unread-r):visited {
         background-color: var(--card-bg);
         color: var(--card-bg);
