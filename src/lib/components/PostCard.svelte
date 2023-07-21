@@ -70,9 +70,8 @@
 
     /* display: grid; */
     padding: var(--space-2xs-cqi);
-    border: var(--border);
+
     background: var(--card-bg);
-    border-image: var(--border-grad) 1;
     contain: content;
     container: post-card / inline-size;
     gap: var(--space-3xs);
@@ -92,6 +91,13 @@
       --border-grad-angle-init: 120deg;
     }
 
+    & .post-border {
+      position: absolute;
+      border: var(--border);
+      border-image: var(--border-grad) 1;
+      inset: 0;
+    }
+
     & .title {
       inline-size: fit-content;
       font-size: var(--step-1);
@@ -106,6 +112,7 @@
 
       padding: 0;
       padding-block: 0.5ch;
+
       margin: 0;
       background-color: var(--ribbon-bg);
       font-size: var(--step--1-cqi);
@@ -120,7 +127,6 @@
       & .unread-r {
         position: absolute;
         top: 0;
-
         width: 100%;
         height: 100%;
         margin: 0 -1px; /* tweak */
@@ -129,10 +135,10 @@
       }
 
       & .unread-l {
-        inset-inline-end: 100%;
+       inset-inline-end: 100%;
       }
 
-      & .unread-r {
+       & .unread-r {
         inset-inline-start: 100%;
       }
 
