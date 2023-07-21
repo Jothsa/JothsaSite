@@ -20,13 +20,13 @@
     <p>Published at {formatDate(data.meta.date)}</p>
   </hgroup>
 
-  <!-- Tags -->
-  <div class="tags">
-    <Categories categories={data.meta.categories} />
-  </div>
 
-  <!-- Post -->
-  <div class="prose">
+  <!-- <div class="tags">
+    <Categories categories={data.meta.categories} />
+  </div> -->
+
+
+  <div class="prose styled-links">
     <svelte:component this={data.content} />
   </div>
 </article>
@@ -51,8 +51,8 @@
 
   .tags {
     display: flex;
-    
-    /* not permanent! remove once post grid, sidebars, etc can influence sizing*/
+
+    /* not permanent! remove once post grid, sidebars, etc can influence sizing */
     inline-size: 30ch;
   }
 </style>
