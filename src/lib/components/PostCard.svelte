@@ -28,7 +28,7 @@
 
 <style>
   @property --border-grad-angle {
-    inherits: false;
+    inherits: true;
     initial-value: 0deg;
     syntax: '<angle>';
   }
@@ -45,35 +45,17 @@
 
   .post {
     --card-bg: oklch(33.53% 0.183 282.8);
-    --border-grad-angle: 0deg;
-    --border-grad-angle-init: 223deg;
-    --_border-grad-angle: calc(
-      var(--border-grad-angle-init) + var(--border-grad-angle)
-    );
-    --border: solid clamp(4px, 0.55ch, 10px);
-    --border-grad-color-1: oklch(80% 0.4 222);
-    --border-grad-color-2: oklch(35% 0.5 313);
-    --border-grad: conic-gradient(
-      from var(--_border-grad-angle) at 50% 50% in oklab,
-      oklch(80% 0.4 222 / 0) 0%,
-      53%,
-      var(--border-grad-color-1) 25% 32%,
-      83%,
-      var(--border-grad-color-2) 100%
-    );
 
     position: relative;
 
     /* display: grid; */
     padding: var(--space-2xs-cqi);
-
     background: var(--card-bg);
     contain: content;
     container: post-card / inline-size;
-    gap: var(--space-3xs);
 
-    /* grid-template-columns: repeat(2, fit-content(15ch)); */
-    transition: transform 300ms ease-in-out;
+    /* gap: var(--space-3xs); 
+    grid-template-columns: repeat(2, fit-content(15ch)); */
 
     &:nth-of-type(odd) {
       --border-grad-angle-init: 30deg;
@@ -88,7 +70,26 @@
     }
 
     & .post-border {
+      --border-grad-angle: 0deg;
+      --border-grad-angle-init: 223deg;
+      --_border-grad-angle: calc(
+        var(--border-grad-angle-init) + var(--border-grad-angle)
+      );
+      --border: solid clamp(4px, 0.55ch, 10px);
+      --border-grad-color-1: oklch(80% 0.4 222);
+      --border-grad-color-2: oklch(35% 0.5 313);
+      --border-grad: conic-gradient(
+        from var(--_border-grad-angle) at 50% 50% in oklab,
+        oklch(80% 0.4 222 / 0) 0%,
+        53%,
+        var(--border-grad-color-1) 25% 32%,
+        83%,
+        var(--border-grad-color-2) 100%
+      );
+
       position: absolute;
+      width: 100%;
+      height: 100%;
       border: var(--border);
       border-image: var(--border-grad) 1;
       inset: 0;
@@ -123,7 +124,6 @@
         height: 100%;
         margin: 0 -1px; /* tweak */
         background-color: inherit;
-        content: '';
       }
 
       & .unread-l {
@@ -160,9 +160,12 @@
     }
   }
 
-  /* whyyyyyyyyyyy */
+  /* whyyyyyyyyyyy 
+  for sOmE rEaSoN if I do the anim on .post it removes the padding while the anim runs 
+  and of course nesting isn't working correctly either */
+
   @media (prefers-reduced-motion: no-preference) {
-    .post:hover {
+    .post:hover .post-border {
       animation: border-grad-anim 500ms 120ms var(--ease-in-out-2) 1;
     }
   }
