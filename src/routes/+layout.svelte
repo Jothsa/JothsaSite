@@ -8,7 +8,7 @@
   export let data: LayoutData;
 
   $: pageTitle =
-    $page.data.title !== undefined ? `Jothsa - ${$page.data.title}` : `Jothsa`;
+    $page.data?.title !== undefined ? `Jothsa - ${$page.data.title}` : `Jothsa`;
 </script>
 
 <svelte:head>
