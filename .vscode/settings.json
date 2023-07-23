@@ -31,5 +31,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "cSpell.words": ["sveltekittemplate"]
+  "cSpell.words": ["palenight", "sveltekittemplate"]
 }

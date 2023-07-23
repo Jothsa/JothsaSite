@@ -9,12 +9,19 @@
 </script>
 
 <li class="post">
-  <a class="unread" href={`/blog/${post.slug}`} aria-hidden="true" inert
+  <a
+    class="unread"
+    href={`/blog/${post.slug}`}
+    aria-hidden="true"
+    tabindex="-1"
+    inert
     ><!-- svelte-ignore a11y-missing-content --><a
       class="unread-l"
-      href={`/blog/${post.slug}`} />(unread!)<!-- svelte-ignore a11y-missing-content --><a
+      href={`/blog/${post.slug}`}
+      tabindex="-1" />(unread!)<!-- svelte-ignore a11y-missing-content --><a
       class="unread-r"
-      href={`/blog/${post.slug}`} /></a>
+      href={`/blog/${post.slug}`}
+      tabindex="-1" /></a>
   <div class="post-border" />
   <span class="post-link">
     <a href={`/blog/${post.slug}`} class="title styled-link">{post.title}</a>
@@ -44,7 +51,8 @@
   }
 
   .post {
-    --card-bg: oklch(33.53% 0.183 282.8);
+    --card-bg: var(--secondary);
+    --border-grad-angle-init: 223deg;
 
     position: relative;
 
@@ -71,7 +79,6 @@
 
     & .post-border {
       --border-grad-angle: 0deg;
-      --border-grad-angle-init: 223deg;
       --_border-grad-angle: calc(
         var(--border-grad-angle-init) + var(--border-grad-angle)
       );
@@ -99,6 +106,10 @@
       inline-size: fit-content;
       font-size: var(--step-1);
       text-wrap: balance;
+
+      &:focus-visible {
+        outline: none;
+      }
     }
 
     & .unread {
@@ -109,12 +120,18 @@
       padding-block: 0.5ch;
       margin: 0;
       background-color: var(--ribbon-bg);
+      color: var(--secondary-text);
+      cursor: default;
       font-size: var(--step--1-cqi);
       font-weight: 600;
       text-align: center;
       text-decoration: none;
       transform: translateX(30%) translateY(0%) rotate(45deg);
       transform-origin: top left;
+
+      @container post-card (inline-size < 30ch) {
+        display: none;
+      }
 
       & .unread-l,
       & .unread-r {
@@ -146,7 +163,7 @@
       width: 100%;
       flex-wrap: wrap;
 
-      @container post-card (inline-size < 40ch) {
+      @container post-card (inline-size < 30ch) {
         display: none;
       }
     }
@@ -165,7 +182,7 @@
   and of course nesting isn't working correctly either */
 
   @media (prefers-reduced-motion: no-preference) {
-    .post:hover .post-border {
+    .post:is(:hover) .post-border {
       animation: border-grad-anim 500ms 120ms var(--ease-in-out-2) 1;
     }
   }

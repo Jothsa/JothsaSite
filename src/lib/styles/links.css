@@ -4,9 +4,10 @@
     [data-theme='normal'] a.styled-link
   ) {
   position: relative;
-  color: var(--primary-link);
+  color: var(--secondary-text);
+  text-decoration: underline;
 
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (prefers-contrast: no-preference) {
     text-decoration: none;
 
     &::before {
@@ -23,7 +24,7 @@
       transition: transform 300ms 120ms ease-in-out;
     }
 
-    &:hover {
+    &:is(:hover, :focus-visible) {
       &::before {
         transform-origin: left;
         transform: scaleX(1);

@@ -15,6 +15,8 @@
 <style>
   .posts {
     display: grid;
+    padding: 0;
+    margin: 0;
     gap: var(--space-m);
   }
 </style>

@@ -11,3 +11,5 @@
 - [ ] decide on post and slug naming scheme
 - [ ] make admin page/ easy way to make posts?
 - [ ] give links a color
+- [ ] categories vs tags (1 cat per post?)
+- [ ] use excerpt not description?
