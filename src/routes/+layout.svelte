@@ -19,6 +19,9 @@
   data-theme={$theme}
   data-theme-mode={$themeMode}
   style="display: contents;">
+  <div id="accessible-menu">
+    <a href="#content" class="sr-only">Skip to content</a>
+  </div>
   <Header />
   <slot />
   <Preferences />
