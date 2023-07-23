@@ -2,7 +2,7 @@
   import Navigation from './NavNew.svelte';
 </script>
 
-<header>
+<header id="header">
   <h1>Jothsa's Site!</h1>
   <Navigation />
 </header>

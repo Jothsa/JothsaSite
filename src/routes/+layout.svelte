@@ -5,6 +5,7 @@
   import Preferences from '$components/Preferences.svelte';
   import { theme, themeMode } from '$scripts/Preferences';
   import type { LayoutData } from './$types';
+  import Footer from '$components/Footer.svelte';
   export let data: LayoutData;
 
   $: pageTitle =
@@ -20,9 +21,13 @@
   data-theme-mode={$themeMode}
   style="display: contents;">
   <div id="accessible-menu">
-    <a href="#content" class="sr-only">Skip to content</a>
+    <ol>
+      <li><a href="#content" class="sr-only">Skip to content</a></li>
+      <li><a href="#footer" class="sr-only">Skip to footer</a></li>
+    </ol>
   </div>
   <Header />
   <slot />
   <Preferences />
+  <Footer />
 </div>

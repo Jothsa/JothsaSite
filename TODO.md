@@ -13,3 +13,5 @@
 - [ ] give links a color
 - [ ] categories vs tags (1 cat per post?)
 - [ ] use excerpt not description?
+- [ ] update copyright, add code and github to footer
+- [ ] make sure footer always at bottom
