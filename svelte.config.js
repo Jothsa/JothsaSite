@@ -3,24 +3,20 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import path from 'path';
 import shiki from 'shiki';
-// import {
-//   createShikiHighlighter,
-//   runTwoSlash,
-//   renderCodeToHTML,
-// } from 'shiki-twoslash';
-import { readFileSync } from 'fs';
+// import { readFileSync } from 'fs';
 import emoji from 'remark-emoji';
 import a11yEmoji from '@fec/remark-a11y-emoji';
+import remarkUnwrapImages from 'remark-unwrap-images';
 
-// From https://github.com/whizkydee/vscode-palenight-theme/blob/master/themes/palenight.json
-const darkModernTheme = JSON.parse(readFileSync('./darkModernTheme.json'));
+// From https://github.com/microsoft/vscode/tree/501a0190687e5bd799ff6844d9563b45c0e3ed53/extensions/theme-defaults/themes
+// const darkModernTheme = JSON.parse(readFileSync('./darkModernTheme.json'));
 
 /**  @type {import('mdsvex').MdsvexOptions  } */
 const mdsvexOptions = {
   extensions: ['.md'],
   highlight: {
     highlighter: async (code, lang = 'text') => {
-      const highlighter = await shiki.getHighlighter({ theme: darkModernTheme });
+      const highlighter = await shiki.getHighlighter({ theme: 'dark-plus' });
       const html = escapeSvelte(highlighter.codeToHtml(code, { lang }));
       return `{@html \`${html}\` }`;
     },
@@ -47,7 +43,7 @@ const mdsvexOptions = {
     //     return `{@html \`${html}\` }`;
     //   },
   },
-  remarkPlugins: [[emoji, { accessible: true }], a11yEmoji],
+  remarkPlugins: [remarkUnwrapImages, [emoji, { accessible: true }], a11yEmoji],
 };
 
 /** @type {import('@sveltejs/kit').Config} */
