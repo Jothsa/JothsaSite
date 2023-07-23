@@ -7,21 +7,23 @@
   import type { Categories as CategoriesType } from '$utils/types';
   export let data: PageData;
 
-  let currentCat: CategoriesType | undefined;
+  // let currentCat: CategoriesType | undefined;
+
+  $: currentCat = data.category;
 
   /* should prob use a regex but I'm lazy 
   I shouldn't have to worry about there being multiple categories, at least rn */
-  $: {
-    if ($page.url.pathname.includes('categories')) {
-      CategoriesList.forEach((c) => {
-        if ($page.url.pathname.includes(c)) {
-          currentCat = c;
-        } else {
-          currentCat = undefined;
-        }
-      });
-    }
-  }
+  // $: {
+  //   if ($page.url.pathname.includes('categories')) {
+  //     CategoriesList.forEach((c) => {
+  //       if ($page.url.pathname.includes(c)) {
+  //         currentCat = c;
+  //       } else {
+  //         currentCat = undefined;
+  //       }
+  //     });
+  //   }
+  // }
 </script>
 
 <div class="grid" id="content">
