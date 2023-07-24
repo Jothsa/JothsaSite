@@ -1,7 +1,7 @@
 <script lang="ts">
   // TODO display all TagCloud use type array thing to generate
   import { TagsList } from '$utils/types';
-  import type { TagsType} from '$utils/types';
+  import type { TagsType } from '$utils/types';
 
   import PostTag from './PostTag.svelte';
   export let tags: TagsType[] = [...TagsList];

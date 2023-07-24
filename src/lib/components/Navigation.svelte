@@ -409,7 +409,8 @@
           transform-origin: top center;
 
           /* 120ms is for hover intent */
-          transition: transform 280ms 120ms ease-in-out,
+          transition:
+            transform 280ms 120ms ease-in-out,
             opacity 300ms 120ms ease-in-out;
           visibility: hidden;
 
@@ -424,8 +425,9 @@
             & a {
               opacity: 0;
               transform: translate(-100%);
-              transition: transform 240ms
-                  calc(var(--link-stagger) * 50ms + 50ms) ease-in-out,
+              transition:
+                transform 240ms calc(var(--link-stagger) * 50ms + 50ms)
+                  ease-in-out,
                 opacity 240ms calc(var(--link-stagger) * 50ms + 100ms)
                   ease-in-out;
             }

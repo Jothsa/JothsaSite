@@ -4,5 +4,5 @@
 
 <main id="content">
   <h1>Tags</h1>
-  <TagsCloud  />
+  <TagsCloud />
 </main>

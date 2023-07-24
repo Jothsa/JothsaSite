@@ -11,4 +11,4 @@ tags:
 published: true
 ---
 
-Check out all these Tags
+Check out all these tags

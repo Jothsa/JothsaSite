@@ -27,7 +27,7 @@
     </div>
     <div class="tags">
       <span class="tag-title h3">Tags</span><br />
-      <TagsCloud tags={data.meta.tags}  />
+      <TagsCloud tags={data.meta.tags} />
     </div>
   </article>
 </main>

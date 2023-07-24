@@ -25,7 +25,8 @@
     background: var(--tag-bg);
     contain: content;
     font-size: var(--step-1-cqi);
-    transition: rotate 200ms 120ms var(--ease-elastic-1),
+    transition:
+      rotate 200ms 120ms var(--ease-elastic-1),
       background 300ms var(--ease-elastic-1);
 
     /* container: tag / inline-size; */
