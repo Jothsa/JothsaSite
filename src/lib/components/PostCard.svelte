@@ -2,7 +2,7 @@
   // this displays a summary of each post wrapped with an li
   // I could add a conditional wrapper maybe
 
-  import Categories from './Categories.svelte';
+  import TagsCloud from './TagsCloud.svelte';
   import { formatDate } from '$utils/utils';
   import type { Post } from '$utils/types';
   export let post: Post;
@@ -27,8 +27,8 @@
     <a href={`/blog/${post.slug}`} class="title styled-link">{post.title}</a>
   </span>
   <span class="date">{formatDate(post.date)}</span>
-  <div class="categories">
-    <Categories categories={post.categories} catClasses="compact" />
+  <div class="TagCloud">
+    <TagsCloud tags={post.tags} />
   </div>
   <p class="description">{post.description}</p>
 </li>
@@ -158,7 +158,7 @@
       }
     }
 
-    & .categories {
+    & .TagCloud {
       display: flex;
       width: 100%;
       flex-wrap: wrap;

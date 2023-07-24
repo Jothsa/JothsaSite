@@ -1,11 +1,15 @@
-export const CategoriesList = ['personal', 'programming', 'star-wars', 'catholicism', 'reading'] as const;
-export type Categories = (typeof CategoriesList)[number];
-export function isCategories(
-  cats: string[] | undefined | null,
-): cats is Categories[] {
+export const TagsList = [
+  'personal',
+  'programming',
+  'star-wars',
+  'catholicism',
+  'reading',
+] as const;
+export type TagsType = (typeof TagsList)[number];
+export function isTags(cats: string[] | undefined | null): cats is TagsType[] {
   if (
     cats?.every((c) => {
-      if (CategoriesList.includes(c as Categories)) {
+      if (TagsList.includes(c as TagsType)) {
         return true;
       } else return false;
     })
@@ -13,9 +17,9 @@ export function isCategories(
     return true;
   } else return false;
 }
-export function isCategory(cat: string | undefined | null): cat is Categories {
+export function isTag(cat: string | undefined | null): cat is TagsType {
   // ! not sure if this is the best way or that it won't break if I give a number or something
-  if (cat && CategoriesList.includes(cat as Categories)) {
+  if (cat && TagsList.includes(cat as TagsType)) {
     return true;
   } else return false;
 }
@@ -24,6 +28,6 @@ export type Post = {
   slug: string;
   description: string;
   date: string;
-  categories: Categories[];
+  tags: TagsType[];
   published: boolean;
 };

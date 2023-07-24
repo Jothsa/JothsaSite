@@ -2,7 +2,7 @@
 title: Another Post
 description: another post
 date: '2023-07-20'
-categories:
+tags:
   - personal
   - programming
 published: true

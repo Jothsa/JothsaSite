@@ -2,7 +2,7 @@
 title: Unread badge
 description: How I made an unread badge
 date: '2023-07-20'
-categories:
+tags:
   - programming
 published: true
 ---

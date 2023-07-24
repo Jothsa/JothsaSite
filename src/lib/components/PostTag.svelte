@@ -1,18 +1,17 @@
 <script lang="ts">
-  // displays a category in a list element
+  // displays a Tag in a list element
   // TODO prob use conditional wrapper
-  import type { Categories } from '$utils/types';
-  export let category: Categories;
-  export let classNames: 'large' | 'compact' | '' = '';
-  export let isCurrentCat: boolean = false;
+  import type { TagsType } from '$utils/types';
+  export let tag: TagsType;
+  export let isCurrentTag: boolean = false;
 </script>
 
-<li class={`category ${category} ${classNames}`} class:current={isCurrentCat}>
-  <a href={`/blog/categories/${category}`}>{category}</a>
+<li class={`tag ${tag}`} class:current={isCurrentTag}>
+  <a href={`/blog/tags/${tag}`}>{tag}</a>
 </li>
 
 <style>
-  .category {
+  .tag {
     --tag-bg: var(--accent);
     --outline: var(--accent);
     --outline-highlight: var(--contrast);
@@ -21,17 +20,15 @@
     --_rotation-deg: 7deg;
     --_rotation: calc(var(--_rotation-deg) * var(--_rotation-factor));
 
-    /* not ideal */
-    min-inline-size: max-content;
-
     padding-inline: 1ch;
     border-radius: 0.5ch;
     background: var(--tag-bg);
     contain: content;
     font-size: var(--step-1-cqi);
-    transition: rotate 200ms 120ms var(--ease-elastic-1);
+    transition: rotate 200ms 120ms var(--ease-elastic-1),
+      background 300ms var(--ease-elastic-1);
 
-    /* container: category / inline-size; */
+    /* container: tag / inline-size; */
 
     & a {
       color: var(--text);
@@ -40,6 +37,7 @@
       /* font-size: inherit; */
       font-weight: 500;
       text-decoration: none;
+      transition: color 300ms var(--ease-elastic-1);
 
       &:visited {
         color: var(--text);
@@ -78,7 +76,7 @@
 
     @media (prefers-reduced-motion) {
       &:is(:focus-within, :focus-visible) {
-        outline: solid clamp(3px, .4ch, 10px) var(--outline-highlight);
+        outline: solid clamp(3px, 0.4ch, 10px) var(--outline-highlight);
 
         & a {
           outline: none;

@@ -4,14 +4,15 @@
 - [ ] add contrast and theme to prefs
 - [ ] aria-expanded acting weird on nav button
 - [ ] view transitions
-- [ ] cleanup categories (no spaces maybe)
+- [ ] cleanup Tags (no spaces maybe)
 - [ ] switch dates to actual date obj (maybe)
 - [ ] make sure md linting works
 - [ ] add md plugins
 - [ ] decide on post and slug naming scheme
 - [ ] make admin page/ easy way to make posts?
 - [ ] give links a color
-- [ ] categories vs tags (1 cat per post?)
+- [ ] Tags vs tags (1 cat per post?)
 - [ ] use excerpt not description?
 - [ ] update copyright, add code and github to footer
 - [ ] make sure footer always at bottom
+- [ ] should clicking current selected tag deselect it?

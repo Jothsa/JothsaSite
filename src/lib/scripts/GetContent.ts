@@ -1,4 +1,4 @@
-import type { Post, Categories } from '$utils/types';
+import type { Post, TagsType } from '$utils/types';
 import { paginate } from '$utils/utils';
 
 export async function getPosts() {
@@ -31,16 +31,16 @@ export async function getPaginatedPosts(pageSize = 10, currentPage = 1) {
   return paginate(posts, currentPage, pageSize);
 }
 
-export async function getPostsByCategory(
-  category: Categories[],
+export async function getPostsByTag(
+  tags: TagsType[],
   pageSize?: number,
   currentPage?: number,
 ) {
   const posts: Post[] = await getPosts();
   const sortedPosts: Post[] = [];
   posts.forEach((post) => {
-    category.forEach((c) => {
-      if (post.categories.includes(c)) {
+    tags.forEach((t) => {
+      if (post.tags.includes(t)) {
         sortedPosts.push(post);
         // only need the post included one time
         return;
@@ -55,7 +55,7 @@ export async function getPostsByCategory(
 }
 
 // TODO Add search
-// export async function getPostsByQuery(query?: string, category?: Categories) {
+// export async function getPostsByQuery(query?: string, Tag?: Tags) {
 // pageSize = number of posts per page
 // const posts: Post[] = await getPosts();
 // return posts.slice((currentPage - 1) * pageSize, currentPage * pageSize);

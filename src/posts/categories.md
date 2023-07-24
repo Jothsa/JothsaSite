@@ -1,8 +1,8 @@
 ---
-title: Categories
-description: categories demo
+title: Tags
+description: Tags demo
 date: '2023-07-18'
-categories:
+tags:
   - personal
   - star-wars
   - programming
@@ -11,4 +11,4 @@ categories:
 published: true
 ---
 
-Check out all these categories
+Check out all these Tags

@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import { formatDate } from '$utils/utils';
-  import Categories from '$components/Categories.svelte';
-  import Post from '$components/Post.svelte';
+  // import Post from '$components/Post.svelte';
+  import TagsCloud from '$components/TagsCloud.svelte';
 
   export let data: PageData;
 </script>
@@ -21,19 +21,19 @@
           >{formatDate(data.meta.date)}</time>
       </p>
     </hgroup>
-  
+
     <div class="prose">
       <svelte:component this={data.content} />
     </div>
     <div class="tags">
       <span class="tag-title h3">Tags</span><br />
-      <Categories categories={data.meta.categories} catClasses={'compact'} />
+      <TagsCloud tags={data.meta.tags}  />
     </div>
   </article>
 </main>
 
 <style>
-article {
+  article {
     display: grid;
     padding: var(--space-s);
 

@@ -1,17 +1,18 @@
 <script lang="ts">
   import PostsDisplay from '$components/PostsDisplay.svelte';
-  import Categories from '$components/Categories.svelte';
+  import TagsCloud from '$components/TagsCloud.svelte';
   export let posts: Post[];
-import type {Post} from '$utils/types'
+  import type { TagsType, Post } from '$utils/types';
+  export let currentTag: TagsType | undefined = undefined;
 </script>
 
 <div class="grid" id="content">
   <main>
     <PostsDisplay {posts} />
   </main>
-  <div class="tags-wrapper">
-    <span class="h3 tags-title">Tags</span>
-    <Categories catClasses={'compact'} />
+  <div class="TagCloud-wrapper">
+    <span class="h3 TagCloud-title">TagCloud</span>
+    <TagsCloud {currentTag} />
   </div>
 </div>
 
@@ -29,12 +30,12 @@ import type {Post} from '$utils/types'
     }
   }
 
-  .tags-wrapper {
+  .TagCloud-wrapper {
     display: grid;
     gap: var(--space-xs);
     grid-auto-rows: fit-content(5ch);
 
-    & .tags-title {
+    & .TagCloud-title {
       display: flex;
       block-size: min-content;
       justify-content: center;
