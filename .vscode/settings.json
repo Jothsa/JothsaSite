@@ -12,7 +12,7 @@
   // "typescript.suggest.paths": false,
   // "javascript.suggest.paths": false
 
-  "stylelint.validate": ["html", "svelte", "astro"],
+  "stylelint.validate": ["html", "svelte", "astro", "css"],
 
   "eslint.validate": [
     "javascript",
