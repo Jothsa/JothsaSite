@@ -27,7 +27,7 @@
     <a href={`/blog/${post.slug}`} class="title styled-link">{post.title}</a>
   </span>
   <span class="date">{formatDate(post.date)}</span>
-  <div class="TagCloud">
+  <div class="tag-cloud">
     <TagsCloud tags={post.tags} />
   </div>
   <p class="description">{post.description}</p>
@@ -55,15 +55,10 @@
     --border-grad-angle-init: 223deg;
 
     position: relative;
-
-    /* display: grid; */
     padding: var(--space-2xs-cqi);
     background: var(--card-bg);
     contain: content;
     container: post-card / inline-size;
-
-    /* gap: var(--space-3xs); 
-    grid-template-columns: repeat(2, fit-content(15ch)); */
 
     &:nth-of-type(odd) {
       --border-grad-angle-init: 30deg;
@@ -158,10 +153,11 @@
       }
     }
 
-    & .TagCloud {
+    & .tag-cloud {
       display: flex;
       width: 100%;
       flex-wrap: wrap;
+      padding-block: 1ch;
 
       @container post-card (inline-size < 30ch) {
         display: none;
@@ -173,6 +169,7 @@
     }
 
     & .description {
+      margin-block-start: 0ch;
       text-wrap: pretty;
     }
   }

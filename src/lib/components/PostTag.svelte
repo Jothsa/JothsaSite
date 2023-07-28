@@ -34,8 +34,7 @@
     & a {
       color: var(--text);
       font-family: 'Carter One', system-ui;
-
-      /* font-size: inherit; */
+      font-size: inherit;
       font-weight: 500;
       text-decoration: none;
       transition: color 300ms var(--ease-elastic-1);

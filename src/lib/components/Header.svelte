@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Navigation from './NavNew.svelte';
+  import Navigation from './Navigation.svelte';
 </script>
 
 <header id="header">
@@ -10,16 +10,25 @@
 <style>
   header {
     --_font: var(--header-font), 'Carter One', system-ui;
+
     display: grid;
+    justify-content: center;
+    padding-block: var(--space-3xs);
+    padding-inline: var(--space-xs);
+    grid-auto-flow: row;
 
-    /* background-image: radial-gradient(
-      farthest-corner circle at 100% 0% in oklab,
-      oklch(80% 0.4 222) 0%,
-      oklch(35% 0.5 313) 100%
-    ); */
-  }
+    & h1 {
+      display: flex;
+      justify-content: center;
+      font-family: var(--_font);
+    }
 
-  h1 {
-    font-family: var(--_font);
+    @media (width > 30ch) {
+      justify-content: unset;
+
+      & h1 {
+        justify-content: unset;
+      }
+    }
   }
 </style>

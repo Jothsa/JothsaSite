@@ -8,10 +8,12 @@
 
 <div class="grid" id="content">
   <main>
-    <PostsDisplay {posts} />
+    <div class="posts-wrapper">
+      <PostsDisplay {posts} />
+    </div>
   </main>
-  <div class="TagCloud-wrapper">
-    <span class="h3 TagCloud-title">TagCloud</span>
+  <div class="tags-wrapper">
+    <span class="h3 tags-title">Tags</span>
     <TagsCloud {currentTag} />
   </div>
 </div>
@@ -30,15 +32,20 @@
     }
   }
 
-  .TagCloud-wrapper {
+  .posts-wrapper {
+    max-inline-size: 75ch;
+  }
+
+  .tags-wrapper {
     display: grid;
     gap: var(--space-xs);
     grid-auto-rows: fit-content(5ch);
 
-    & .TagCloud-title {
+    & .tags-title {
       display: flex;
       block-size: min-content;
       justify-content: center;
+      border-block-end: var(--accent) 2px dashed;
     }
   }
 </style>

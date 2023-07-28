@@ -6,6 +6,14 @@
   import PostTag from './PostTag.svelte';
   export let tags: TagsType[] = [...TagsList];
   export let currentTag: TagsType | undefined = undefined;
+
+  // whether to sort alphabetically or not
+  // could add random and length options for sorting
+  export let sort = true;
+
+  if (sort) {
+    tags = tags.sort((a, b) => a.localeCompare(b));
+  }
 </script>
 
 <div class="tags-container">
