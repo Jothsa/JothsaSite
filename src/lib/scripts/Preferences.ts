@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
-type ThemeMode = 'light' | 'dark';
+type ThemeMode = 'light' | 'dark' | 'auto';
 type Themes = (typeof themes)[number];
 // type FunLevel = 1 | 2 | 3;
 export const themes = ['normal'] as const;

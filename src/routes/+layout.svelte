@@ -3,7 +3,6 @@
   import AccessibleMenu from '$components/AccessibleMenu.svelte';
   import Header from '$components/Header.svelte';
   import { page } from '$app/stores';
-  import Preferences from '$components/Preferences.svelte';
   import { theme, themeMode } from '$scripts/Preferences';
   import type { LayoutData } from './$types';
   import Footer from '$components/Footer.svelte';
@@ -24,6 +23,5 @@
   <AccessibleMenu />
   <Header />
   <slot />
-  <Preferences />
   <Footer />
 </div>

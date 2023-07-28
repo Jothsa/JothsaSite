@@ -1,7 +1,11 @@
 <div id="accessible-menu">
   <ol>
-    <li><a href="#content" class="sr-only">Skip to content</a></li>
-    <li><a href="#footer" class="sr-only">Skip to footer</a></li>
+    <li role="listitem">
+      <a href="#content" class="sr-only">Skip to content</a>
+    </li>
+    <li role="listitem">
+      <a href="#footer" class="sr-only">Skip to footer</a>
+    </li>
   </ol>
 </div>
 
@@ -9,7 +13,7 @@
   #accessible-menu {
     position: absolute;
     inset-inline-start: 50%;
-    background: var(--contrast);
+    background: var(--tertiary);
     transform: translate(-50%, -100%);
 
     @media (prefers-reduced-motion: no-preference) {
@@ -23,6 +27,10 @@
     & ol {
       padding: 0;
       margin: 0;
+
+      & li {
+        list-style: none;
+      }
     }
 
     & a:focus-visible {

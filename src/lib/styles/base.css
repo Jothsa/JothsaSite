@@ -46,6 +46,13 @@ and @mayank99
   text-wrap: balance;
 }
 
+:root {
+  scroll-behavior: auto;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}
+
 :where(body) {
   min-height: 200vh;
   font-family: system-ui, sans-serif;
