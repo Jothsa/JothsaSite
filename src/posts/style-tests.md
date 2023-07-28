@@ -1,6 +1,6 @@
 ---
-title: Star Wars Tier List
-description: My Star Wars tier list
+title: Style Tests
+description: tests of styles
 date: '2023-07-27'
 tags:
   - programming
@@ -60,6 +60,8 @@ hello _em_ **strong** **_em and strong_**
 - [ ] do checkboxes work?
 - [x] should they?
 - [x] hurray!
+
+*****
 
 Yoda said:
 

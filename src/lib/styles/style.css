@@ -29,59 +29,71 @@ pre {
   inline-size: fit-content;
   padding: 0.5ch;
   margin-block: max(11px, var(--space-s));
+
+  /* TODO add color from theme to 1st shadow color-mix */
   box-shadow:
-    4px 5px 1px 1px var(--accent),
-    8px 10px 1px 1px var(--contrast);
+    /* 2px 3px 3px 0px color-mix(in oklch, var(--accent), oklch(15% 0 0) 25% ), */
+    4px 5px 0.5px 1px var(--accent),
+    /* 6px 8px 3px 0px color-mix(in oklch, var(--accent), var(--contrast) 50%), */
+      8px 10px 0.5px 1px var(--contrast);
 }
 
 code:not(pre code) {
   --box-shadow: color-mix(
     in oklch,
-    var(--tertiary) 60%,
+    var(--tertiary) 50%,
     var(--decrease-contrast) 20%
   );
-
   position: relative;
   padding-inline: 0.2ch;
   background: var(--tertiary);
   color: var(--text-secondary);
   font-family: var(--code-font), monospace;
+  display: inline-block;
 
-  box-shadow:
-    0.01ch 0.01ch var(--box-shadow),
-    0.02ch 0.02ch var(--box-shadow),
-    0.03ch 0.03ch var(--box-shadow),
-    0.04ch 0.04ch var(--box-shadow),
-    0.05ch 0.05ch var(--box-shadow),
-    0.06ch 0.06ch var(--box-shadow),
-    0.07ch 0.07ch var(--box-shadow),
-    0.08ch 0.08ch var(--box-shadow),
-    0.09ch 0.09ch var(--box-shadow),
-    0.1ch 0.1ch var(--box-shadow);
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 100ms linear;
+    box-shadow:
+      0.01ch 0.01ch var(--box-shadow),
+      0.02ch 0.02ch var(--box-shadow),
+      0.03ch 0.03ch var(--box-shadow),
+      0.04ch 0.04ch var(--box-shadow),
+      0.05ch 0.05ch var(--box-shadow),
+      0.06ch 0.06ch var(--box-shadow),
+      0.07ch 0.07ch var(--box-shadow),
+      0.08ch 0.08ch var(--box-shadow),
+      0.09ch 0.09ch var(--box-shadow),
+      0.1ch 0.1ch var(--box-shadow);
 
-  &:hover {
-     box-shadow:
-    0.01ch 0.01ch var(--box-shadow),
-    0.02ch 0.02ch var(--box-shadow),
-    0.03ch 0.03ch var(--box-shadow),
-    0.04ch 0.04ch var(--box-shadow),
-    0.05ch 0.05ch var(--box-shadow),
-    0.06ch 0.06ch var(--box-shadow),
-    0.07ch 0.07ch var(--box-shadow),
-    0.08ch 0.08ch var(--box-shadow),
-    0.09ch 0.09ch var(--box-shadow),
-    0.1ch 0.1ch var(--box-shadow),
-    0.11ch 0.11ch var(--box-shadow),
-    0.12ch 0.12ch var(--box-shadow),
-    0.13ch 0.13ch var(--box-shadow),
-    0.14ch 0.14ch var(--box-shadow),
-    0.15ch 0.15ch var(--box-shadow),
-    0.16ch 0.16ch var(--box-shadow),
-    0.17ch 0.17ch var(--box-shadow),
-    0.18ch 0.18ch var(--box-shadow),
-    0.19ch 0.19ch var(--box-shadow),
-    0.2ch 0.2ch var(--box-shadow);
-    transform: translate(-.1ch, .1ch);
+    &:hover {
+      --box-shadow: color-mix(
+        in oklch,
+        var(--tertiary) 50%,
+        var(--decrease-contrast) 30%
+      );
+      box-shadow:
+        0.01ch 0.01ch var(--box-shadow),
+        0.02ch 0.02ch var(--box-shadow),
+        0.03ch 0.03ch var(--box-shadow),
+        0.04ch 0.04ch var(--box-shadow),
+        0.05ch 0.05ch var(--box-shadow),
+        0.06ch 0.06ch var(--box-shadow),
+        0.07ch 0.07ch var(--box-shadow),
+        0.08ch 0.08ch var(--box-shadow),
+        0.09ch 0.09ch var(--box-shadow),
+        0.1ch 0.1ch var(--box-shadow),
+        0.11ch 0.11ch var(--box-shadow),
+        0.12ch 0.12ch var(--box-shadow),
+        0.13ch 0.13ch var(--box-shadow),
+        0.14ch 0.14ch var(--box-shadow),
+        0.15ch 0.15ch var(--box-shadow),
+        0.16ch 0.16ch var(--box-shadow),
+        0.17ch 0.17ch var(--box-shadow),
+        0.18ch 0.18ch var(--box-shadow),
+        0.19ch 0.19ch var(--box-shadow),
+        0.2ch 0.2ch var(--box-shadow);
+      transform: translate(-0.1ch, -0.1ch);
+    }
   }
 }
 
@@ -92,7 +104,7 @@ strong,
     currentcolor 60%,
     var(--decrease-contrast) 20%
   );
-  color: var(--accent);
+  color: var(--contrast);
   font-weight: 600;
   text-shadow:
     0.01ch 0.01ch var(--text-shadow),
@@ -108,7 +120,8 @@ strong,
 }
 
 :is(em, .em) {
-  color: var(--contrast);
+  /* color: var(--contrast); */
+  font-style: italic;
 }
 
 blockquote {
@@ -129,4 +142,14 @@ blockquote {
 
 input:is([type='checkbox'], [type='radio'], [type='range']) {
   accent-color: var(--accent);
+}
+
+hr {
+  --border-width: clamp(1px, 0.5ch, 10px);
+  margin-block: 0.5ch;
+  display: block;
+  width: 100%;
+  height: var(--border-width);
+  border: none;
+  border-block-start: dashed var(--border-width) var(--accent);
 }
