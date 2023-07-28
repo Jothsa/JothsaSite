@@ -1,5 +1,6 @@
 <script lang="ts">
   import '$styles/index.css';
+  import AccessibleMenu from '$components/AccessibleMenu.svelte';
   import Header from '$components/Header.svelte';
   import { page } from '$app/stores';
   import Preferences from '$components/Preferences.svelte';
@@ -20,12 +21,7 @@
   data-theme={$theme}
   data-theme-mode={$themeMode}
   style="display: contents;">
-  <div id="accessible-menu">
-    <ol>
-      <li><a href="#content" class="sr-only">Skip to content</a></li>
-      <li><a href="#footer" class="sr-only">Skip to footer</a></li>
-    </ol>
-  </div>
+  <AccessibleMenu />
   <Header />
   <slot />
   <Preferences />
