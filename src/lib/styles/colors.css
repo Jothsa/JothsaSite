@@ -42,7 +42,7 @@
     --decrease-contrast: var(--decrease-contrast-d);
   }
 
-  &:has([data-theme-mode='light']) {
+  &[data-theme-mode='light'] {
     --primary: var(--primary-l);
     --secondary: var(--secondary-l);
     --tertiary: var(--tertiary-l);
@@ -54,7 +54,7 @@
     --decrease-contrast: var(--decrease-contrast-l);
   }
 
-  &:has([data-theme-mode='dark']) {
+  &[data-theme-mode='dark'] {
     --primary: var(--primary-d);
     --secondary: var(--secondary-d);
     --tertiary: var(--tertiary-d);

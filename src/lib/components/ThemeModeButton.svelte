@@ -1,10 +1,13 @@
 <script lang="ts">
-  import { themeMode } from '$scripts/Preferences';
+  import { themeMode, isThemeMode } from '$scripts/Preferences';
+  import type { ThemeMode } from '$scripts/Preferences';
   import { onMount } from 'svelte';
+  // changes the icon based on root data-theme-mode attribute
+  // import './ThemeModeButton.css';
   const lightMessage = 'Set theme to light mode';
   const darkMessage = 'Set theme to dark mode';
   const autoMessage = 'Set theme to match device mode';
-  let themeModeMessage = lightMessage;
+  let themeModeMessage = autoMessage;
 
   function setThemeModeMessage() {
     if ($themeMode === 'light') {
@@ -18,24 +21,38 @@
 
   function onThemModeClick() {
     if ($themeMode === 'light') {
-      $themeMode = 'dark';
+      setThemeMode('dark');
     } else if ($themeMode === 'dark') {
-      $themeMode = 'auto';
+      setThemeMode('auto');
     } else {
-      $themeMode = 'light';
+      setThemeMode('light');
     }
+    document.documentElement.setAttribute('data-theme-mode', $themeMode);
     setThemeModeMessage();
   }
 
-  onMount(() => {
+  function initTheme() {
+    let lsThemeMode = localStorage.getItem('themeMode');
+    if (isThemeMode(lsThemeMode)) {
+      $themeMode = lsThemeMode;
+    } else $themeMode = 'auto';
     setThemeModeMessage();
+  }
+
+  function setThemeMode(t: ThemeMode) {
+    $themeMode = t;
+    localStorage.setItem('themeMode', t);
+  }
+
+  onMount(() => {
+    initTheme();
   });
 </script>
 
 <button
   id="theme-mode"
   type="button"
-  class={$themeMode}
+  class="theme-button"
   on:click={onThemModeClick}
   title={themeModeMessage}
   aria-label={themeModeMessage}
@@ -84,6 +101,7 @@
 </button>
 
 <style>
+  /* see ThemeModeButton.css for the icon logic */
   button {
     position: relative;
     inline-size: clamp(15px, 3ch, 15lvh);
@@ -100,12 +118,12 @@
       inset: 0;
       transition: opacity 300ms ease-in-out;
     }
+  }
 
-    &.light :is(.dark-icon, .auto-icon),
-    &.dark :is(.light-icon, .auto-icon),
-    &.auto :is(.light-icon, .dark-icon) {
-      opacity: 0;
-      visibility: hidden;
-    }
+  :root[data-theme-mode='light'] .theme-button :is(.dark-icon, .auto-icon),
+  :root[data-theme-mode='dark'] .theme-button :is(.light-icon, .auto-icon),
+  :root[data-theme-mode='auto'] .theme-button :is(.light-icon, .dark-icon) {
+    opacity: 0;
+    visibility: hidden;
   }
 </style>
