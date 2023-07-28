@@ -8,7 +8,7 @@
   export let post: Post;
 </script>
 
-<li class="post">
+<li class="post" role="listitem">
   <a
     class="unread"
     href={`/blog/${post.slug}`}
@@ -59,6 +59,7 @@
     background: var(--card-bg);
     contain: content;
     container: post-card / inline-size;
+    list-style: none;
 
     &:nth-of-type(odd) {
       --border-grad-angle-init: 30deg;
