@@ -1,23 +1,11 @@
 <script lang="ts">
-  import { theme, themes, themeMode } from '$scripts/Preferences';
+  import { theme, themes } from '$scripts/Preferences';
+  import ThemeModeButton from './ThemeModeButton.svelte';
   import { onMount } from 'svelte';
 
   let reducedMotionMessage = 'Reduce motion';
-  let themeModeMessage = 'Light mode';
 
-  function setThemeModeMessage() {
-    if ($themeMode === 'light') {
-      themeModeMessage = 'Dark mode';
-    } else themeModeMessage = 'Light mode';
-  }
-
-  function onThemModeClick() {
-    $themeMode === 'light' ? ($themeMode = 'dark') : ($themeMode = 'light');
-    setThemeModeMessage();
-  }
-  onMount(() => {
-    setThemeModeMessage();
-  });
+  
 </script>
 
 <div class="pref-container">
@@ -25,8 +13,7 @@
     <span class="pref-title">Preferences</span>
     <div class="pref-inputs">
       <div class="pref-buttons">
-        <button id="theme-mode" type="button" on:click={onThemModeClick}
-          >{themeModeMessage}</button>
+        <ThemeModeButton />
       </div>
       <div class="theme-wrapper">
         <label for="themes">Theme</label>
