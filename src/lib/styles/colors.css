@@ -3,6 +3,8 @@
   --primary-d: oklch(19.41% 0.123 275.29);
   --secondary-l: oklch(56.9% 0.183 282.8);
   --secondary-d: oklch(33.53% 0.183 282.8);
+  --tertiary-l: oklch(56.9% 0.183 282.8);
+  --tertiary-d: oklch(48% 0.183 282.8);
   --primary-text-l: oklch(23.53% 0.094 336.71);
   --primary-text-d: oklch(81.4% 0.099 336.71);
   --secondary-text-l: oklch(42.21% 0.121 238.76);
@@ -19,6 +21,7 @@
   @media (prefers-color-scheme: light) {
     --primary: var(--primary-l);
     --secondary: var(--secondary-l);
+    --tertiary: var(--tertiary-l);
     --primary-text: var(--primary-text-l);
     --secondary-text: var(--secondary-text-l);
     --contrast: var(--contrast-l);
@@ -30,6 +33,7 @@
   @media (prefers-color-scheme: dark) {
     --primary: var(--primary-d);
     --secondary: var(--secondary-d);
+    --tertiary: var(--tertiary-d);
     --primary-text: var(--primary-text-d);
     --secondary-text: var(--secondary-text-d);
     --contrast: var(--contrast-d);
@@ -41,6 +45,7 @@
   &:has([data-theme-mode='light']) {
     --primary: var(--primary-l);
     --secondary: var(--secondary-l);
+    --tertiary: var(--tertiary-l);
     --primary-text: var(--primary-text-l);
     --secondary-text: var(--secondary-text-l);
     --contrast: var(--contrast-l);
@@ -52,6 +57,7 @@
   &:has([data-theme-mode='dark']) {
     --primary: var(--primary-d);
     --secondary: var(--secondary-d);
+    --tertiary: var(--tertiary-d);
     --primary-text: var(--primary-text-d);
     --secondary-text: var(--secondary-text-d);
     --contrast: var(--contrast-d);

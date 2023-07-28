@@ -78,10 +78,6 @@ and @mayank99
   cursor: not-allowed;
 }
 
-:where(ul, ol) {
-  list-style: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   :where(html:focus-within) {
     scroll-behavior: smooth;

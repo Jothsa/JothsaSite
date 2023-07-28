@@ -12,46 +12,74 @@
   <meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
-<main class="styled-links" id="content">
+<main id="content">
   <article>
     <hgroup>
-      <h1 class="post-title">{data.meta.title}</h1>
+      <!-- ? should this just be an h2 tag? -->
+      <h1 class="post-title h2">{data.meta.title}</h1>
       <p class="post-time">
         Published <time datetime={formatDate(data.meta.date, 'full')}
           >{formatDate(data.meta.date)}</time>
       </p>
     </hgroup>
 
-    <div class="prose">
+    <div class="prose styled-links">
       <svelte:component this={data.content} />
     </div>
-    <div class="tags">
-      <span class="tag-title h3">Tags</span><br />
+    <div class="tags-wrapper">
+      <span class="tags-title h3">Tags</span>
       <TagsCloud tags={data.meta.tags} />
     </div>
   </article>
 </main>
 
 <style>
+  main {
+    padding: var(--space-xs);
+  }
+
   article {
     display: grid;
-    padding: var(--space-s);
-
-    /* max-inline-size: var(--size-content-3); */
-    margin-inline: auto;
-    gap: var(--space-3sx);
+    inline-size: fit-content;
+    padding: var(--space-xs);
+    gap: var(--space-m);
   }
 
-  h1 {
-    /* text-transform: capitalize; */
+  .prose {
+    position: relative;
+    padding: 2ch;
+    background: var(--secondary);
+
+    /* isolation: isolate; */
+
+    /* filter: drop-shadow(15px 15px 2px var(--contrast)); */
+
+    /* filter: drop-shadow(30px 10px 4px #4444dd); */
+
+    -webkit-mask: var(--mask-corner-cut-angles-1);
+
+    /* &::after {
+      position: absolute;
+      z-index: -1;
+      background: var(--contrast);
+      content: '';
+      inset: 0;
+      -webkit-mask: var(--mask-corner-cut-angles-1);
+      transform: translate(5px, 5px);
+    } */
   }
 
-  h1 + p {
-    /* margin-top: var(--size-2);
-    color: var(--text-2); */
+  .post-title + p {
+    margin-block-start: var(--size-2xs);
+    color: var(--text-2);
   }
 
-  .tag-title {
+  .tags-wrapper {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+
+  .tags-title {
     display: flex;
   }
 </style>
