@@ -16,3 +16,4 @@
 - [ ] update copyright, add code and github to footer
 - [ ] make sure footer always at bottom
 - [ ] should clicking current selected tag deselect it?
+- [ ] handle no tags gracefully
