@@ -17,3 +17,5 @@
 - [ ] make sure footer always at bottom
 - [ ] should clicking current selected tag deselect it?
 - [ ] handle no tags gracefully
+- [ ] add nan checks for page num
+- [ ] add func to fetch post details for post card so that full post isn't needed

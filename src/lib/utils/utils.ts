@@ -11,14 +11,16 @@ export function formatDate(
 
 /**
  * @param pageSize the number of posts per page
- * @returns the `items` on the `currentPage` and the total number of pages
+ * @returns the `items` on the `currentPage` and `totalPages`, the total number of pages
  */
 
 export function paginate<T>(
   items: T[],
   currentPage: number,
   pageSize: number,
-): {items: T[], pages: number} {
-  return{ items: items.slice((currentPage - 1) * pageSize, currentPage * pageSize), pages: Math.ceil(items.length / pageSize)}
-
+): { items: T[]; totalPages: number } {
+  return {
+    items: items.slice((currentPage - 1) * pageSize, currentPage * pageSize),
+    totalPages: Math.ceil(items.length / pageSize),
+  };
 }

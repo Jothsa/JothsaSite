@@ -7,7 +7,6 @@
   import type { Post } from '$utils/types';
   export let post: Post;
 
-  console.log(post);
 </script>
 
 <li class="post" role="listitem">

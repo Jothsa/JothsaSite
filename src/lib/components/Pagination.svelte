@@ -1,20 +1,16 @@
 <script lang="ts">
-  import { page } from '$app/stores';
-  export let pages: number;
-  let currentPage: number;
-
-  $: {
-    let pageParam = $page.url.searchParams.get('page');
-    if (pageParam && parseInt(pageParam)) {
-      currentPage = parseInt(pageParam);
-    }
-  }
+  // TODO add transitions
+  /**
+   * @prop pages - the total num of pages-- the last page
+   */
+  export let totalPages: number;
+  export let currentPage: number;
 </script>
 
-<div class="pagination-wrapper">
-  <div class="pages-buttons">
-    {#if currentPage !== 1}
-      <a class="first-page" href="./?page=1"
+<div class="pagination-container">
+  <div class="pages-links">
+    {#if currentPage > 1}
+      <a class="first-page" href="/blog/page/1"
         ><svg
           aria-hidden="true"
           focusable="false"
@@ -29,7 +25,7 @@
               d="M12.06 5.94a1.5 1.5 0 0 1 0 2.12L8.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Zm6 0a1.5 1.5 0 0 1 0 2.12L14.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Z" /></g
           ></svg
         ></a>
-      <a class="previous-page" href={`./?page=${currentPage - 1}`}>
+      <a class="previous-page" href={`/blog/page/${currentPage - 1}`}>
         <svg
           aria-hidden="true"
           focusable="false"
@@ -42,17 +38,17 @@
             d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0z" /></svg>
       </a>
     {/if}
-    <!-- TODO add key? -->
-    {#if pages <= 5}
-      {#each { length: pages } as _, i}
-        <a
-          class="page-a"
-          class:current={currentPage === i}
-          href={`./?page=${i}`}>{i}</a>
-      {/each}
-    {/if}
-    {#if currentPage !== pages}
-      <a class="next-page" href={`./?page=${currentPage + 1}`}
+    <!-- TODO add key? (prob not needed) -->
+    <!-- {#if totalPages >= 5} -->
+    {#each { length: totalPages } as _, i}
+      <a
+        class="page-link"
+        class:current={currentPage === i + 1}
+        href={`/blog/page/${i + 1}`}><div class="page-number">{i + 1}</div></a>
+    {/each}
+    <!-- {/if} -->
+    {#if currentPage < totalPages}
+      <a class="next-page" href={`/blog/page/${currentPage + 1}`}
         ><svg
           aria-hidden="true"
           focusable="false"
@@ -64,7 +60,7 @@
             fill="currentColor"
             d="M338.752 104.704a64 64 0 0 0 0 90.496l316.8 316.8l-316.8 316.8a64 64 0 0 0 90.496 90.496l362.048-362.048a64 64 0 0 0 0-90.496L429.248 104.704a64 64 0 0 0-90.496 0z" /></svg
         ></a>
-      <a class="last-page" href={`./?page=${pages}`}
+      <a class="last-page" href={`/blog/page/${totalPages}`}
         ><svg
           aria-hidden="true"
           focusable="false"
@@ -83,23 +79,41 @@
   </div>
   <div class="page-goto">
     <label for="page-num">Go to page</label>
-    <input type="number" id="page-num" name="page number" min="1" max={pages} />
+    <input
+      type="number"
+      id="page-num"
+      name="page number"
+      min="1"
+      max={totalPages} />
   </div>
 </div>
 
 <style>
-  .pagination-wrapper {
-    container: pagination / inline-size;
+  .pagination-container {
+    /* container: pagination / inline-size; */
+    display: flex;
+  }
+
+  .pages-links {
+    display: flex;
+    flex-direction: row;
   }
 
   a {
+    --size: clamp(2ch, 6vw, 4ch);
     display: flex;
-    inline-size: 2ch;
+    inline-size: var(--size);
+    block-size: var(--size);
+    align-items: center;
     justify-content: center;
+    padding: var(--space-3xs-cqi);
     aspect-ratio: 1;
-    background: var(--text-primary);
-    color: var(--primary);
-    gap: var(--space-2xs);
+
+    /* background: var(--text-primary);
+    color: var(--primary); */
+    font-size: var(--step-2);
+    font-weight: 600;
+    gap: var(--space-2xs-cqi);
     vertical-align: text-top;
 
     &.current {
@@ -122,6 +136,11 @@
     & svg {
       width: 100%;
       height: 100%;
+    }
+
+    & .page-number {
+      display: flex;
+      place-items: center;
     }
   }
 

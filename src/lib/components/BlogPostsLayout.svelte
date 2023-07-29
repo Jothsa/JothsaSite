@@ -2,18 +2,22 @@
   import PostsDisplay from '$components/PostsDisplay.svelte';
   import TagsCloud from '$components/TagsCloud.svelte';
   import type { TagsType, Post } from '$utils/types';
-  // import Pagination from './Pagination.svelte';
+  import Pagination from './Pagination.svelte';
   export let posts: Post[];
   export let currentTag: TagsType | undefined = undefined;
-  export let pages: number = 0;
-  let currentPage: number = 0;
+  export let totalPages: number = 0;
+  export let currentPage: number = 0;
 </script>
 
 <div class="grid" id="content">
   <main>
     <div class="posts-wrapper">
       <PostsDisplay {posts} />
-      <!-- <Pagination pages={6} /> -->
+      {#if totalPages > 1 && currentPage !== 0}
+        <div class="pagination-wrapper">
+          <Pagination {totalPages} {currentPage} />
+        </div>
+      {/if}
     </div>
   </main>
   <div class="tags-wrapper">
@@ -38,6 +42,10 @@
 
   .posts-wrapper {
     max-inline-size: 75ch;
+  }
+
+  .pagination-wrapper {
+    margin-block-start: var(--space-s);
   }
 
   .tags-wrapper {
