@@ -25,10 +25,11 @@ export async function getPosts() {
   return posts;
 }
 
-export async function getPaginatedPosts(pageSize = 10, currentPage = 1) {
+export async function getPaginatedPosts(pageSize = 10, currentPage = 1) : Promise<{posts: Post[], pages: number}> {
   // pageSize = number of posts per page
   const posts: Post[] = await getPosts();
-  return paginate(posts, currentPage, pageSize);
+  const { items, pages } = paginate(posts, currentPage, pageSize);
+  return { posts: items, pages };
 }
 
 export async function getPostsByTag(
@@ -48,7 +49,8 @@ export async function getPostsByTag(
     });
   });
   if (pageSize && currentPage) {
-    return paginate(sortedPosts, currentPage, pageSize);
+    const {items, pages} = paginate(sortedPosts, currentPage, pageSize);
+    return { posts: items, pages };
   } else {
     return sortedPosts;
   }

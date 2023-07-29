@@ -12,6 +12,7 @@ export const GET = (async ({ request }) => {
   let tags: TagsType[];
   const headerTagsRaw = request.headers.get('post-tags');
   let headerTags: string[] = [];
+  let pages = 0;
   // TODO could clean up this logic
   if (headerTagsRaw) {
     if (headerTagsRaw && headerTagsRaw.includes(',')) {
@@ -21,8 +22,15 @@ export const GET = (async ({ request }) => {
     }
     if (isTags(headerTags)) {
       tags = headerTags;
-      posts = await getPostsByTag(tags);
+      const output = await getPostsByTag(tags);
+      if (Array.isArray(output)) {
+        posts = output;
+      } else {
+        posts = output.posts;
+        pages = output.pages;
+      }
     }
   }
-  return json(posts);
+  // console.log(json({ posts, pages }));
+  return json({ posts, pages: pages });
 }) satisfies RequestHandler;

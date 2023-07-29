@@ -1,6 +1,5 @@
 import type { Post, TagsType } from '$utils/types';
 import { isTag } from '$utils/types';
-
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
@@ -12,10 +11,15 @@ export const load = async function load({ params, fetch }) {
     tag = tagParam;
     const headers = { 'post-tags': tag };
     const response = await fetch('/api/posts', { headers: headers });
-    const posts: Post[] = await response.json();
+    const output = await response.json();
+    const posts: Post[] = output.posts;
+    const pages = output.pages;
+
+    console.log('output', output);
 
     return {
       posts,
+      pages,
       title: tag,
       tag: tag,
     };

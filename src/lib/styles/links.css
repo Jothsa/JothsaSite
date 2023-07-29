@@ -1,8 +1,5 @@
 /** make sure no conflicts with nav, etc */
-:where(
-    [data-theme='normal'] .styled-links a:not(.unstyled-link),
-    [data-theme='normal'] a.styled-link
-  ) {
+:where(.styled-links a:not(.unstyled-link), a.styled-link) {
   position: relative;
   color: var(--secondary-text);
   text-decoration: underline;

@@ -6,6 +6,8 @@
   import { formatDate } from '$utils/utils';
   import type { Post } from '$utils/types';
   export let post: Post;
+
+  console.log(post);
 </script>
 
 <li class="post" role="listitem">
@@ -23,9 +25,8 @@
       href={`/blog/${post.slug}`}
       tabindex="-1" /></a>
   <div class="post-border" />
-  <span class="post-link">
-    <a href={`/blog/${post.slug}`} class="title styled-link">{post.title}</a>
-  </span>
+  <a href={`/blog/${post.slug}`} class="post-link title styled-link"
+    >{post.title}</a>
   <span class="date">{formatDate(post.date)}</span>
   <div class="tag-cloud">
     <TagsCloud tags={post.tags} />
@@ -96,6 +97,7 @@
       border: var(--border);
       border-image: var(--border-grad) 1;
       inset: 0;
+      pointer-events: none;
     }
 
     & .title {

@@ -1,15 +1,19 @@
 <script lang="ts">
   import PostsDisplay from '$components/PostsDisplay.svelte';
   import TagsCloud from '$components/TagsCloud.svelte';
-  export let posts: Post[];
   import type { TagsType, Post } from '$utils/types';
+  // import Pagination from './Pagination.svelte';
+  export let posts: Post[];
   export let currentTag: TagsType | undefined = undefined;
+  export let pages: number = 0;
+  let currentPage: number = 0;
 </script>
 
 <div class="grid" id="content">
   <main>
     <div class="posts-wrapper">
       <PostsDisplay {posts} />
+      <!-- <Pagination pages={6} /> -->
     </div>
   </main>
   <div class="tags-wrapper">
