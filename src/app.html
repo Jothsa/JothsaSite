@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width" />
     <script>
       const lsThemeMode = localStorage.getItem('themeMode');
-      if (lsThemeMode !== undefined) {
+      // * hard coding the values should be ok
+      // * as should letting auto be the fallback (maybe I'll save 3ms)
+      if (lsThemeMode === 'light'|| lsThemeMode === 'dark') {
         document.documentElement.setAttribute('data-theme-mode', lsThemeMode);
       } else {
         document.documentElement.setAttribute('data-theme-mode', 'auto');
