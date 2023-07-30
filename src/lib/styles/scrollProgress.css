@@ -1,0 +1,41 @@
+/* 
+ * should only ever need 1 per page 
+ * should be a progress element 
+ * requires a script (see notes there) 
+ * @link https://dev.to/robole/pimp-your-blog-by-adding-a-reading-progress-bar-573i */
+
+#scroll-progress {
+  --progress-height: 10px;
+  --progress-bg: none;
+  --progress-bar: var(--secondary);
+  --progress-border-radius: 5px;
+
+  position: sticky;
+  inset-block-start: 0;
+  inset-inline: 0;
+
+  &[value] {
+    width: 100%;
+    height: var(--progress-height);
+    border: none;
+    border-radius: var(--progress-border-radius);
+    appearance: none;
+    background-color: var(--progress-bg);
+
+    &::-moz-progress-bar {
+      border-radius: var(--progress-border-radius);
+      background-color: var(--progress-bar);
+    }
+
+    &::-webkit-progress-bar {
+      border-radius: var(--progress-border-radius);
+      background-color: var(--progress-bg);
+    }
+
+    /* -webkit-progress-value is to style the progress bar. */
+    &::-webkit-progress-value {
+      border-radius: var(--progress-border-radius);
+      background-color: var(--progress-bar);
+    }
+  }
+}
