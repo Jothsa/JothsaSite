@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import type { PageData } from './$types';
   import { formatDate } from '$utils/utils';
   // import Post from '$components/Post.svelte';
   import TagsCloud from '$components/TagsCloud.svelte';
-
+  import ScrollProgress from '$components/ScrollProgress.svelte';
   export let data: PageData;
+  let postID = 'post';
 </script>
 
 <svelte:head>
@@ -13,7 +15,8 @@
 </svelte:head>
 
 <main id="content">
-  <article>
+  <article id="post">
+    <ScrollProgress {postID} direction="bottom" />
     <hgroup>
       <!-- ? should this just be an h2 tag? -->
       <h1 class="post-title h2">{data.meta.title}</h1>
@@ -39,10 +42,12 @@
   }
 
   article {
+    position: relative;
     display: grid;
     inline-size: fit-content;
     padding: var(--space-xs);
     gap: var(--space-m);
+    isolation: isolate;
   }
 
   .prose {
