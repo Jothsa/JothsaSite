@@ -1,13 +1,15 @@
 <script lang="ts">
   // displays a Tag in a list element
   // TODO prob use conditional wrapper
+  // TODO convert to radio buttons maybe
+
   import type { TagsType } from '$utils/types';
   export let tag: TagsType;
   export let isCurrentTag: boolean = false;
 </script>
 
 <li class={`tag ${tag}`} class:current={isCurrentTag}>
-  <a href={`/blog/tags/${tag}`}>{tag}</a>
+  <a href={`/blog/tags/${tag}`} class="unstyled-link">{tag}</a>
 </li>
 
 <style>

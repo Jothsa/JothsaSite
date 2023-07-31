@@ -1,5 +1,6 @@
 // import { error } from '@sveltejs/kit';
 // import { redirect } from '@sveltejs/kit';
+import { defaultPostsPerPage } from '$utils/config';
 import type { PageLoad } from './$types';
 import type { Post } from '$utils/types';
 
@@ -12,7 +13,7 @@ export const load = async function load({ params, fetch }) {
     // ? or maybe just go to page 1?
     currentPage = 1;
   }
-  const headers = { 'current-page': currentPage.toString(), 'page-size': '3' };
+  const headers = { 'current-page': currentPage.toString(), 'page-size': defaultPostsPerPage.toString() };
   const response = await fetch('/api/posts', { headers: headers });
   const output = await response.json();
   const posts: Post[] = output.posts;
@@ -22,7 +23,6 @@ export const load = async function load({ params, fetch }) {
     title = `Blog - Page ${currentPage}`;
   }
 
-  // console.log(pages);
   return {
     title: title,
     posts: posts,

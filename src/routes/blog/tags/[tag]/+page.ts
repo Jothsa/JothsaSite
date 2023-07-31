@@ -15,8 +15,6 @@ export const load = async function load({ params, fetch }) {
     const posts: Post[] = output.posts;
     const pages = output.pages;
 
-    console.log('output', output);
-
     return {
       posts,
       pages,

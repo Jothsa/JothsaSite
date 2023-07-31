@@ -34,7 +34,6 @@ export async function getPaginatedPosts(
 ): Promise<{ posts: Post[]; totalPages: number }> {
   const posts: Post[] = await getPosts();
   const { items, totalPages } = paginate(posts, currentPage, pageSize);
-  console.log('tp', totalPages);
   return { posts: items, totalPages: totalPages };
 }
 

@@ -48,7 +48,10 @@
     padding: var(--space-xs);
     gap: var(--space-m);
     isolation: isolate;
+    view-timeline: --post block;
   }
+
+  
 
   .prose {
     position: relative;

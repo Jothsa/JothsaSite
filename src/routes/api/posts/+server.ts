@@ -13,7 +13,7 @@ export const GET = (async ({ request }) => {
   let posts: Post[] = await getPosts();
   // post-tags header should be a comma separated list or single value (or null)
   let tags: TagsType[] | null = null;
-  let currentPage: number = 1;
+  let currentPage: number | undefined = undefined;
   let pageSize = defaultPostsPerPage;
   let headerTags: string[] = [];
   let totalPages = 1;
@@ -68,8 +68,6 @@ export const GET = (async ({ request }) => {
       totalPages = output.totalPages;
     }
   }
-  console.log('p', currentPage)
-  console.log('tp', totalPages);
 
   return json({ posts, totalPages: totalPages });
 }) satisfies RequestHandler;

@@ -10,8 +10,7 @@
   // * have to use the ID because children mount before parents so I couldn't pass the element because it wasn't defined
   export let postID: string;
   export let direction: 'top' | 'bottom' = 'top';
-  // should always be defined since it's part of this component
-  let progress!: HTMLProgressElement;
+  let progress: HTMLProgressElement;
   let scrollProgress: ScrollProgress;
 
   onMount(() => {
@@ -31,6 +30,9 @@
   /* make sure it is always in front */
 
   #scroll-progress {
-    z-index: 1;
+    --height: clamp(0.75ch, 1svh, 15px);
+    z-index: 5;
+    block-size: var(--height);
+    contain: content;
   }
 </style>

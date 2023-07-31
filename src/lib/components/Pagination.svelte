@@ -90,8 +90,8 @@
 
 <style>
   .pagination-container {
-    /* container: pagination / inline-size; */
     display: flex;
+    container: pagination / inline-size;
   }
 
   .pages-links {
@@ -100,7 +100,7 @@
   }
 
   a {
-    --size: clamp(2ch, 6vw, 4ch);
+    --size: clamp(1ch, 5cqi, 3ch);
     display: flex;
     inline-size: var(--size);
     block-size: var(--size);
@@ -134,8 +134,8 @@
     }
 
     & svg {
-      width: 100%;
-      height: 100%;
+      width: var(--size);
+      height: var(--size);
     }
 
     & .page-number {
