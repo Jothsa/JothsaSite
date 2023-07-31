@@ -1,21 +1,12 @@
 <script lang="ts">
   /* @link https://una.im/radial-menu/
-   * card needs position relative
+   * card needs position relative (?)
    */
-
-  //  import {onMount} from 'svelte';
-  // import {isSupported, apply}  from '@oddbird/popover-polyfill/dist/popover-fn';
-  // import '@oddbird/popover-polyfill/dist/popover.css';
-  // import '@oddbird/css-anchor-positioning/dist/'
-  // onMount(() => {
-  // import '@oddbird/css-anchor-positioning';
-  // if (!isSupported) {
-  //   apply();
-  // }
-  // });
+   
+   import {ReactionsList} from '$scripts/Reactions';
 </script>
 
-<div class="menu">
+<div class="menu" style={`--num-items: ${ReactionsList.length}`}>
   <button class="menu-toggle" id="menu-toggle" popovertarget="menu-items">
     <span aria-hidden="true">➕</span>
     <span class="sr-only">menu trigger</span>

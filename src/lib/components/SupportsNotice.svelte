@@ -47,11 +47,11 @@
   </p>
 </div>
 
-<noscript>
+
   <div id="no-js-menu">
     <p>Enable javascript for the best experience.</p>
   </div>
-</noscript>
+
 
 <style>
   #supports-menu {
@@ -59,15 +59,52 @@
   }
 
   :global(#supports-menu.unsupported) {
-    display: block !important;
+    display: flex;
+  }
+  
+  #no-js-menu, #supports-menu {
+    justify-content: center;
+    block-size: fit-content;
+    background: var(--contrast);
+    color: var(--text-primary);
   }
 
   #no-js-menu {
-    position: absolute;
-    inset-block-end: 2rem;
-    inset-inline-start: 2rem;
-    display: block;
-    inline-size: fit-content;
-    block-size: fit-content;
+    display: flex;
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </style>

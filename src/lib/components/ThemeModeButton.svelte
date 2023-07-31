@@ -61,8 +61,6 @@
     focusable="false"
     class="light-icon"
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
     viewBox="0 0 24 24"
     ><g fill="none"
       ><path
@@ -75,8 +73,6 @@
     focusable="false"
     xmlns="http://www.w3.org/2000/svg"
     class="dark-icon"
-    width="24"
-    height="24"
     viewBox="0 0 24 24"
     ><path
       fill="currentColor"
@@ -86,8 +82,6 @@
     focusable="false"
     class="auto-icon"
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
     viewBox="0 0 24 24"
     ><g
       fill="none"
@@ -98,32 +92,73 @@
       ><path d="M9.173 14.83a4 4 0 1 1 5.657-5.657" /><path
         d="m11.294 12.707l.174.247a7.5 7.5 0 0 0 8.845 2.492A9 9 0 0 1 5.642 18.36M3 12h1m8-9v1M5.6 5.6l.7.7M3 21L21 3" /></g
     ></svg>
-</button>
+</button >
 
 <style>
-  /* see ThemeModeButton.css for the icon logic */
+
+/*
+ * [1] remove default padding that was hiding the svg
+ */
+
+
   button {
-    position: relative;
     inline-size: clamp(15px, 3ch, 15lvh);
+    block-size: clamp(15px, 3ch, 15lvh);
     border: none;
     border: solid 2px var(--accent);
     border-radius: 50%;
-    aspect-ratio: 1;
-    background: transparent;
+    background: none;
+    background-color: none;
+    display: inline grid;
+    place-content: center;
+    padding: 0; /* [1] */
+    overflow: hidden;
+    vertical-align: middle;
 
     & svg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      inset: 0;
+      grid-area: 1 / 1;
+      width: 2rem;
+      height: 2rem;
+      fill: currentColor;
       transition: opacity 300ms ease-in-out;
     }
   }
+  
+  /* why does this work without :global() ? */
 
   :root[data-theme-mode='light'] .theme-button :is(.dark-icon, .auto-icon),
   :root[data-theme-mode='dark'] .theme-button :is(.light-icon, .auto-icon),
   :root[data-theme-mode='auto'] .theme-button :is(.light-icon, .dark-icon) {
     opacity: 0;
     visibility: hidden;
+    display: none;
   }
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
