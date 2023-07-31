@@ -48,6 +48,7 @@ and @mayank99
 
 :root {
   scroll-behavior: auto;
+
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
   }

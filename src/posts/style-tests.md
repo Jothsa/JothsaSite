@@ -61,7 +61,7 @@ hello _em_ **strong** **_em and strong_**
 - [x] should they?
 - [x] hurray!
 
-*****
+---
 
 Yoda said:
 

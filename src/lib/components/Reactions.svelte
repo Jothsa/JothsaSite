@@ -2,8 +2,8 @@
   /* @link https://una.im/radial-menu/
    * card needs position relative (?)
    */
-   
-   import {ReactionsList} from '$scripts/Reactions';
+
+  import { ReactionsList } from '$scripts/Reactions';
 </script>
 
 <div class="menu" style={`--num-items: ${ReactionsList.length}`}>

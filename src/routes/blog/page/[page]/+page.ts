@@ -13,7 +13,10 @@ export const load = async function load({ params, fetch }) {
     // ? or maybe just go to page 1?
     currentPage = 1;
   }
-  const headers = { 'current-page': currentPage.toString(), 'page-size': defaultPostsPerPage.toString() };
+  const headers = {
+    'current-page': currentPage.toString(),
+    'page-size': defaultPostsPerPage.toString(),
+  };
   const response = await fetch('/api/posts', { headers: headers });
   const output = await response.json();
   const posts: Post[] = output.posts;

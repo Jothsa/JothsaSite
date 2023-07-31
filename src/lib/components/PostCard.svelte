@@ -9,10 +9,12 @@
   export let wrapperTag: string = 'li';
   export let isLIRole = true;
   export let post: Post;
-
 </script>
 
-<svelte:element this={wrapperTag} class="post" role={isLIRole ? "listitem": ''}>
+<svelte:element
+  this={wrapperTag}
+  class="post"
+  role={isLIRole ? 'listitem' : ''}>
   <a
     class="unread"
     href={`/blog/${post.slug}`}

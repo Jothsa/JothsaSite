@@ -92,73 +92,43 @@
       ><path d="M9.173 14.83a4 4 0 1 1 5.657-5.657" /><path
         d="m11.294 12.707l.174.247a7.5 7.5 0 0 0 8.845 2.492A9 9 0 0 1 5.642 18.36M3 12h1m8-9v1M5.6 5.6l.7.7M3 21L21 3" /></g
     ></svg>
-</button >
+</button>
 
 <style>
-
-/*
+  /*
  * [1] remove default padding that was hiding the svg
  */
 
-
   button {
+    display: inline grid;
+    overflow: hidden;
     inline-size: clamp(15px, 3ch, 15lvh);
     block-size: clamp(15px, 3ch, 15lvh);
+    padding: 0; /* [1] */
     border: none;
     border: solid 2px var(--accent);
     border-radius: 50%;
     background: none;
     background-color: none;
-    display: inline grid;
     place-content: center;
-    padding: 0; /* [1] */
-    overflow: hidden;
     vertical-align: middle;
 
     & svg {
-      grid-area: 1 / 1;
       width: 2rem;
       height: 2rem;
-      fill: currentColor;
+      fill: currentcolor;
+      grid-area: 1 / 1;
       transition: opacity 300ms ease-in-out;
     }
   }
-  
+
   /* why does this work without :global() ? */
 
   :root[data-theme-mode='light'] .theme-button :is(.dark-icon, .auto-icon),
   :root[data-theme-mode='dark'] .theme-button :is(.light-icon, .auto-icon),
   :root[data-theme-mode='auto'] .theme-button :is(.light-icon, .dark-icon) {
+    display: none;
     opacity: 0;
     visibility: hidden;
-    display: none;
   }
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

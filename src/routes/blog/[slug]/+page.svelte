@@ -57,8 +57,6 @@
     view-timeline: --post block;
   }
 
-
-
   .prose {
     position: relative;
     padding: 2ch;
@@ -90,8 +88,8 @@
 
   .reactions-wrapper {
     position: static;
-    bottom: 10lvh;
     right: 10lvh;
+    bottom: 10lvh;
   }
 
   .tags-wrapper {

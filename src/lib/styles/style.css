@@ -45,14 +45,13 @@ code:not(pre code) {
     var(--decrease-contrast) 20%
   );
   position: relative;
+  display: inline-block;
   padding-inline: 0.2ch;
   background: var(--tertiary);
   color: var(--text-secondary);
   font-family: var(--code-font), monospace;
-  display: inline-block;
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: transform 100ms linear;
     box-shadow:
       0.01ch 0.01ch var(--box-shadow),
       0.02ch 0.02ch var(--box-shadow),
@@ -64,6 +63,7 @@ code:not(pre code) {
       0.08ch 0.08ch var(--box-shadow),
       0.09ch 0.09ch var(--box-shadow),
       0.1ch 0.1ch var(--box-shadow);
+    transition: transform 100ms linear;
 
     &:hover {
       --box-shadow: color-mix(
@@ -146,10 +146,10 @@ input:is([type='checkbox'], [type='radio'], [type='range']) {
 
 hr {
   --border-width: clamp(1px, 0.5ch, 10px);
-  margin-block: 0.5ch;
   display: block;
   width: 100%;
   height: var(--border-width);
   border: none;
   border-block-start: dashed var(--border-width) var(--accent);
+  margin-block: 0.5ch;
 }

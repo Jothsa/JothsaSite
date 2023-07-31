@@ -4,8 +4,6 @@
   import { onMount } from 'svelte';
 
   let reducedMotionMessage = 'Reduce motion';
-
-  
 </script>
 
 <div class="pref-container">
