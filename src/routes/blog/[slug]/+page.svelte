@@ -6,6 +6,7 @@
   import TagsCloud from '$components/TagsCloud.svelte';
   import ScrollProgress from '$components/ScrollProgress.svelte';
   import Reactions from '$components/Reactions.svelte';
+  import ReactionsFallback from '$components/ReactionsFallback.svelte';
   export let data: PageData;
   let postID = 'post';
 </script>
@@ -36,6 +37,7 @@
     </div>
     <div class="reactions-wrapper">
       <Reactions />
+      <ReactionsFallback />
     </div>
   </article>
 </main>

@@ -1,12 +1,14 @@
 <script lang="ts">
 import {ReactionsList} from '$scripts/Reactions'
+
+export let menuItemRole = true;
 </script>
 
 <ul class="reactions-fallback">
 
-{#each ReactionsList as r}
-<li class="reaction">
-<button class="reaction-button">
+{#each ReactionsList as r, i}
+<li class="reaction" style={`--item-num: ${i}`}>
+<button class="reaction-button" role={(menuItemRole) ? 'menuitem' : ''}>
 <span class="reaction-emoji" aria-hidden="true" title={r.description} >{r.emoji}</span>
 <span class="sr-only">{r.description}</span>
 </button>
@@ -20,11 +22,7 @@ import {ReactionsList} from '$scripts/Reactions'
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
-  gap: var(--space-xs-cqi);
   display: none;
-  container: reactions-fallback / inline-size;
-  
-
   
   & .reaction {
    
@@ -34,34 +32,5 @@ import {ReactionsList} from '$scripts/Reactions'
 :global(:root:is(.no-popover, .no-anchor)) .reactions-fallback {
   display: flex;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </style>
