@@ -15,22 +15,6 @@
   // });
 </script>
 
-<svelte:head>
-  <script type="module">
-    if (!('anchorName' in document.documentElement.style)) {
-      import('https://unpkg.com/@oddbird/css-anchor-positioning');
-    }
-  </script>
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@oddbird/popover-polyfill@latest/dist/popover.css"
-    crossorigin="anonymous" />
-  <script
-    src="https://cdn.jsdelivr.net/npm/@oddbird/popover-polyfill@latest"
-    crossorigin="anonymous"
-    defer></script>
-</svelte:head>
-
 <div class="menu">
   <button class="menu-toggle" id="menu-toggle" popovertarget="menu-items">
     <span aria-hidden="true">➕</span>
@@ -125,6 +109,10 @@
       var(--delay-offset, 999s),
       (var(--max-opening-time) / (var(--num-items) - 1))
     ); /* [4] */
+  }
+
+  :global(html:is(.no-anchor, .no-popover)) .menu {
+    display: none;
   }
 
   /* Where the magic happens */

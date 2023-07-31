@@ -5,6 +5,7 @@
   import { page } from '$app/stores';
   import type { LayoutData } from './$types';
   import Footer from '$components/Footer.svelte';
+  // import SupportsNotice from '$components/SupportsNotice.svelte';
   export let data: LayoutData;
 
   $: pageTitle =
@@ -17,5 +18,6 @@
 
 <AccessibleMenu />
 <Header />
+<!-- <SupportsNotice /> -->
 <slot />
 <Footer />

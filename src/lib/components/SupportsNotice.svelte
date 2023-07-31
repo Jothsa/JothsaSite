@@ -1,8 +1,10 @@
 <script lang="ts">
   import * as SupportsCSS from 'supports-css';
   import { onMount } from 'svelte';
+  import { test } from 'vitest';
 
   const tests = [
+    'anchor',
     'at-container',
     'at-property',
     'color-function',
@@ -16,13 +18,28 @@
     'view-transitions',
   ];
 
+  const unsupportedTestNames = [];
+
+  tests.forEach(t => {
+    unsupportedTestNames.push(`no-${t}`);
+  });
+
   onMount(() => {
+    const supportsCSSMenuEl = document.getElementById('supports-menu');
+    // doesn't need to be added to test array
+    SupportsCSS.addTest(
+      'popover',
+      HTMLElement.prototype.hasOwnProperty('popover'),
+    );
     SupportsCSS.init({ tests });
-    SupportsCSSTests.results.entries.forEach((r) => {
-      if (r[1] === false) {
-        document.getElementById('supports-menu')?.classList.add('unsupported');
+    // console.log(SupportsCSSTests.results);
+    for (const test in SupportsCSSTests.results) {
+      console.log('u');
+      const result = SupportsCSSTests.results[test];
+      if (!result) {
+        supportsCSSMenuEl?.classList.add('unsupported');
       }
-    });
+    }
   });
 </script>
 
@@ -40,11 +57,11 @@
 </noscript>
 
 <style>
-  .supports-menu {
+  #supports-menu {
     display: none;
   }
 
-  .supports-menu.unsupported {
+  #supports-menu.unsupported {
     display: block;
   }
 
