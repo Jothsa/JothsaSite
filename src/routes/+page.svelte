@@ -14,9 +14,9 @@
 
 <style>
   main {
+    display: grid;
     padding-block: var(--space-3xs);
     padding-inline: var(--space-xs);
-    display: grid;
   }
 
   aside {

@@ -5,11 +5,14 @@
   import TagsCloud from './TagsCloud.svelte';
   import { formatDate } from '$utils/utils';
   import type { Post } from '$utils/types';
+
+  export let wrapperTag: string = 'li';
+  export let isLIRole = true;
   export let post: Post;
 
 </script>
 
-<li class="post" role="listitem">
+<svelte:element this={wrapperTag} class="post" role={isLIRole ? "listitem": ''}>
   <a
     class="unread"
     href={`/blog/${post.slug}`}
@@ -31,7 +34,7 @@
     <TagsCloud tags={post.tags} />
   </div>
   <p class="description">{post.description}</p>
-</li>
+</svelte:element>
 
 <style>
   @property --border-grad-angle {

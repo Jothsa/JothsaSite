@@ -5,6 +5,7 @@
   // import Post from '$components/Post.svelte';
   import TagsCloud from '$components/TagsCloud.svelte';
   import ScrollProgress from '$components/ScrollProgress.svelte';
+  import Reactions from '$components/Reactions.svelte';
   export let data: PageData;
   let postID = 'post';
 </script>
@@ -33,6 +34,9 @@
       <span class="tags-title h3">Tags</span>
       <TagsCloud tags={data.meta.tags} />
     </div>
+    <div class="reactions-wrapper">
+      <Reactions />
+    </div>
   </article>
 </main>
 
@@ -51,7 +55,7 @@
     view-timeline: --post block;
   }
 
-  
+
 
   .prose {
     position: relative;
@@ -80,6 +84,12 @@
   .post-title + p {
     margin-block-start: var(--size-2xs);
     color: var(--text-2);
+  }
+
+  .reactions-wrapper {
+    position: static;
+    bottom: 10lvh;
+    right: 10lvh;
   }
 
   .tags-wrapper {
