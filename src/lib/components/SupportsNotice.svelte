@@ -1,7 +1,6 @@
 <script lang="ts">
   import * as SupportsCSS from 'supports-css';
   import { onMount } from 'svelte';
-  import { test } from 'vitest';
 
   const tests = [
     'anchor',
@@ -18,10 +17,10 @@
     'view-transitions',
   ];
 
-  const unsupportedTestNames = [];
+  const unsupportedTestClassNames: string[] = [];
 
-  tests.forEach(t => {
-    unsupportedTestNames.push(`no-${t}`);
+  tests.forEach((t) => {
+    unsupportedTestClassNames.push(`.no-${t}`);
   });
 
   onMount(() => {
@@ -32,14 +31,12 @@
       HTMLElement.prototype.hasOwnProperty('popover'),
     );
     SupportsCSS.init({ tests });
-    // console.log(SupportsCSSTests.results);
-    for (const test in SupportsCSSTests.results) {
-      console.log('u');
-      const result = SupportsCSSTests.results[test];
-      if (!result) {
-        supportsCSSMenuEl?.classList.add('unsupported');
-      }
-    }
+    console.log(unsupportedTestClassNames.toString());
+    document
+      .querySelector(
+        `:root:is(${unsupportedTestClassNames.toString()}) #supports-menu`,
+      )
+      ?.classList.add('unsupported');
   });
 </script>
 
@@ -61,8 +58,8 @@
     display: none;
   }
 
-  #supports-menu.unsupported {
-    display: block;
+  :global(#supports-menu.unsupported) {
+    display: block !important;
   }
 
   #no-js-menu {

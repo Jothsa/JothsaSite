@@ -35,7 +35,7 @@
       <TagsCloud tags={data.meta.tags} />
     </div>
     <div class="reactions-wrapper">
-      <!-- <Reactions /> -->
+      <Reactions />
     </div>
   </article>
 </main>
