@@ -73,6 +73,9 @@ devDependencies:
   stylelint:
     specifier: ^15.10.2
     version: 15.10.2
+  supports-css:
+    specifier: ^0.1.5
+    version: 0.1.5
   svelte:
     specifier: ^4.1.1
     version: 4.1.1
@@ -3883,6 +3886,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       has-flag: 4.0.0
+    dev: true
+
+  /supports-css@0.1.5:
+    resolution: {integrity: sha512-BzLpVNsqjYYpe/G/OaDu8yqdcniYRLur8y6cNRfofIh9Bskz0jI4hZD0aW+xNwTnAy/r1DJk9vzrly4MI4Rs3Q==}
     dev: true
 
   /supports-hyperlinks@3.0.0:
