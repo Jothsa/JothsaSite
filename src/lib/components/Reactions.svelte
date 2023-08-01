@@ -4,82 +4,42 @@
    */
 
   import { ReactionsList } from '$scripts/Reactions';
+  import ReactionEmojiListItems from './ReactionEmojiListItems.svelte';
 </script>
 
-<div class="menu" style={`--num-items: ${ReactionsList.length}`}>
-  <button class="menu-toggle" id="menu-toggle" popovertarget="menu-items">
+<div class="reactions-menu" style={`--num-items: ${ReactionsList.length}`}>
+  <button class="reaction-menu-toggle" id="reaction-menu-toggle" popovertarget="reaction-menu-items">
     <span aria-hidden="true">➕</span>
     <span class="sr-only">menu trigger</span>
   </button>
   <ul
-    class="menu-items"
-    id="menu-items"
+    class="reaction-menu-items"
+    id="reaction-items"
     popover
-    anchor="menu-toggle"
+    anchor="reaction-menu-toggle"
     role="menu">
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">😍</span>
-        <span class="sr-only">love</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">😁</span>
-        <span class="sr-only">smile</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">😂</span>
-        <span class="sr-only">funny</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">🤯</span>
-        <span class="sr-only">mind blown</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">🥳</span>
-        <span class="sr-only">celebrate</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">🤨</span>
-        <span class="sr-only">skeptical</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">🙁</span>
-        <span class="sr-only">disappointed</span>
-      </button>
-    </li>
-    <li class="item">
-      <button role="menuitem">
-        <span aria-hidden="true">😠</span>
-        <span class="sr-only">upset</span>
-      </button>
-    </li>
+    {#each ReactionsList as r, i}
+      <li class="reaction-menu-item" style={`--item-num: ${i + 1}`}>
+        <button class="reaction-button" role="menuitem">
+          <span class="reaction-emoji" aria-hidden="true" title={r.description} aria-label={r.description}
+            >{r.emoji}</span>
+        </button>
+      </li>
+    {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->
-    <li class="item">
+    <li class="reaction-menu-item">
       <button
         popovertargetaction="close"
-        popovertarget="menu-items"
-        class="hidden-close">
+        popovertarget="reaction-menu-items"
+        class="hidden-close" aria-label="close menu">
         <span aria-hidden="true"> </span>
-        <span class="sr-only">close menu</span>
       </button>
     </li>
   </ul>
 </div>
 
 <style>
-  .menu {
+  .reactions-menu {
     /* Custom Properties for the menu
      * properties beginning with _ shouldn't need to be changed
      * [1] full-rotation controls how far around the menu the items will be when it is open 
@@ -91,7 +51,6 @@
      */
     --btn-size: 3rem;
     --extra-space: 1.5rem;
-    --num-items: 8;
     --full-rotation: 360deg; /* [1] */
     --delay-offset: 75ms; /* [2] */
     --max-opening-time: 1.2s; /* [3] */
@@ -102,12 +61,12 @@
     ); /* [4] */
   }
 
-  :global(html:is(.no-anchor, .no-popover)) .menu {
+  :global(html:is(.no-anchor, .no-popover)) .reactions-menu {
     display: none;
   }
 
   /* Where the magic happens */
-  .item {
+  .reaction-menu-item {
     --radius: calc(var(--btn-size) + var(--extra-space));
     background-color: var(--bg);
     opacity: 0;
@@ -118,23 +77,23 @@
 
   /* Adding for popover base */
 
-  .menu-items:not(:popover-open, .\:popover-open) .item {
+  .reaction-menu-items:not(:popover-open) .reaction-menu-item {
     --radius: 0;
     --angle: 0;
     rotate: 45deg;
   }
 
   /* rotate the "plus" */
-  .menu-toggle > span {
+  .reaction-menu-toggle > span {
     display: inline-block;
     transition: transform 0.3s;
   }
 
-  .menu:has(:popover-open, .\:popover-open) .menu-toggle > span {
+  .reactions-menu:has(:popover-open) .reaction-menu-toggle > span {
     transform: rotate(45deg);
   }
 
-  .menu-items {
+  .reaction-menu-items {
     bottom: calc(anchor(bottom));
     left: anchor(center);
 
@@ -151,7 +110,7 @@
     transition-delay: 1s;
   }
 
-  :is(:popover-open, .\:popover-open) .item {
+  :popover-open .reaction-menu-item {
     opacity: 1;
   }
 
@@ -159,49 +118,41 @@
 
   /* This gets updated when the popover is open */
 
-  .item:nth-child(1) {
-    --item-num: 1;
+  .reaction:nth-child(1) {
     --bg: pink;
   }
 
-  .item:nth-child(2) {
-    --item-num: 2;
+  .reaction:nth-child(2) {
     --bg: thistle;
   }
 
-  .item:nth-child(3) {
-    --item-num: 3;
+  .reaction:nth-child(3) {
     --bg: paleturquoise;
   }
 
-  .item:nth-child(4) {
-    --item-num: 4;
+  .reaction:nth-child(4) {
     --bg: lightgreen;
   }
 
-  .item:nth-child(5) {
-    --item-num: 5;
+  .reaction:nth-child(5) {
     --bg: peachpuff;
   }
 
-  .item:nth-child(6) {
-    --item-num: 6;
+  .reaction:nth-child(6) {
     --bg: skyblue;
   }
 
-  .item:nth-child(7) {
-    --item-num: 7;
+  .reaction:nth-child(7) {
     --bg: aliceblue;
   }
 
-  .item:nth-child(8) {
-    --item-num: 8;
+  .reaction:nth-child(8) {
     --bg: fuchsia;
   }
 
   /* Not related to demo, just styling */
 
-  .item {
+  .reaction-menu-item {
     --angle: calc(var(--_base-angle) * (var(--item-num) - 1));
     --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
     width: var(--btn-size);
@@ -209,7 +160,7 @@
     aspect-ratio: 1;
   }
 
-  .menu-toggle {
+  .reaction-menu-toggle {
     z-index: 1;
     width: var(--btn-size);
     border-radius: 50%;
@@ -219,17 +170,16 @@
 
   /* Grid piles */
 
-  .menu,
-  .menu-items,
-  body,
-  .item {
+  .reactions-menu,
+  .reaction-menu-items,
+  .reaction-menu-item {
     display: grid;
     place-content: center;
+    align-items: center;
   }
 
-  .menu > *,
-  .menu-items > *,
-  body > * .item button {
+  .reactions-menu > *,
+  .reaction-menu-items > * {
     grid-area: 1/1;
   }
 
@@ -252,20 +202,16 @@
     color: #222;
     font-family: 'Noto Emoji';
     font-size: 1.25rem;
+
+    &:focus-visible {
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      outline: 2px dashed deeppink;
+    }
   }
 
-  button:focus-visible {
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-    outline: 2px dashed deeppink;
-  }
-
-  body {
-    height: 100vh;
-  }
-
-  .menu,
-  .menu-items {
+  .reactions-menu,
+  .reaction-menu-items {
     overflow: unset;
   }
 </style>

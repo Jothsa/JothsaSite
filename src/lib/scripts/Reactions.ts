@@ -1,16 +1,6 @@
 // 😍😁😂🤯🥳🤨🙁😠
 
-export type ReactionEmoji =
-  | '😍'
-  | '😁'
-  | '😂'
-  | '🤯'
-  | '🥳'
-  | '🤨'
-  | '🙁'
-  | '😠';
-
-export const ReactionsList: { emoji: ReactionEmoji; description: string }[] = [
+export const ReactionsList = [
   { emoji: '😍', description: 'love' },
   { emoji: '😁', description: 'like' },
   { emoji: '😂', description: 'laugh' },
@@ -19,6 +9,8 @@ export const ReactionsList: { emoji: ReactionEmoji; description: string }[] = [
   { emoji: '🤨', description: 'skeptical' },
   { emoji: '🙁', description: 'disappointed' },
   { emoji: '😠', description: 'upset' },
-];
+] as const;
+
+export type ReactionEmoji = (typeof ReactionsList)[number]['emoji'];
 
 export function handleReaction() {}
