@@ -1,37 +1,74 @@
 <script lang="ts">
   /* @link https://una.im/radial-menu/
-   * card needs position relative (?)
    */
 
   import { ReactionsList } from '$scripts/Reactions';
-  import ReactionEmojiListItems from './ReactionEmojiListItems.svelte';
+  let delayOverride = '';
+  // * delay it should be on open/close
+  const openDelay =
+    '--delay: calc((var(--item-num) - 1) * var(--_delay-offset));';
+  const closeDelay =
+    ' --delay: calc((var(--total-items) - (var(--item-num))) * var(--_delay-offset));';
+  // this should be the total time the transition takes (alliteration lol) in ms
+  const totalTransitionTime = ReactionsList.length * 75;
+
+  // the callbacks are not required but will help if the menu is closed by clicking away, not on the button
+  function onOpenClick() {
+    // in case the button is clicked mid-transition
+    delayOverride = openDelay;
+    setTimeout(() => {
+      delayOverride = closeDelay;
+    }, totalTransitionTime);
+  }
+
+  function onCloseClick() {
+    delayOverride = closeDelay;
+    setTimeout(() => {
+      delayOverride = openDelay;
+    }, totalTransitionTime);
+  }
+
+  // TODO Add easings to CSS transitions
 </script>
 
-<div class="reactions-menu" style={`--num-items: ${ReactionsList.length}`}>
-  <button class="reaction-menu-toggle" id="reaction-menu-toggle" popovertarget="reaction-menu-items">
+<div
+  class="radial-menu"
+  style={`--total-items: ${ReactionsList.length}; ${delayOverride}`}>
+  <button
+    class="menu-toggle"
+    id="menu-toggle"
+    popovertarget="menu-items"
+    aria-label="open menu"
+    title="open menu"
+    on:click={onOpenClick}>
     <span aria-hidden="true">➕</span>
-    <span class="sr-only">menu trigger</span>
   </button>
   <ul
-    class="reaction-menu-items"
-    id="reaction-items"
+    class="menu-items"
+    id="menu-items"
     popover
-    anchor="reaction-menu-toggle"
+    anchor="menu-toggle"
     role="menu">
     {#each ReactionsList as r, i}
-      <li class="reaction-menu-item" style={`--item-num: ${i + 1}`}>
-        <button class="reaction-button" role="menuitem">
-          <span class="reaction-emoji" aria-hidden="true" title={r.description} aria-label={r.description}
-            >{r.emoji}</span>
+      <li class="item" style={`--item-num: ${i + 1}; ${delayOverride}`}>
+        <button role="menuitem">
+          <span
+            class="reaction-emoji"
+            aria-hidden="true"
+            title={r.description}
+            aria-label={r.description}>{r.emoji}</span>
         </button>
       </li>
     {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->
-    <li class="reaction-menu-item">
+    <li class="item">
       <button
         popovertargetaction="close"
-        popovertarget="reaction-menu-items"
-        class="hidden-close" aria-label="close menu">
+        popovertarget="menu-items"
+        class="hidden-close"
+        aria-label="close-menu"
+        title="close-menu"
+        on:click={onCloseClick}>
         <span aria-hidden="true"> </span>
       </button>
     </li>
@@ -39,7 +76,7 @@
 </div>
 
 <style>
-  .reactions-menu {
+  .radial-menu {
     /* Custom Properties for the menu
      * properties beginning with _ shouldn't need to be changed
      * [1] full-rotation controls how far around the menu the items will be when it is open 
@@ -54,46 +91,96 @@
     --full-rotation: 360deg; /* [1] */
     --delay-offset: 75ms; /* [2] */
     --max-opening-time: 1.2s; /* [3] */
-    --_base-angle: calc(var(--full-rotation) / var(--num-items));
+    --_base-angle: calc(var(--full-rotation) / var(--total-items));
     --_delay-offset: min(
       var(--delay-offset, 999s),
-      (var(--max-opening-time) / (var(--num-items) - 1))
+      (var(--max-opening-time) / (var(--total-items) - 1))
     ); /* [4] */
-  }
 
-  :global(html:is(.no-anchor, .no-popover)) .reactions-menu {
-    display: none;
-  }
+    & button {
+      border: none;
+      background: none;
+      color: #222;
+      font-family: 'Noto Emoji';
+      font-size: 1.25rem;
 
-  /* Where the magic happens */
-  .reaction-menu-item {
-    --radius: calc(var(--btn-size) + var(--extra-space));
-    background-color: var(--bg);
-    opacity: 0;
-    transform: translateX(calc(cos(var(--angle)) * var(--radius)))
-      translateY(calc(sin(var(--angle) * -1) * var(--radius))) rotate(0deg);
-    transition: all 0.3s var(--delay) ease;
-  }
+      &:focus-visible {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        outline: 2px dashed deeppink;
+      }
+    }
 
-  /* Adding for popover base */
+    /* Where the magic happens */
+    & .item {
+      --angle: calc(var(--_base-angle) * (var(--item-num) - 1));
+      --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
+      --radius: calc(var(--btn-size) + var(--extra-space));
+      --bg: var(--accent);
+      width: var(--btn-size);
+      border-radius: 50%;
+      aspect-ratio: 1;
+      background-color: var(--bg);
+      opacity: 0;
+      transform: translateX(calc(cos(var(--angle)) * var(--radius)))
+        translateY(calc(sin(var(--angle) * -1) * var(--radius))) rotate(0deg);
+      transition: all 0.3s var(--delay) ease;
+      user-select: none;
 
-  .reaction-menu-items:not(:popover-open) .reaction-menu-item {
-    --radius: 0;
-    --angle: 0;
-    rotate: 45deg;
+      &:has(.hidden-close) {
+        background: none;
+      }
+    }
+
+    & :popover-open .item {
+      opacity: 1;
+    }
+
+    /* Adding for popover base */
+
+    & .menu-items:not(:popover-open) .item {
+      --radius: 0;
+      --angle: 0;
+
+      /* --delay: calc(
+        (var(--total-items) - (var(--item-num))) * var(--_delay-offset)
+      ); */
+      rotate: 45deg;
+    }
+
+    /* & .menu-items:popover-open .item {
+      
+    } */
+
+    & .menu-toggle {
+      z-index: 1;
+      width: var(--btn-size);
+      border-radius: 50%;
+      aspect-ratio: 1;
+      background: darksalmon;
+    }
+
+    & .hidden-close {
+      width: var(--btn-size);
+      aspect-ratio: 1;
+      background: none;
+      transform: rotate(45deg);
+      transition: opacity 0.1s;
+      transition-delay: 1s;
+    }
   }
 
   /* rotate the "plus" */
-  .reaction-menu-toggle > span {
+  .menu-toggle > span {
     display: inline-block;
     transition: transform 0.3s;
   }
 
-  .reactions-menu:has(:popover-open) .reaction-menu-toggle > span {
+  .radial-menu:has(:popover-open) .menu-toggle > span {
     transform: rotate(45deg);
   }
 
-  .reaction-menu-items {
+  .menu-items {
     bottom: calc(anchor(bottom));
     left: anchor(center);
 
@@ -102,84 +189,24 @@
     translate: -50% 0;
   }
 
-  .hidden-close {
-    width: var(--btn-size);
-    aspect-ratio: 1;
-    transform: rotate(45deg);
-    transition: opacity 0.1s;
-    transition-delay: 1s;
-  }
-
-  :popover-open .reaction-menu-item {
-    opacity: 1;
-  }
-
   /* Every item gets a background, angle, and delay */
 
   /* This gets updated when the popover is open */
 
-  .reaction:nth-child(1) {
-    --bg: pink;
-  }
-
-  .reaction:nth-child(2) {
-    --bg: thistle;
-  }
-
-  .reaction:nth-child(3) {
-    --bg: paleturquoise;
-  }
-
-  .reaction:nth-child(4) {
-    --bg: lightgreen;
-  }
-
-  .reaction:nth-child(5) {
-    --bg: peachpuff;
-  }
-
-  .reaction:nth-child(6) {
-    --bg: skyblue;
-  }
-
-  .reaction:nth-child(7) {
-    --bg: aliceblue;
-  }
-
-  .reaction:nth-child(8) {
-    --bg: fuchsia;
-  }
-
-  /* Not related to demo, just styling */
-
-  .reaction-menu-item {
-    --angle: calc(var(--_base-angle) * (var(--item-num) - 1));
-    --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
-    width: var(--btn-size);
-    border-radius: 50%;
-    aspect-ratio: 1;
-  }
-
-  .reaction-menu-toggle {
-    z-index: 1;
-    width: var(--btn-size);
-    border-radius: 50%;
-    aspect-ratio: 1;
-    background: darksalmon;
-  }
+  /* Not related to demmo, just styling */
 
   /* Grid piles */
 
-  .reactions-menu,
-  .reaction-menu-items,
-  .reaction-menu-item {
+  .radial-menu,
+  .menu-items,
+  .item {
     display: grid;
     place-content: center;
-    align-items: center;
   }
 
-  .reactions-menu > *,
-  .reaction-menu-items > * {
+  .radial-menu > *,
+  .menu-items > *,
+  body > * .item button {
     grid-area: 1/1;
   }
 
@@ -196,22 +223,8 @@
     white-space: nowrap;
   }
 
-  button {
-    border: none;
-    background: none;
-    color: #222;
-    font-family: 'Noto Emoji';
-    font-size: 1.25rem;
-
-    &:focus-visible {
-      border-radius: 50%;
-      aspect-ratio: 1/1;
-      outline: 2px dashed deeppink;
-    }
-  }
-
-  .reactions-menu,
-  .reaction-menu-items {
+  .radial-menu,
+  .menu-items {
     overflow: unset;
   }
 </style>
