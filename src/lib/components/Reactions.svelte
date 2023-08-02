@@ -2,6 +2,9 @@
   /* @link https://una.im/radial-menu/
    */
 
+  // store which reaction the user did locally (will help prevent spam)
+  // 1 reaction per post?
+
   import { ReactionsList } from '$scripts/Reactions';
   let delayOverride = '';
   // * delay it should be on open/close

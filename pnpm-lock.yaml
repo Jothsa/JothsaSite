@@ -31,6 +31,9 @@ devDependencies:
   '@oddbird/popover-polyfill':
     specifier: ^0.2.2
     version: 0.2.2
+  '@planetscale/database':
+    specifier: ^1.10.0
+    version: 1.10.0
   '@playwright/test':
     specifier: ^1.36.2
     version: 1.36.2
@@ -875,6 +878,11 @@ packages:
 
   /@oddbird/popover-polyfill@0.2.2:
     resolution: {integrity: sha512-ko7x+PDZA9bHwA6hSfxjL1IhBP91JukfZq/NAe85u9rT0akFn9RKvSXymX/mS7S2mfNjE+Zw9JdLUPGvPabQAA==}
+    dev: true
+
+  /@planetscale/database@1.10.0:
+    resolution: {integrity: sha512-XMfNRjIPgGTga6g1YpGr7E21CcnHZcHZdyhRUIiZ/AlpD+ts65UF2B3wKjcu7MKMynmmcOGs6R9kAT6D1OTlZQ==}
+    engines: {node: '>=16'}
     dev: true
 
   /@playwright/test@1.36.2:

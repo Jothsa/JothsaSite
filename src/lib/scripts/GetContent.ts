@@ -1,6 +1,9 @@
 import type { Post, TagsType } from '$utils/types';
 import { paginate } from '$utils/utils';
 
+export type PostSlugs = string;
+const postSlugs = await getPostsSlugs();
+
 export async function getPosts() {
   let posts: Post[] = [];
 
@@ -67,3 +70,18 @@ export async function getPostsByTag(
 // const posts: Post[] = await getPosts();
 // return posts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 // }
+
+export async function getPostsSlugs() {
+  const posts = await getPosts();
+  const slugs: string[] = [];
+  posts.forEach((p) => {
+    slugs.push(p.slug);
+  });
+  return slugs;
+}
+
+export function isPostSlug(s: string | undefined | null): s is PostSlugs {
+  if (s && postSlugs.includes(s)) {
+    return true;
+  } else return false;
+}
