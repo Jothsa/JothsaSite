@@ -15,10 +15,13 @@
   // this should be the total time the transition takes (alliteration lol) in ms
   const totalTransitionTime = ReactionsList.length * 75;
 
+  let menuButtonLabel = 'open menu';
+
   // the callbacks are not required but will help if the menu is closed by clicking away, not on the button
   function onOpenClick() {
     // in case the button is clicked mid-transition
     delayOverride = openDelay;
+    menuButtonLabel = 'close menu';
     setTimeout(() => {
       delayOverride = closeDelay;
     }, totalTransitionTime);
@@ -26,6 +29,7 @@
 
   function onCloseClick() {
     delayOverride = closeDelay;
+    menuButtonLabel = 'open menu';
     setTimeout(() => {
       delayOverride = openDelay;
     }, totalTransitionTime);
@@ -41,8 +45,8 @@
     class="menu-toggle"
     id="menu-toggle"
     popovertarget="menu-items"
-    aria-label="open menu"
-    title="open menu"
+    aria-label={menuButtonLabel}
+    title={menuButtonLabel}
     on:click={onOpenClick}>
     <span aria-hidden="true">➕</span>
   </button>
@@ -69,8 +73,8 @@
         popovertargetaction="close"
         popovertarget="menu-items"
         class="hidden-close"
-        aria-label="close-menu"
-        title="close-menu"
+        aria-label="close menu"
+        title="close menu"
         on:click={onCloseClick}>
         <span aria-hidden="true"> </span>
       </button>
@@ -99,9 +103,25 @@
       var(--delay-offset, 999s),
       (var(--max-opening-time) / (var(--total-items) - 1))
     ); /* [4] */
+    inline-size: min-content;
+    block-size: min-content;
+    padding: 0;
+
+    & .menu-items {
+      padding: 0;
+      border: none;
+      margin: 0;
+    }
+
+    & span {
+      padding: 0;
+      margin: 0;
+      vertical-align: baseline;
+    }
 
     & button {
       border: none;
+      margin: 0;
       background: none;
       color: #222;
       font-family: 'Noto Emoji';
@@ -209,7 +229,7 @@
 
   .radial-menu > *,
   .menu-items > *,
-  body > * .item button {
+  .item button {
     grid-area: 1/1;
   }
 

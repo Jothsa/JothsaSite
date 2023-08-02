@@ -87,9 +87,7 @@
   }
 
   .reactions-wrapper {
-    position: static;
-    right: 10lvh;
-    bottom: 10lvh;
+   
   }
 
   .tags-wrapper {
