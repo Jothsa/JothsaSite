@@ -3,7 +3,7 @@
 
 <nav class="admin-nav styled-links" aria-label="admin navigation">
   <ul>
-    <li><a href="/admin">Admin Home</a></li>
+    <li><a href="/admin">Admin</a></li>
     <li>
       <span>Create</span>
       <ul>

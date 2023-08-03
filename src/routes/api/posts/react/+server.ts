@@ -54,11 +54,11 @@ export const GET = (async ({ request }) => {
       const conn = connect(planetScaleConfig);
       if (action === 'increment') {
         const result = await conn.execute(
-          `update reactions set ${reaction} = ${reaction} + 1 where slug=${postSlug}`,
+          `update \`post-reactions\` set ${reaction} = ${reaction} + '1' where slug=${postSlug}`,
         );
       } else {
         const result = await conn.execute(
-          `update reactions set ${reaction} = ${reaction} - 1 where slug=${postSlug}`,
+          `update \`post-reactions\` set ${reaction} = ${reaction} - 1 where slug=${postSlug}`,
         );
       }
     } else {
@@ -67,7 +67,7 @@ export const GET = (async ({ request }) => {
   } else if (action === 'fetch') {
     const conn = connect(planetScaleConfig);
     const result = await conn.execute(
-      `select 'love', 'laugh', 'mindblown', 'celebrate', 'skeptical', 'disappointed', 'upset'  from reactions where slug = ${postSlug}`,
+      `select 'love', 'laugh', 'mindblown', 'celebrate', 'skeptical', 'disappointed', 'upset'  from \`post-reactions\` where slug = ${postSlug}`,
     );
   } else {
     success = false;
@@ -81,3 +81,18 @@ export const GET = (async ({ request }) => {
 
   return json(response);
 }) satisfies RequestHandler;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
