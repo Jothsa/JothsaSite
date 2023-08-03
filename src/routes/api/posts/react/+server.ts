@@ -3,8 +3,8 @@
 import { json } from '@sveltejs/kit';
 import { isPostSlug } from '$scripts/GetContent';
 import type { RequestHandler } from './$types';
-import type { ReactionEmoji } from '$scripts/Reactions';
-import { isReactionEmoji } from '$scripts/Reactions';
+import type { ReactionDescription, ReactionEmoji } from '$scripts/Reactions';
+import { isReactionDescription, isReactionEmoji } from '$scripts/Reactions';
 import { connect } from '@planetscale/database';
 import {
   DATABASE_HOST,
@@ -21,12 +21,24 @@ const planetScaleConfig = {
 export const GET = (async ({ request }) => {
   const headerReactionRaw = request.headers.get('reaction');
   const headerPostSlugRaw = request.headers.get('post-slug');
-  let reaction: ReactionEmoji; // need to switch to description
-  let postSlug: string;
-  const success = false;
+  const headerActionRaw = request.headers.get('action');
+
+  let reaction: ReactionDescription | undefined = undefined;
+  let postSlug: string | undefined = undefined;
+  let action: 'increment' | 'decrement' | 'fetch' | undefined = undefined;
+  let success = false;
+
+  if (
+    headerActionRaw &&
+    (headerActionRaw === 'increment' ||
+      headerActionRaw === 'decrement' ||
+      headerActionRaw === 'fetch')
+  ) {
+    action = headerActionRaw;
+  }
 
   if (headerReactionRaw) {
-    if (isReactionEmoji(headerReactionRaw)) {
+    if (isReactionDescription(headerReactionRaw)) {
       reaction = headerReactionRaw;
     }
   }
@@ -37,11 +49,28 @@ export const GET = (async ({ request }) => {
   }
 
   // maybe add rate limiting or something idk
-  if (reaction && postSlug) {
-    const conn = connect(config);
+  if (action === 'increment' || action === 'decrement') {
+    if (reaction && postSlug) {
+      const conn = connect(planetScaleConfig);
+      if (action === 'increment') {
+        const result = await conn.execute(
+          `update reactions set ${reaction} = ${reaction} + 1 where slug=${postSlug}`,
+        );
+      } else {
+        const result = await conn.execute(
+          `update reactions set ${reaction} = ${reaction} - 1 where slug=${postSlug}`,
+        );
+      }
+    } else {
+      success = false;
+    }
+  } else if (action === 'fetch') {
+    const conn = connect(planetScaleConfig);
     const result = await conn.execute(
-      `update reactions set ${reaction} = ${reaction} + 1 where slug=${postSlug}`,
+      `select 'love', 'laugh', 'mindblown', 'celebrate', 'skeptical', 'disappointed', 'upset'  from reactions where slug = ${postSlug}`,
     );
+  } else {
+    success = false;
   }
 
   type ReactionRequestResponse = {

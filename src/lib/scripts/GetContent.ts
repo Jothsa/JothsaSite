@@ -1,8 +1,8 @@
 import type { Post, TagsType } from '$utils/types';
 import { paginate } from '$utils/utils';
 
-export type PostSlugs = string;
-const postSlugs = await getPostsSlugs();
+export type PostSlug = string;
+const PostSlug = await getPostsSlugs();
 
 export async function getPosts() {
   let posts: Post[] = [];
@@ -80,8 +80,8 @@ export async function getPostsSlugs() {
   return slugs;
 }
 
-export function isPostSlug(s: string | undefined | null): s is PostSlugs {
-  if (s && postSlugs.includes(s)) {
+export function isPostSlug(s: string | undefined | null): s is PostSlug {
+  if (s && PostSlug.includes(s)) {
     return true;
   } else return false;
 }

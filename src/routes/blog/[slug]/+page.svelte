@@ -9,6 +9,8 @@
   import ReactionsFallback from '$components/ReactionsFallback.svelte';
   export let data: PageData;
   let postID = 'post';
+
+  let likes, sobs = 0;
 </script>
 
 <svelte:head>
@@ -37,8 +39,8 @@
     </div>
     <div class="reactions-wrapper">
       <Reactions />
-      <ReactionsFallback />
     </div>
+    <ReactionsFallback />
   </article>
 </main>
 
@@ -87,7 +89,9 @@
   }
 
   .reactions-wrapper {
-   
+   display: flex;
+   justify-content: center;
+
   }
 
   .tags-wrapper {

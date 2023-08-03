@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { PostSlug } from '$scripts/GetContent';
   /* @link https://una.im/radial-menu/
    */
 
@@ -6,6 +7,9 @@
   // 1 reaction per post?
 
   import { ReactionsList } from '$scripts/Reactions';
+  import type { Reactions } from '$scripts/Reactions';
+  export let slug: PostSlug;
+  
   let delayOverride = '';
   // * delay it should be on open/close
   const openDelay =
