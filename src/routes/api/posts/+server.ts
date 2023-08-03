@@ -9,6 +9,13 @@ import type { Post } from '$utils/types';
 import type { RequestHandler } from './$types';
 import type { TagsType } from '$utils/types';
 
+export type PostsRequestHeaders = {
+  tags: TagsType[] | TagsType;
+  currentPage?: number;
+  pageSize?: number;
+}
+
+
 export const GET = (async ({ request }) => {
   let posts: Post[] = await getPosts();
   // post-tags header should be a comma separated list or single value (or null)
