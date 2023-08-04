@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { PostSlug } from '$scripts/GetContent';
+  import 'onMount' from 'svelte';
   /* @link https://una.im/radial-menu/
    */
 
@@ -13,6 +14,8 @@
   export let reactions: ReactionCounts;
   let delayOverride = '';
   let selectedReaction: string | undefined = undefined;
+  let reactionInputs: NodeListOf<HTMLInputElement>;
+  let localReaction: reaction: ReactionDescription | '' = '';
 
   // * delay it should be on open/close
   const openDelay =
@@ -21,8 +24,19 @@
     ' --delay: calc((var(--total-items) - (var(--item-num))) * var(--_delay-offset));';
   // this should be the total time the transition takes (alliteration lol) in ms
   const totalTransitionTime = ReactionsList.length * 75;
-
+  
   let menuButtonLabel = 'open menu';
+  
+  onMount(()={
+    const localReactionRaw = localStorage.get(`${data.slug}-reaction`);
+    if (!isReactionDescription(localReactionRaw)) {
+      localReaction = '';
+    } else {
+      localReaction = localReactionRaw;
+    }
+    reactionInputs = document.querySelectorAll('.reaction-menu li:has(.reaction-emoji) input') as HTMLInputElement;
+     });
+     
 
   // the callbacks are not required but will help if the menu is closed by clicking away, not on the button
   function onOpenClick() {
@@ -44,14 +58,53 @@
 
   async function onReactionClick(desc: ReactionDescription, event: Event) {
     console.log(event);
-    const headers = { action: 'increment', reaction: desc };
+    let clickedReactionInput = document.querySelector(`.reaction-menu input[value='${desc}']`) as HTMLInputElement;
+    let selectedReaction: HTMLInputElement | null = null;
+    let action: 'increment' | 'decrement';
+    let reaction: ReactionDescription;
+    
+    reactionInputs.forEach((r) => {
+      if (r.getAttribute('checked') === 'true') {
+        selectedReaction = r;
+      }
+    });
+    
+    
+    // selected is clicked and checked
+    if (selectedReaction !== null ) {
+      selectedReactionDesc = selectedReaction.getAttribute('value');
+      if ( selectedReactionDesc === desc) {
+        action = 'increment';
+        reaction = desc;
+        localReaction = desc;
+      } else {
+        // increment selected, dec desc
+        action = 'swap';
+        from = desc;
+        to = selectedReactionDesc;
+        localReaction = selectionReactionDesc;
+      }
+    } 
+    else {
+      action = 'decrement';
+      reaction = desc;
+      localReaction = '';
+    }
+    
+    try {
+      localStorage.set(`${data.slug}-reaction}`, localReaction);
+    } catch {
+      // ? do i need this?
+    }
+    
+    const headers = { action: action, reaction: reaction };
     const res = await fetch('/api/post/react', { headers: headers });
   }
   // TODO Add easings to CSS transitions
 </script>
 
 <div
-  class="radial-menu"
+  class="reaction-menu 'radial-menu"
   style={`--total-items: ${ReactionsList.length}; ${delayOverride}`}>
   <button
     class="menu-toggle"
@@ -76,19 +129,21 @@
         data-reaction-count={reactions?.[r.description]
           ? reactions[r.description]
           : 0}>
-        <div>
+        <label>
           <input
             type="radio"
             role="menuitem"
             group={selectedReaction}
             value={r.description}
+            checked={localReaction === r.description}
             on:click={(event) => {
               onReactionClick(r.description, event);
             }} />
-          <span class="reaction-emoji" aria-hidden="true" title={r.description}
+          
+          <span class="reaction-emoji" aria-hidden="true"
             >{r.emoji}</span>
           <span class="sr-only">{r.description}</span>
-        </div>
+          </label>
       </li>
     {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->
