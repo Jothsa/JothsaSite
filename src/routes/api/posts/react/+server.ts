@@ -25,14 +25,18 @@ type ReactionRequestResponse = {
 
 export const GET = (async ({ request }) => {
   const headerReactionRaw = request.headers.get('reaction');
+  const headerReactionFromRaw = request.headers.get('from');
   const headerPostSlugRaw = request.headers.get('slug');
   const headerActionRaw = request.headers.get('action');
   let reactions: ReactionCounts;
   let reaction: ReactionDescription | undefined = undefined;
+  // ? null or und?
+  let reactionSwapFrom: ReactionDescription | null = null;
   let postSlug: string | undefined = undefined;
-  let action: 'increment' | 'decrement' | 'fetch' | undefined = undefined;
+  let action: 'increment' | 'decrement' | 'fetch' | 'swap' | undefined = undefined;
   let success = false;
   let response: ReactionRequestResponse = { success: success };
+
 
   if (
     headerActionRaw &&
@@ -43,11 +47,18 @@ export const GET = (async ({ request }) => {
     action = headerActionRaw;
   }
 
+  // Todo cleanup logic
   if (headerReactionRaw) {
     if (isReactionDescription(headerReactionRaw)) {
       reaction = headerReactionRaw;
     }
   }
+  if(headerReactionFromRaw) {
+    if (isReactionDescription(headerReactionFromRaw)) {
+      reactionSwaoFrom = headerReactionFromRaw;
+    }
+  }
+  
   if (headerPostSlugRaw) {
     if (isPostSlug(headerPostSlugRaw)) {
       postSlug = headerPostSlugRaw;
@@ -70,7 +81,17 @@ export const GET = (async ({ request }) => {
     } else {
       success = false;
     }
-  } else if (action === 'fetch') {
+  } else if (action === 'swap' && reactionSwapFrom && reaction && postSlug) {
+    const conn = connect(planetScaleConfig);
+    const incResult = await conn.execute(
+          `update \`post-reactions\` set ${reaction} = '${reaction}' + '1' where slug = '${postSlug}'`,
+        );
+    const decResult = await conn.execute(
+          `update \`post-reactions\` set ${reactionSwapFrom} = '${reactionSwapFrom}' - '1' where slug = '${postSlug}'`,
+        );
+  }
+  
+  else if (action === 'fetch') {
     const conn = connect(planetScaleConfig);
     const result = await conn.execute(
       `select \`love\`, \`like\`, \`laugh\`, \`mindblown\`, \`celebrate\`, \`skeptical\`, \`disappointed\`, \`upset\` from \`post-reactions\` where slug = '${postSlug}'`,
