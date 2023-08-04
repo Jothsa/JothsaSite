@@ -13,8 +13,7 @@ export type PostsRequestHeaders = {
   tags: TagsType[] | TagsType;
   currentPage?: number;
   pageSize?: number;
-}
-
+};
 
 export const GET = (async ({ request }) => {
   let posts: Post[] = await getPosts();

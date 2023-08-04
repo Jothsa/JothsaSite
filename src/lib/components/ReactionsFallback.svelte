@@ -3,7 +3,7 @@
 </script>
 
 <ul class="reactions-fallback">
- <ReactionEmojiListItems />
+  <ReactionEmojiListItems />
 </ul>
 
 <style>

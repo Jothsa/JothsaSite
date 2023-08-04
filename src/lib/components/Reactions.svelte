@@ -139,11 +139,10 @@
             on:click={(event) => {
               onReactionClick(r.description, event);
             }} />
-          
-          <span class="reaction-emoji" aria-hidden="true"
-            >{r.emoji}</span>
+
+          <span class="reaction-emoji" aria-hidden="true">{r.emoji}</span>
           <span class="sr-only">{r.description}</span>
-          </label>
+        </label>
       </li>
     {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->

@@ -1,9 +1,8 @@
 <script lang="ts">
-import {page} from '$app/stores';
-
+  import { page } from '$app/stores';
 </script>
 
 <main id="#content">
-<h1>{$page.status}: {$page.error.message}</h1>
-<p>Uh oh. Something went very wrong. Please try again.</p>
+  <h1>{$page.status}: {$page.error.message}</h1>
+  <p>Uh oh. Something went very wrong. Please try again.</p>
 </main>
