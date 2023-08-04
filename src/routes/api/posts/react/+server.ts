@@ -33,10 +33,10 @@ export const GET = (async ({ request }) => {
   // ? null or und?
   let reactionSwapFrom: ReactionDescription | null = null;
   let postSlug: string | undefined = undefined;
-  let action: 'increment' | 'decrement' | 'fetch' | 'swap' | undefined = undefined;
+  let action: 'increment' | 'decrement' | 'fetch' | 'swap' | undefined =
+    undefined;
   let success = false;
   let response: ReactionRequestResponse = { success: success };
-
 
   if (
     headerActionRaw &&
@@ -53,12 +53,12 @@ export const GET = (async ({ request }) => {
       reaction = headerReactionRaw;
     }
   }
-  if(headerReactionFromRaw) {
+  if (headerReactionFromRaw) {
     if (isReactionDescription(headerReactionFromRaw)) {
       reactionSwaoFrom = headerReactionFromRaw;
     }
   }
-  
+
   if (headerPostSlugRaw) {
     if (isPostSlug(headerPostSlugRaw)) {
       postSlug = headerPostSlugRaw;
@@ -84,14 +84,12 @@ export const GET = (async ({ request }) => {
   } else if (action === 'swap' && reactionSwapFrom && reaction && postSlug) {
     const conn = connect(planetScaleConfig);
     const incResult = await conn.execute(
-          `update \`post-reactions\` set ${reaction} = '${reaction}' + '1' where slug = '${postSlug}'`,
-        );
+      `update \`post-reactions\` set ${reaction} = '${reaction}' + '1' where slug = '${postSlug}'`,
+    );
     const decResult = await conn.execute(
-          `update \`post-reactions\` set ${reactionSwapFrom} = '${reactionSwapFrom}' - '1' where slug = '${postSlug}'`,
-        );
-  }
-  
-  else if (action === 'fetch') {
+      `update \`post-reactions\` set ${reactionSwapFrom} = '${reactionSwapFrom}' - '1' where slug = '${postSlug}'`,
+    );
+  } else if (action === 'fetch') {
     const conn = connect(planetScaleConfig);
     const result = await conn.execute(
       `select \`love\`, \`like\`, \`laugh\`, \`mindblown\`, \`celebrate\`, \`skeptical\`, \`disappointed\`, \`upset\` from \`post-reactions\` where slug = '${postSlug}'`,
