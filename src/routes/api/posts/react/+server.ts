@@ -3,8 +3,8 @@
 import { json } from '@sveltejs/kit';
 import { isPostSlug } from '$scripts/GetContent';
 import type { RequestHandler } from './$types';
-import type { ReactionDescription, ReactionEmoji } from '$scripts/Reactions';
-import { isReactionDescription, isReactionEmoji } from '$scripts/Reactions';
+import { RCRec, isReactionDescription } from '$scripts/Reactions';
+import type { ReactionDescription, ReactionCounts } from '$scripts/Reactions';
 import { connect } from '@planetscale/database';
 import {
   DATABASE_HOST,
@@ -18,15 +18,21 @@ const planetScaleConfig = {
   password: DATABASE_PASSWORD,
 };
 
+type ReactionRequestResponse = {
+  reactions?: ReactionCounts;
+  success: boolean;
+};
+
 export const GET = (async ({ request }) => {
   const headerReactionRaw = request.headers.get('reaction');
-  const headerPostSlugRaw = request.headers.get('post-slug');
+  const headerPostSlugRaw = request.headers.get('slug');
   const headerActionRaw = request.headers.get('action');
-
+  let reactions: ReactionCounts;
   let reaction: ReactionDescription | undefined = undefined;
   let postSlug: string | undefined = undefined;
   let action: 'increment' | 'decrement' | 'fetch' | undefined = undefined;
   let success = false;
+  let response: ReactionRequestResponse = { success: success };
 
   if (
     headerActionRaw &&
@@ -54,11 +60,11 @@ export const GET = (async ({ request }) => {
       const conn = connect(planetScaleConfig);
       if (action === 'increment') {
         const result = await conn.execute(
-          `update \`post-reactions\` set ${reaction} = ${reaction} + '1' where slug=${postSlug}`,
+          `update \`post-reactions\` set ${reaction} = '${reaction}' + '1' where slug = '${postSlug}'`,
         );
       } else {
         const result = await conn.execute(
-          `update \`post-reactions\` set ${reaction} = ${reaction} - 1 where slug=${postSlug}`,
+          `update \`post-reactions\` set ${reaction} = '${reaction}' - 1 where slug = '${postSlug}'`,
         );
       }
     } else {
@@ -67,32 +73,33 @@ export const GET = (async ({ request }) => {
   } else if (action === 'fetch') {
     const conn = connect(planetScaleConfig);
     const result = await conn.execute(
-      `select 'love', 'laugh', 'mindblown', 'celebrate', 'skeptical', 'disappointed', 'upset'  from \`post-reactions\` where slug = ${postSlug}`,
+      `select \`love\`, \`like\`, \`laugh\`, \`mindblown\`, \`celebrate\`, \`skeptical\`, \`disappointed\`, \`upset\` from \`post-reactions\` where slug = '${postSlug}'`,
+      [],
+      { as: 'array' },
     );
+    const reactionsRow = result.rows[0];
+    const love = reactionsRow.at(0) as number;
+    const like = reactionsRow.at(1) as number;
+    const laugh = reactionsRow.at(2) as number;
+    const mindblown = reactionsRow.at(3) as number;
+    const celebrate = reactionsRow.at(4) as number;
+    const skeptical = reactionsRow.at(5) as number;
+    const disappointed = reactionsRow.at(6) as number;
+    const upset = reactionsRow.at(7) as number;
+    reactions = new RCRec({
+      love: love,
+      like: like,
+      laugh: laugh,
+      mindblown: mindblown,
+      celebrate: celebrate,
+      skeptical: skeptical,
+      disappointed: disappointed,
+      upset: upset,
+    });
+    response = { reactions: reactions, success: success };
   } else {
     success = false;
   }
 
-  type ReactionRequestResponse = {
-    success: boolean;
-  };
-
-  const response: ReactionRequestResponse = { success: success };
-
   return json(response);
 }) satisfies RequestHandler;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,7 +10,9 @@
   export let data: PageData;
   let postID = 'post';
 
-  let likes, sobs = 0;
+  onMount(async () => {
+    console.log(data.reactions);
+  });
 </script>
 
 <svelte:head>
@@ -38,7 +40,7 @@
       <TagsCloud tags={data.meta.tags} />
     </div>
     <div class="reactions-wrapper">
-      <Reactions />
+      <Reactions reactions={data.reactions} />
     </div>
     <ReactionsFallback />
   </article>
@@ -89,9 +91,8 @@
   }
 
   .reactions-wrapper {
-   display: flex;
-   justify-content: center;
-
+    display: flex;
+    justify-content: center;
   }
 
   .tags-wrapper {

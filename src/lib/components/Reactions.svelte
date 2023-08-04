@@ -7,10 +7,13 @@
   // 1 reaction per post?
 
   import { ReactionsList } from '$scripts/Reactions';
-  import type { Reactions } from '$scripts/Reactions';
-  export let slug: PostSlug;
-  
+  import type { ReactionCounts, ReactionDescription } from '$scripts/Reactions';
+  import { description } from '$utils/config';
+  import { eventFromMessage } from '@sentry/sveltekit';
+  export let reactions: ReactionCounts;
   let delayOverride = '';
+  let selectedReaction: string | undefined = undefined;
+
   // * delay it should be on open/close
   const openDelay =
     '--delay: calc((var(--item-num) - 1) * var(--_delay-offset));';
@@ -39,6 +42,11 @@
     }, totalTransitionTime);
   }
 
+  async function onReactionClick(desc: ReactionDescription, event: Event) {
+    console.log(event);
+    const headers = { action: 'increment', reaction: desc };
+    const res = await fetch('/api/post/react', { headers: headers });
+  }
   // TODO Add easings to CSS transitions
 </script>
 
@@ -61,14 +69,26 @@
     anchor="menu-toggle"
     role="menu">
     {#each ReactionsList as r, i}
-      <li class="item" style={`--item-num: ${i + 1}; ${delayOverride}`}>
-        <button role="menuitem">
-          <span
-            class="reaction-emoji"
-            aria-hidden="true"
-            title={r.description}
-            aria-label={r.description}>{r.emoji}</span>
-        </button>
+      <li
+        class="item"
+        style={`--item-num: ${i + 1}; ${delayOverride}`}
+        id={r.description}
+        data-reaction-count={reactions?.[r.description]
+          ? reactions[r.description]
+          : 0}>
+        <div>
+          <input
+            type="radio"
+            role="menuitem"
+            group={selectedReaction}
+            value={r.description}
+            on:click={(event) => {
+              onReactionClick(r.description, event);
+            }} />
+          <span class="reaction-emoji" aria-hidden="true" title={r.description}
+            >{r.emoji}</span>
+          <span class="sr-only">{r.description}</span>
+        </div>
       </li>
     {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->
@@ -123,9 +143,10 @@
       vertical-align: baseline;
     }
 
-    & button {
+    & :is(button, input) {
       border: none;
       margin: 0;
+      appearance: none;
       background: none;
       color: #222;
       font-family: 'Noto Emoji';
@@ -144,6 +165,7 @@
       --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
       --radius: calc(var(--btn-size) + var(--extra-space));
       --bg: var(--accent);
+      position: relative;
       width: var(--btn-size);
       border-radius: 50%;
       aspect-ratio: 1;
@@ -157,6 +179,31 @@
       &:has(.hidden-close) {
         background: none;
       }
+    }
+
+    & .item:has(.reaction-emoji)::after {
+      --size: 2ch;
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-end: 0;
+      inline-size: var(--size);
+      block-size: var(--size);
+      padding: 0;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      background: var(--tertiary);
+      color: var(--text-secondary);
+      content: attr(data-reaction-count);
+      font-weight: 600;
+      line-height: var(--size);
+      opacity: 0;
+      text-align: center;
+      transform: translate(40%, -40%);
+      transition: opacity 300ms ease-in-out;
+    }
+
+    & .item:has(.reaction-emoji):hover::after {
+      opacity: 1;
     }
 
     & :popover-open .item {
@@ -233,7 +280,7 @@
 
   .radial-menu > *,
   .menu-items > *,
-  .item button {
+  .item :is(button, input) {
     grid-area: 1/1;
   }
 
