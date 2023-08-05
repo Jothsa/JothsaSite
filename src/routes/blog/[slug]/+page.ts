@@ -12,7 +12,6 @@ export const load = async function load({ params, fetch }) {
       });
       reactions = await reactionResponse.json();
     } catch (e) {
-      console.log(e);
       reactions = undefined;
     }
     return {

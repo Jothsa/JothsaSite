@@ -47,7 +47,7 @@ export class ScrollProgress {
   }
 
   showReadingProgress(): void {
-    console.log('showing progress');
+    // console.log('showing progress');
     if (this.post && this.scrollProgress) {
       this.scrollProgress.setAttribute(
         'value',
@@ -60,12 +60,12 @@ export class ScrollProgress {
     const coords: DOMRect = el.getBoundingClientRect();
     const height: number = coords.height;
     let progressPercentage = 0;
-    console.log('getting progress');
-    console.log('spiv', this.inViewport);
-    console.log('c.top', coords.top);
-    console.log('h', height);
+    // console.log('getting progress');
+    // console.log('spiv', this.inViewport);
+    // console.log('c.top', coords.top);
+    // console.log('h', height);
     if (this.inViewport && coords.top < 0) {
-      console.log('calc');
+      // console.log('calc');
       if (this.direction === 'top') {
         progressPercentage =
           (Math.abs(coords.top) / (height - this.progressHeight)) * 100;
@@ -79,7 +79,7 @@ export class ScrollProgress {
       progressPercentage > 100 && (progressPercentage = 100);
       progressPercentage < 0 && (progressPercentage = 0);
     }
-    console.log('p%', progressPercentage);
+    // console.log('p%', progressPercentage);
 
     return progressPercentage;
   }
@@ -88,17 +88,17 @@ export class ScrollProgress {
     entries: IntersectionObserverEntry[],
     // observer: IntersectionObserver,
   ) {
-    console.log('handling');
+    // console.log('handling');
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        console.log('iv: true');
+        // console.log('iv: true');
         this.inViewport = true;
       } else {
-        console.log('iv: false');
+        // console.log('iv: false');
 
         this.inViewport = false;
       }
     }
-    console.log('this.inViewport:', this.inViewport);
+    // console.log('this.inViewport:', this.inViewport);
   }
 }

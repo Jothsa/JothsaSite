@@ -289,7 +289,11 @@
       opacity: 0;
       transform: translateX(calc(cos(var(--angle)) * var(--radius)))
         translateY(calc(sin(var(--angle) * -1) * var(--radius))) rotate(0deg);
-      transition: all 0.3s var(--delay) ease;
+      transition-delay: var(--delay);
+      transition-duration: 300ms;
+      /* why does all work but not specific props */
+      transition-property: all;
+      transition-timing-function: ease;
       user-select: none;
 
       &:has(:checked) {
@@ -386,8 +390,6 @@
   /* Every item gets a background, angle, and delay */
 
   /* This gets updated when the popover is open */
-
-  /* Not related to demmo, just styling */
 
   /* Grid piles */
 
