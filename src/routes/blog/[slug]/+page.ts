@@ -19,6 +19,7 @@ export const load = async function load({ params, fetch }) {
       content: post.default,
       meta: post.metadata,
       title: post.metadata.title,
+      slug: params.slug,
       reactions: reactions.reactions,
     };
   } catch (e) {

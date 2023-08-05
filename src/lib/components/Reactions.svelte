@@ -1,21 +1,22 @@
 <script lang="ts">
   import type { PostSlug } from '$scripts/GetContent';
-  import 'onMount' from 'svelte';
+  import { onMount } from 'svelte';
   /* @link https://una.im/radial-menu/
    */
 
   // store which reaction the user did locally (will help prevent spam)
   // 1 reaction per post?
 
-  import { ReactionsList } from '$scripts/Reactions';
+  import { ReactionsList, isReactionDescription } from '$scripts/Reactions';
   import type { ReactionCounts, ReactionDescription } from '$scripts/Reactions';
-  import { description } from '$utils/config';
-  import { eventFromMessage } from '@sentry/sveltekit';
   export let reactions: ReactionCounts;
+  export let slug: PostSlug;
   let delayOverride = '';
   let selectedReaction: string | undefined = undefined;
   let reactionInputs: NodeListOf<HTMLInputElement>;
-  let localReaction: reaction: ReactionDescription | '' = '';
+  let localReaction: ReactionDescription | '';
+  // hacky way to update count without reload
+  let reactionCountMod = 1;
 
   // * delay it should be on open/close
   const openDelay =
@@ -24,19 +25,31 @@
     ' --delay: calc((var(--total-items) - (var(--item-num))) * var(--_delay-offset));';
   // this should be the total time the transition takes (alliteration lol) in ms
   const totalTransitionTime = ReactionsList.length * 75;
-  
+
   let menuButtonLabel = 'open menu';
-  
-  onMount(()={
-    const localReactionRaw = localStorage.get(`${data.slug}-reaction`);
-    if (!isReactionDescription(localReactionRaw)) {
-      localReaction = '';
-    } else {
+
+  onMount(() => {
+    const localReactionRaw = localStorage.getItem(`${slug}-reaction`);
+    console.log('lrr', localReactionRaw);
+    // def using a couple assumptions here, count can only be updated on reload, comp is mounted every reload, etc
+    if (isReactionDescription(localReactionRaw)) {
       localReaction = localReactionRaw;
+    } else {
+      localReaction = '';
     }
-    reactionInputs = document.querySelectorAll('.reaction-menu li:has(.reaction-emoji) input') as HTMLInputElement;
-     });
-     
+    reactionCountMod = 0;
+    reactionInputs = document.querySelectorAll(
+      '.reaction-menu  .reaction-input',
+    ) as NodeListOf<HTMLInputElement>;
+    if (localReaction !== '') {
+      reactionInputs.forEach((r) => {
+        if (r.value === localReaction) {
+          console.log(`val: ${r.value}, lr: ${localReaction}`);
+          r.checked = true;
+        }
+      });
+    }
+  });
 
   // the callbacks are not required but will help if the menu is closed by clicking away, not on the button
   function onOpenClick() {
@@ -57,54 +70,101 @@
   }
 
   async function onReactionClick(desc: ReactionDescription, event: Event) {
-    console.log(event);
-    let clickedReactionInput = document.querySelector(`.reaction-menu input[value='${desc}']`) as HTMLInputElement;
-    let selectedReaction: HTMLInputElement | null = null;
-    let action: 'increment' | 'decrement';
-    let reaction: ReactionDescription;
-    
-    reactionInputs.forEach((r) => {
-      if (r.getAttribute('checked') === 'true') {
-        selectedReaction = r;
+    // TODO choose ID, value, or other for desc
+    // * this way the count can update without reloading
+    // aria-checked?
+    reactionCountMod = 1;
+    let previousReactionInputEl: HTMLInputElement | null = null;
+    let previousReactionDesc: ReactionDescription | null = null;
+    if (localReaction) {
+      previousReactionInputEl = document.querySelector(
+        `.reaction-menu .reaction-input[value='${localReaction}']`,
+      ) as HTMLInputElement | null;
+      if (
+        previousReactionInputEl &&
+        isReactionDescription(previousReactionInputEl.value)
+      ) {
+        previousReactionDesc = previousReactionInputEl.value;
       }
-    });
-    
-    
-    // selected is clicked and checked
-    if (selectedReaction !== null ) {
-      selectedReactionDesc = selectedReaction.getAttribute('value');
-      if ( selectedReactionDesc === desc) {
-        action = 'increment';
-        reaction = desc;
-        localReaction = desc;
-      } else {
-        // increment selected, dec desc
-        action = 'swap';
-        from = desc;
-        to = selectedReactionDesc;
-        localReaction = selectionReactionDesc;
-      }
-    } 
-    else {
-      action = 'decrement';
+    }
+    let clickedReactionInputEl: HTMLInputElement =
+      event.target as HTMLInputElement;
+    // maybe add more checks here
+    let clickedReactionDesc: ReactionDescription =
+      clickedReactionInputEl.value as ReactionDescription;
+    let action: 'increment' | 'decrement' | 'swap' | undefined = undefined;
+    let reaction: ReactionDescription | undefined = undefined;
+    let swapFrom: ReactionDescription | '' = '';
+    console.log(
+      `desc: ${desc}, prevDesc: ${previousReactionDesc}, clickedDesc: ${clickedReactionDesc}`,
+    );
+
+    if (previousReactionInputEl === null) {
+      action = 'increment';
       reaction = desc;
-      localReaction = '';
+      localReaction = desc;
+    } else {
+      if (previousReactionDesc === clickedReactionDesc) {
+        reactionCountMod = 0;
+        action = 'decrement';
+        reaction = desc;
+        localReaction = '';
+        clickedReactionInputEl.checked = false;
+      } else {
+        action = 'swap';
+        swapFrom = localReaction;
+        reaction = clickedReactionDesc;
+        localReaction = clickedReactionDesc;
+      }
     }
-    
-    try {
-      localStorage.set(`${data.slug}-reaction}`, localReaction);
-    } catch {
-      // ? do i need this?
+
+    // selected is clicked
+    // if (clickedReactionInputEl) {
+    //   const clickedReactionDesc = clickedReactionInputEl.getAttribute('value');
+    //   if (
+    //     clickedReactionDesc === desc &&
+    //     clickedReactionDesc !== localReaction
+    //   ) {
+    //     action = 'increment';
+    //     reaction = desc;
+    //     localReaction = desc;
+    //   } else if (isReactionDescription(clickedReactionDesc)) {
+    //     action = 'swap';
+    //     swapFrom = desc;
+    //     reaction = clickedReactionDesc;
+    //     localReaction = clickedReactionDesc;
+    //   }
+    // } else if (desc === localReaction) {
+    //   action = 'decrement';
+    //   reaction = desc;
+    //   localReaction = '';
+    // } else {
+    //   action = 'increment';
+    //   reaction = desc;
+    //   localReaction = desc;
+    //   console.log(action, reaction, localReaction);
+    // }
+    console.log(
+      `action :${action}, reaction: ${reaction}, localReaction: ${localReaction}`,
+    );
+    localStorage.setItem(`${slug}-reaction`, localReaction);
+
+    if (action && reaction && slug) {
+      const headers = {
+        action: action,
+        reaction: reaction,
+        slug: slug,
+        'swap-from': swapFrom,
+      };
+      console.log(headers);
+      const res = await fetch('/api/posts/react', { headers: headers });
     }
-    
-    const headers = { action: action, reaction: reaction };
-    const res = await fetch('/api/post/react', { headers: headers });
   }
   // TODO Add easings to CSS transitions
 </script>
 
 <div
-  class="reaction-menu 'radial-menu"
+  class="reaction-menu radial-menu"
   style={`--total-items: ${ReactionsList.length}; ${delayOverride}`}>
   <button
     class="menu-toggle"
@@ -126,16 +186,18 @@
         class="item"
         style={`--item-num: ${i + 1}; ${delayOverride}`}
         id={r.description}
-        data-reaction-count={reactions?.[r.description]
-          ? reactions[r.description]
+        data-reaction-count={reactions?.[r.description] >= 0
+          ? localReaction === r.description
+            ? reactions[r.description] + reactionCountMod
+            : reactions[r.description]
           : 0}>
         <label>
           <input
+            class="reaction-input"
             type="radio"
             role="menuitem"
-            group={selectedReaction}
+            bind:group={selectedReaction}
             value={r.description}
-            checked={localReaction === r.description}
             on:click={(event) => {
               onReactionClick(r.description, event);
             }} />
@@ -230,6 +292,10 @@
       transition: all 0.3s var(--delay) ease;
       user-select: none;
 
+      &:has(:checked) {
+        --bg: skyblue;
+      }
+
       &:has(.hidden-close) {
         background: none;
       }
@@ -304,7 +370,7 @@
     transition: transform 0.3s;
   }
 
-  .radial-menu:has(:popover-open) .menu-toggle > span {
+  .radial-menu:has(:popover-open) .menu-toggle span:not(.sr-only) {
     transform: rotate(45deg);
   }
 

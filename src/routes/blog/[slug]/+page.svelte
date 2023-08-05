@@ -40,7 +40,7 @@
       <TagsCloud tags={data.meta.tags} />
     </div>
     <div class="reactions-wrapper">
-      <Reactions reactions={data.reactions} />
+      <Reactions reactions={data.reactions} slug={data.slug}/>
     </div>
     <ReactionsFallback />
   </article>

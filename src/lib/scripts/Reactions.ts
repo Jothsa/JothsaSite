@@ -29,23 +29,26 @@ export function handleReaction() {}
 export function isReactionEmoji(
   r: string | undefined | null,
 ): r is ReactionEmoji {
+  let result = false;
+
   ReactionsList.forEach((reaction) => {
     if (reaction.emoji === r) {
-      return true;
+      result = true;
     }
   });
-  return false;
+  return result;
 }
 
 export function isReactionDescription(
   r: string | undefined | null,
 ): r is ReactionDescription {
+  let result = false;
   ReactionsList.forEach((reaction) => {
     if (reaction.description === r) {
-      return true;
+      result = true;
     }
   });
-  return false;
+  return result;
 }
 
 export type ReactionCounts = Record<ReactionDescription, number>;
