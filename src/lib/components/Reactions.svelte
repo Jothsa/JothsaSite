@@ -291,6 +291,7 @@
         translateY(calc(sin(var(--angle) * -1) * var(--radius))) rotate(0deg);
       transition-delay: var(--delay);
       transition-duration: 300ms;
+
       /* why does all work but not specific props */
       transition-property: all;
       transition-timing-function: ease;

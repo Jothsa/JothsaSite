@@ -22,7 +22,7 @@
 
 <main id="content">
   <article id="post">
-    <ScrollProgress {postID} direction="bottom" />
+    <ScrollProgress {postID} direction="bottom" changeOpacity={true} />
     <hgroup>
       <!-- ? should this just be an h2 tag? -->
       <h1 class="post-title h2">{data.meta.title}</h1>
@@ -40,7 +40,7 @@
       <TagsCloud tags={data.meta.tags} />
     </div>
     <div class="reactions-wrapper">
-      <Reactions reactions={data.reactions} slug={data.slug}/>
+      <Reactions reactions={data.reactions} slug={data.slug} />
     </div>
     <ReactionsFallback />
   </article>
@@ -56,6 +56,7 @@
     display: grid;
     inline-size: fit-content;
     padding: var(--space-xs);
+    padding-block-start: 0;
     gap: var(--space-m);
     isolation: isolate;
     view-timeline: --post block;

@@ -8,6 +8,7 @@ export class ScrollProgress {
   inViewport = false;
   timeout: number | undefined;
   direction: 'top' | 'bottom' = 'top';
+  changeOpacity: boolean;
 
   /**
    * Creates an instance of scrollProgress.
@@ -18,7 +19,8 @@ export class ScrollProgress {
   constructor(
     post: HTMLElement,
     scrollProgress: HTMLProgressElement,
-    direction?: 'top' | 'bottom',
+    direction: 'top' | 'bottom' = 'top',
+    changeOpacity = true,
   ) {
     this.post = post;
     this.scrollProgress = scrollProgress;
@@ -28,7 +30,8 @@ export class ScrollProgress {
     this.observer.observe(post);
     this.progressHeight = this.scrollProgress.getBoundingClientRect().height;
     this.timeout = undefined;
-    if (direction) this.direction = direction;
+    this.changeOpacity = changeOpacity;
+    this.direction = direction;
 
     if (window) {
       window.addEventListener('scroll', () => {
@@ -40,19 +43,16 @@ export class ScrollProgress {
         });
       });
     }
-
-    if (this.scrollProgress) {
-      this.progressHeight = this.scrollProgress.getBoundingClientRect().height;
-    }
   }
 
   showReadingProgress(): void {
     // console.log('showing progress');
     if (this.post && this.scrollProgress) {
-      this.scrollProgress.setAttribute(
-        'value',
-        this.getScrollProgress(this.post).toString(),
-      );
+      const progress = this.getScrollProgress(this.post);
+      this.scrollProgress.setAttribute('value', progress.toString());
+      if (this.changeOpacity) {
+        this.scrollProgress.style.opacity = progress <= 0 ? '0' : '1';
+      }
     }
   }
 
