@@ -9,14 +9,13 @@
 
   import { ReactionsList, isReactionDescription } from '$scripts/Reactions';
   import type { ReactionCounts, ReactionDescription } from '$scripts/Reactions';
+  import { description } from '$utils/config';
   export let reactions: ReactionCounts;
   export let slug: PostSlug;
   let delayOverride = '';
   let selectedReaction: string | undefined = undefined;
   let reactionInputs: NodeListOf<HTMLInputElement>;
   let localReaction: ReactionDescription | '';
-  // hacky way to update count without reload
-  let reactionCountMod = 1;
 
   // * delay it should be on open/close
   const openDelay =
@@ -37,7 +36,6 @@
     } else {
       localReaction = '';
     }
-    reactionCountMod = 0;
     reactionInputs = document.querySelectorAll(
       '.reaction-menu  .reaction-input',
     ) as NodeListOf<HTMLInputElement>;
@@ -73,7 +71,6 @@
     // TODO choose ID, value, or other for desc
     // * this way the count can update without reloading
     // aria-checked?
-    reactionCountMod = 1;
     let previousReactionInputEl: HTMLInputElement | null = null;
     let previousReactionDesc: ReactionDescription | null = null;
     if (localReaction) {
@@ -103,47 +100,27 @@
       action = 'increment';
       reaction = desc;
       localReaction = desc;
+      reactions[reaction] = reactions[reaction]++;
     } else {
       if (previousReactionDesc === clickedReactionDesc) {
-        reactionCountMod = 0;
         action = 'decrement';
         reaction = desc;
         localReaction = '';
         clickedReactionInputEl.checked = false;
-      } else {
+        reactions[reaction] = reactions[reaction]--;
+      } else if (localReaction) {
         action = 'swap';
         swapFrom = localReaction;
         reaction = clickedReactionDesc;
         localReaction = clickedReactionDesc;
+        reactions[localReaction] = reactions[localReaction]--;
+        reactions[reaction] = reactions[reaction]++;
+        console.log(reactions[reaction]);
+      } else {
+        // log error idk
       }
     }
 
-    // selected is clicked
-    // if (clickedReactionInputEl) {
-    //   const clickedReactionDesc = clickedReactionInputEl.getAttribute('value');
-    //   if (
-    //     clickedReactionDesc === desc &&
-    //     clickedReactionDesc !== localReaction
-    //   ) {
-    //     action = 'increment';
-    //     reaction = desc;
-    //     localReaction = desc;
-    //   } else if (isReactionDescription(clickedReactionDesc)) {
-    //     action = 'swap';
-    //     swapFrom = desc;
-    //     reaction = clickedReactionDesc;
-    //     localReaction = clickedReactionDesc;
-    //   }
-    // } else if (desc === localReaction) {
-    //   action = 'decrement';
-    //   reaction = desc;
-    //   localReaction = '';
-    // } else {
-    //   action = 'increment';
-    //   reaction = desc;
-    //   localReaction = desc;
-    //   console.log(action, reaction, localReaction);
-    // }
     console.log(
       `action :${action}, reaction: ${reaction}, localReaction: ${localReaction}`,
     );
@@ -187,9 +164,7 @@
         style={`--item-num: ${i + 1}; ${delayOverride}`}
         id={r.description}
         data-reaction-count={reactions?.[r.description] >= 0
-          ? localReaction === r.description
-            ? reactions[r.description] + reactionCountMod
-            : reactions[r.description]
+          ? reactions[r.description]
           : 0}>
         <label>
           <input
