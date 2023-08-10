@@ -21,3 +21,4 @@
 - [ ] add func to fetch post details for post card so that full post isn't needed
 - [ ] add 400 error to server apis
 - [ ] use int as primary key in db
+- [ ] add 'all' option for page num to show all posts (/blog/page/all)
