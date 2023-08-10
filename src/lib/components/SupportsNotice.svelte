@@ -22,16 +22,21 @@
   tests.forEach((t) => {
     unsupportedTestClassNames.push(`.no-${t}`);
   });
+  // have to add my custom tests
+  tests.push('.no-popover', '.no-animation-range');
 
   onMount(() => {
-    const supportsCSSMenuEl = document.getElementById('supports-menu');
     // doesn't need to be added to test array
     SupportsCSS.addTest(
       'popover',
       HTMLElement.prototype.hasOwnProperty('popover'),
     );
+    // used for view timeline animations
+    SupportsCSS.addTest(
+      'animation-range',
+      CSS.supports('animation-range: exit-crossing 0% entry-crossing 100%'),
+    );
     SupportsCSS.init({ tests });
-    console.log(unsupportedTestClassNames.toString());
     document
       .querySelector(
         `:root:is(${unsupportedTestClassNames.toString()}) #supports-menu`,
@@ -40,11 +45,60 @@
   });
 </script>
 
-<div id="supports-menu">
+<div id="supports-menu" class="styled-links">
   <p>
-    Your browser doesn't support the latest features used on this site. To get
-    the best experience, upgrade your browser.
+    We live on the edge here. Your browser doesn't support the latest features
+    used on this site. To get the best experience, upgrade your browser.
   </p>
+  <p>The features your browser doesn't support include:</p>
+  <ul>
+    <li id="popover">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
+        >The Popover API</a>
+    </li>
+    <li id="anchor-pos">
+      <a
+        href="https://developer.chrome.com/blog/tether-elements-to-each-other-with-css-anchor-positioning/"
+        >Anchor Positioning</a>
+    </li>
+    <li id="view-timeline">
+      <a
+        href="https://developer.chrome.com/articles/scroll-driven-animations/#view-progress-timeline"
+        >View Timeline</a>
+    </li>
+    <li id="Animation Range">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range"
+        >Animation-Range</a>
+    </li>
+    <li id="container">
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries"
+        >Container Queries</a>
+    </li>
+    <li id="at-property">
+      <a href="https://web.dev/at-property/">@property</a>
+    </li>
+    <li id="nesting">
+      <a href="https://developer.chrome.com/articles/css-nesting/"
+        >CSS Nesting</a>
+    </li>
+    <li id="has">
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">:has</a>
+    </li>
+    <li id="dynamic-viewport-units">
+      <a href="https://css-tricks.com/the-large-small-and-dynamic-viewports/"
+        >Dynamic Viewport Units</a>
+    </li>
+    <li id="view-transitions">
+      <a href="https://developer.chrome.com/docs/web-platform/view-transitions/"
+        >View Transitions</a>
+    </li>
+    <li id="logical-properties">
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values"
+        >Logical Properties</a>
+    </li>
+  </ul>
 </div>
 
 <noscript>
@@ -54,23 +108,52 @@
 </noscript>
 
 <style>
-  #supports-menu {
+  :where(#supports-menu) {
     display: none;
+
+    & p {
+      display: block;
+    }
   }
 
+  /* :global() prevents style from being removed for being unused */
   :global(#supports-menu.unsupported) {
-    display: flex;
+    display: grid;
   }
 
   #no-js-menu,
   #supports-menu {
     block-size: fit-content;
     justify-content: center;
-    background: var(--contrast);
+    border-block: dashed var(--space-3xs) var(--contrast);
+    background: var(--tertiary);
     color: var(--text-primary);
   }
 
   #no-js-menu {
     display: flex;
+  }
+
+  /* should prob only display ul if an li is visible 
+   * (some unsupported features could not be listed, but I could just make sure to add all tested features to the list)
+   */
+  :where(#supports-menu ul li) {
+    display: none;
+  }
+
+  :global(
+      :root.no-popover #popover,
+      :root.no-view-timeline #view-timeline,
+      :root.no-animation-range #animation-range,
+      :root.no-anchor #anchor-pos,
+      :root.no-container #container,
+      :root.no-at-property #at-property,
+      :root.no-nesting #nesting,
+      :root.no-has #has,
+      :root.no-dynamic-viewport-units #dynamic-viewport-units,
+      :root.no-view-transitions #view-transitions,
+      :root.no-logical-properties #logical-properties
+    ) {
+    display: block;
   }
 </style>
