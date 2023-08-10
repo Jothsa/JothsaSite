@@ -22,3 +22,4 @@
 - [ ] add 400 error to server apis
 - [ ] use int as primary key in db
 - [ ] add 'all' option for page num to show all posts (/blog/page/all)
+- [ ] center header text when menu is collapsed/mobile version
