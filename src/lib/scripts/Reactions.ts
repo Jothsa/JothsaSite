@@ -76,4 +76,14 @@ export class RCRec {
     this.disappointed = reactions.disappointed;
     this.upset = reactions.upset;
   }
+  increment(r: ReactionDescription) {
+    this[r] = this[r]++;
+  }
+  decrement(r: ReactionDescription) {
+    this[r] = this[r]--;
+  }
+  swap(from: ReactionDescription, to: ReactionDescription) {
+    this[from] = this[from]--;
+    this[to] = this[to]++;
+  }
 }

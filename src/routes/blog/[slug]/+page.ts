@@ -1,3 +1,4 @@
+import { RCRec } from '$scripts/Reactions';
 import type { PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
@@ -10,7 +11,8 @@ export const load = async function load({ params, fetch }) {
       const reactionResponse = await fetch('/api/posts/react', {
         headers: reactionHeaders,
       });
-      reactions = await reactionResponse.json();
+       reactions = await reactionResponse.json();
+
     } catch (e) {
       reactions = undefined;
     }

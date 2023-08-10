@@ -5,10 +5,10 @@
   // import Post from '$components/Post.svelte';
   import TagsCloud from '$components/TagsCloud.svelte';
   import ScrollProgress from '$components/ScrollProgress.svelte';
+  import ViewProgress from '$components/ViewProgress.svelte';
   import Reactions from '$components/Reactions.svelte';
   import ReactionsFallback from '$components/ReactionsFallback.svelte';
   export let data: PageData;
-  let postID = 'post';
 
   onMount(async () => {
     console.log(data.reactions);
@@ -22,7 +22,7 @@
 
 <main id="content">
   <article id="post">
-    <ScrollProgress {postID} direction="bottom" changeOpacity={true} />
+    <!-- <ScrollProgress {postID} direction="bottom" changeOpacity={true} /> -->
     <hgroup>
       <!-- ? should this just be an h2 tag? -->
       <h1 class="post-title h2">{data.meta.title}</h1>
@@ -32,7 +32,8 @@
       </p>
     </hgroup>
 
-    <div class="prose styled-links">
+    <div class="prose styled-links" id="post-content">
+      <ViewProgress viewTimelineName={'--post'} />
       <svelte:component this={data.content} />
     </div>
     <div class="tags-wrapper">
@@ -59,11 +60,9 @@
     padding-block-start: 0;
     gap: var(--space-m);
     isolation: isolate;
-    view-timeline: --post block;
   }
 
   .prose {
-    position: relative;
     padding: 2ch;
     background: var(--secondary);
 
@@ -84,6 +83,10 @@
       -webkit-mask: var(--mask-corner-cut-angles-1);
       transform: translate(5px, 5px);
     } */
+  }
+
+  #post-content {
+    view-timeline: --post block;
   }
 
   .post-title + p {
