@@ -45,61 +45,67 @@
   });
 </script>
 
-<div id="supports-menu" class="styled-links">
+<details id="supports-menu" class="styled-links">
+  <summary
+    >Your browser doesn't support the latest features used on this site.</summary>
   <p>
-    We live on the edge here. Your browser doesn't support the latest features
-    used on this site. To get the best experience, upgrade your browser.
+    We live on the edge here. To get the best experience, upgrade your browser.
   </p>
-  <p>The features your browser doesn't support include:</p>
-  <ul>
-    <li id="popover">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
-        >The Popover API</a>
-    </li>
-    <li id="anchor-pos">
-      <a
-        href="https://developer.chrome.com/blog/tether-elements-to-each-other-with-css-anchor-positioning/"
-        >Anchor Positioning</a>
-    </li>
-    <li id="view-timeline">
-      <a
-        href="https://developer.chrome.com/articles/scroll-driven-animations/#view-progress-timeline"
-        >View Timeline</a>
-    </li>
-    <li id="Animation Range">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range"
-        >Animation-Range</a>
-    </li>
-    <li id="container">
-      <a
-        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries"
-        >Container Queries</a>
-    </li>
-    <li id="at-property">
-      <a href="https://web.dev/at-property/">@property</a>
-    </li>
-    <li id="nesting">
-      <a href="https://developer.chrome.com/articles/css-nesting/"
-        >CSS Nesting</a>
-    </li>
-    <li id="has">
-      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">:has</a>
-    </li>
-    <li id="dynamic-viewport-units">
-      <a href="https://css-tricks.com/the-large-small-and-dynamic-viewports/"
-        >Dynamic Viewport Units</a>
-    </li>
-    <li id="view-transitions">
-      <a href="https://developer.chrome.com/docs/web-platform/view-transitions/"
-        >View Transitions</a>
-    </li>
-    <li id="logical-properties">
-      <a
-        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values"
-        >Logical Properties</a>
-    </li>
-  </ul>
-</div>
+
+  <figure>
+    <figcaption class="">Unsupported features include:</figcaption>
+    <ul>
+      <li id="popover">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
+          >The Popover API</a>
+      </li>
+      <li id="anchor-pos">
+        <a
+          href="https://developer.chrome.com/blog/tether-elements-to-each-other-with-css-anchor-positioning/"
+          >Anchor Positioning</a>
+      </li>
+      <li id="view-timeline">
+        <a
+          href="https://developer.chrome.com/articles/scroll-driven-animations/#view-progress-timeline"
+          >View Timeline</a>
+      </li>
+      <li id="Animation Range">
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range"
+          >Animation-Range</a>
+      </li>
+      <li id="container">
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries"
+          >Container Queries</a>
+      </li>
+      <li id="at-property">
+        <a href="https://web.dev/at-property/">@property</a>
+      </li>
+      <li id="nesting">
+        <a href="https://developer.chrome.com/articles/css-nesting/"
+          >CSS Nesting</a>
+      </li>
+      <li id="has">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">:has</a>
+      </li>
+      <li id="dynamic-viewport-units">
+        <a href="https://css-tricks.com/the-large-small-and-dynamic-viewports/"
+          >Dynamic Viewport Units</a>
+      </li>
+      <li id="view-transitions">
+        <a
+          href="https://developer.chrome.com/docs/web-platform/view-transitions/"
+          >View Transitions</a>
+      </li>
+      <li id="logical-properties">
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_logical_properties_and_values"
+          >Logical Properties</a>
+      </li>
+    </ul>
+  </figure>
+</details>
 
 <noscript>
   <div id="no-js-menu">
@@ -108,8 +114,12 @@
 </noscript>
 
 <style>
+  /* some cls in inevitable, but try to minimize w/@supports 
+   * starting dialog closed helps as well */
   :where(#supports-menu) {
     display: none;
+    padding-inline: var(--space-3xs);
+    margin-block-end: var(--space-xs);
 
     & p {
       display: block;
@@ -119,6 +129,18 @@
   /* :global() prevents style from being removed for being unused */
   :global(#supports-menu.unsupported) {
     display: grid;
+  }
+
+  @supports not (
+    (animation-range: exit-crossing 0% entry-crossing 100%) and
+      (animation-timeline: var(--view-timeline-name)) and
+      (view-timeline: --post block) and (width: 1dvi) and
+      (border-start-start-radius: 1px) and (left: anchor(center)) and
+      selector(:has(+ *)) and selector(& a)
+  ) {
+    #supports-menu {
+      display: grid;
+    }
   }
 
   #no-js-menu,
@@ -139,6 +161,8 @@
    */
   :where(#supports-menu ul li) {
     display: none;
+    padding: 0;
+    margin: 0;
   }
 
   :global(
