@@ -1,10 +1,11 @@
-/** make sure no conflicts with nav, etc */
+/** make sure no conflicts with nav, etc 
+ * TODO could add alternative for nonhover devices */
 :where(.styled-links a:not(.unstyled-link), a.styled-link) {
   position: relative;
   color: var(--secondary-text);
   text-decoration: underline;
 
-  @media (prefers-reduced-motion: no-preference) and (prefers-contrast: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (prefers-contrast: no-preference) and (pointer: fine) and (hover: hover) {
     text-decoration: none;
 
     &::before {
