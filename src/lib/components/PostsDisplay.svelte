@@ -16,7 +16,7 @@
   @keyframes animate-in-and-out {
     entry 0% {
       opacity: 0;
-      transform: translateY(100%);
+      transform: translateY(var(--transform-length));
     }
 
     entry 100% {
@@ -31,7 +31,7 @@
 
     exit 100% {
       opacity: 0;
-      transform: translateY(-100%);
+      transform: translateY(calc(var(--transform-length) * -1));
     }
   }
 
@@ -40,12 +40,13 @@
     padding: 0;
     margin: 0;
     gap: var(--space-m);
-
   }
 
-
+  @media (prefers-reduced-motion: no-preference) {
     :global(.posts .post) {
+      --transform-length: 30%;
       animation: linear animate-in-and-out;
       animation-timeline: view();
     }
+  }
 </style>
