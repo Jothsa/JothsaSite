@@ -1,6 +1,10 @@
 {
   "extends": ["@jothsa/stylelint-config"],
   "rules": {
-    "custom-property-empty-line-before": "never"
+    "custom-property-empty-line-before": "never",
+    "property-no-unknown": [
+      true,
+      { "ignoreProperties": ["timeline-scope", "animation-timeline"] }
+    ]
   }
 }
