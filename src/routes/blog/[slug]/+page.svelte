@@ -32,8 +32,9 @@
       </p>
     </hgroup>
 
+    <ViewProgress viewTimelineName={'--post'} style={'grid-area: content'} />
+
     <div class="prose styled-links" id="post-content">
-      <ViewProgress viewTimelineName={'--post'} />
       <svelte:component this={data.content} />
     </div>
     <div class="tags-wrapper">
@@ -43,7 +44,9 @@
     <div class="reactions-wrapper">
       <Reactions reactions={data.reactions} slug={data.slug} />
     </div>
-    <ReactionsFallback />
+    <div class="reactions-fallback-wrapper">
+      <ReactionsFallback />
+    </div>
   </article>
 </main>
 
@@ -59,12 +62,23 @@
     padding: var(--space-xs);
     padding-block-start: 0;
     gap: var(--space-m);
+    grid-template-areas:
+      'header'
+      'content'
+      'tags'
+      'reactions';
     isolation: isolate;
+    timeline-scope: --post;
+  }
+
+  hgroup {
+    grid-area: header;
   }
 
   .prose {
     padding: 2ch;
     background: var(--secondary);
+    grid-area: content;
 
     /* isolation: isolate; */
 
@@ -86,6 +100,7 @@
   }
 
   #post-content {
+    position: relative;
     view-timeline: --post block;
   }
 
@@ -97,11 +112,26 @@
   .reactions-wrapper {
     display: flex;
     justify-content: center;
+    grid-area: reactions;
+  }
+
+  .reactions-fallback-wrapper {
+    display: none;
+    grid-area: reactions;
+  }
+
+  &:global(:root:is(.no-popover, .no-anchor) .reactions-wrapper) {
+    display: none;
+  }
+
+  &:global(:root:is(.no-popover, .no-anchor) .reactions-fallback-wrapper) {
+    display: unset;
   }
 
   .tags-wrapper {
     display: grid;
     gap: var(--space-3xs);
+    grid-area: tags;
   }
 
   .tags-title {
