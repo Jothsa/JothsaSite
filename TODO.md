@@ -24,3 +24,7 @@
 - [ ] add 'all' option for page num to show all posts (/blog/page/all)
 - [ ] center header text when menu is collapsed/mobile version
 - [ ] mark external links
+- [ ] does fit-content always need arg ex: fit-content(30ch)
+- [ ] Add license
+- [ ] test code, em, strong and links together
+- [ ] add featured images to post/post card
