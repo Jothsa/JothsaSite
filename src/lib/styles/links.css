@@ -1,14 +1,18 @@
 /** make sure no conflicts with nav, etc 
- * TODO could add alternative for nonhover devices */
+ * [1] - make sure link stays on top (ex. when <code> inside <a>
+ */
+
 :where(.styled-links a:not(.unstyled-link), a.styled-link) {
   position: relative;
   color: var(--secondary-text);
   text-decoration: underline;
+  isolation: isolate;
 
   @media (prefers-reduced-motion: no-preference) and (prefers-contrast: no-preference) and (pointer: fine) and (hover: hover) {
     text-decoration: none;
 
     &::before {
+      z-index: 2; /* [1] */
       position: absolute;
       inset-block-end: 0;
       inset-inline-start: 0;
