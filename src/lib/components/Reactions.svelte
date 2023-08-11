@@ -9,13 +9,14 @@
 
   import { ReactionsList, isReactionDescription } from '$scripts/Reactions';
   import type { ReactionCounts, ReactionDescription } from '$scripts/Reactions';
-  import { description } from '$utils/config';
   export let reactions: ReactionCounts;
   export let slug: PostSlug;
   let delayOverride = '';
   let selectedReaction: string | undefined = undefined;
   let reactionInputs: NodeListOf<HTMLInputElement>;
   let localReaction: ReactionDescription | '';
+
+  // let {love, like, laugh, mindblown, celebrate, disappointed, skeptical, upset} = reactions;
 
   // * delay it should be on open/close
   const openDelay =
@@ -100,29 +101,30 @@
       action = 'increment';
       reaction = desc;
       localReaction = desc;
-      reactions[reaction] = reactions[reaction]++;
+      reactions[reaction] = reactions[reaction] + 1;
     } else {
       if (previousReactionDesc === clickedReactionDesc) {
         action = 'decrement';
         reaction = desc;
         localReaction = '';
         clickedReactionInputEl.checked = false;
-        reactions[reaction] = reactions[reaction]--;
+        reactions[reaction] = reactions[reaction] - 1;
       } else if (localReaction) {
         action = 'swap';
         swapFrom = localReaction;
         reaction = clickedReactionDesc;
         localReaction = clickedReactionDesc;
-        reactions[localReaction] = reactions[localReaction]--;
-        reactions[reaction] = reactions[reaction]++;
-        console.log(reactions[reaction]);
+        reactions[swapFrom] = reactions[swapFrom] - 1;
+        reactions[reaction] = reactions[reaction] + 1;
       } else {
         // log error idk
+        console.log('uh oh idk reaction error of some kind');
       }
     }
 
     console.log(
-      `action :${action}, reaction: ${reaction}, localReaction: ${localReaction}`,
+      `action: ${action}, reaction: ${reaction}, localReaction: ${localReaction}`,
+      reactions,
     );
     localStorage.setItem(`${slug}-reaction`, localReaction);
 
@@ -383,17 +385,6 @@
   }
 
   /* Resets, etc. */
-
-  /* visually-hidden ala https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html */
-  .sr-only {
-    position: absolute;
-    overflow: hidden;
-    width: 1px;
-    height: 1px;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
 
   .radial-menu,
   .menu-items {
