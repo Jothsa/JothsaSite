@@ -90,6 +90,9 @@
             href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-range"
             >Animation-Range</a>
         </li>
+        <li id="color-mix">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix"><code>color-mix</code></a>
+        </li>
         <li id="container">
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries"
@@ -132,8 +135,7 @@
 </div>
 
 <style>
-
-/* tbh I might be using too many modern features for a fallback menu but w/e */
+  /* tbh I might be using too many modern features for a fallback menu but w/e */
 
   .support-menus-container {
     display: flex;
@@ -163,7 +165,7 @@
       (animation-timeline: var(--view-timeline-name)) and
       (view-timeline: --post block) and (width: 1dvi) and
       (border-start-start-radius: 1px) and (left: anchor(center)) and
-      selector(:has(+ *)) and selector(& a)
+      selector(:has(+ *)) and selector(& a) and (background-color: color-mix(in srgb, #34c9eb 50%, white))
   ) {
     #supports-menu {
       display: grid;
@@ -192,10 +194,10 @@
   }
 
   @counter-style unsupported-list {
-  system: cyclic;
-  symbols: 🤖 👾 💾;
-  suffix: " ";
-}
+    suffix: ' ';
+    symbols: 🤖 👾 💾;
+    system: cyclic;
+  }
 
   :where(#supports-menu ul) {
     list-style: unsupported-list;
