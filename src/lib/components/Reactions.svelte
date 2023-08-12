@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PostSlug } from '$scripts/GetContent';
+  import { isPostSlug, type PostSlug } from '$scripts/GetContent';
   import { onMount } from 'svelte';
   /* @link https://una.im/radial-menu/
    */
@@ -7,7 +7,7 @@
   // store which reaction the user did locally (will help prevent spam)
   // 1 reaction per post?
 
-  import { ReactionsList, isReactionDescription } from '$scripts/Reactions';
+  import { ReactionsList, isReactionDescription, makeReactionRequest } from '$scripts/Reactions';
   import type { ReactionCounts, ReactionDescription } from '$scripts/Reactions';
   export let reactions: ReactionCounts;
   export let slug: PostSlug;
@@ -192,7 +192,7 @@
     localReaction = localReaction;
     localStorage.setItem(`${slug}-reaction`, localReaction);
 
-    if (action && reaction && slug) {
+    if (action && reaction && slug && isPostSlug(slug)) {
       const headers = {
         action: action,
         reaction: reaction,
@@ -200,7 +200,7 @@
         'swap-from': swapFrom,
       };
       console.log(headers);
-      const res = await fetch('/api/posts/react', { headers: headers });
+     makeReactionRequest(action, slug, reaction, swapFrom )
     }
   }
   // TODO Add easings to CSS transitions

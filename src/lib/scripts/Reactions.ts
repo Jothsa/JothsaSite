@@ -1,6 +1,8 @@
 // 😍😁😂🤯🥳🤨🙁😠
 // love, like, laugh, mindblown, celebrate, skeptical, disappointed, upset
 
+import type { PostSlug } from './GetContent';
+
 // import type { PostSlug } from './GetContent';
 
 export const ReactionsList = [
@@ -86,4 +88,30 @@ export class RCRec {
     this[from] = this[from]--;
     this[to] = this[to]++;
   }
+}
+
+/**
+ * 
+
+ */
+export async function makeReactionRequest(
+  action: 'increment' | 'decrement' | 'swap',
+  slug: PostSlug,
+  reaction: ReactionDescription,
+  swapFrom?: ReactionDescription | undefined | '',
+) {
+  let res;
+  if (action === 'increment' || action === 'decrement') {
+    const headers = { action: action, slug: slug, reaction: reaction };
+    res = await fetch('/api/posts/react', { headers: headers });
+  } else if (action === 'swap' && swapFrom){
+    const headers = {
+      action: action,
+      slug: slug,
+      reaction: reaction,
+      'swap-from': swapFrom,
+    };
+     res = await fetch('/api/posts/react', { headers: headers });
+  }
+  return res;
 }
