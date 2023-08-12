@@ -11,8 +11,7 @@ export const load = async function load({ params, fetch }) {
       const reactionResponse = await fetch('/api/posts/react', {
         headers: reactionHeaders,
       });
-       reactions = await reactionResponse.json();
-
+      reactions = await reactionResponse.json();
     } catch (e) {
       reactions = undefined;
     }

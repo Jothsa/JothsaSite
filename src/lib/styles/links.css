@@ -5,15 +5,15 @@
 :where(.styled-links a:not(.unstyled-link), a.styled-link) {
   position: relative;
   color: var(--secondary-text);
-  text-decoration: underline;
   isolation: isolate;
+  text-decoration: underline;
 
   @media (prefers-reduced-motion: no-preference) and (prefers-contrast: no-preference) and (pointer: fine) and (hover: hover) {
     text-decoration: none;
 
     &::before {
-      z-index: 2; /* [1] */
       position: absolute;
+      z-index: 2; /* [1] */
       inset-block-end: 0;
       inset-inline-start: 0;
       width: 100%;
