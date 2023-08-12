@@ -13,10 +13,9 @@
   export let slug: PostSlug;
   let delayOverride = '';
   let selectedReaction: string | undefined = undefined;
-  let reactionInputs: NodeListOf<HTMLInputElement>;
+  let reactionInputs: NodeListOf<ReactionInputElementType>;
   let localReaction: ReactionDescription | '';
-
-  // let {love, like, laugh, mindblown, celebrate, disappointed, skeptical, upset} = reactions;
+  type ReactionInputElementType = HTMLButtonElement;
 
   // * delay it should be on open/close
   const openDelay =
@@ -37,21 +36,11 @@
     } else {
       localReaction = '';
     }
-    reactionInputs = document.querySelectorAll(
-      '.reaction-menu  .reaction-input',
-    ) as NodeListOf<HTMLInputElement>;
-    if (localReaction !== '') {
-      reactionInputs.forEach((r) => {
-        if (r.value === localReaction) {
-          console.log(`val: ${r.value}, lr: ${localReaction}`);
-          r.checked = true;
-        }
-      });
-    }
+    reactionInputs = getAllReactionInputEls();
   });
 
   // the callbacks are not required but will help if the menu is closed by clicking away, not on the button
-  function onOpenClick() {
+  async function onOpenClick() {
     // in case the button is clicked mid-transition
     delayOverride = openDelay;
     menuButtonLabel = 'close menu';
@@ -68,34 +57,111 @@
     }, totalTransitionTime);
   }
 
+  function getAllReactionInputEls(): NodeListOf<ReactionInputElementType> {
+    return document.querySelectorAll(
+      `.reaction-menu .reaction-input`,
+    ) as NodeListOf<ReactionInputElementType>;
+  }
+  function getReactionFromEL(
+    el: ReactionInputElementType,
+  ): ReactionDescription | null {
+    console.log(el, el.id);
+    if (isReactionDescription(el.id)) return el.id;
+    else return null;
+  }
+  function getReactionElByDesc(
+    d: ReactionDescription,
+  ): ReactionInputElementType | null {
+    console.log(document.querySelector(`.reaction-menu #${d}`));
+    return document.getElementById(d) as ReactionInputElementType | null;
+  }
+
+  function getReactionEl(
+    input: ReactionDescription | ReactionInputElementType,
+  ): ReactionInputElementType | null {
+    if (typeof input === 'string') {
+      return getReactionElByDesc(input);
+    } else return input;
+  }
+
+  function setReactionElSelected(
+    input: ReactionInputElementType | ReactionDescription,
+    isSelected: boolean,
+  ) {
+    const el = getReactionEl(input);
+
+    if (el) {
+      // console.log(el, 'is', isSelected);
+      console.log(`el: ${el.id} is: ${isSelected}, ip: ${el.ariaPressed}, `);
+      el.setAttribute('aria-pressed', isSelected.toString());
+      // el.ariaPressed = isSelected.toString();
+    }
+  }
+
+  /**
+   * deselects all reaction inputs, if an input is provides, selects the input
+   * @param input
+   */
+  function selectReactionEl(
+    input: ReactionInputElementType | ReactionDescription | null,
+  ) {
+    const allEls = getAllReactionInputEls();
+
+    allEls.forEach((e) => {
+      setReactionElSelected(e, false);
+    });
+    console.log('i', input);
+    if (input !== null) {
+      let el: ReactionInputElementType | null = getReactionEl(input);
+      if (el !== null) {
+        setReactionElSelected(el, true);
+      }
+    }
+  }
+
+  /**
+   *
+   * @param to - the reaction to select
+   * @param from - the reaction to deselect
+   */
+  function swapReactionEl(
+    to: ReactionInputElementType | ReactionDescription,
+    from: ReactionInputElementType | ReactionDescription,
+  ) {
+    let toEl: ReactionInputElementType | null = getReactionEl(to);
+    let fromEl: ReactionInputElementType | null = getReactionEl(from);
+    if (toEl && fromEl) {
+      selectReactionEl(toEl);
+    }
+  }
+
   async function onReactionClick(desc: ReactionDescription, event: Event) {
     // TODO choose ID, value, or other for desc
     // * this way the count can update without reloading
-    // aria-checked?
-    let previousReactionInputEl: HTMLInputElement | null = null;
+    // aria-pressed?
+    // desc is the reaction value of the clicked element
+    let previousReactionInputEl: ReactionInputElementType | null = null;
     let previousReactionDesc: ReactionDescription | null = null;
     if (localReaction) {
-      previousReactionInputEl = document.querySelector(
-        `.reaction-menu .reaction-input[value='${localReaction}']`,
-      ) as HTMLInputElement | null;
-      if (
-        previousReactionInputEl &&
-        isReactionDescription(previousReactionInputEl.value)
-      ) {
-        previousReactionDesc = previousReactionInputEl.value;
+      previousReactionInputEl = getReactionEl(localReaction);
+      if (previousReactionInputEl) {
+        previousReactionDesc = getReactionFromEL(previousReactionInputEl);
+        // in this case local reaction === prev reaction
       }
     }
-    let clickedReactionInputEl: HTMLInputElement =
-      event.target as HTMLInputElement;
+    // event.currentTarget should always get the button even if descendant (ex span) is clicked
+    let clickedReactionInputEl: ReactionInputElementType =
+      event.currentTarget as ReactionInputElementType;
     // maybe add more checks here
-    let clickedReactionDesc: ReactionDescription =
-      clickedReactionInputEl.value as ReactionDescription;
+    let clickedReactionDesc: ReactionDescription = getReactionFromEL(
+      clickedReactionInputEl,
+    ) as ReactionDescription;
     let action: 'increment' | 'decrement' | 'swap' | undefined = undefined;
     let reaction: ReactionDescription | undefined = undefined;
     let swapFrom: ReactionDescription | '' = '';
-    console.log(
-      `desc: ${desc}, prevDesc: ${previousReactionDesc}, clickedDesc: ${clickedReactionDesc}`,
-    );
+    // console.log(
+    //   `desc: ${desc}, prevDesc: ${previousReactionDesc}, clickedDesc: ${clickedReactionDesc}`,
+    // );
 
     if (previousReactionInputEl === null) {
       action = 'increment';
@@ -107,13 +173,13 @@
         action = 'decrement';
         reaction = desc;
         localReaction = '';
-        clickedReactionInputEl.checked = false;
         reactions[reaction] = reactions[reaction] - 1;
       } else if (localReaction) {
         action = 'swap';
         swapFrom = localReaction;
         reaction = clickedReactionDesc;
         localReaction = clickedReactionDesc;
+        // needs to be like this for reactivity (no ++ or -- I think)
         reactions[swapFrom] = reactions[swapFrom] - 1;
         reactions[reaction] = reactions[reaction] + 1;
       } else {
@@ -122,10 +188,8 @@
       }
     }
 
-    console.log(
-      `action: ${action}, reaction: ${reaction}, localReaction: ${localReaction}`,
-      reactions,
-    );
+    // might help w/reactivity
+    localReaction = localReaction;
     localStorage.setItem(`${slug}-reaction`, localReaction);
 
     if (action && reaction && slug) {
@@ -159,7 +223,7 @@
     id="menu-items"
     popover
     anchor="menu-toggle"
-    role="menu">
+    >
     {#each ReactionsList as r, i}
       <li
         class="item"
@@ -168,20 +232,16 @@
         data-reaction-count={reactions?.[r.description] >= 0
           ? reactions[r.description]
           : 0}>
-        <label>
-          <input
-            class="reaction-input"
-            type="radio"
-            role="menuitem"
-            bind:group={selectedReaction}
-            value={r.description}
-            on:click={(event) => {
-              onReactionClick(r.description, event);
-            }} />
-
+        <button
+          class="reaction-input"
+          id={r.description}
+          aria-pressed={r.description === localReaction ? 'true' : 'false'}
+          on:click={(event) => {
+            onReactionClick(r.description, event);
+          }}>
           <span class="reaction-emoji" aria-hidden="true">{r.emoji}</span>
           <span class="sr-only">{r.description}</span>
-        </label>
+        </button>
       </li>
     {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->
@@ -233,8 +293,14 @@
     & span {
       padding: 0;
       margin: 0;
+      user-select: none;
       vertical-align: baseline;
     }
+
+    /* & .reaction-emoji {
+      width: 100%;
+      height: 100%;
+    } */
 
     & :is(button, input) {
       border: none;
@@ -246,9 +312,10 @@
       font-size: 1.25rem;
 
       &:focus-visible {
+        border: none;
         border-radius: 50%;
         aspect-ratio: 1/1;
-        outline: 2px dashed deeppink;
+        outline: none;
       }
     }
 
@@ -258,6 +325,8 @@
       --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
       --radius: calc(var(--btn-size) + var(--extra-space));
       --bg: var(--accent);
+      --selected-bg: skyblue;
+      --focus: deeppink;
       position: relative;
       width: var(--btn-size);
       border-radius: 50%;
@@ -274,8 +343,16 @@
       transition-timing-function: ease;
       user-select: none;
 
-      &:has(:checked) {
-        --bg: skyblue;
+      &:has(:checked, [aria-pressed='true']) {
+        --bg: var(--selected-bg);
+      }
+
+      &:is(:focus-visible, :focus-within) {
+        outline: clamp(2px, .4ch, 5px) dashed var(--focus);
+      }
+
+      &:hover {
+        /* outline: clamp(2px, .4ch, 5px) dashed color-mix(in oklch, var(--focus) 60%, white 0%); */
       }
 
       &:has(.hidden-close) {
@@ -304,7 +381,7 @@
       transition: opacity 300ms ease-in-out;
     }
 
-    & .item:has(.reaction-emoji):hover::after {
+    & .item:has(.reaction-emoji):is(:hover, :focus, :focus-within)::after {
       opacity: 1;
     }
 
@@ -389,5 +466,10 @@
   .radial-menu,
   .menu-items {
     overflow: unset;
+  }
+
+  input:is(:focus, :focus-within, :checked) {
+    border: none;
+    outline: none;
   }
 </style>
