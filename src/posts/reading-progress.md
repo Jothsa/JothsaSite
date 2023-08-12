@@ -7,9 +7,9 @@ tags:
 published: true
 ---
 
-Here's how I made a reading progress bar that was performant and reached 100% when the *bottom* of the post comes into view. I am using view-timeline animations so it will be very performant. Most of the code is from [this article from chrome developers](https://developer.chrome.com/articles/scroll-driven-animations/). I bundled everything into a reusable svelte component as well. Most of the code is self explanatory. To make the progress reach 100% when the bottom of the element was in view I used `animation-range`.
+Here's how I made a reading progress bar that was performant and reached 100% when the _bottom_ of the post comes into view. I am using view-timeline animations so it will be very performant. Most of the code is from [this article from chrome developers](https://developer.chrome.com/articles/scroll-driven-animations/). I bundled everything into a reusable svelte component as well. Most of the code is self explanatory. To make the progress reach 100% when the bottom of the element was in view I used `animation-range`.
 
-I used a div with position fixed to display the progress and transformed it with the view-timeline driven animation. 
+I used a div with position fixed to display the progress and transformed it with the view-timeline driven animation.
 
 ```svelte
 <script lang="ts">
@@ -65,7 +65,6 @@ I used a div with position fixed to display the progress and transformed it with
     }
   }
 </style>
-
 ```
 
 Link to full component on GitHub here.
