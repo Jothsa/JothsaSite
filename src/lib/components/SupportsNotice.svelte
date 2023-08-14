@@ -23,7 +23,12 @@
     unsupportedTestClassNames.push(`.no-${t}`);
   });
   // have to add my custom tests
-  tests.push('.no-popover', '.no-animation-range', '.no-timeline-scope');
+  tests.push(
+    '.no-popover',
+    '.no-animation-range',
+    '.no-timeline-scope',
+    '.no-web-share',
+  );
 
   onMount(() => {
     // doesn't need to be added to test array
@@ -40,6 +45,8 @@
       'timeline-scope',
       CSS.supports('timeline-scope: --post'),
     );
+    // not CSS but w/e
+    SupportsCSS.addTest('web-share', navigator?.share);
     SupportsCSS.init({ tests });
     document
       .querySelector(
@@ -75,6 +82,11 @@
           <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API"
             >The Popover API</a>
         </li>
+        <li id="web-share">
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API"
+            >Web Share API</a>
+        </li>
         <li id="anchor-pos">
           <a
             href="https://developer.chrome.com/blog/tether-elements-to-each-other-with-css-anchor-positioning/"
@@ -91,7 +103,9 @@
             >Animation-Range</a>
         </li>
         <li id="color-mix">
-          <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix"><code>color-mix</code></a>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix"
+            ><code>color-mix</code></a>
         </li>
         <li id="container">
           <a
@@ -165,7 +179,8 @@
       (animation-timeline: var(--view-timeline-name)) and
       (view-timeline: --post block) and (width: 1dvi) and
       (border-start-start-radius: 1px) and (left: anchor(center)) and
-      selector(:has(+ *)) and selector(& a) and (background-color: color-mix(in srgb, #34c9eb 50%, white))
+      selector(:has(+ *)) and selector(& a) and
+      (background-color: color-mix(in srgb, #34c9eb 50%, white))
   ) {
     #supports-menu {
       display: grid;
@@ -213,6 +228,7 @@
 
   :global(
       :root.no-popover #popover,
+      :root.no-web-share #web-share,
       :root.no-view-timeline #view-timeline,
       :root.no-animation-range #animation-range,
       :root.no-anchor #anchor-pos,
