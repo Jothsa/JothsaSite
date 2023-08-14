@@ -26,7 +26,7 @@
     "@planetscale/database": "^1.10.0",
     "@playwright/test": "^1.37.0",
     "@sveltejs/adapter-auto": "^2.1.0",
-    "@sveltejs/kit": "^1.22.5",
+    "@sveltejs/kit": "^1.22.6",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.47.0",
@@ -51,7 +51,7 @@
   "type": "module",
   "dependencies": {
     "@fec/remark-a11y-emoji": "^3.1.0",
-    "@sentry/sveltekit": "^7.63.0",
+    "@sentry/sveltekit": "^7.64.0",
     "postcss": "^8.4.27",
     "postcss-preset-env": "^9.1.1",
     "shiki": "^0.14.3"
