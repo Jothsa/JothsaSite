@@ -68,7 +68,7 @@
       >Your browser doesn't support the latest features used on this site.</summary>
     <p>
       We live on the edge here. To get the best experience, upgrade your
-      browser.
+      browser or, if you're feeling adventurous, enable some flags.
     </p>
 
     <figure>
