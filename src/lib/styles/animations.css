@@ -1,0 +1,8 @@
+@keyframes wiggle {
+  from {
+    rotate: var(--wiggle-init, 0deg);
+  }
+  to {
+    rotate: calc(var(--wiggle-init, 0deg) + var(--wiggle, 10deg));
+  }
+}
