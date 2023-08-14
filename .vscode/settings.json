@@ -31,5 +31,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "cSpell.words": ["mindblown", "palenight", "sveltekittemplate"]
+  "cSpell.words": [
+    "beforeinstallprompt",
+    "mindblown",
+    "palenight",
+    "someattribute",
+    "sveltekittemplate"
+  ]
 }
