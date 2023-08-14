@@ -329,8 +329,6 @@
       margin: 0;
       appearance: none;
       background: none;
-      color: #222;
-      font-family: 'Noto Emoji';
       font-size: 1.25rem;
 
       &:focus-visible {
@@ -360,7 +358,7 @@
       transition-delay: var(--delay);
       transition-duration: 300ms;
 
-      /* why does all work but not specific props */
+      /* why does all work but not specific properties?? */
       transition-property: all;
       transition-timing-function: ease;
       user-select: none;
