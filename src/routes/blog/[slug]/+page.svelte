@@ -36,8 +36,8 @@
     <div class="prose styled-links" id="post-content">
       <svelte:component this={data.content} />
     </div>
-    <section class="tags-wrapper">
-      <h3 class="tags-title h3">Tags</h3>
+    <section class="tags-wrapper" aria-labelledby="tags-label">
+      <h3 class="tags-title h3" id="tags-label">Tags</h3>
       <TagsCloud tags={data.meta.tags} />
     </section>
     <SpreadInterestButton shareText={data.meta.description}  />
@@ -151,9 +151,12 @@
     display: flex;
   }
 
-  details .fallback {
+  details {
+    contain: content;
+    
+    &.fallback {
     display: none;
-  }
+  }}
 
   :global(:root:is(.no-anchor, .no-popover) details) {
     & .main {

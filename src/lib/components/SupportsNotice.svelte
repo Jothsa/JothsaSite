@@ -23,7 +23,7 @@
     unsupportedTestClassNames.push(`.no-${t}`);
   });
   // have to add my custom tests
-  tests.push(
+  unsupportedTestClassNames.push(
     '.no-popover',
     '.no-animation-range',
     '.no-timeline-scope',
@@ -46,7 +46,15 @@
       CSS.supports('timeline-scope: --post'),
     );
     // not CSS but w/e
-    SupportsCSS.addTest('web-share', navigator?.share);
+    SupportsCSS.addTest(
+      'web-share',
+      window?.navigator?.share &&
+       window?.navigator?.canShare({
+          title: 'title',
+          text: 'description',
+          url: 'www.apple.com',
+        }),
+    );
     SupportsCSS.init({ tests });
     document
       .querySelector(
@@ -67,8 +75,8 @@
     <summary
       >Your browser doesn't support the latest features used on this site.</summary>
     <p>
-      We live on the edge here. To get the best experience, upgrade your
-      browser or, if you're feeling adventurous, enable some flags.
+      We live on the edge here. To get the best experience, upgrade your browser
+      or, if you're feeling adventurous, enable some flags.
     </p>
 
     <figure>

@@ -293,6 +293,7 @@
       var(--delay-offset, 999s),
       (var(--max-opening-time) / (var(--total-items) - 1))
     ); /* [4] */
+    --toggle-bg: var(--tertiary);
     inline-size: min-content;
     block-size: min-content;
     padding: 0;
@@ -426,11 +427,14 @@
     } */
 
     & .menu-toggle {
+      --wiggle-init: 0deg;
+      --wiggle: 60deg;
       z-index: 1;
       width: var(--btn-size);
       border-radius: 50%;
       aspect-ratio: 1;
-      background: darksalmon;
+      background-color: var(--toggle-bg);
+      transition: background-color 300ms;
     }
 
     & .hidden-close {
@@ -438,19 +442,21 @@
       aspect-ratio: 1;
       background: none;
       transform: rotate(45deg);
-      transition: opacity 0.1s;
+      transition: opacity 100s;
       transition-delay: 1s;
     }
   }
 
-  /* rotate the "plus" */
   .menu-toggle > span {
     display: inline-block;
-    transition: transform 0.3s;
+    transition: transform 300ms;
   }
-
-  .radial-menu:has(:popover-open) .menu-toggle span:not(.sr-only) {
-    transform: rotate(45deg);
+  
+  /* button effects when menu open */
+  .radial-menu:has(:popover-open) .menu-toggle {
+    /* transform: rotate(45deg); */
+    /* animation: var(--click-anim); */
+    background-color: color-mix(in oklch, var(--toggle-bg), var(--decrease-contrast) 20%);
   }
 
   .menu-items {
@@ -498,8 +504,6 @@
     & :is(#menu-toggle, .item:has(.hidden-close)) {
       display: none;
     }
-
-
 
     & .menu-items {
       position: unset;

@@ -1,6 +1,6 @@
 <script lang="ts">
   import '$styles/index.css';
-  import AccessibleMenu from '$components/AccessibleMenu.svelte';
+  import AccessibleMenu from '$components/AccessibilityMenu.svelte';
   import Header from '$components/Header.svelte';
   import { page } from '$app/stores';
   import type { LayoutData } from './$types';
@@ -18,6 +18,5 @@
 
 <AccessibleMenu />
 <Header />
-<SupportsNotice />
 <slot />
 <Footer />

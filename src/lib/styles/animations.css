@@ -2,7 +2,11 @@
   0%, 100% {
     rotate: var(--wiggle-init, 0deg);
   }
-  50% {
+  25% {
     rotate: calc(var(--wiggle-init, 0deg) + var(--wiggle, 10deg));
+  }
+
+  75% {
+    rotate: calc(var(--wiggle-init, 0deg) + calc(-1 * var(--wiggle, 10deg)));
   }
 }
