@@ -5,6 +5,18 @@
     "property-no-unknown": [
       true,
       { "ignoreProperties": ["timeline-scope", "animation-timeline"] }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["popover-open", "global"]
+      }
+    ],
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": ["anchor"]
+      }
     ]
   }
 }
