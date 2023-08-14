@@ -28,3 +28,4 @@
 - [ ] Add license
 - [ ] test code, em, strong and links together
 - [ ] add featured images to post/post card
+- [ ] add random post
