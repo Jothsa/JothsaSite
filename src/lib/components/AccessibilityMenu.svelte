@@ -1,4 +1,4 @@
-<div id="accessible-menu">
+<nav id="accessibility-menu" aria-label="Accessibility Menu">
   <ol>
     <li role="listitem">
       <a href="#content" class="sr-only">Skip to content</a>
@@ -7,10 +7,10 @@
       <a href="#footer" class="sr-only">Skip to footer</a>
     </li>
   </ol>
-</div>
+</nav>
 
 <style>
-  #accessible-menu {
+  #accessibility-menu {
     position: absolute;
     inset-inline-start: 50%;
     background: var(--tertiary);
