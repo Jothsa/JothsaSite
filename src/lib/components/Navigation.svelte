@@ -11,7 +11,7 @@
   }
 </script>
 
-<nav aria-label="Main Navigation" id="mainNav">
+<nav aria-label="Main" id="mainNav">
   <button
     aria-controls="mainNavMenu"
     id="mainNavMenuButton"
