@@ -1,13 +1,22 @@
 <script lang="ts">
   import Navigation from './Navigation.svelte';
+  import SupportsNotice from '$components/SupportsNotice.svelte';
 </script>
 
-<header id="header">
-  <h1>Jothsa's Site!</h1>
-  <Navigation />
-</header>
+<div class="header-container">
+  <header id="header">
+    <h1>Jothsa's Site!</h1>
+    <Navigation />
+    <SupportsNotice />
+  </header>
+</div>
 
 <style>
+  .header-container {
+    inline-size: 100%;
+    container: header / inline-size;
+  }
+
   header {
     --_font: var(--header-font), 'Carter One', system-ui;
 
@@ -15,6 +24,7 @@
     justify-content: center;
     padding-block: var(--space-3xs);
     padding-inline: var(--space-xs);
+    gap: var(--space-3xs);
     grid-auto-flow: row;
 
     & h1 {
@@ -23,7 +33,7 @@
       font-family: var(--_font);
     }
 
-    @media (width > 30ch) {
+    @container header (inline-size > 10ch) {
       justify-content: unset;
 
       & h1 {
