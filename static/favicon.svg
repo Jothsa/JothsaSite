@@ -5,19 +5,19 @@
   </g>
 
   <style>
+
   svg {
    background-color: transparent;
   }
 
    ellipse {
       fill: oklch(19.41% 0.123 275.29);
-      transition: fill 100ms;
+      transition: fill 150ms;
    }
 
    #j {
       fill: oklch(48.68% 0.31 275.29);
-      transition: fill 150ms;
-
+      transition: fill 300ms;
    }
 
    @media (prefers-color-scheme: light) {
