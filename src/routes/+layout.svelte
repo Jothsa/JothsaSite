@@ -3,16 +3,23 @@
   import AccessibleMenu from '$components/AccessibilityMenu.svelte';
   import Header from '$components/Header.svelte';
   import { page } from '$app/stores';
-  import type { LayoutData } from './$types';
   import Footer from '$components/Footer.svelte';
-  import SupportsNotice from '$components/SupportsNotice.svelte';
-  export let data: LayoutData;
+  import { description, siteTitle } from '$utils/config';
 
   $: pageTitle =
-    $page.data?.title !== undefined ? `Jothsa - ${$page.data.title}` : `Jothsa`;
+    $page.data?.title !== undefined ? `${siteTitle} - ${$page.data.title}` : siteTitle;
+  $: pageDescription = $page.data?.description || description;
 </script>
 
 <svelte:head>
+  <link rel="alternate" type="application/atom+xml" href="/rss.xml" />
+  <meta name="description" content={pageDescription} />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="oklch(19.41% 0.123 275.29)" />
+  <meta
+    name="theme-color"
+    content="oklch(71.3% 0.178 240.35)"
+    media="(prefers-color-scheme: light)" />
   <title>{pageTitle}</title>
 </svelte:head>
 

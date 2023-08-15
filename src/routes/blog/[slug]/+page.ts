@@ -1,4 +1,3 @@
-import { RCRec } from '$scripts/Reactions';
 import type { PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
@@ -18,6 +17,7 @@ export const load = async function load({ params, fetch }) {
     return {
       content: post.default,
       meta: post.metadata,
+      description: post.metadata.description,
       title: post.metadata.title,
       slug: params.slug,
       reactions: reactions.reactions,
