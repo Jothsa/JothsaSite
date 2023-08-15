@@ -13,7 +13,8 @@
 
 <style>
   .header-container {
-    inline-size: 100%;
+    display: flex;
+    inline-size: 100vw;
     container: header / inline-size;
   }
 
@@ -31,10 +32,12 @@
       display: flex;
       justify-content: center;
       font-family: var(--_font);
+      justify-items: center;
     }
 
-    @container header (inline-size > 10ch) {
+    @container header (inline-size > 20rem) {
       justify-content: unset;
+      justify-items: unset;
 
       & h1 {
         justify-content: unset;
