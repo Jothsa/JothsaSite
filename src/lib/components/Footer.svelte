@@ -1,5 +1,6 @@
 <script lang="ts">
   import ThemeModeButton from './ThemeModeButton.svelte';
+  import IconLink from './IconLink.svelte';
 </script>
 
 <footer id="footer" class="styled-links">
@@ -9,7 +10,7 @@
     </span>
   </p>
   <p>
-    <a href="/rss.xml">
+    <IconLink href="/rss.xml" label="rss feed">
 
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g fill="none">
@@ -20,7 +21,7 @@
               d="M5 17a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM5 3c8.837 0 16 7.163 16 16 0 .184-.003.368-.01.55a1.5 1.5 0 1 1-2.997-.1A13.4 13.4 0 0 0 18 19c0-7.18-5.82-13-13-13-.15 0-.3.003-.45.008a1.5 1.5 0 0 1-.1-2.999C4.631 3.003 4.815 3 5 3Zm0 7a9 9 0 0 1 8.98 9.599 1.5 1.5 0 1 1-2.993-.198 6 6 0 0 0-6.388-6.388 1.5 1.5 0 0 1-.197-2.993C4.6 10.007 4.799 10 5 10Z" />
           </g>
         </svg>
-    </a>
+    </IconLink>
   </p>
   <p>
     Content copyright {new Date().getFullYear()} Jothsa, all rights reserved.
