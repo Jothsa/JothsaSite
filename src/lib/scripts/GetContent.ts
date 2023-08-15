@@ -4,6 +4,22 @@ import { paginate } from '$utils/utils';
 export type PostSlug = string;
 const PostSlug = await getPostsSlugs();
 
+function sortPosts(
+  posts: Post[],
+  method: 'date' | 'random',
+  order?: 'ascending' | 'descending',
+) {}
+
+function sortByDate(posts: Post[], order?: 'ascending' | 'descending') {
+  const sortedPosts = posts.sort(
+    (first, second) =>
+      new Date(second.date).getTime() - new Date(first.date).getTime(),
+  );
+  if (order === 'ascending') {
+    return sortedPosts;
+  } else return sortedPosts.reverse()
+}
+
 export async function getPosts() {
   let posts: Post[] = [];
 
