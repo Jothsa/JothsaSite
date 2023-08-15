@@ -159,7 +159,7 @@
       place-self: center;
       visibility: visible;
 
-      @container nav (inline-size > 30ch) {
+      @container nav (inline-size > 18rem) {
         /* I had !important here, don't think that's needed 
         I think display and vis is redundant */
         display: none;
@@ -171,11 +171,12 @@
       display: grid;
       padding: 0;
       margin: 0;
+      font-size: 1rem;
       list-style: none;
       place-content: center center;
       place-items: center;
 
-      @container nav (inline-size > 30ch) {
+      @container nav (inline-size > 18rem) {
         place-content: center start;
       }
 
@@ -200,7 +201,7 @@
         visibility: visible;
       }
 
-      @container nav (inline-size > 30ch) {
+      @container nav (inline-size > 18rem) {
         display: inherit;
         height: auto;
         grid-auto-flow: column;
@@ -221,14 +222,14 @@
         place-content: center;
         place-items: center;
 
-        @container nav (inline-size > 30ch) {
+        @container nav (inline-size > 18rem) {
           grid-column: initial;
         }
 
         & > span {
           grid-column: 2 / 3;
 
-          @container nav (inline-size > 30ch) {
+          @container nav (inline-size > 18rem) {
             grid-column: unset;
           }
         }
