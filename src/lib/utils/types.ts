@@ -27,6 +27,7 @@ export type Post = {
   title: string;
   slug: string;
   description: string;
+  featuredImagePath?: string;
   date: string;
   tags: TagsType[];
   published: boolean;
