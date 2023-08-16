@@ -13,6 +13,9 @@ import remarkUnwrapImages from 'remark-unwrap-images';
 
 /**  @type {import('mdsvex').MdsvexOptions  } */
 const mdsvexOptions = {
+  layout: {
+    _: '/src/mdsvexLayout.svelte',
+  },
   extensions: ['.md'],
   highlight: {
     highlighter: async (code, lang = 'text') => {
