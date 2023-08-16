@@ -26,6 +26,7 @@
     "@planetscale/database": "^1.10.0",
     "@playwright/test": "^1.37.0",
     "@sveltejs/adapter-auto": "^2.1.0",
+    "@sveltejs/adapter-netlify": "^2.0.8",
     "@sveltejs/kit": "^1.22.6",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",

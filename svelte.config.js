@@ -1,4 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
+// import adapter from '@sveltejs/adapter-auto';
+import adapterNetlify from '@sveltejs/adapter-netlify';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import path from 'path';
@@ -60,7 +61,8 @@ const config = {
     // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
     // If your environment is not supported or you settled on a specific environment, switch out the adapter.
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
-    adapter: adapter(),
+    adapter: adapterNetlify(),
+    target: '#svelte',
     alias: {
       $components: path.resolve('src/lib/components'),
       $styles: path.resolve('src/lib/styles'),
