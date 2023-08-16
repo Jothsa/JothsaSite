@@ -105,13 +105,20 @@
     inline-size: clamp(15px, 3ch, 15lvh);
     block-size: clamp(15px, 3ch, 15lvh);
     padding: 0; /* [1] */
-    border: none;
     border: solid 2px var(--accent);
     border-radius: 50%;
     background: none;
     background-color: none;
+    contain: content;
     place-content: center;
+    transition: border-color 250ms;
     vertical-align: middle;
+
+    &:focus-visible,
+    &:hover {
+      /* border-color: color-mix(in oklch, var(--accent), var(--increase-contrast) 50%); */
+      border-color: currentColor;
+    }
 
     & svg {
       width: 2rem;

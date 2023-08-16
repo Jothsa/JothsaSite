@@ -1,10 +1,19 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+  import { url } from '$utils/config';
   // TODO add transitions
   /**
    * @prop pages - the total num of pages-- the last page
    */
   export let totalPages: number;
   export let currentPage: number;
+
+  async function onGoToPageChange(e: Event) {
+    const num = parseInt((e.currentTarget as HTMLInputElement)?.value);
+    if (num !== currentPage && num > 0 && num <= totalPages) {
+      await goto(`${url}blog/page/${num}`, {});
+    }
+  }
 </script>
 
 <div class="pagination-container">
@@ -24,14 +33,13 @@
                 d="M12.06 5.94a1.5 1.5 0 0 1 0 2.12L8.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Zm6 0a1.5 1.5 0 0 1 0 2.12L14.122 12l3.94 3.94a1.5 1.5 0 0 1-2.122 2.12l-5-5a1.5 1.5 0 0 1 0-2.12l5-5a1.5 1.5 0 0 1 2.122 0Z" /></g
             ></svg
           ></a>
-        <a class="previous-page" href={`/blog/page/${currentPage - 1}`}>
+        <a class="previous-page" href={`/blog/page/${currentPage - 1}`} style={`color: var(--text-secondary);`}>
           <svg
             aria-hidden="true"
             focusable="false"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1024 1024"
             ><path
-              fill="currentColor"
               d="M685.248 104.704a64 64 0 0 1 0 90.496L368.448 512l316.8 316.8a64 64 0 0 1-90.496 90.496L232.704 557.248a64 64 0 0 1 0-90.496l362.048-362.048a64 64 0 0 1 90.496 0z" /></svg>
         </a>
       {/if}
@@ -41,7 +49,8 @@
         <a
           class="page-link"
           class:current={currentPage === i + 1}
-          href={`/blog/page/${i + 1}`}><div class="page-number">{i + 1}</div></a>
+          href={`/blog/page/${i + 1}`}
+          ><div class="page-number">{i + 1}</div></a>
       {/each}
       <!-- {/if} -->
       {#if currentPage < totalPages}
@@ -77,7 +86,10 @@
         id="page-num"
         name="page number"
         min="1"
-        max={totalPages} />
+        max={totalPages}
+        on:change={(e) => {
+          onGoToPageChange(e);
+        }} />
     </div>
   </nav>
 </div>
