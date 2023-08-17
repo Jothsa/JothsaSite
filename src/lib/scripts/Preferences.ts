@@ -7,6 +7,7 @@ export const themes = ['normal'] as const;
 
 export const theme: Writable<Themes> = writable('normal');
 export const themeMode: Writable<ThemeMode> = writable('auto');
+export const imageBlurEffect = writable(true);
 // export const isReducedMotion: Writable<boolean> = writable(false);
 // export const funLevel: Writable<FunLevel> = writable(3);
 

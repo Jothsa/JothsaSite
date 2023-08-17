@@ -7,7 +7,9 @@
   import { description, siteTitle } from '$utils/config';
 
   $: pageTitle =
-    $page.data?.title !== undefined ? `${siteTitle} - ${$page.data.title}` : siteTitle;
+    $page.data?.title !== undefined
+      ? `${siteTitle} - ${$page.data.title}`
+      : siteTitle;
   $: pageDescription = $page.data?.description || description;
 </script>
 

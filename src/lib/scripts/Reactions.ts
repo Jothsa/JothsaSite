@@ -104,14 +104,14 @@ export async function makeReactionRequest(
   if (action === 'increment' || action === 'decrement') {
     const headers = { action: action, slug: slug, reaction: reaction };
     res = await fetch('/api/posts/react', { headers: headers });
-  } else if (action === 'swap' && swapFrom){
+  } else if (action === 'swap' && swapFrom) {
     const headers = {
       action: action,
       slug: slug,
       reaction: reaction,
       'swap-from': swapFrom,
     };
-     res = await fetch('/api/posts/react', { headers: headers });
+    res = await fetch('/api/posts/react', { headers: headers });
   }
   return res;
 }

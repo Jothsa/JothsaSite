@@ -17,7 +17,7 @@ function sortByDate(posts: Post[], order?: 'ascending' | 'descending') {
   );
   if (order === 'ascending') {
     return sortedPosts;
-  } else return sortedPosts.reverse()
+  } else return sortedPosts.reverse();
 }
 
 export async function getPosts() {

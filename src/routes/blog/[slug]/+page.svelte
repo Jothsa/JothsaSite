@@ -40,7 +40,7 @@
       <h3 class="tags-title h3" id="tags-label">Tags</h3>
       <TagsCloud tags={data.meta.tags} />
     </section>
-    <SpreadInterestButton shareText={data.meta.description}  />
+    <SpreadInterestButton shareText={data.meta.description} />
     <section aria-label="react to this post">
       <div class="reactions-wrapper">
         <ReactionsMenu reactions={data.reactions} slug={data.slug} />
@@ -153,10 +153,11 @@
 
   details {
     contain: content;
-    
+
     &.fallback {
-    display: none;
-  }}
+      display: none;
+    }
+  }
 
   :global(:root:is(.no-anchor, .no-popover) details) {
     & .main {

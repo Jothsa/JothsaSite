@@ -27,6 +27,7 @@
     padding-inline: var(--space-xs);
     gap: var(--space-3xs);
     grid-auto-flow: row;
+    inline-size: 100%;
 
     & h1 {
       display: flex;

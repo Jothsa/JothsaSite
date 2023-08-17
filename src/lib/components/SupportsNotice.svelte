@@ -49,7 +49,7 @@
     SupportsCSS.addTest(
       'web-share',
       window?.navigator?.share &&
-       window?.navigator?.canShare({
+        window?.navigator?.canShare({
           title: 'title',
           text: 'description',
           url: 'www.apple.com',

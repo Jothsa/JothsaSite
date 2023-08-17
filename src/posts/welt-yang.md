@@ -8,9 +8,19 @@ published: true
 featuredImage: weltBG.png
 ---
 
-Check out all this post and this image.
+<script lang="ts">
+  import welt from '$images/weltBG.png?as=run';
+  import Image from '$components/custom/img.svelte';
+  import Accordion from '$components/Accordion.svelte';
 
-![Welt Yang](weltBG.png)
+  const panels = [ {panelSrc: welt, alt:'welt yang', title: 'Welt Yang 1', text: 'Welt yang is cool'}, {panelSrc: welt, alt:'welt yang', title: 'Welt Yang 1', text: 'Welt yang is cool'}];
+</script>
+
+Check out all this post and this image and accordion.
+
+<Accordion {panels} />
+
+<Image alt="Welt Yang" src={welt} loading="eager" />
 
 Is the shadow not the coolest thing ever!!!
 
@@ -28,7 +38,7 @@ When Siegfried is overrun by the Son of Dawn and Son of Darkness within, Welt im
 
 Telling Siegfried to grab Theresa and run, Welt attempts to fight Sirin. Sirin tries to impale Siegfried, but Welt stops her Subspace Lance. He introduces himself as Welt, the 1st Herrscher. Sirin is informed of the Honkai “traitor” (that being Welt). Welt attacks Sirin using a “barrage of reason”, however he notices that it’s stopped by what he called an “imaginary void barrier”. While he thinks she’s distracted, Welt comes in from behind, only to fall into her trap. Welt is promptly swallowed by Benares.
 
-![Welt Yang](weltBG.png)
+![Welt Yang]({welt})
 
 However, this doesn’t kill him. Welt simply pries open Benares’ maw and walks out, challenging Sirin to a second round. When Benares tries to get up and eat him again, Welt simply drops (what I assume to be a giant mech) on it. Welt summons dozens of mechs, as well as other dozens that were hidden. They all fire on Sirin, even managing to crack her void shield. Welt summons even more troops, including missile barrages and dozens of warships. They all fire on Sirin. However, Sirin redirects these attacks and destroys all his mechs. Sirin grabs Welt, but Welt is smiling. This is because a nuke is on its way, right behind Sirin. However, it doesn’t manage to kill her, only severely weaken her.
 

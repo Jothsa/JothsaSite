@@ -62,11 +62,19 @@ const config = {
     // If your environment is not supported or you settled on a specific environment, switch out the adapter.
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapterNetlify(),
-    target: '#svelte',
+    // target: '#svelte',
+
+    // vite: {
+    // 	build: {
+    // 		target: "esnext"
+    // 	}
+    // },
     alias: {
       $components: path.resolve('src/lib/components'),
       $styles: path.resolve('src/lib/styles'),
       $scripts: path.resolve('src/lib/scripts'),
+      $assets: path.resolve('src/lib/assets'),
+      $images: path.resolve('src/lib/assets/images'),
       $utils: path.resolve('src/lib/utils'),
       $posts: path.resolve('src/posts'),
     },

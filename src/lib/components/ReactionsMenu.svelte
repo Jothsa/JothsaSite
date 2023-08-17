@@ -451,12 +451,16 @@
     display: inline-block;
     transition: transform 300ms;
   }
-  
+
   /* button effects when menu open */
   .radial-menu:has(:popover-open) .menu-toggle {
     /* transform: rotate(45deg); */
     /* animation: var(--click-anim); */
-    background-color: color-mix(in oklch, var(--toggle-bg), var(--decrease-contrast) 20%);
+    background-color: color-mix(
+      in oklch,
+      var(--toggle-bg),
+      var(--decrease-contrast) 20%
+    );
   }
 
   .menu-items {

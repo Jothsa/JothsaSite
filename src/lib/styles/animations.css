@@ -1,5 +1,6 @@
 @keyframes wiggle {
-  0%, 100% {
+  0%,
+  100% {
     rotate: var(--wiggle-init, 0deg);
   }
   25% {

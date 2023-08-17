@@ -11,9 +11,9 @@ declare namespace svelteHTML {
     // If you want to use on:beforeinstallprompt
     // 'on:beforeinstallprompt'?: (event: any) => any;
     // If you want to use myCustomAttribute={..} (note: all lowercase)
-    anchor?: string
+    anchor?: string;
     popover?: boolean | 'auto' | 'manual'; // You can replace any with something more specific if you like
     popovertarget?: string;
-    popovertargetaction?: 'show' | 'hide' | 'toggle'
+    popovertargetaction?: 'show' | 'hide' | 'toggle';
   }
 }
