@@ -5,7 +5,7 @@
   import TagsCloud from './TagsCloud.svelte';
   import { formatDate } from '$utils/utils';
   import type { Post } from '$utils/types';
-
+  import Img from './custom/img.svelte';
   export let wrapperTag: string = 'li';
   export let isLIRole = true;
   export let post: Post;
@@ -32,6 +32,11 @@
   <a href={`/blog/${post.slug}`} class="post-link title styled-link"
     >{post.title}</a>
   <span class="date">{formatDate(post.date)}</span>
+  {#if post?.featuredImage}
+    <div class="featured-image-wrapper">
+      <Img src={post.featuredImage} alt={post?.featuredImageAlt || ``} shadow={true} />
+    </div>
+  {/if}
   <div class="tag-cloud">
     <TagsCloud tags={post.tags} />
   </div>
@@ -158,6 +163,11 @@
         background-color: var(--card-bg);
         color: var(--card-bg);
       }
+    }
+
+    & .featured-image-wrapper {
+      /* overflow: hidden; */
+      block-size: fit-content;
     }
 
     & .tag-cloud {
