@@ -73,9 +73,11 @@
 
   <details id="supports-menu" class="styled-links">
     <summary
-      >Your browser doesn't support the latest features used on this site.</summary>
+      >Your browser doesn't support all of the features used on this site.</summary>
     <p>
-      We live on the edge here. To get the best experience, upgrade your browser
+      We live on the edge here. Because your browser doesn't support the
+      modern/bleeding edge features used on this site, some elements may be
+      hidden or non-functional. To get the best experience, upgrade your browser
       or, if you're feeling adventurous, enable some flags.
     </p>
 
@@ -91,9 +93,11 @@
             >The Popover API</a>
         </li>
         <li id="web-share">
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API"
-            >Web Share API</a>
+          <p>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API"
+              >Web Share API</a> Note: Chrome on MacOS does not support this feature at the time of writing, so there might be nothing you can do except switch to another browser. This feature is used minimally though, so it's not a big deal.
+          </p>
         </li>
         <li id="anchor-pos">
           <a
