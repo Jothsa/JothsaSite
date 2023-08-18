@@ -258,7 +258,7 @@
       </li>
     {/each}
     <!--  Need extra close button bc the popover lays on top of the X and doesn't let you get to it    -->
-    <li class="item">
+    <li class="item has-hidden-close">
       <button
         popovertargetaction="hide"
         popovertarget="menu-items"
@@ -505,7 +505,8 @@
     inline-size: auto;
     block-size: auto;
 
-    & :is(#menu-toggle, .item:has(.hidden-close)) {
+    /* has-hidden-close is needed for when :has isn't supported cough firefox cough */
+    & :is(#menu-toggle, .item:is(:has(.hidden-close), .has-hidden-close)) {
       display: none;
     }
 
