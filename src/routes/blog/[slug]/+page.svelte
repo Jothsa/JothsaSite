@@ -6,7 +6,6 @@
   import TagsCloud from '$components/TagsCloud.svelte';
   import ViewProgress from '$components/ViewProgress.svelte';
   import ReactionsMenu from '$components/ReactionsMenu.svelte';
-  import ReactionsFallback from '$components/ReactionsFallback.svelte';
   import SpreadInterestButton from '$components/SpreadInterestButton.svelte';
   export let data: PageData;
 
@@ -44,9 +43,6 @@
     <section aria-label="react to this post">
       <div class="reactions-wrapper">
         <ReactionsMenu reactions={data.reactions} slug={data.slug} />
-      </div>
-      <div class="reactions-fallback-wrapper">
-        <ReactionsFallback />
       </div>
       <details>
         <summary>About Reactions</summary>
@@ -99,6 +95,8 @@
 
     /* filter: drop-shadow(30px 10px 4px #4444dd); */
 
+    /* inline-size: 90vw; */
+    /* min-inline-size: 0; */
     -webkit-mask: var(--mask-corner-cut-angles-1);
 
     /* &::after {
