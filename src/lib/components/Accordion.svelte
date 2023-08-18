@@ -11,6 +11,7 @@
     themeColor?: string;
     themeContrastColor?: string;
     titleBG?: CSS.Property.Background;
+    style?: string;
     // controls placement of the body text
     // textPlacement?: CSS.Property.PlaceSelf;
     // used if the text on image needs to be adjusted
@@ -28,6 +29,8 @@
   // controls the placement of content text when the accordion is in the inline orientation
   export let contentPlacementInline: CSS.Property.PlaceSelf | null = null;
   export let blockSize: CSS.Property.BlockSize | null = null;
+  export let allowOverflow = true;
+  export let style = '';
 
   const headingTag = `h${headingLevel}`;
 
@@ -45,7 +48,9 @@
     if (!supportsHas) console.log('this browser does not support :has');
     if (accordion) {
       accordion.addEventListener('click', (e: Event) => {
-        const activePanel = (e.target as HTMLElement).closest('.panel') as HTMLDivElement | null;
+        const activePanel = (e.target as HTMLElement).closest(
+          '.panel',
+        ) as HTMLDivElement | null;
         if (!activePanel) return;
         toggleAccordion(activePanel);
       });
@@ -63,7 +68,9 @@
         panelToActivate.parentElement as HTMLDivElement | null;
       if (panelToActivateParent === null) return;
       const panelToActivateContents: HTMLDivElement | null =
-        panelToActivate.querySelector('.panel-content') as HTMLDivElement | null;
+        panelToActivate.querySelector(
+          '.panel-content',
+        ) as HTMLDivElement | null;
       if (panelToActivateContents === null) return;
       const buttons: NodeListOf<HTMLButtonElement> =
         panelToActivateParent.querySelectorAll('button');
@@ -86,39 +93,43 @@
       panelToActivateContents.setAttribute('aria-hidden', 'false');
     }
   });
+
+  // TODO test to see if I need to set aria-hidden in onMount (i think the way I have it now prevents it from being changed?)
 </script>
 
-<div
-  class={`accordion ${orientation} text-${textPlacement} ${
-    titleDisappearBlock && `title-disappear-block`
-  }`}
-  style={accordionStyle}>
-  {#each panels as panel, i}
-    <div class="panel">
-      <svelte:element
-        this={headingTag}
-        id={`panel${i + 1}-heading`}
-        class="panel-heading">
-        <button
-          class="panel-trigger"
-          aria-controls={`panel${i + 1}-content`}
-          aria-expanded={i === 0}>
-          <span class="panel-title" id={`panel${i + 1}-title`}>
-            {panel.title}
-          </span>
-        </button>
-      </svelte:element>
-      <div
-        class="panel-content"
-        id={`panel${i + 1}-content`}
-        aria-labelledby={`panel${i + 1}-heading`}
-        aria-hidden={!(i === 0)}
-        role="region">
-        <p>{panel.text}</p>
-        <Img class="panel-image" src={panel.panelSrc} alt={panel.alt} />
+<div class={`accordion-container ${allowOverflow ? `allow-overflow` : ``}`}>
+  <div
+    class={`accordion ${orientation} text-${textPlacement} ${
+      titleDisappearBlock && `title-disappear-block`
+    }`}
+    style={`${accordionStyle} ${style}`}>
+    {#each panels as panel, i}
+      <div class={`panel ${i === 0 && `expanded`}`} style={panel.style}>
+        <svelte:element
+          this={headingTag}
+          id={`panel${i + 1}-heading`}
+          class="panel-heading">
+          <button
+            class="panel-trigger"
+            aria-controls={`panel${i + 1}-content`}
+            aria-expanded={i === 0}>
+            <span class="panel-title" id={`panel${i + 1}-title`}>
+              {panel.title}
+            </span>
+          </button>
+        </svelte:element>
+        <div
+          class="panel-content"
+          id={`panel${i + 1}-content`}
+          aria-labelledby={`panel${i + 1}-heading`}
+          aria-hidden={!(i === 0)}
+          role="region">
+          <p>{panel.text}</p>
+          <Img class="panel-image" src={panel.panelSrc} alt={panel.alt} />
+        </div>
       </div>
-    </div>
-  {/each}
+    {/each}
+  </div>
 </div>
 
 <style>
@@ -136,6 +147,16 @@
         img .panel-image
   */
 
+  .accordion-container {
+    contain: content;
+
+    /* TODO fix these stupid overflow/sizing issues */
+
+    /* width: 85vw; */
+    container: accordion / inline-size;
+    overflow-x: scroll;
+  }
+
   .accordion {
     /* [1] padding prevents issue with outlines
      * [2] block size should be fixed to prevent weirdness when in inline direction
@@ -148,17 +169,18 @@
     --panel-collapsed-size: calc(
       (var(--panel-padding) * 2) + var(--button-size)
     );
-    --panel-expanded-size: clamp(15rem, 40vh, 20rem);
+    --panel-expanded-size: 20vw;
     --panel-gap: 1rem;
     --title-placement: center center;
     --content-placement: end center;
     --content-placement-inline: end center;
     --transition-time: 500ms;
     --transition-offset: 250ms;
+    --panel-heading-font: system-ui;
 
     display: flex;
+    /* max-width: 100%; */
     padding: 0.5rem; /* [1] */
-    contain: content;
     gap: var(--panel-gap);
 
     & * {
@@ -222,6 +244,7 @@
 
   .panel-title {
     background: var(--title-bg, transparent);
+    font-family: var(--panel-heading-font), system-ui;
   }
 
   .panel-content {
@@ -235,8 +258,12 @@
     }
   }
 
-  /* need to use because the class prop of svelte-img only applies to the fallback img element not the picture element */
-  :global(.accordion .panel-content .panel-image, .accordion .panel-content picture) {
+  /* need to use because the class prop of svelte-img only applies to the fallback img element not the picture element 
+  make sure this works if img fallback is used */
+  :global(
+      .accordion .panel-content .panel-image,
+      .accordion .panel-content picture
+    ) {
     position: absolute;
     z-index: -1;
     width: 100%;
@@ -285,6 +312,29 @@
   @supports not selector(:has(p)) {
     .panel.expanded {
       /* TODO Will add when styles finalized */
+      flex-basis: var(--panel-expanded-size);
+      flex-grow: 1;
+    }
+  }
+
+  /* don't know wHy it has to be tHiS wAy
+   * hEvEn fOrBiD wE fUlLy sUpPoRt mOdErN cSs iN tHe YeAr oF oUr LoRd tWo ThOuSaNd AnD tWeNtY tHrEe 
+   */
+  /* stylelint-disable-next-line no-descending-specificity */
+  p {
+    @supports not selector(:has(h1)) {
+      opacity: 1;
+      transform: translateY(0);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition:
+          transform var(--transition-time) var(--transition-time),
+          opacity var(--transition-time) var(--transition-time); /* [1] */
+      }
+
+      @media (prefers-reduced-motion) {
+        transition: opacity var(--transition-time) var(--transition-time); /* [1] */
+      }
     }
   }
 
@@ -343,4 +393,21 @@
         transform: translateX(-3em);
       } */
   }
+
+
+  /* TODO test block overflow */
+  .accordion-container.allow-overflow .inline .panel {
+    min-inline-size: var(--panel-collapsed-size);
+  }
+  .accordion-container.allow-overflow .block .panel {
+    min-block-size: var(--panel-collapsed-size);
+  }
+
+  .accordion-container.allow-overflow .inline .panel:is(.expanded, :has([aria-expanded='true'])) {
+    min-inline-size: var(--panel-expanded-size);
+  }
+  .accordion-container.allow-overflow .block .panel:is(.expanded, :has([aria-expanded='true'])) {
+    min-block-size: var(--panel-expanded-size);
+  }
+
 </style>
