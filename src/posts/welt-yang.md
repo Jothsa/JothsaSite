@@ -5,15 +5,38 @@ date: '2023-08-15'
 tags:
   - personal
 published: true
-featuredImage: weltBG.png
+featuredImage: welt
 ---
 
-<script lang="ts">
+
+<script lang="ts" context="module">
+  import weltFeaturedCardImage from '$images/weltBG.png?h=100;200;400&w=200;400;700&fit=cover&as=run';
   import welt from '$images/weltBG.png?as=run';
+  import welt1 from '$images/welt1.png?as=run';
+  import welt2 from '$images/welt2.png?as=run';
+  import welt3 from '$images/welt3.png?as=run';
+  import welt4 from '$images/welt4.png?as=run';
+  import welt5 from '$images/welt5.png?as=run';
+  import welt6 from '$images/welt6.png?as=run';
+  import welt7 from '$images/welt7.png?as=run';
+  import welt8 from '$images/welt8.png?as=run';
+  import welt9 from '$images/welt9.png?as=run';
   import Image from '$components/custom/img.svelte';
   import Accordion from '$components/Accordion.svelte';
 
-  const panels = [ {panelSrc: welt, alt:'welt yang', title: 'Welt Yang 1', text: 'Welt yang is cool'}, {panelSrc: welt, alt:'welt yang', title: 'Welt Yang 1', text: 'Welt yang is cool'}];
+  const panels = [
+    {panelSrc: welt, alt:'', title: 'Welt BG', text: 'Welt yang is cool'},
+    {panelSrc: welt1, alt:'', title: 'Welt Yang 1', text: 'Welt of Anti Entropy'},
+    {panelSrc: welt2, alt:'', title: 'Welt Yang 2', text: 'Kneel'},
+    {panelSrc: welt4, alt:'', title: 'Welt of Humanity', text: 'Law and Reason not the Chaos of the Void'},
+    {panelSrc: welt5, alt:'', title: 'Cogitative Re-Assembly', text: ''},
+    {panelSrc: welt6, alt:'', title: 'Welt', text: 'Do not doubt the might of the stars'},
+    {panelSrc: welt3, alt:'', title: '10,000 G', text: 'no mess'},
+    {panelSrc: welt7, alt:'', title: 'Star of Eden', text: 'Star of Eden'},
+    {panelSrc: welt8, alt:'', title: 'Quasi Black Hole', text: ''},
+    {panelSrc: welt9, alt:'', title: 'Another World', text: 'Saving another world'},
+    ];
+    metadata.featuredImage = weltFeaturedCardImage;
 </script>
 
 Check out all this post and this image and accordion.
