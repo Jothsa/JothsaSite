@@ -1,9 +1,19 @@
 <script lang="ts">
-  import { theme, themes } from '$scripts/Preferences';
+  import { theme, themes, blur } from '$scripts/Preferences';
   import ThemeModeButton from './ThemeModeButton.svelte';
-  import { onMount } from 'svelte';
 
   let reducedMotionMessage = 'Reduce motion';
+
+  function onBlurChange(e: Event) {
+    if ((e.currentTarget as HTMLInputElement).checked) {
+      $blur = true;
+    } else {
+      $blur = false;
+    }
+    const blurAttr = $blur ? `true` : `false`;
+    document.documentElement.setAttribute('data-blur', blurAttr);
+    localStorage.setItem('blur', blurAttr);
+  }
 </script>
 
 <div class="pref-container">
@@ -12,6 +22,12 @@
     <div class="pref-inputs">
       <div class="pref-buttons">
         <ThemeModeButton />
+        <label class="input-wrapper"
+          >{$blur ? `Disable` : `Enable`} blur effects<input
+            type="checkbox"
+            aria-labelledby="blur-label"
+            bind:checked={$blur}
+            on:change={(e) => onBlurChange(e)} /></label>
       </div>
       <div class="theme-wrapper">
         <label for="themes">Theme</label>
@@ -52,6 +68,11 @@
     @container (inline-size > 20ch) {
       grid-auto-flow: column;
     }
+  }
+
+  .input-wrapper {
+    display: flex;
+    gap: var(--space-xs);
   }
 
   .pref-buttons {
