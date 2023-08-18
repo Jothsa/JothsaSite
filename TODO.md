@@ -31,3 +31,4 @@
 - [ ] add featured images to post/post card
 - [ ] add random post
 - [ ] toggle for image blur effect
+- [ ] make sure view progress is working
