@@ -30,8 +30,7 @@ export const GET = (async ({ request }) => {
   const headerPostSlugRaw = request.headers.get('slug');
   const headerActionRaw = request.headers.get('action');
   let reactions: ReactionCounts;
-  let reaction: ReactionDescription | undefined = undefined;
-  // ? null or und?
+  let reaction: ReactionDescription | null = null;
   let reactionSwapFrom: ReactionDescription | null = null;
   let postSlug: string | undefined = undefined;
   let action: 'increment' | 'decrement' | 'fetch' | 'swap' | undefined =
@@ -91,11 +90,24 @@ export const GET = (async ({ request }) => {
     }
   } else if (action === 'fetch') {
     const conn = connect(planetScaleConfig);
-    const result = await conn.execute(
+    let result = await conn.execute(
       `select \`love\`, \`like\`, \`laugh\`, \`mindblown\`, \`celebrate\`, \`skeptical\`, \`disappointed\`, \`upset\` from \`post-reactions\` where slug = '${postSlug}'`,
       [],
       { as: 'array' },
     );
+    // if the post isn't in the table, create it 
+    // if for some reason you needed to update the reactions before fetching their values, there would still be an error, but idk when that would be an issue
+    // (I suppose to save a db call, I could just return 0 for the reactions values, but it's not a huge deal since it should be just one more query per post)
+    if (result.rows.length === 0) {
+      await conn.execute(
+        `insert into \`post-reactions\`(slug) values ('${postSlug}')`,
+      );
+      result = await conn.execute(
+        `select \`love\`, \`like\`, \`laugh\`, \`mindblown\`, \`celebrate\`, \`skeptical\`, \`disappointed\`, \`upset\` from \`post-reactions\` where slug = '${postSlug}'`,
+        [],
+        { as: 'array' },
+      );
+    }
     const reactionsRow = result.rows[0];
     const love = reactionsRow.at(0) as number;
     const like = reactionsRow.at(1) as number;
