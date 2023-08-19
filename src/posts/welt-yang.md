@@ -22,7 +22,8 @@ featuredImage: welt
   import welt9 from '$images/welt9.png?as=run';
   import Image from '$components/custom/img.svelte';
   import Accordion from '$components/Accordion.svelte';
-  import MediaChrome from '$components/MediaChrome.svelte';
+  import 'media-chrome';
+  import weltVid from '$assets/videos/WeltUlt.webm';
 
   const panels = [
     {panelSrc: welt, alt:'', title: 'Welt BG', text: 'Welt yang is cool'},
@@ -37,8 +38,6 @@ featuredImage: welt
     {panelSrc: welt9, alt:'', title: 'Another World', text: 'Saving another world'},
     ];
     metadata.featuredImage = weltFeaturedCardImage;
-    import 'media-chrome';
-    import weltVid from '$assets/videos/WeltUlt.webm';
 </script>
 
 Check out all this post and this image and accordion.
