@@ -8,7 +8,6 @@ published: true
 featuredImage: welt
 ---
 
-
 <script lang="ts" context="module">
   import weltFeaturedCardImage from '$images/weltBG.png?h=100;200;400&w=200;400;700&fit=cover&as=run';
   import welt from '$images/weltBG.png?as=run';
@@ -23,6 +22,7 @@ featuredImage: welt
   import welt9 from '$images/welt9.png?as=run';
   import Image from '$components/custom/img.svelte';
   import Accordion from '$components/Accordion.svelte';
+  import MediaChrome from '$components/MediaChrome.svelte';
 
   const panels = [
     {panelSrc: welt, alt:'', title: 'Welt BG', text: 'Welt yang is cool'},
@@ -37,6 +37,8 @@ featuredImage: welt
     {panelSrc: welt9, alt:'', title: 'Another World', text: 'Saving another world'},
     ];
     metadata.featuredImage = weltFeaturedCardImage;
+    import 'media-chrome';
+    import weltVid from '$assets/videos/WeltUlt.webm';
 </script>
 
 Check out all this post and this image and accordion.
@@ -46,6 +48,21 @@ Check out all this post and this image and accordion.
 <Image alt="Welt Yang" src={welt} loading="eager" />
 
 Is the shadow not the coolest thing ever!!!
+
+<media-controller>
+  <video
+    slot="media"
+    src={weltVid}
+  ></video>
+  <media-control-bar>
+    <media-play-button></media-play-button>
+    <media-mute-button></media-mute-button>
+    <media-volume-range></media-volume-range>
+    <media-time-range></media-time-range>
+    <media-pip-button></media-pip-button>
+    <media-fullscreen-button></media-fullscreen-button>
+  </media-control-bar>
+</media-controller>
 
 A few years before the Second Herrscher Eruption, Welt and Dr. Lieserl Albert Einstein went after a Schicksal convoy based on intel that said it was carrying a “Herrscher Killer”. Welt attacked the truck, picking it up and spilling out the Valkyries carried within. One of these valkyries was Cecilia Schariac. He obtained a small black cube from within the truck, which was apparently the weapon. However, there was nothing within. They’d been misled. The Valkyries attacked Welt, but he stopped their attacks with ease, launching Cecilia away. He then discovered that Cecilia’s blood burned him, and said that he needed to find her. The next day, Welt spotted Cecilia with Siegfried Kaslana.
 
