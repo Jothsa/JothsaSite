@@ -179,6 +179,7 @@
     --panel-heading-font: system-ui;
 
     display: flex;
+
     /* max-width: 100%; */
     padding: 0.5rem; /* [1] */
     gap: var(--panel-gap);
@@ -394,20 +395,24 @@
       } */
   }
 
-
   /* TODO test block overflow */
   .accordion-container.allow-overflow .inline .panel {
     min-inline-size: var(--panel-collapsed-size);
   }
+
   .accordion-container.allow-overflow .block .panel {
     min-block-size: var(--panel-collapsed-size);
   }
 
-  .accordion-container.allow-overflow .inline .panel:is(.expanded, :has([aria-expanded='true'])) {
+  .accordion-container.allow-overflow
+    .inline
+    .panel:is(.expanded, :has([aria-expanded='true'])) {
     min-inline-size: var(--panel-expanded-size);
   }
-  .accordion-container.allow-overflow .block .panel:is(.expanded, :has([aria-expanded='true'])) {
+
+  .accordion-container.allow-overflow
+    .block
+    .panel:is(.expanded, :has([aria-expanded='true'])) {
     min-block-size: var(--panel-expanded-size);
   }
-
 </style>

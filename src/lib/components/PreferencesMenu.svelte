@@ -56,12 +56,12 @@
   .preferences-wrapper {
     position: absolute;
     inset-block-start: 4ch;
-    inset-inline-end: .5ch;
+    inset-inline-end: 0.5ch;
     display: block;
     inline-size: fit-content;
     block-size: fit-content;
-    background: var(--secondary);
     border-radius: 1ch;
+    background: var(--secondary);
     opacity: 0;
     outline: solid blue 2px;
     transition:

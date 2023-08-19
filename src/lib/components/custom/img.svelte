@@ -9,23 +9,32 @@
   export let shadow = true;
   export let containerStyle = '';
 
-  // rn the class attribute gets added to the fallback image. 
+  // rn the class attribute gets added to the fallback image.
   // Reader view (in Firefox of course) sometimes displays the fallback which is not what we want
-  // not sure the best way 
+  // not sure the best way
 
   // TODO add more props (behind :where to allow overriding?)
-
 </script>
 
-<div class={`image-container ${!blurEffect ? `no-blur` : ``} ${!shadow ? `no-shadow` : ``}`} style={containerStyle} >
+<div
+  class={`image-container ${!blurEffect ? `no-blur` : ``} ${
+    !shadow ? `no-shadow` : ``
+  }`}
+  style={containerStyle}>
   <Img {src} {alt} {loading} class="fallback-image" shadow={false} />
   <div class="image-shadow">
-    <Img {src} alt="" aria-hidden="true" focusable="false" {loading} class="fallback-image" />
+    <Img
+      {src}
+      alt=""
+      aria-hidden="true"
+      focusable="false"
+      {loading}
+      class="fallback-image" />
   </div>
 </div>
 
 <style>
-/* stylelint-disable selector-type-no-unknown */
+  /* stylelint-disable selector-type-no-unknown */
   @keyframes blur-in-and-out {
     entry-crossing 0% {
       filter: blur(var(--blur, 50px));
@@ -65,8 +74,7 @@
       opacity: 0;
     }
   }
-/* stylelint-enable selector-type-no-unknown */
-
+  /* stylelint-enable selector-type-no-unknown */
 
   .image-container {
     position: relative;

@@ -96,6 +96,7 @@
     /* filter: drop-shadow(30px 10px 4px #4444dd); */
 
     /* inline-size: 90vw; */
+
     /* min-inline-size: 0; */
     -webkit-mask: var(--mask-corner-cut-angles-1);
 

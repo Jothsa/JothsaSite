@@ -155,9 +155,21 @@ hr {
 }
 
 media-controller {
-  --media-primary-color: color-mix(in oklch,var(--text-secondary)85%, transparent);
-  --media-secondary-color: color-mix(in oklch, var(--tertiary) 75%, transparent);
-  --media-control-hover-background: color-mix(in oklch, var(--secondary) 75%, transparent);
+  --media-primary-color: color-mix(
+    in oklch,
+    var(--text-secondary) 85%,
+    transparent
+  );
+  --media-secondary-color: color-mix(
+    in oklch,
+    var(--tertiary) 75%,
+    transparent
+  );
+  --media-control-hover-background: color-mix(
+    in oklch,
+    var(--secondary) 75%,
+    transparent
+  );
 }
 
 /* Do not show the airplay button unless AirPlay is available */

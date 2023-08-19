@@ -95,7 +95,7 @@ export const GET = (async ({ request }) => {
       [],
       { as: 'array' },
     );
-    // if the post isn't in the table, create it 
+    // if the post isn't in the table, create it
     // if for some reason you needed to update the reactions before fetching their values, there would still be an error, but idk when that would be an issue
     // (I suppose to save a db call, I could just return 0 for the reactions values, but it's not a huge deal since it should be just one more query per post)
     if (result.rows.length === 0) {

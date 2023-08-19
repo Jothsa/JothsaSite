@@ -30,12 +30,13 @@
             on:change={(e) => onBlurChange(e)} /></label>
       </div>
       <div class="theme-wrapper">
-        <label for="themes">Theme
-        <select name="themes" id="themes" bind:value={$theme}>
-          {#each themes as t}
-            <option value={t}>{t}</option>
-          {/each}
-        </select>
+        <label for="themes"
+          >Theme
+          <select name="themes" id="themes" bind:value={$theme}>
+            {#each themes as t}
+              <option value={t}>{t}</option>
+            {/each}
+          </select>
         </label>
       </div>
     </div>
@@ -44,9 +45,9 @@
 
 <style lang="postcss">
   .pref-container {
+    inline-size: max(15ch, 20vw);
     padding: var(--space-xs);
     container: preferences / inline-size;
-    inline-size: max(15ch, 20vw);
   }
 
   .prefs {

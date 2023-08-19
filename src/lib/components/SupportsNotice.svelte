@@ -96,7 +96,10 @@
           <p>
             <a
               href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API"
-              >Web Share API</a> Note: Chrome on MacOS does not support this feature at the time of writing, so there might be nothing you can do except switch to another browser. This feature is used minimally though, so it's not a big deal.
+              >Web Share API</a> Note: Chrome on MacOS does not support this feature
+            at the time of writing, so there might be nothing you can do except switch
+            to another browser. This feature is used minimally though, so it's not
+            a big deal.
           </p>
         </li>
         <li id="anchor-pos">

@@ -34,7 +34,10 @@
   <span class="date">{formatDate(post.date)}</span>
   {#if post?.featuredImage}
     <div class="featured-image-wrapper">
-      <Img src={post.featuredImage} alt={post?.featuredImageAlt || ``} shadow={true} />
+      <Img
+        src={post.featuredImage}
+        alt={post?.featuredImageAlt || ``}
+        shadow={true} />
     </div>
   {/if}
   <div class="tag-cloud">

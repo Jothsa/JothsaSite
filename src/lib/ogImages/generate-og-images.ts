@@ -1,5 +1,3 @@
-import type { Post } from "$utils/types";
+import type { Post } from '$utils/types';
 
-export async function generateOGImage(posts: Post[]) {
-
-}
+export async function generateOGImage(posts: Post[]) {}
