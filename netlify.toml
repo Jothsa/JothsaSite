@@ -3,4 +3,3 @@
   publish = "build"
 [functions]
   node_bundler = "esbuild"
-  external_node_modules = ["@sentry/sveltekit"]
