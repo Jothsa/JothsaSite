@@ -7,7 +7,7 @@ export const load = async function load({ params, fetch }) {
     const post = await import(`../../../posts/${params.slug}.md`);
     try {
       const reactionHeaders = { slug: params.slug, action: 'fetch' };
-      const reactionResponse = await fetch('/api/posts/react', {
+      const reactionResponse = await fetch('/api/react', {
         headers: reactionHeaders,
       });
       reactions = await reactionResponse.json();
