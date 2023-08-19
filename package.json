@@ -2,6 +2,7 @@
   "name": "jothsa-site",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -51,7 +52,6 @@
     "vite": "^4.4.9",
     "vitest": "^0.34.2"
   },
-  "type": "module",
   "dependencies": {
     "@fec/remark-a11y-emoji": "^3.1.0",
     "@sentry/sveltekit": "^7.64.0",
