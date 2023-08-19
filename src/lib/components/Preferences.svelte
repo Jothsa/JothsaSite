@@ -30,12 +30,13 @@
             on:change={(e) => onBlurChange(e)} /></label>
       </div>
       <div class="theme-wrapper">
-        <label for="themes">Theme</label>
+        <label for="themes">Theme
         <select name="themes" id="themes" bind:value={$theme}>
           {#each themes as t}
             <option value={t}>{t}</option>
           {/each}
         </select>
+        </label>
       </div>
     </div>
   </div>
@@ -45,6 +46,7 @@
   .pref-container {
     padding: var(--space-xs);
     container: preferences / inline-size;
+    inline-size: max(15ch, 20vw);
   }
 
   .prefs {
@@ -60,7 +62,7 @@
   }
 
   .pref-inputs {
-    display: grid;
+    display: flex;
     justify-content: center;
     gap: var(--space-xs);
     grid-auto-columns: fit-content(15ch);
@@ -88,5 +90,6 @@
 
   .theme-wrapper {
     display: flex;
+    block-size: fit-content;
   }
 </style>

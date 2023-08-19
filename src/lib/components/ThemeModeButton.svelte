@@ -117,7 +117,7 @@
     &:focus-visible,
     &:hover {
       /* border-color: color-mix(in oklch, var(--accent), var(--increase-contrast) 50%); */
-      border-color: currentColor;
+      border-color: currentcolor;
     }
 
     & svg {
