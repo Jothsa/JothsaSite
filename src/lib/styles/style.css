@@ -173,9 +173,9 @@ media-controller {
 }
 
 /* Do not show the airplay button unless AirPlay is available */
-media-airplay-button[mediaairplayunavailable] {
+/* media-airplay-button[mediaairplayunavailable] {
   display: none;
-}
+} */
 
 /* Do not show the captions button if there are no captions for the media */
 media-captions-button:not([mediasubtitleslist]) {
