@@ -68,6 +68,7 @@ const config = {
       $styles: path.resolve('src/lib/styles'),
       $scripts: path.resolve('src/lib/scripts'),
       $assets: path.resolve('src/lib/assets'),
+      $ogImages: path.resolve('src/static/ogImages'),
       $images: path.resolve('src/lib/assets/images'),
       $videos: path.resolve('src/lib/assets/videos'),
       $utils: path.resolve('src/lib/utils'),

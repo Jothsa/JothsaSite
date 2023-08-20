@@ -5,7 +5,6 @@ date: '2023-08-15'
 tags:
   - personal
 published: true
-featuredImage: welt
 ---
 
 <script lang="ts" context="module">
