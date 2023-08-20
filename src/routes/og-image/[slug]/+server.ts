@@ -5,7 +5,7 @@ import { getOGImage } from '$lib/ogImages/generateOGImage.js';
 export const GET = async ({ params }) => {
   try {
     const post = await import(`../../../posts/${params.slug}.md`);
-    const img = await getOGImage(post.metadata.title, post.metadata?.featuredImage);
+    const img = await getOGImage(post.metadata.title);
     return new Response(img, {
       status: 200,
       headers: {

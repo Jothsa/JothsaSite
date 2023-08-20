@@ -1,12 +1,13 @@
-import satori from 'satori';
-import { Resvg } from '@resvg/resvg-js';
-import { readFileSync } from 'fs';
-import type { Post } from '../utils/types';
+import { Resvg, type ResvgRenderOptions } from '@resvg/resvg-js';
+
 import baseTemplate from './OG.svg?raw';
+import { resolve } from 'path';
+import type { Picture } from 'vite-imagetools';
+
 
 export async function getOGImage(
   title: string,
-  featuredImage: string | undefined,
+  featuredImage: Picture | undefined,
   width = 1200,
   height = 632,
 ) {
@@ -20,56 +21,22 @@ export async function getOGImage(
 
 async function customizeTemplate(
   title: string,
-  featuredImage: string | undefined,
+  featuredImage: Picture | undefined,
   template: string,
 ) {
-  // const title = {
-  //   type: 'h1',
-  //   props: {
-  //     children: post.title,
-  //     style: { color: 'black' },
-  //   },
-  // };
-  // const postDescription = {
-  //   type: 'p',
-  //   props: {
-  //     children: post.description,
-  //     style: { color: 'black' },
-  //   },
-  // };
-  // const siteLogo = {
-  //   type: 'img',
-  //   props: {
-  //     src: 'TODO',
-  //     style: { width: '300px', height: '300px' },
-  //   },
-  // };
-  // const template = {
-  //   type: 'div',
-  //   props: {
-  //     children: {
-  //       type: 'div',
-  //       props: {
-  //         children: 'hello, world',
-  //         style: { color: 'black' },
-  //       },
-  //     },
-  //     style: { color: 'black' },
-  //   },
-  // };
-
-  let customizedTemplate = template;
+  let customizedTemplate = template.toString();
 
   customizedTemplate = customizedTemplate.replace('${post-title}', title);
   console.log('template: ', customizedTemplate);
-  let imgBase64: string = '';
+  // let imgBase64: string = '';
   if (featuredImage) {
-    const img = await import(featuredImage);
-    imgBase64 = btoa(img);
+    console.log('fi', featuredImage);
+    // const img = await import(featuredImage.img.src);
+    // imgBase64 = btoa(featuredImage.sources['avif']);
+    // customizedTemplate = customizedTemplate.replace('${featured-img}', imgBase64);
   }
 
   // console.log(customizeTemplate);
-  customizedTemplate = customizedTemplate.replace('${featured-img}', imgBase64);
   return customizedTemplate;
 }
 
@@ -78,35 +45,19 @@ export async function getTemplateScreenshot(
   width = 1200,
   height = 632,
 ) {
-  // Use `fs` (Node.js only) or `fetch` to read the font as Buffer/ArrayBuffer and provide `data` here.
-  // encoding is null so buffer will be returned
-  // must be in ttf format
 
-  // const carterOne = readFileSync('/static/fonts/CarterOne.ttf', null);
-  // const noto = readFileSync(
-  //   '/static/fonts/NotoSansDisplay_Condensed-Regular.ttf',
-  //   null,
-  // );
-
-  // const svg = await satori(template, {
-  //   width: width,
-  //   height: height,
-  //   fonts: [
-  //     { name: 'Carter One', data: carterOne },
-  //     { name: 'Noto', data: noto },
-  //   ],
-  // });
-  const opts = {
+  const opts: ResvgRenderOptions = {
     background: 'rgba(238, 235, 230, .9)',
     fitTo: {
       mode: 'width',
       value: width,
     },
     font: {
-      fontFiles: ['./CarterOne.ttf', './NotoSansDisplay_Condensed-Regular.ttf'], // Load custom fonts.
-      loadSystemFonts: false, // It will be faster to disable loading system fonts.
+      fontFiles: ['/fonts/CarterOne.ttf', `${resolve('.')}NotoSansDisplay_Condensed-Regular.ttf`], // Load custom fonts.
+      loadSystemFonts: false, // It will be faster to disable loading system fonts. It shouldn't matter since I'm prerendering and can't get the path to work
       defaultFontFamily: 'Noto Sans Display',
     },
+    'logLevel': 'debug'
   };
 
   const resvg = new Resvg(template, opts);
