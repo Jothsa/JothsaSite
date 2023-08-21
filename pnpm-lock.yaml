@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^6.4.0
     version: 6.4.0(eslint@8.47.0)(typescript@5.1.6)
   '@zerodevx/svelte-img':
-    specifier: ^2.0.1
-    version: 2.0.1(svelte@4.2.0)
+    specifier: ^2.0.2
+    version: 2.0.2(svelte@4.2.0)
   csstype:
     specifier: ^3.1.2
     version: 3.1.2
@@ -1444,13 +1444,13 @@ packages:
       pretty-format: 29.6.2
     dev: true
 
-  /@zerodevx/svelte-img@2.0.1(svelte@4.2.0):
-    resolution: {integrity: sha512-DXUiUts+s2CCDMACwkXvBeKPTnCdYcbch6NAnzpIY+OzJ3o+4/DZ9qzNqjwNGv5AbwPktoKlhvTk+YI5lywkpw==}
+  /@zerodevx/svelte-img@2.0.2(svelte@4.2.0):
+    resolution: {integrity: sha512-zZigPHjQOPnUtoSWzfKLe4TCKzgclr6gtz474iw37Q1mL0mb4/McGGueVbqKbJhCgs3vwA6nDkUestz8aom8zQ==}
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0
     dependencies:
       svelte: 4.2.0
-      vite-imagetools: 5.0.7
+      vite-imagetools: 5.0.8
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -4848,8 +4848,8 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite-imagetools@5.0.7:
-    resolution: {integrity: sha512-8g7RU+liA4uWuujSe3hdMTCNWimMJsdLIU5uB+/SUBQ+j0TcaMKnQZ6n4LCBF2w30ml1X8WNFGOcTblquWrgGQ==}
+  /vite-imagetools@5.0.8:
+    resolution: {integrity: sha512-oFNfc58iLz1lHFsIKQy+wp0RNcZjiaDeHYTexYowpf4RYx9tZ97eWEcw8lQ1jDT8AnOso6XZi5iGjLNAeTR9Tw==}
     engines: {node: '>=12.0.0'}
     dependencies:
       '@rollup/pluginutils': 5.0.3
