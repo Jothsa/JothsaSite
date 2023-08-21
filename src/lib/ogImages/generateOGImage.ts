@@ -1,40 +1,33 @@
-import { Resvg, type ResvgRenderOptions } from '@resvg/resvg-js';
-
-import baseTemplate from './OG.svg?raw';
-import { resolve } from 'path';
-import type { Picture } from 'vite-imagetools';
-
-
+import baseTemplate from './OGSharp.svg?raw';
+import ogFallbackBG from './OGFallbackBG.svg?raw';
+// import type { Picture } from 'vite-imagetools';
+import sharp, { type Sharp } from 'sharp';
 export async function getOGImage(
   title: string,
-  featuredImage: Picture | undefined,
+  featuredImage: string | undefined,
   width = 1200,
   height = 632,
 ) {
-  const ogTemplate = await customizeTemplate(
-    title,
-    featuredImage,
-    baseTemplate,
-  );
-  return await getTemplateScreenshot(ogTemplate, width, height);
+  const ogTemplate = await customizeTemplate(title, baseTemplate);
+  return {
+    img: await getTemplateScreenshot(ogTemplate, featuredImage, width, height),
+    svg: ogTemplate,
+  };
 }
 
 async function customizeTemplate(
   title: string,
-  featuredImage: Picture | undefined,
+  // featuredImage: string | undefined,
   template: string,
 ) {
   let customizedTemplate = template.toString();
 
   customizedTemplate = customizedTemplate.replace('${post-title}', title);
-  console.log('template: ', customizedTemplate);
+  // console.log('template: ', customizedTemplate);
   // let imgBase64: string = '';
-  if (featuredImage) {
-    console.log('fi', featuredImage);
-    // const img = await import(featuredImage.img.src);
-    // imgBase64 = btoa(featuredImage.sources['avif']);
-    // customizedTemplate = customizedTemplate.replace('${featured-img}', imgBase64);
-  }
+  // if (featuredImage) {
+  // customizedTemplate = customizedTemplate.replace('${og-image}', featuredImage);
+  // }
 
   // console.log(customizeTemplate);
   return customizedTemplate;
@@ -42,27 +35,34 @@ async function customizeTemplate(
 
 export async function getTemplateScreenshot(
   template: string,
+  ogImage: string | undefined,
   width = 1200,
   height = 632,
+  fallbackBG = ogFallbackBG,
 ) {
+  const bg = 'white';
 
-  const opts: ResvgRenderOptions = {
-    background: 'rgba(238, 235, 230, .9)',
-    fitTo: {
-      mode: 'width',
-      value: width,
-    },
-    font: {
-      fontFiles: ['/fonts/CarterOne.ttf', `${resolve('.')}NotoSansDisplay_Condensed-Regular.ttf`], // Load custom fonts.
-      loadSystemFonts: false, // It will be faster to disable loading system fonts. It shouldn't matter since I'm prerendering and can't get the path to work
-      defaultFontFamily: 'Noto Sans Display',
-    },
-    'logLevel': 'debug'
-  };
-
-  const resvg = new Resvg(template, opts);
-
-  const pngData = resvg.render();
-  const pngBuffer = pngData.asPng();
-  return pngBuffer;
+  const templateBuffer = Buffer.from(template);
+  const templateImg = sharp(templateBuffer).resize(width, height);
+  let ogBG: Sharp;
+  if (ogImage) {
+    const ogFeaturedImageBuffer = Buffer.from(ogImage, 'base64');
+    ogBG = sharp(ogFeaturedImageBuffer);
+  } else {
+    ogBG = sharp(Buffer.from(fallbackBG));
+  }
+  ogBG
+    .resize(
+      width,
+      height /* {fit: 'inside', position: 'centre', background: bg}*/,
+    )
+    .composite([
+      {
+        input: await templateImg.toBuffer(),
+        gravity: 'south',
+        blend: 'atop',
+      },
+    ])
+    .flatten({ background: bg });
+  return ogBG.png();
 }

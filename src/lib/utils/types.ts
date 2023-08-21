@@ -29,6 +29,7 @@ export type Post = {
   description: string;
   featuredImage?: string;
   featuredImageAlt?: string;
+  ogImage?: string; // should be base64 of image to use for social cards
   date: string;
   tags: TagsType[];
   published: boolean;
