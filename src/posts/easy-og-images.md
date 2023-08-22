@@ -1,6 +1,6 @@
 ---
 title: Easy OG Images
-description: Learn how to make easy OG images with one dependency 
+description: Learn how to make easy OG images with one dependency
 date: '2023-08-21'
 tags:
   - personal
@@ -15,8 +15,11 @@ I wanted to generate OG images, but was getting frustrated with Satori and reSVG
 You can store this in a variable or an svg file, just make sure it gets imported as text (add ?raw to the end of the path when importing with Vite). This is a super simple example of a template. I recommend including your fonts as base64.
 
 ```html
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1910 1000" >
-<text>${post-title}</text>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 1910 1000">
+  <text>${post-title}</text>
 </svg>
 ```
 
@@ -27,6 +30,8 @@ import 'sharp';
 
 // you'll need to get your post's metadata somehow.
 template = template.replace('${post-title}, post.metadata.title);
-const 
+const
 const img = sharp(Buffer.from(template));
 ```
+
+https://micheleong.com/2022/10/23/sharp-nextjs-netlify
