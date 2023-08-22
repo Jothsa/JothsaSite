@@ -3,7 +3,6 @@ import { error } from '@sveltejs/kit';
 import { getOGImage } from '$lib/ogImages/generateOGImage.js';
 import { getPostsSlugs } from '$scripts/GetContent';
 import type { EntryGenerator } from './$types';
-import type { Post } from '$utils/types';
 
 export const prerender = true;
 
