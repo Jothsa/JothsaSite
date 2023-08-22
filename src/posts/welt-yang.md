@@ -5,11 +5,11 @@ date: '2023-08-15'
 tags:
   - personal
 published: true
-featuredImage: welt
 ---
 
 <script lang="ts" context="module">
   import weltFeaturedCardImage from '$images/weltBG.png?h=100;200;400&w=200;400;700&fit=cover&as=run';
+  import weltOGImage from '$images/weltBG.png?b64';
   import welt from '$images/weltBG.png?as=run';
   import welt1 from '$images/welt1.png?as=run';
   import welt2 from '$images/welt2.png?as=run';
@@ -38,6 +38,7 @@ featuredImage: welt
     {panelSrc: welt9, alt:'', title: 'Another World', text: 'Saving another world'},
     ];
     metadata.featuredImage = weltFeaturedCardImage;
+    metadata.ogImage = weltOGImage;
 </script>
 
 Check out all this post and this image and accordion.

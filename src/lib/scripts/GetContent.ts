@@ -1,5 +1,5 @@
 import type { Post, TagsType } from '$utils/types';
-import { paginate } from '$utils/utils';
+import { paginate } from '../utils/utils';
 
 export type PostSlug = string;
 const PostSlug = await getPostsSlugs();

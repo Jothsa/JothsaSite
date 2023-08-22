@@ -7,6 +7,7 @@
   import ViewProgress from '$components/ViewProgress.svelte';
   import ReactionsMenu from '$components/ReactionsMenu.svelte';
   import SpreadInterestButton from '$components/SpreadInterestButton.svelte';
+  import { url } from '$utils/config';
   export let data: PageData;
 
   onMount(() => {
@@ -17,6 +18,10 @@
 <svelte:head>
   <meta property="og:type" content="article" />
   <meta property="og:title" content={data.meta.title} />
+  <meta property="og:description" content={data.description} />
+  <meta property="og:image" content={`${url}/og-image/${data.slug}.png`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 </svelte:head>
 
 <main id="content">
