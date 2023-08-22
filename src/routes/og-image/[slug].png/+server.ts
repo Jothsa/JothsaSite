@@ -36,7 +36,7 @@ export const GET = async ({ params }) => {
 };
 
 export const entries: EntryGenerator = async () => {
-  const entries: {slug: string}[] = [];
+  const entries: { slug: string }[] = [];
   (await getPostsSlugs()).forEach((slug) => {
     entries.push({ slug: slug });
   });

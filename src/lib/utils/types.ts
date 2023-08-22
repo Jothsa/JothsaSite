@@ -1,4 +1,4 @@
-import type { PostSlug } from "$scripts/GetContent";
+import type { PostSlug } from '$scripts/GetContent';
 
 export const TagsList = [
   'personal',
