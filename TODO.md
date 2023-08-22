@@ -32,3 +32,4 @@
 - [ ] add random post
 - [ ] toggle for image blur effect
 - [ ] make sure view progress is working
+- [ ] create og images for non post pages

@@ -19,7 +19,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:title" content={data.meta.title} />
   <meta property="og:description" content={data.description} />
-  <meta property="og:image" content={`${url}/og-image/${data.slug}.png`} />
+  <meta property="og:image" content={`${url}og-image/blog/${data.slug}.png`} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 </svelte:head>
