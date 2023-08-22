@@ -1,7 +1,7 @@
 import baseTemplate from './OGSharp.svg?raw';
 import ogFallbackBG from './OGFallbackBG.svg?raw';
 // import type { Picture } from 'vite-imagetools';
-import sharp, { type Sharp } from 'netlify-pls-keep-sharp';
+import sharp, { type Sharp } from 'sharp';
 export async function getOGImage(
   title: string,
   featuredImage: string | undefined,

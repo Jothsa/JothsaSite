@@ -30,3 +30,5 @@ template = template.replace('${post-title}, post.metadata.title);
 const 
 const img = sharp(Buffer.from(template));
 ```
+
+https://micheleong.com/2022/10/23/sharp-nextjs-netlify

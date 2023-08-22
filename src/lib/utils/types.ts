@@ -1,3 +1,5 @@
+import type { PostSlug } from "$scripts/GetContent";
+
 export const TagsList = [
   'personal',
   'programming',
@@ -23,9 +25,11 @@ export function isTag(cat: string | undefined | null): cat is TagsType {
     return true;
   } else return false;
 }
+
+// TODO Move to getContent prob
 export type Post = {
   title: string;
-  slug: string;
+  slug: PostSlug;
   description: string;
   featuredImage?: string;
   featuredImageAlt?: string;
