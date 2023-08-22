@@ -8,4 +8,4 @@ tags:
 published: true
 ---
 
-Check out all this post
+Check out this post
