@@ -23,6 +23,7 @@
     name="theme-color"
     content="oklch(71.3% 0.178 240.35)"
     media="(prefers-color-scheme: light)" />
+  <meta name="robots" content="noindex" />
   <title>{pageTitle}</title>
 </svelte:head>
 
