@@ -8,7 +8,7 @@ export const prerender = true;
 
 export const GET = async ({ params }) => {
   try {
-    const post = await import(`../../../posts/${params.slug}.md`);
+    const post = await import(`../../../../posts/${params.slug}.md`);
     // console.log(...post.metadata.featuredImage);
     // const fI = await readFile(post.metadata.ogImage, 'utf8');
     // console.log('fI:', post.metadata.ogImage.slice(0, 10));
