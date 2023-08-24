@@ -32,4 +32,8 @@
 - [ ] add random post
 - [ ] toggle for image blur effect
 - [ ] make sure view progress is working
-- [ ] create og images for non post pages
+- [ ] create og images for non post pages (don't forget tags!)
+- [ ] add table of contents on blog posts
+- [ ] support filenames for code blocks
+- [ ] add random nums and colors with js
+- [ ] add caption bg to accordion if prefers-increased-contrast
