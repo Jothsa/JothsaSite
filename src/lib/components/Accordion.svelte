@@ -29,8 +29,20 @@
   // controls the placement of content text when the accordion is in the inline orientation
   export let contentPlacementInline: CSS.Property.PlaceSelf | null = null;
   export let blockSize: CSS.Property.BlockSize | null = null;
+  export let inlineSize: CSS.Property.InlineSize | null = null;
+  export let panelExpandedSize:
+    | CSS.Property.InlineSize
+    | CSS.Property.BlockSize
+    | null = null;
+  export let panelCollapsedSize:
+    | CSS.Property.InlineSize
+    | CSS.Property.BlockSize
+    | null = null;
   export let allowOverflow = true;
+  export let  containerAspectRatio: CSS.Property.AspectRatio | null = null;
   export let style = '';
+  // how to load images
+  export let loading: 'eager' | 'lazy' = 'lazy';
 
   const headingTag = `h${headingLevel}`;
 
@@ -38,14 +50,37 @@
   if (blockSize) {
     accordionStyle = `${accordionStyle} --block-size: ${blockSize};`;
   }
+  if (inlineSize) {
+    accordionStyle = `${accordionStyle} --inline-size: ${inlineSize};`;
+  }
   if (contentPlacementInline) {
     accordionStyle = `${accordionStyle} --content-placement-inline: ${contentPlacementInline};`;
   }
 
+  if (panelExpandedSize) {
+    accordionStyle = `${accordionStyle} --panel-expanded-size: ${panelExpandedSize};`;
+  }
+  if (panelCollapsedSize) {
+    accordionStyle = `${accordionStyle} --panel-collapsed-size: ${panelCollapsedSize};`;
+  }
+  if (containerAspectRatio) {
+    accordionStyle = `${accordionStyle} aspect-ratio: ${containerAspectRatio};`;
+  }
+
   onMount(() => {
     const accordion = document.querySelector('.accordion');
+    // set first panel expanded
+    const firstPanel = accordion?.querySelector(
+      `.panel:first-of-type`,
+    ) as HTMLDivElement | null;
     const supportsHas = window.CSS.supports('selector(:has(p))');
-    if (!supportsHas) console.log('this browser does not support :has');
+    if (!supportsHas) {
+      console.log('this browser does not support :has');
+    }
+    // have to set this here (it won't be removed if I use {i===0})
+    // not ideal if loading directly from url, but preloading seems to take care of it generally
+    // haven't tested in prod tho
+    if (firstPanel) toggleAccordion(firstPanel);
     if (accordion) {
       accordion.addEventListener('click', (e: Event) => {
         const activePanel = (e.target as HTMLElement).closest(
@@ -55,6 +90,7 @@
         toggleAccordion(activePanel);
       });
     }
+
     function toggleAccordion(panelToActivate: HTMLDivElement) {
       // grabbing the panelButton here so I can check if it's expanded and don't have to rerun the querySelector later
       const panelButton: HTMLButtonElement | null =
@@ -93,18 +129,19 @@
       panelToActivateContents.setAttribute('aria-hidden', 'false');
     }
   });
-
-  // TODO test to see if I need to set aria-hidden in onMount (i think the way I have it now prevents it from being changed?)
 </script>
 
-<div class={`accordion-container ${allowOverflow ? `allow-overflow` : ``}`}>
+
+<div
+  class={`accordion-container`}
+  class:allow-overflow={allowOverflow}
+  style={`${accordionStyle} ${style}`}>
   <div
-    class={`accordion ${orientation} text-${textPlacement} ${
-      titleDisappearBlock && `title-disappear-block`
-    }`}
+    class={`accordion ${orientation} text-${textPlacement}`}
+    class:title-disappear-block={titleDisappearBlock}
     style={`${accordionStyle} ${style}`}>
     {#each panels as panel, i}
-      <div class={`panel ${i === 0 && `expanded`}`} style={panel.style}>
+      <div class={`panel`} style={panel.style}>
         <svelte:element
           this={headingTag}
           id={`panel${i + 1}-heading`}
@@ -112,7 +149,7 @@
           <button
             class="panel-trigger"
             aria-controls={`panel${i + 1}-content`}
-            aria-expanded={i === 0}>
+            aria-expanded="false">
             <span class="panel-title" id={`panel${i + 1}-title`}>
               {panel.title}
             </span>
@@ -122,10 +159,14 @@
           class="panel-content"
           id={`panel${i + 1}-content`}
           aria-labelledby={`panel${i + 1}-heading`}
-          aria-hidden={!(i === 0)}
+          aria-hidden={`true`}
           role="region">
           <p>{panel.text}</p>
-          <Img class="panel-image" src={panel.panelSrc} alt={panel.alt} />
+          <Img
+            class="panel-image"
+            src={panel.panelSrc}
+            alt={panel.alt}
+            {loading} />
         </div>
       </div>
     {/each}
@@ -148,11 +189,12 @@
   */
 
   .accordion-container {
-    contain: content;
-
     /* TODO fix these stupid overflow/sizing issues */
 
     /* width: 85vw; */
+    inline-size: var(--inline-size);
+    block-size: var(--block-size);
+    contain: content;
     container: accordion / inline-size;
     overflow-x: scroll;
   }
@@ -404,6 +446,8 @@
     min-block-size: var(--panel-collapsed-size);
   }
 
+  /* shouldn't be needed and messes up animations/transition
+  
   .accordion-container.allow-overflow
     .inline
     .panel:is(.expanded, :has([aria-expanded='true'])) {
@@ -414,5 +458,5 @@
     .block
     .panel:is(.expanded, :has([aria-expanded='true'])) {
     min-block-size: var(--panel-expanded-size);
-  }
+  } */
 </style>
