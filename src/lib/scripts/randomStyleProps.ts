@@ -17,7 +17,7 @@ export function setRandomProps(
   precision = 5,
   int = false,
 ) {
-  if (palette && numColors && palette?.length <= numColors) {
+  if (palette && numColors !== undefined && palette?.length >= numColors) {
     setRandomColors(palette, numColors);
   }
   if (min && max && numRandomNumbers) {
