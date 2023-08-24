@@ -4,7 +4,7 @@ import ogFallbackBG from './OGFallbackBG.svg?raw';
 import sharp, { type Sharp } from 'sharp';
 export async function getOGImage(
   title: string,
-  featuredImage: string | undefined,
+  featuredImage: string | null | undefined,
   width = 1200,
   height = 632,
 ) {
@@ -35,7 +35,7 @@ async function customizeTemplate(
 
 export async function getTemplateScreenshot(
   template: string,
-  ogImage: string | undefined,
+  ogImage: string | undefined | null,
   width = 1200,
   height = 632,
   fallbackBG = ogFallbackBG,
