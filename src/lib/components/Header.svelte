@@ -6,7 +6,7 @@
 
 <div class="header-container">
   <header id="header">
-    <h1>Jothsa's Site!</h1>
+    <span class="h1">Jothsa's Site!</span>
     <div class="preference-menu-wrapper">
       <PreferencesMenu />
     </div>
