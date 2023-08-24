@@ -7,6 +7,7 @@ body {
 h1,
 .h1 {
   font-size: var(--step-4);
+  font-family: var(--header-font), 'Carter One', system-ui;
 }
 
 h2,
@@ -22,6 +23,20 @@ h3,
 h4,
 .h4 {
   font-size: var(--step-1);
+}
+
+.emoji-l {
+  --wiggle-init: 0deg;
+  --wiggle: 7deg;
+  font-size: var(--step-4);
+  display: inline-block;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: rotate 300ms 120ms var(--ease-elastic-2);
+    &:hover {
+      animation: wiggle 300ms var(--ease-elastic-2);
+    }
+  }
 }
 
 pre {
