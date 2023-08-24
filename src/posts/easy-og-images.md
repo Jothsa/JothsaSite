@@ -34,4 +34,6 @@ const
 const img = sharp(Buffer.from(template));
 ```
 
+```html
 https://micheleong.com/2022/10/23/sharp-nextjs-netlify
+```
