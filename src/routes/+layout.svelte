@@ -15,7 +15,19 @@
   $: pageDescription = $page.data?.description || description;
 
   onMount(() => {
-    setRandomProps([''], 2, 0, 1, 2);
+    setRandomProps(
+      [
+        'oklch(66.67% 0.148 238.24)',
+        'oklch(72.06% 0.358 331.41)',
+        'oklch(72.06% 0.069 151.41)',
+        'oklch(72.06% 0.089 248.82)',
+        'oklch(51.76% 0.227 262.59)',
+      ],
+      2,
+      0,
+      1,
+      2,
+    );
   });
 </script>
 
