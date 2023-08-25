@@ -15,23 +15,23 @@
 <style>
   @keyframes animate-in-and-out {
     entry 0% {
-      opacity: 0;
-      transform: translateY(var(--transform-length));
+      opacity: var(--opacity-low, 0);
+      transform: translateY(var(--transform-length, 30%));
     }
 
     entry 100% {
-      opacity: 1;
+      opacity: var(--opacity-high, 1);
       transform: translateY(0);
     }
 
     exit 0% {
-      opacity: 1;
+      opacity: var(--opacity-high, 1);
       transform: translateY(0);
     }
 
     exit 100% {
-      opacity: 0;
-      transform: translateY(calc(var(--transform-length) * -1));
+      opacity: var(--opacity-low, 0);
+      transform: translateY(calc(var(--transform-length, 30%) * -1));
     }
   }
 
@@ -44,7 +44,8 @@
 
   @media (prefers-reduced-motion: no-preference) {
     :global(.posts .post) {
-      --transform-length: 30%;
+      --transform-length: 15%;
+      --opacity-low: 0.3;
       animation: linear animate-in-and-out;
       animation-timeline: view();
     }
