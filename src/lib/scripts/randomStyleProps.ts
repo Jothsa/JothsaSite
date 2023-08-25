@@ -8,7 +8,7 @@
  * @param precision - precision of random color vars
  * @param int - should the random colors be whole integers
  */
-export function setRandomProps(
+export function setRandomGlobalProps(
   palette?: string[],
   numColors?: number,
   min?: number,
@@ -89,4 +89,52 @@ export function setRandomNumbers(
       });
     }
   }
+}
+
+export function setRandomLocalProps(palette: string[], inherits = true) {
+  setRandomLocalColors(palette, inherits);
+  setRandomLocalNumbers(inherits);
+}
+
+export function setRandomLocalColors(palette: string[], inherits = true) {
+  const initialRandomColor =
+    palette[Math.floor(Math.random() * palette.length)];
+  if (window?.CSS?.registerProperty) {
+    window.CSS.registerProperty({
+      name: `--random-color`,
+      syntax: `<color>`,
+      inherits: inherits,
+      initialValue: initialRandomColor,
+    });
+  }
+  document.querySelectorAll('.random-number').forEach((el) => {
+    // just don't use it on an svg element ig
+    (el as HTMLElement).style.setProperty(
+      `--random-color`,
+      palette[Math.floor(Math.random() * palette.length)],
+    );
+  });
+}
+
+// the num between 0-1 is fine
+export function setRandomLocalNumbers(inherits = true) {
+  const max = 1;
+  const min = 0;
+  const initialRandomNumber = Math.random() * (max - min) + min;
+  if (window?.CSS?.registerProperty) {
+    window.CSS.registerProperty({
+      name: `--random-number`,
+      syntax: `<number>`,
+      inherits: inherits,
+      initialValue: initialRandomNumber.toPrecision(5),
+    });
+  }
+  document.querySelectorAll('.random-number').forEach((el) => {
+    // just don't use it on an svg element ig
+    const randomNum = Math.random() * (max - min) + min;
+    (el as HTMLElement).style.setProperty(
+      `--random-number`,
+      randomNum.toPrecision(5),
+    );
+  });
 }
