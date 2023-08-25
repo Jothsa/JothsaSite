@@ -37,3 +37,4 @@
 - [ ] support filenames for code blocks
 - [ ] add random nums and colors with js
 - [ ] add caption bg to accordion if prefers-increased-contrast
+- [ ] spoilers element
