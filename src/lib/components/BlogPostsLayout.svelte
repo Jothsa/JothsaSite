@@ -49,9 +49,10 @@
   }
 
   .tags-wrapper {
-    display: grid;
+    display: flex;
+    block-size: fit-content;
+    flex-direction: column;
     gap: var(--space-xs);
-    grid-auto-rows: fit-content(5ch);
 
     & .tags-title {
       display: flex;

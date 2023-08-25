@@ -28,6 +28,8 @@
   .tags-container {
     min-inline-size: 100%;
     min-block-size: 100%;
+    block-size: fit-content;
+    /* block-size: fit-content; */
     container: tags / inline-size;
 
     & .post-tag {
