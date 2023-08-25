@@ -7,7 +7,19 @@
   import Footer from '$components/Footer.svelte';
   import { description, siteTitle } from '$utils/config';
   import { onMount } from 'svelte';
-  import { setRandomProps } from '$scripts/randomStyleProps';
+  import {
+    setRandomGlobalProps,
+    setRandomLocalProps,
+  } from '$scripts/randomStyleProps';
+
+  const randomPalette = [
+    'oklch(66.67% 0.148 238.24)',
+    'oklch(72.06% 0.358 331.41)',
+    'oklch(72.06% 0.069 151.41)',
+    'oklch(72.06% 0.089 248.82)',
+    'oklch(51.76% 0.227 262.59)',
+  ];
+
   $: pageTitle =
     $page.data?.title !== undefined
       ? `${siteTitle} - ${$page.data.title}`
@@ -15,19 +27,8 @@
   $: pageDescription = $page.data?.description || description;
 
   onMount(() => {
-    setRandomProps(
-      [
-        'oklch(66.67% 0.148 238.24)',
-        'oklch(72.06% 0.358 331.41)',
-        'oklch(72.06% 0.069 151.41)',
-        'oklch(72.06% 0.089 248.82)',
-        'oklch(51.76% 0.227 262.59)',
-      ],
-      2,
-      0,
-      1,
-      2,
-    );
+    setRandomGlobalProps(randomPalette, 2, 0, 1, 2);
+    setRandomLocalProps(randomPalette);
   });
 </script>
 
