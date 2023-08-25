@@ -131,13 +131,15 @@
       color: var(--text-primary);
     }
 
-    @container pagination (inline-size < 40ch) {
+    /* display only current and arrows */
+    @container pagination (inline-size < 30ch) {
       &:not(.current, .page-next, .page-previous, .page-first, .page-last) {
         display: none;
       }
     }
 
-    @container pagination (inline-size < 30ch) {
+    /* display only current and next and previous arrows */
+    @container pagination (inline-size < 4ch) {
       &:not(.current, .page-next, .page-previous) {
         display: none;
       }
@@ -152,6 +154,10 @@
       display: flex;
       place-items: center;
     }
+  }
+
+  a:has(svg) {
+    padding: 0;
   }
 
   .page-goto {
