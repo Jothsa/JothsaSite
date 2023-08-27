@@ -2,7 +2,6 @@
   import '$styles/index.css';
   import AccessibleMenu from '$components/AccessibilityMenu.svelte';
   import Header from '$components/Header.svelte';
-  import Preferences from '$components/Preferences.svelte';
   import { page } from '$app/stores';
   import Footer from '$components/Footer.svelte';
   import { description, siteTitle } from '$utils/config';

@@ -29,9 +29,9 @@
   a {
     --_font: var(--header-font, 'Carter One');
     --font-size: var(--step-2);
-    --link-grad-color-1: oklch(49.56% 0.298 279);
-    --link-grad-color-2: oklch(80% 0 0);
-    --nav-link-color: oklch(45.2% 0.31321437166460125 264.052020638055);
+    --link-grad-color-1: var(--accent);
+    --link-grad-color-2: color-mix(in oklch, var(--accent), oklch(95% 0 0) 60%);
+    --nav-link-color: var(--accent);
     --nav-transition-time: 300ms;
     --underline-height: var(--space-xs);
 

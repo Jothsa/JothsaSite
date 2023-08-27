@@ -65,4 +65,21 @@
     --increase-contrast: var(--increase-contrast-d);
     --decrease-contrast: var(--decrease-contrast-d);
   }
+
+  &[data-theme='forest'] {
+    --primary-l: oklch(70% 0.101 167.29);
+    --primary-d: oklch(31% 0.067 167.29);
+    --secondary-l: oklch(54% 0.101 167.29);
+    --secondary-d: oklch(42.4% 0.067 167.29);
+    --tertiary-l: oklch(44.4% 0.101 167.29);
+    --tertiary-d: oklch(60.7% 0.067 167.29);
+    --primary-text-l: oklch(17.35% 0.012 119.65);
+    --primary-text-d: oklch(90.2% 0.012 119.65);
+    --secondary-text-l: oklch(36.47% 0.049 119.65);
+    --secondary-text-d: oklch(60.7% 0.107 119.65);
+    --contrast-l: oklch(77.6% 0.185 115.41);
+    --contrast-d: oklch(52.06% 0.136 115.41);
+    --accent-l: oklch(60% 0.148 160.94);
+    --accent-d: oklch(72.65% 0.168 160.94);
+  }
 }

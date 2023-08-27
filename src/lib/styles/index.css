@@ -1,3 +1,5 @@
+@layer imports, base, style, style.global, style.components, theme;
+
 @import url('./fonts.css');
 @import url('./props.css');
 @import 'open-props/style';

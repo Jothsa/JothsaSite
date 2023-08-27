@@ -31,7 +31,7 @@ const panels = [
 
 </script>
 
-  <Accordion {panels} containerAspectRatio={`6 / 5`} blockSize={`auto`} inlineSize={`100%`} />
+<Accordion {panels} containerAspectRatio={`6 / 5`} blockSize={`auto`} inlineSize={`80ch`} />
 
 ## Episode One
 

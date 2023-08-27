@@ -39,7 +39,7 @@
     | CSS.Property.BlockSize
     | null = null;
   export let allowOverflow = true;
-  export let  containerAspectRatio: CSS.Property.AspectRatio | null = null;
+  export let containerAspectRatio: CSS.Property.AspectRatio | null = null;
   export let style = '';
   // how to load images
   export let loading: 'eager' | 'lazy' = 'lazy';
@@ -130,7 +130,6 @@
     }
   });
 </script>
-
 
 <div
   class={`accordion-container`}

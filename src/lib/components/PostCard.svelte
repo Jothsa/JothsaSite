@@ -139,7 +139,7 @@
       transform: translateX(30%) translateY(0%) rotate(45deg);
       transform-origin: top left;
 
-      @container post-card (inline-size < 30ch) {
+      @container post-card (inline-size < 10ch) {
         display: none;
       }
 
@@ -191,6 +191,12 @@
     & .description {
       margin-block-start: 0ch;
       text-wrap: pretty;
+    }
+  }
+
+  @container post-card (inline-size < 40ch) {
+    .unread {
+      display: none !important;
     }
   }
 

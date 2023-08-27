@@ -132,8 +132,6 @@
     grid-area: reactions;
   }
 
-
-
   .tags-wrapper {
     display: grid;
     gap: var(--space-3xs);

@@ -38,3 +38,5 @@
 - [ ] add random nums and colors with js
 - [ ] add caption bg to accordion if prefers-increased-contrast
 - [ ] spoilers element
+- [ ] make sure text in og image stays on screen
+- [ ] put shorthands first in stylelint order (inset then inset-block etc)

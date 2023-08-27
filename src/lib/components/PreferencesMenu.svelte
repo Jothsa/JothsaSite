@@ -12,6 +12,7 @@
   <button
     aria-controls="preferences"
     aria-expanded={isExpanded}
+    popovertarget="preferences"
     on:click={onPrefButtonClick}
     ><svg
       aria-hidden="true"
@@ -25,7 +26,11 @@
           d="M16 15c1.306 0 2.418.835 2.83 2H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 1 1 0-2h9.17A3.001 3.001 0 0 1 16 15Zm0 2a1 1 0 1 0 0 2a1 1 0 0 0 0-2ZM8 9a3 3 0 0 1 2.762 1.828l.067.172H20a1 1 0 0 1 .117 1.993L20 13h-9.17a3.001 3.001 0 0 1-5.592.172L5.17 13H4a1 1 0 0 1-.117-1.993L4 11h1.17A3.001 3.001 0 0 1 8 9Zm0 2a1 1 0 1 0 0 2a1 1 0 0 0 0-2Zm8-8c1.306 0 2.418.835 2.83 2H20a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H4a1 1 0 0 1 0-2h9.17A3.001 3.001 0 0 1 16 3Zm0 2a1 1 0 1 0 0 2a1 1 0 0 0 0-2Z" /></g
       ></svg
     ></button>
-  <div class="preferences-wrapper" class:expanded={isExpanded} id="preferences">
+  <div
+    class="preferences-wrapper"
+    class:expanded={isExpanded}
+    id="preferences"
+    popover>
     <Preferences />
   </div>
 </div>
@@ -54,27 +59,48 @@
   }
 
   .preferences-wrapper {
-    position: absolute;
+    /* z-index: var(--layer-menu); */
     inset-block-start: 4ch;
     inset-inline-end: 0.5ch;
-    display: block;
+
+    /* display: block; */
     inline-size: fit-content;
     block-size: fit-content;
     border-radius: 1ch;
     background: var(--secondary);
-    opacity: 0;
-    outline: solid blue 2px;
+    border: none;
+
+    /* opacity: 0; */
+    outline: solid var(--accent) 2px;
     transition:
       transform 300ms,
       opacity 300ms;
 
     @media (prefers-reduced-motion: no-preference) {
-      transform: translate(200%);
+      /* transform: translate(200%); */
     }
 
     &.expanded {
       opacity: 1;
-      transform: translate(0%);
+
+      /* transform: translate(0%); */
+    }
+
+    &:popover-open {
+      position: absolute;
+      inset: unset;
+
+      /* need unset first to undo user agent styles */
+      /* stylelint-disable order/properties-order */
+      inset-block-start: 8ch;
+      inset-inline-end: 0.5ch;
+      /* stylelint-enable order/properties-order */
+    }
+  }
+
+  :root:not([data-blur='false']) {
+    & ::backdrop {
+      backdrop-filter: blur(3px);
     }
   }
 </style>

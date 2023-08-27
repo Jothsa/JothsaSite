@@ -7,13 +7,20 @@
     <script>
       const lsThemeMode = localStorage.getItem('themeMode');
       // * hard coding the values should be ok
-      // * as should letting auto be the fallback (maybe I'll save 3ms)
+      // * as should letting auto be the fallback (maybe I'll save 1ms)
       if (lsThemeMode === 'light' || lsThemeMode === 'dark') {
         document.documentElement.setAttribute('data-theme-mode', lsThemeMode);
       } else {
         document.documentElement.setAttribute('data-theme-mode', 'auto');
       }
 
+      // should be fine not to check here, most of the logic will be in component ig
+      const lsTheme = localStorage.getItem('theme');
+      if (lsTheme) {
+        document.documentElement.setAttribute('data-theme', lsTheme);
+      }
+
+      // should move this logic to component
       if (localStorage.getItem('blur') !== false) {
         document.documentElement.setAttribute('data-blur', 'true');
       } else {

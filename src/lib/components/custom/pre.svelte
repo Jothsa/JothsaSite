@@ -2,8 +2,4 @@
   export let filenames: string[] | string = [];
 </script>
 
-{#each filenames as file}
-
-{/each}
-
-
+{#each filenames as file}{/each}
