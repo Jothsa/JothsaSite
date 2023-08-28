@@ -18,7 +18,7 @@ import baylan from '$images/ahsoka/character-poster-baylan.jpg?as=run';
 import shin from '$images/ahsoka/character-poster-shin.jpg?as=run';
 import morgan from '$images/ahsoka/character-poster-morgan.jpg?as=run';
 metadata.featuredImage = ahsokaImage;
-metadata.ogImage = ahsokaImage;
+metadata.ogImage = ahsokaOGImage;
 
 const panels = [
   { panelSrc: ahsoka, alt: `Ahsoka's character poster`, title: 'Ahsoka', text: 'Ahsoka is perfectly realized by Rosario Dawson' },
