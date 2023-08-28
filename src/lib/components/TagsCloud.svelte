@@ -16,7 +16,7 @@
   }
 </script>
 
-<div class="tags-container">
+<div class="tags-container" data-pagefind-ignore>
   <ul class="post-tag">
     {#each tags as t}
       <PostTag tag={t} isCurrentTag={currentTag === t} />

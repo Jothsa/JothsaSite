@@ -9,7 +9,7 @@
   export let currentPage: number = 0;
 </script>
 
-<div class="grid" id="content">
+<div class="grid" id="content" data-pagefind-ignore>
   <main>
     <div class="posts-wrapper">
       <PostsDisplay {posts} />

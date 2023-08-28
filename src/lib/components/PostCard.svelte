@@ -14,7 +14,7 @@
 <svelte:element
   this={wrapperTag}
   class="post"
-  role={isLIRole ? 'listitem' : ''}>
+  role={isLIRole ? 'listitem' : ''} data-pagefind-ignore>
   <a
     class="unread"
     href={`/blog/${post.slug}`}
