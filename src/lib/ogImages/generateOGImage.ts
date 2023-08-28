@@ -9,8 +9,17 @@ export async function getOGImage(
   height = 632,
 ) {
   const ogTemplate = await customizeTemplate(title, baseTemplate);
+  let img: sharp.Sharp;
+
+  try {
+    img = await getTemplateScreenshot(ogTemplate, featuredImage, width, height);
+  } catch {
+    // the ogImage could be invalid
+    img = await getTemplateScreenshot(ogTemplate, featuredImage, width, height);
+    
+  }
   return {
-    img: await getTemplateScreenshot(ogTemplate, featuredImage, width, height),
+    img: img,
     svg: ogTemplate,
   };
 }
@@ -28,7 +37,6 @@ async function customizeTemplate(
   // if (featuredImage) {
   // customizedTemplate = customizedTemplate.replace('${og-image}', featuredImage);
   // }
-
   // console.log(customizeTemplate);
   return customizedTemplate;
 }
