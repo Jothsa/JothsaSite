@@ -80,9 +80,7 @@
   nav {
     --_font: var(--header-font), 'Carter One';
     --font-size: var(--step-2);
-    --link-grad-color-1: oklch(49.56% 0.298 279);
-    --link-grad-color-2: oklch(80% 0 0);
-    --nav-link-color: oklch(45.2% 0.31321437166460125 264.052020638055);
+    --nav-link-color: var(--contrast);
     --bg-color: transparent;
     --nav-transition-time: 300;
     --underline-height: var(--space-xs);
@@ -126,8 +124,8 @@
         height: 100%;
         padding: 0;
         margin: 0;
-        color: var(--link-grad-color-1);
-        fill: var(--link-grad-color-1);
+        color: var(--nav-link-color);
+        fill: var(--nav-link-color);
       }
 
       &:focus-visible {

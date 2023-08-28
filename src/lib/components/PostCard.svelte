@@ -92,8 +92,8 @@
         var(--border-grad-angle-init) + var(--border-grad-angle)
       );
       --border: solid clamp(4px, 0.55ch, 10px);
-      --border-grad-color-1: oklch(80% 0.4 222);
-      --border-grad-color-2: oklch(35% 0.5 313);
+      --border-grad-color-1: var(--accent);
+      --border-grad-color-2: color-mix(in oklch, var(--accent), oklch(95% 0 0) 60%);
       --border-grad: conic-gradient(
         from var(--_border-grad-angle) at 50% 50% in oklab,
         oklch(80% 0.4 222 / 0) 0%,

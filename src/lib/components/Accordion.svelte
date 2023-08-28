@@ -121,10 +121,12 @@
       }
       buttons.forEach((button) => {
         button.setAttribute('aria-expanded', 'false');
+        
       });
       contents.forEach((content) => {
         content.setAttribute('aria-hidden', 'true');
       });
+
       panelButton.setAttribute('aria-expanded', 'true');
       panelToActivateContents.setAttribute('aria-hidden', 'false');
     }
@@ -182,7 +184,7 @@
       h(1-6) .panel-heading #panel1-heading
         button .panel-trigger [aria-expanded] [aria-controls="panel1-content"]
           span .panel-title
-      div .panel-content #panel1-content [aria-labeledby="panel1-heading"] [role="region"] [aria-hidden]
+      div .panel-content #panel1-content [aria-labelledby="panel1-heading"] [role="region"] [aria-hidden]
         p
         img .panel-image
   */
@@ -212,6 +214,7 @@
     );
     --panel-expanded-size: 20vw;
     --panel-gap: 1rem;
+    --panel-focus: var(--contrast);
     --title-placement: center center;
     --content-placement: end center;
     --content-placement-inline: end center;
@@ -266,7 +269,7 @@
     }
 
     &:focus-within {
-      outline: 3px solid var(--panel-color);
+      outline: 3px solid var(--panel-focus);
       outline-offset: 4px;
     }
   }

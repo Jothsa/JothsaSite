@@ -82,4 +82,20 @@
     --accent-l: oklch(60% 0.148 160.94);
     --accent-d: oklch(72.65% 0.168 160.94);
   }
+  &[data-theme='gabrie'] {
+    --primary-l: oklch(98.81% 0 0);
+    --primary-d: oklch(33.24% 0.076 222.84);
+    --secondary-l: oklch(97.02% 0 0);
+    --secondary-d: oklch(35.29% 0.079 222.84);
+    --tertiary-l: oklch(89.41% 0.064 0);
+    --tertiary-d: oklch(40% 0.096 222.84);
+    --primary-text-l: oklch(29.31% 0 0);
+    --primary-text-d: oklch(83.9% 0 0);
+    --secondary-text-l: oklch(70.24% 0.121 99.09);
+    --secondary-text-d: oklch(61.17% 0.085 354.12);
+    --contrast-l: oklch(63.27% 0.082 222.84);
+    --contrast-d: oklch(57.95% 0.042 224.16);
+    --accent-l: oklch(77.98% 0.053 174.61);
+    --accent-d: oklch(63.77% 0.08 0.4);
+  }
 }

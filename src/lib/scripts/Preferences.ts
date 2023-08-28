@@ -3,7 +3,7 @@ import type { Writable } from 'svelte/store';
 export type ThemeMode = 'light' | 'dark' | 'auto';
 export type Themes = (typeof themes)[number];
 // type FunLevel = 1 | 2 | 3;
-export const themes = ['normal', 'forest'] as const;
+export const themes = ['normal', 'forest', 'gabrie'] as const;
 
 export const theme: Writable<Themes> = writable('normal');
 export const themeMode: Writable<ThemeMode> = writable('auto');

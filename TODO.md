@@ -40,3 +40,5 @@
 - [ ] spoilers element
 - [ ] make sure text in og image stays on screen
 - [ ] put shorthands first in stylelint order (inset then inset-block etc)
+- [ ] add [popover] color: unset; to jcss
+- [ ] focus styles for theme button

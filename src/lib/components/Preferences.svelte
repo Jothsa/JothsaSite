@@ -78,7 +78,7 @@
           type="checkbox"
           on:change={(e) => onReducedMotionChange(e)} /></label>
 
-      <label for="themes"
+      <label for="themes" class="input-wrapper"
         >Theme
         <select
           name="themes"
@@ -131,10 +131,27 @@
     min-inline-size: fit-content;
     flex-flow: row;
     gap: var(--space-3xs);
+
+    /* ? is this ok or does it not seem clear what's being focused? */
+
+    & input:focus-visible {
+      border-radius: 0.75ch;
+      outline: solid 2px var(--contrast);
+      outline-offset: 2px;
+    }
   }
 
-  .theme-wrapper {
-    display: flex;
-    block-size: fit-content;
+  select {
+    border: none;
+    outline: solid 2px var(--accent);
+    border-radius: 0.75ch;
+    background-color: var(--secondary);
+    outline-offset: 1px;
+
+    &:focus-visible {
+      outline-color: var(--contrast);
+      outline-width: 3px;
+      outline-offset: 0px;
+    }
   }
 </style>

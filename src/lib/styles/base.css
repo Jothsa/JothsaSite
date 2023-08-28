@@ -62,6 +62,10 @@ and @mayank99
   overflow-y: auto;
 }
 
+:where([popover]) {
+  color: unset;
+}
+
 /* they don't normally inherit fonts for some reason */
 :where(input, button, textarea, select) {
   color: inherit;
