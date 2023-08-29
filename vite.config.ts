@@ -36,5 +36,8 @@ export default defineConfig({
   },
   build: {
     target: 'esNext',
+    // rollupOptions: {
+    //   external: ['_pagefind/pagefind-ui.js'],
+    // },
   },
 });

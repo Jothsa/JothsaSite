@@ -13,11 +13,11 @@ export const load = async function load({ params, fetch }) {
     const response = await fetch('/api/posts', { headers: headers });
     const output = await response.json();
     const posts: Post[] = output.posts;
-    const pages = output.pages;
+    const totalPages: number = output.totalPages;
 
     return {
       posts,
-      pages,
+      totalPages,
       title: tag,
       tag: tag,
     };

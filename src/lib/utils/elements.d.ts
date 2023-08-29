@@ -1,3 +1,5 @@
+import type { boolean } from 'valibot';
+
 declare namespace svelteHTML {
   // enhance elements
   // interface IntrinsicElements {
@@ -15,5 +17,6 @@ declare namespace svelteHTML {
     popover?: boolean | 'auto' | 'manual'; // You can replace any with something more specific if you like
     popovertarget?: string;
     popovertargetaction?: 'show' | 'hide' | 'toggle';
+    'data-pagefind-ignore'?: boolean | 'index' | 'all';
   }
 }

@@ -42,7 +42,7 @@
     </div>
     <section class="tags-wrapper" aria-labelledby="tags-label">
       <h3 class="tags-title h3" id="tags-label">Tags</h3>
-      <TagsCloud tags={data.meta.tags} />
+      <TagsCloud tags={data.meta.tags} addFilterAttr={true} />
     </section>
     <SpreadInterestButton shareText={data.meta.description} />
     <section aria-label="react to this post">

@@ -51,6 +51,26 @@
     media="(prefers-color-scheme: light)" />
   <meta name="robots" content="noindex" />
   <title>{pageTitle}</title>
+
+  <style>
+    .no-js {
+      display: none;
+    }
+    .js-only {
+      display: unset;
+    }
+  </style>
+
+  <noscript>
+    <style>
+      .no-js {
+        display: unset;
+      }
+      .js-only {
+        display: none;
+      }
+    </style>
+  </noscript>
 </svelte:head>
 
 <AccessibleMenu />
