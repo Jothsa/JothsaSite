@@ -6,10 +6,11 @@
   import type { TagsType } from '$utils/types';
   export let tag: TagsType;
   export let isCurrentTag: boolean = false;
+  export let addFilterAttr = false;
 </script>
 
 <li class={`tag ${tag}`} class:current={isCurrentTag}>
-  <a href={`/blog/tags/${tag}`} class="unstyled-link">{tag}</a>
+  <a href={`/blog/tags/${tag}`} class="unstyled-link" data-pagefind-filter={addFilterAttr ? `tag` : null}>{tag}</a>
 </li>
 
 <style>

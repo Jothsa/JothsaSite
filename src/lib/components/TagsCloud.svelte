@@ -6,6 +6,8 @@
   import PostTag from './PostTag.svelte';
   export let tags: TagsType[] = [...TagsList];
   export let currentTag: TagsType | undefined = undefined;
+  export let addFilterAttr = false;
+
 
   // whether to sort alphabetically or not
   // could add random and length options for sorting
@@ -19,7 +21,7 @@
 <div class="tags-container" data-pagefind-ignore>
   <ul class="post-tag">
     {#each tags as t}
-      <PostTag tag={t} isCurrentTag={currentTag === t} />
+      <PostTag tag={t} isCurrentTag={currentTag === t}  {addFilterAttr} />
     {/each}
   </ul>
 </div>
