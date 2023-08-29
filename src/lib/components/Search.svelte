@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
 
-  onMount(()=> {
-    new PagefindUI({ element: "#search" });
-  })
+  onMount(async () => {
+    await import(/* @vite-ignore */ '/_pagefind/pagefind-ui.js?url');
+    new PagefindUI({ element: '#search' });
+  });
 </script>
 
 <!-- these should get added on build-- ergo this won't work on dev server -->
-<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
-<script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>
-
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet" />
+<!-- <script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script> -->
 
 <div id="search" />
 
