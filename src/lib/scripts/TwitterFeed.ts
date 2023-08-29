@@ -62,7 +62,6 @@ export async function parseFeed(
       imageElements?.forEach((image) => {
         externalImageSources.push(image.src);
       });
-      
     }
   });
 }

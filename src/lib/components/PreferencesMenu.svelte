@@ -83,7 +83,6 @@
       /* transform: translate(0%); */
     }
 
-
     /*
      * [2] - at large zooms, this margin keeps it centered */
     &:popover-open {

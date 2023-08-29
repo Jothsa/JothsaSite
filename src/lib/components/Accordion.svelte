@@ -121,7 +121,6 @@
       }
       buttons.forEach((button) => {
         button.setAttribute('aria-expanded', 'false');
-        
       });
       contents.forEach((content) => {
         content.setAttribute('aria-hidden', 'true');

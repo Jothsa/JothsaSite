@@ -199,7 +199,6 @@ media-captions-button:not([mediasubtitleslist]) {
   display: none;
 }
 
-
 :where(.icon-only-button) {
   inline-size: var(--size, 2ch);
   block-size: var(--size, 2ch);
@@ -209,7 +208,7 @@ media-captions-button:not([mediasubtitleslist]) {
   margin: 0;
   border: none;
   background: none;
-  border-radius: .25ch;
+  border-radius: 0.25ch;
 
   &:focus-visible {
     outline: solid var(--contrast) 4px;

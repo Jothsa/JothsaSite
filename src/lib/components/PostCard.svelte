@@ -14,7 +14,8 @@
 <svelte:element
   this={wrapperTag}
   class="post"
-  role={isLIRole ? 'listitem' : ''} data-pagefind-ignore>
+  role={isLIRole ? 'listitem' : ''}
+  data-pagefind-ignore>
   <a
     class="unread"
     href={`/blog/${post.slug}`}
@@ -93,7 +94,11 @@
       );
       --border: solid clamp(4px, 0.55ch, 10px);
       --border-grad-color-1: var(--accent);
-      --border-grad-color-2: color-mix(in oklch, var(--accent), oklch(95% 0 0) 60%);
+      --border-grad-color-2: color-mix(
+        in oklch,
+        var(--accent),
+        oklch(95% 0 0) 60%
+      );
       --border-grad: conic-gradient(
         from var(--_border-grad-angle) at 50% 50% in oklab,
         oklch(80% 0.4 222 / 0) 0%,

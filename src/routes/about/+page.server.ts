@@ -18,7 +18,6 @@ try {
   console.log(e);
 }
 
-
 export const load = (() => {
   return {
     title: `About`,

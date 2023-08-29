@@ -16,7 +16,6 @@ export async function getOGImage(
   } catch {
     // the ogImage could be invalid
     img = await getTemplateScreenshot(ogTemplate, featuredImage, width, height);
-    
   }
   return {
     img: img,

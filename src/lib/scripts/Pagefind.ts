@@ -25,7 +25,6 @@ interface PagefindDocument {
   word_count: number;
 }
 
-
 export async function loadPagefind(): Promise<Pagefind> {
   const pf = '/_pagefind/pagefind.js';
   return await import(/* @vite-ignore */ pf);

@@ -10,7 +10,10 @@
 </script>
 
 <li class={`tag ${tag}`} class:current={isCurrentTag}>
-  <a href={`/blog/tags/${tag}`} class="unstyled-link" data-pagefind-filter={addFilterAttr ? `tag` : null}>{tag}</a>
+  <a
+    href={`/blog/tags/${tag}`}
+    class="unstyled-link"
+    data-pagefind-filter={addFilterAttr ? `tag` : null}>{tag}</a>
 </li>
 
 <style>

@@ -35,7 +35,7 @@
   }
 </script>
 
-<section >
+<section>
   <button id="carousel-left" on:click={moveLeft}>ArrowLeft</button>
   <button id="carousel-right" on:click={moveRight}>ArrowRight</button>
   {#each images as image, i}
