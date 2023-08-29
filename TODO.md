@@ -42,3 +42,4 @@
 - [ ] put shorthands first in stylelint order (inset then inset-block etc)
 - [ ] add [popover] color: unset; to jcss
 - [ ] focus styles for theme button
+- [ ] require lint and build for pull requests
