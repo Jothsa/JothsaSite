@@ -2,6 +2,7 @@
   import Navigation from './Navigation.svelte';
   import SupportsNotice from '$components/SupportsNotice.svelte';
   import PreferencesMenu from './PreferencesMenu.svelte';
+  import SearchModal from './SearchModal.svelte';
 </script>
 
 <div class="header-container">
@@ -13,6 +14,7 @@
     <div class="navigation-wrapper">
       <Navigation />
     </div>
+    <SearchModal buttonStyle="grid-area: preferences" />
     <div class="supports-notice-wrapper">
       <SupportsNotice />
     </div>
