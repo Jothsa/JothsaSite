@@ -66,6 +66,7 @@
       .no-js {
         display: unset;
       }
+      
       .js-only {
         display: none;
       }
