@@ -6,4 +6,4 @@
   $: currentTag = data.tag;
 </script>
 
-<BlogPostsLayout posts={data.posts} {currentTag} pages={data.pages} />
+<BlogPostsLayout posts={data.posts} {currentTag} totalPages={data.totalPages} />
