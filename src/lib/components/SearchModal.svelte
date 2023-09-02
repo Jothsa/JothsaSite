@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import Search from './Search.svelte';
 
   let searchButton: HTMLButtonElement;
@@ -106,22 +105,30 @@
 </dialog>
 
 <style>
+
+  a,
+  button {
+    --size: 3ch;
+    --color: var(--accent);
+  }
+
   #search-dialog {
     position: fixed;
     display: none;
-    inline-size: 100lvi;
+    inline-size: 100dvi;
 
     /* needed to reset user agent styles */
     max-inline-size: 100dvi;
-    block-size: 100lvb;
+    block-size: 100dvb;
     max-block-size: 100dvb;
-    padding: 0;
+    padding: var(--space-xs);
     border: none;
     margin: 0;
-    background: none;
     inset: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
+    background: var(--secondary);
+    border-radius: 0.25ch;
 
     &[open] {
       display: grid;
@@ -129,10 +136,6 @@
 
     &::backdrop {
       backdrop-filter: blur(5px);
-    }
-
-    & button {
-      color: var(--accent);
     }
   }
 
@@ -143,9 +146,12 @@
       inset: unset;
       /* stylelint-disable-next-line order/properties-order */
       inset-block-start: clamp(0ch, 1ch, 5svh);
-      inline-size: auto;
-      block-size: auto;
-      margin-inline: auto;
+      inline-size: clamp(50svi, 100ch, 95svi);
+      block-size: clamp(50svb, 85ch, 95dvb);
+
+      /* using left since translate x */
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 
@@ -156,18 +162,9 @@
 
     /* block-size: 100dvb; */
 
-    padding: var(--space-xs);
-    border-radius: 0.25ch;
+    padding: 0;
     margin: 0;
-    background: var(--secondary);
     overscroll-behavior: contain;
-
-    @media (width > 50ch) {
-      min-inline-size: min(50svi, 90ch);
-
-      /* is lvb ok or should it be dvb? */
-      min-block-size: min(40svb, 30ch);
-    }
   }
 
   /* make sure works, make sure overrides the <noscript> style in the head */

@@ -8,13 +8,15 @@
 <div class="header-container">
   <header id="header">
     <span class="h1">Jothsa's Site!</span>
-    <div class="preference-menu-wrapper">
-      <PreferencesMenu />
-    </div>
     <div class="navigation-wrapper">
       <Navigation />
     </div>
-    <SearchModal buttonStyle="grid-area: preferences" />
+    <div class="header-buttons-wrapper">
+      <SearchModal buttonStyle="grid-area: preferences" />
+      <div class="preference-menu-wrapper">
+        <PreferencesMenu />
+      </div>
+    </div>
     <div class="supports-notice-wrapper">
       <SupportsNotice />
     </div>
@@ -52,7 +54,10 @@
       justify-items: center;
     }
 
-    & .preference-menu-wrapper {
+    & .header-buttons-wrapper {
+      display: flex;
+      flex-flow: row wrap;
+      gap: var(--space-xs);
       grid-area: preferences;
       place-self: center end;
     }

@@ -14,6 +14,7 @@
     aria-expanded={isExpanded}
     popovertarget="preferences"
     on:click={onPrefButtonClick}
+    class="icon-only-button"
     ><svg
       aria-hidden="true"
       focusable="false"
@@ -44,19 +45,8 @@
   }
 
   button {
-    display: grid;
-    width: 3ch;
-    height: 3ch;
-    padding: 0;
-    border: none;
-    background: transparent;
-    color: var(--accent);
-
-    & svg {
-      width: 100%;
-      height: 100%;
-      grid-area: 1/1;
-    }
+    --color: var(--accent);
+    --size: 3ch;
   }
 
   .preferences-wrapper {

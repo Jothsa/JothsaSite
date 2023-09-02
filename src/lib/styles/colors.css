@@ -93,8 +93,8 @@
     --primary-text-d: oklch(83.9% 0 0);
     --secondary-text-l: oklch(70.24% 0.121 99.09);
     --secondary-text-d: oklch(61.17% 0.085 354.12);
-    --contrast-l: oklch(63.27% 0.082 222.84);
-    --contrast-d: oklch(57.95% 0.042 224.16);
+    --contrast-l: oklch(57.2% 0.119 222.84);
+    --contrast-d: oklch(63.5% 0.042 224.16);
     --accent-l: oklch(77.98% 0.053 174.61);
     --accent-d: oklch(63.77% 0.08 0.4);
   }
