@@ -1,4 +1,3 @@
-import type { boolean } from 'valibot';
 
 declare namespace svelteHTML {
   // enhance elements
