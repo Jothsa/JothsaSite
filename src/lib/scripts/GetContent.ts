@@ -23,10 +23,11 @@ function sortByDate(posts: Post[], order?: 'ascending' | 'descending') {
 export async function getPosts() {
   let posts: Post[] = [];
 
-  const paths = import.meta.glob('/src/posts/*.md', { eager: true });
-
+  // by not using {eager: true}  the posts can be dynamically imported and chunked
+  
+  const paths = import.meta.glob('/src/posts/*.md');
   for (const path in paths) {
-    const file = paths[path];
+    const file = await paths[path]();
     const slug = path.split('/').at(-1)?.replace('.md', '');
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
@@ -101,3 +102,4 @@ export function isPostSlug(s: string | undefined | null): s is PostSlug {
     return true;
   } else return false;
 }
+
