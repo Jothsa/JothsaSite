@@ -24,7 +24,8 @@
 <style>
   .header-container {
     display: flex;
-    inline-size: 100vw;
+    inline-size: 100%;
+    max-inline-size: 100svi;
     container: header / inline-size;
   }
 
@@ -72,5 +73,9 @@
         justify-content: unset;
       }
     }
+  }
+
+  :global(:root:is(.no-anchor, .no-popover) .preference-menu-wrapper) {
+    display: none;
   }
 </style>
