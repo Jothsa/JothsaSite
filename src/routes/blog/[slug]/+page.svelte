@@ -66,6 +66,7 @@
 
 <style>
   main {
+    max-inline-size: 50vw;
     padding: var(--space-xs);
   }
 
@@ -90,6 +91,7 @@
   }
 
   .prose {
+    max-inline-size: 100vw;
     padding: 2ch;
     background: var(--secondary);
     grid-area: content;
@@ -123,7 +125,8 @@
 
   .post-title + p {
     margin-block-start: var(--size-2xs);
-    color: var(--text-2);
+
+    /* color: var(--text-2); */
   }
 
   .reactions-wrapper {
