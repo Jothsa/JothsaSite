@@ -26,7 +26,7 @@
     --_rotation-deg: 7deg;
     --_rotation: calc(var(--_rotation-deg) * var(--_rotation-factor));
 
-    padding-inline: 1ch;
+    padding-inline: var(--space-xs);
     border-radius: 0.5ch;
     background: var(--tag-bg);
     contain: content;
