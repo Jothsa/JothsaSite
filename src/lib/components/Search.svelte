@@ -11,13 +11,13 @@
 <link href="/_pagefind/pagefind-ui.css" rel="stylesheet" />
 <!-- <script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script> -->
 
-<div id="search" />
+<div id="search"  />
 
 <style>
   #search {
     --pagefind-ui-scale: 1;
     --pagefind-ui-primary: var(--contrast);
-    --pagefind-ui-text: var(--text-primary);
+    --pagefind-ui-text: var(--primary-text);
     --pagefind-ui-background: var(--tertiary);
     --pagefind-ui-border: var(--accent);
     --pagefind-ui-tag: var(--accent);
