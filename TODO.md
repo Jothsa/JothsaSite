@@ -43,3 +43,4 @@
 - [ ] add [popover] color: unset; to jcss
 - [ ] focus styles for theme button
 - [ ] require lint and build for pull requests
+- [ ] don't use ch w/o max value in most cases
