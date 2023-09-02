@@ -1,5 +1,5 @@
 ---
-title: Ahsoka Episode One
+title: Ahsoka Episodes One and Two
 description: My first reaction to episodes one and two of Ahsoka
 date: '2023-08-22'
 tags:
