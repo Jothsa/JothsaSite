@@ -43,9 +43,9 @@ h4,
 pre {
   overflow: auto;
   inline-size: fit-content;
-  padding: 0.5ch;
+  max-inline-size: 100%;
+  padding: var(--space-2xs);
   margin-block: max(11px, var(--space-s));
-
   /* TODO add color from theme to 1st shadow color-mix */
   box-shadow:
     /* 2px 3px 3px 0px color-mix(in oklch, var(--accent), oklch(15% 0 0) 25% ), */

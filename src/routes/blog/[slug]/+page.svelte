@@ -66,14 +66,14 @@
 
 <style>
   main {
-    max-inline-size: 50vw;
     padding: var(--space-xs);
   }
 
   article {
     position: relative;
-    display: grid;
-    inline-size: fit-content;
+
+    /* display: grid; */
+
     padding: var(--space-xs);
     padding-block-start: 0;
     gap: var(--space-m);
@@ -91,10 +91,10 @@
   }
 
   .prose {
-    max-inline-size: 100vw;
-    padding: 2ch;
+    padding: var(--space-s);
     background: var(--secondary);
     grid-area: content;
+    -webkit-mask: var(--mask-corner-cut-angles-1);
 
     /* isolation: isolate; */
 
@@ -105,7 +105,6 @@
     /* inline-size: 90vw; */
 
     /* min-inline-size: 0; */
-    -webkit-mask: var(--mask-corner-cut-angles-1);
 
     /* &::after {
       position: absolute;
