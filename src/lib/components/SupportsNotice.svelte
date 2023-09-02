@@ -64,7 +64,7 @@
   });
 </script>
 
-<div class="support-menus-container">
+<div class="support-menus-container" data-pagefind-ignore="all">
   <noscript>
     <div id="no-js-menu">
       <p>Enable javascript for the best experience.</p>
