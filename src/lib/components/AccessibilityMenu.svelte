@@ -36,7 +36,7 @@
     & a:focus-visible {
       display: flex;
       justify-content: center;
-      padding-inline: 2ch;
+      padding-inline: var(--space-s);
       color: var(--text-secondary);
       font-size: 1.5rem;
       text-decoration: underline;
