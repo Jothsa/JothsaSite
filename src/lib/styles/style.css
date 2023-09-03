@@ -210,7 +210,7 @@ media-captions-button:not([mediasubtitleslist]) {
   border: none;
   background: none;
   border-radius: 0.25ch;
-  transition: color 300ms;
+  transition: color 300ms
 
   &:focus-visible {
     outline: solid var(--contrast) 4px;
@@ -224,5 +224,38 @@ media-captions-button:not([mediasubtitleslist]) {
     grid-area: 1 / 1;
     margin: 0;
     padding: 0;
+  }
+}
+/* An accent button w/focus and hover styles
+** [1] - to meet a11y guidelines 
+ */
+.button-accent {
+  border: solid var(--accent) 2px;
+  border-radius: 0.25ch;
+  color: var(--text-primary);
+  border: none;
+  background-color: var(--accent);
+  transition: background-color 300ms;
+  padding-inline: var(--space-xs);
+  padding-block: var(--spaces-3xs);
+  min-inline-size: 24px; /* [1] */
+  min-block-size: 24px; /* [1] */
+
+  &:is(:focus-visible, :hover) {
+    outline: none;
+    background-color: var(--contrast);
+  }
+}
+
+input:is([type='text'], [type='search']) {
+  border: solid var(--accent) 2px;
+  border-radius: 0.25ch;
+  background-color: var(--secondary);
+  color: var(--text-primary);
+  transition: border-color 300ms;
+
+  &:is(:focus-visible, :hover) {
+    border-color: var(--contrast);
+    outline: none;
   }
 }
