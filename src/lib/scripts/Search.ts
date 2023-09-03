@@ -1,3 +1,4 @@
+import { paginate } from '$utils/utils';
 import {
   string,
   number,
@@ -45,8 +46,8 @@ interface PagefindDocument {
 
 export const searchRequestSchema = object({
   query: string(),
-  currentPage: withDefault(number(), 1),
-  totalPages: withDefault(number(), 1),
+  currentPage: optional(withDefault(number(), 1)),
+  totalPages: optional(withDefault(number(), 1)),
   filters: optional(record(union([string(), array(string())]))),
 });
 
@@ -56,7 +57,7 @@ export const searchResponseSchema = object({
 
 type searchRequest = Output<typeof searchRequestSchema>;
 
-export async function searchPosts(request: searchRequest, options?: {}) {
+export async function searchPosts(request: searchRequest) {
   let pagefind: Pagefind;
   try {
     pagefind = await loadPagefind();
@@ -75,12 +76,20 @@ export async function searchPosts(request: searchRequest, options?: {}) {
     pagefindSearchResponse = await pagefind.search(query);
   }
 
-  const { results } = pagefindSearchResponse;
-  if (totalPages > 1) {
-    return
-  }
+  const resultsRaw = pagefindSearchResponse.results;
 
-  // use the pagefind api to get the results
+  // ? is this efficient?
+  const results: PagefindDocument[] = [];
+  resultsRaw.forEach(async (result) => {
+    results.push(await result.data());
+  });
+
+  if (totalPages > 1) {
+    const { items, totalPages } = paginate(results, currentPage, totalPages);
+    return { items: items, totalPages: totalPages };
+  } else {
+    return { items: results, totalPages: 1 };
+  }
 }
 
 export async function loadPagefind(): Promise<Pagefind> {
