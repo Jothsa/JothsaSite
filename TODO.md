@@ -46,4 +46,4 @@
 - [ ] don't use ch w/o max value in most cases
 - [ ] create utils stylesheet
 - [ ] fix post card overflow/hidden
-- [ ] fix reactions menu colors
+- [x] fix reactions menu colors

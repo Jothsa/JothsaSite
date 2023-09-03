@@ -294,6 +294,8 @@
       (var(--max-opening-time) / (var(--total-items) - 1))
     ); /* [4] */
     --toggle-bg: var(--tertiary);
+    --focus: var(--contrast);
+    --focus-outline: clamp(2px, 0.4ch, 5px) dashed var(--focus);
     inline-size: min-content;
     block-size: min-content;
     padding: 0;
@@ -345,9 +347,8 @@
       --angle: calc(var(--_base-angle) * (var(--item-num) - 1));
       --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
       --radius: calc(var(--btn-size) + var(--extra-space));
-      --bg: var(--accent);
-      --selected-bg: var(--contrast);
-      --focus: var(--contrast);
+      --bg: var(--tertiary);
+      --selected-bg: var(--accent);
       position: relative;
       width: var(--btn-size);
       border-radius: 50%;
@@ -369,7 +370,7 @@
       }
 
       &:is(:focus-visible, :focus-within) {
-        outline: clamp(2px, 0.4ch, 5px) dashed var(--focus);
+        outline: var(--focus-outline);
       }
 
       &:hover {
@@ -435,6 +436,10 @@
       aspect-ratio: 1;
       background-color: var(--toggle-bg);
       transition: background-color 300ms;
+
+      &:focus-visible {
+        outline: var(--focus-outline);
+      }
     }
 
     & .hidden-close {
