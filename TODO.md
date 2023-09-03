@@ -2,40 +2,40 @@
 
 - [ ] add backups for vars?
 - [ ] add contrast and theme to prefs
-- [ ] aria-expanded acting weird on nav button
+- [x] aria-expanded acting weird on nav button
 - [ ] view transitions
 - [ ] cleanup Tags (no spaces maybe)
 - [ ] switch dates to actual date obj (maybe)
 - [ ] make sure md linting works
-- [ ] add md plugins
+- [x] add md plugins
 - [ ] decide on post and slug naming scheme
 - [ ] make admin page/ easy way to make posts?
-- [ ] give links a color
-- [ ] make sure all svg elements have aria-hiden and non-focusable
+- [-] give links a color
+- [ ] make sure all svg elements have aria-hidden and non-focusable
 - [ ] Tags vs tags (1 cat per post?)
 - [ ] use excerpt not description?
 - [ ] update copyright, add code and github to footer
 - [ ] make sure footer always at bottom
-- [ ] should clicking current selected tag deselect it?
+- [x] should clicking current selected tag deselect it? (No it shouldn't)
 - [ ] handle no tags gracefully
 - [ ] add nan checks for page num
 - [ ] add func to fetch post details for post card so that full post isn't needed
 - [ ] add 400 error to server apis
 - [ ] use int as primary key in db
-- [ ] add 'all' option for page num to show all posts (/blog/page/all)
+- [ ] add 'all' option for page num to show all posts (/blog/page/all) (giving total pages as 1 works)
 - [ ] center header text when menu is collapsed/mobile version
 - [ ] mark external links
 - [ ] does fit-content always need arg ex: fit-content(30ch)
 - [ ] Add license
-- [ ] test code, em, strong and links together
-- [ ] add featured images to post/post card
+- [x] test code, em, strong and links together
+- [x] add featured images to post/post card
 - [ ] add random post
-- [ ] toggle for image blur effect
-- [ ] make sure view progress is working
-- [ ] create og images for non post pages (don't forget tags!)
+- [x] toggle for image blur effect
+- [x] make sure view progress is working
+- [x] create og images for non post pages (don't forget tags!)
 - [ ] add table of contents on blog posts
 - [ ] support filenames for code blocks
-- [ ] add random nums and colors with js
+- [x] add random nums and colors with js
 - [ ] add caption bg to accordion if prefers-increased-contrast
 - [ ] spoilers element
 - [ ] make sure text in og image stays on screen
@@ -45,3 +45,4 @@
 - [ ] require lint and build for pull requests
 - [ ] don't use ch w/o max value in most cases
 - [ ] create utils stylesheet
+- [ ] fix post card overflow/hidden
