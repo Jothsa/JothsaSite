@@ -13,6 +13,7 @@
 </section>
 
 <style>
+  /* stylelint-disable selector-type-no-unknown */
   @keyframes animate-in-and-out {
     entry 0% {
       opacity: var(--opacity-low, 0);
@@ -34,6 +35,8 @@
       transform: translateY(calc(var(--transform-length, 30%) * -1));
     }
   }
+
+  /* stylelint-enable selector-type-no-unknown */
 
   .posts {
     display: grid;

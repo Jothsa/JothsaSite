@@ -346,8 +346,8 @@
       --delay: calc((var(--item-num) - 1) * var(--_delay-offset));
       --radius: calc(var(--btn-size) + var(--extra-space));
       --bg: var(--accent);
-      --selected-bg: skyblue;
-      --focus: deeppink;
+      --selected-bg: var(--contrast);
+      --focus: var(--contrast);
       position: relative;
       width: var(--btn-size);
       border-radius: 50%;

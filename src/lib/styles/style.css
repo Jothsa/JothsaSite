@@ -33,7 +33,9 @@ h4,
 
 .emoji-l {
   --wiggle-init: 0deg;
-  --wiggle: calc(20deg - var(--random-number, var(--random-number-1, .5)) * 15deg);
+  --wiggle: calc(
+    20deg - var(--random-number, var(--random-number-1, 0.5)) * 15deg
+  );
   display: inline-block;
   font-size: var(--step-4);
 
@@ -52,6 +54,7 @@ pre {
   max-inline-size: 100%;
   padding: var(--space-2xs);
   margin-block: max(11px, var(--space-s));
+
   /* TODO add color from theme to 1st shadow color-mix */
   box-shadow:
     /* 2px 3px 3px 0px color-mix(in oklch, var(--accent), oklch(15% 0 0) 25% ), */
@@ -207,15 +210,15 @@ media-captions-button:not([mediasubtitleslist]) {
 
 .icon-only-button {
   --color: var(--text-secondary);
+  display: inline-grid;
   inline-size: var(--size, 2ch);
   block-size: var(--size, 2ch);
-  display: inline-grid;
-  color: var(--color, currentcolor);
   padding: 0;
-  margin: 0;
   border: none;
-  background: none;
   border-radius: 0.25ch;
+  margin: 0;
+  background: none;
+  color: var(--color, currentcolor);
   transition: color 300ms;
 
   &:focus-visible {
@@ -227,9 +230,9 @@ media-captions-button:not([mediasubtitleslist]) {
   }
 
   & svg {
-    grid-area: 1 / 1;
-    margin: 0;
     padding: 0;
+    margin: 0;
+    grid-area: 1 / 1;
   }
 }
 
@@ -237,20 +240,20 @@ media-captions-button:not([mediasubtitleslist]) {
 ** [1] - to meet a11y guidelines 
  */
 .button-accent {
-  border: solid var(--accent) 2px;
-  border-radius: 0.25ch;
-  color: var(--text-primary);
-  border: none;
-  background-color: var(--accent);
-  transition: background-color 300ms;
-  padding-inline: var(--space-xs);
-  padding-block: var(--spaces-3xs);
   min-inline-size: 24px; /* [1] */
   min-block-size: 24px; /* [1] */
+  padding-block: var(--spaces-3xs);
+  padding-inline: var(--space-xs);
+  border: solid var(--accent) 2px;
+  border: none;
+  border-radius: 0.25ch;
+  background-color: var(--accent);
+  color: var(--text-primary);
+  transition: background-color 300ms;
 
   &:is(:focus-visible, :hover) {
-    outline: none;
     background-color: var(--contrast);
+    outline: none;
   }
 }
 

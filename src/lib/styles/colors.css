@@ -46,6 +46,7 @@
     --accent-l: oklch(60% 0.148 160.94);
     --accent-d: oklch(72.65% 0.168 160.94);
   }
+
   &[data-theme='gabrie'] {
     --primary-l: oklch(98.81% 0 0);
     --primary-d: oklch(33.24% 0.076 222.84);

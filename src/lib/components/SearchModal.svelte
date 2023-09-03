@@ -105,7 +105,6 @@
 </dialog>
 
 <style>
-
   a,
   button {
     --size: 3ch;
@@ -123,12 +122,12 @@
     max-block-size: 100dvb;
     padding: var(--space-xs);
     border: none;
+    border-radius: 0.25ch;
     margin: 0;
+    background: var(--secondary);
     inset: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
-    background: var(--secondary);
-    border-radius: 0.25ch;
 
     &[open] {
       display: grid;
@@ -150,6 +149,7 @@
       block-size: clamp(50svb, 85ch, 95dvb);
 
       /* using left since translate x */
+      /* stylelint-disable-next-line order/properties-order */
       left: 50%;
       transform: translateX(-50%);
     }

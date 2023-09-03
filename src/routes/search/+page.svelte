@@ -36,7 +36,9 @@
   {#if form?.results}
     <div id="search-results">
       {#each form.results as result}
-      <div class="search-result"><a href={result.url}>{result.meta.title}</a></div>
+        <div class="search-result">
+          <a href={result.url}>{result.meta.title}</a>
+        </div>
       {/each}
     </div>
   {/if}

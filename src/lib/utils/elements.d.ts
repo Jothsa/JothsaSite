@@ -1,4 +1,3 @@
-
 declare namespace svelteHTML {
   // enhance elements
   // interface IntrinsicElements {

@@ -14,7 +14,7 @@
 <div class="tweet">
   <a href={link}>{tweetTitle}</a>
   <p>{date}</p>
-  <slot></slot>
+  <slot />
 </div>
 
 <style>

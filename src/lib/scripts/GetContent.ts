@@ -24,7 +24,7 @@ export async function getPosts() {
   let posts: Post[] = [];
 
   // by not using {eager: true}  the posts can be dynamically imported and chunked
-  
+
   const paths = import.meta.glob('/src/posts/*.md');
   for (const path in paths) {
     const file = await paths[path]();
@@ -102,4 +102,3 @@ export function isPostSlug(s: string | undefined | null): s is PostSlug {
     return true;
   } else return false;
 }
-

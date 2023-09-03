@@ -36,7 +36,7 @@ const panels = [
 ## Live Reaction
 
 Huyang is so funny
-~~Can someone please fix Hera's lekku. They look like hard plastic.~~ They actually look looks similar in *Rebels*. I would prefer a 
+~~Can someone please fix Hera's lekku. They look like hard plastic.~~ They actually look looks similar in _Rebels_. I would prefer a
 Ahoksa's montrails look great. Just a bit too flexible imo. Notice this when she runs especially.
 Mon Mothma! I love her actress!
 Jacen's hair is ugggly

@@ -143,15 +143,15 @@
 
   select {
     border: none;
-    outline: solid 2px var(--accent);
     border-radius: 0.75ch;
     background-color: var(--secondary);
+    outline: solid 2px var(--accent);
     outline-offset: 1px;
 
     &:focus-visible {
       outline-color: var(--contrast);
-      outline-width: 3px;
       outline-offset: 0px;
+      outline-width: 3px;
     }
   }
 </style>

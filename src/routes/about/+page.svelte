@@ -21,8 +21,11 @@
   <div class="tweets">
     {#each feed.items as item}
       {#if item.title && item.pubDate && item.creator && item.link}
-        <Tweet tweetTitle={item.title} date={item.pubDate} author={item.creator} link={item.link}
-          >{@html item.content}</Tweet>
+        <Tweet
+          tweetTitle={item.title}
+          date={item.pubDate}
+          author={item.creator}
+          link={item.link}>{@html item.content}</Tweet>
       {/if}
     {/each}
   </div>
