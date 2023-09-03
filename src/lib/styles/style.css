@@ -25,9 +25,15 @@ h4,
   font-size: var(--step-1);
 }
 
+/*
+** should rotate from 5deg to 20deg
+** tries to use a local random number if set, otherwise tries the global one, 
+**  and fallbacks to .5 (a total rotation of 12.5deg)
+*/
+
 .emoji-l {
   --wiggle-init: 0deg;
-  --wiggle: 7deg;
+  --wiggle: calc(20deg - var(--random-number, var(--random-number-1, .5)) * 15deg);
   display: inline-block;
   font-size: var(--step-4);
 
@@ -210,14 +216,14 @@ media-captions-button:not([mediasubtitleslist]) {
   border: none;
   background: none;
   border-radius: 0.25ch;
-  transition: color 300ms
+  transition: color 300ms;
 
   &:focus-visible {
     outline: solid var(--contrast) 4px;
   }
 
   &:hover {
-    color: var(--contrast);
+    --color: var(--contrast);
   }
 
   & svg {
@@ -226,6 +232,7 @@ media-captions-button:not([mediasubtitleslist]) {
     padding: 0;
   }
 }
+
 /* An accent button w/focus and hover styles
 ** [1] - to meet a11y guidelines 
  */
