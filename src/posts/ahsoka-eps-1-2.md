@@ -45,6 +45,6 @@ Seeing Ahsoka use psychometry is really cool. (Why does the code spell check plu
 >
 > Huyang: Because you're a hologram
 
-<span class="emoji-l">😆</span><span class="emoji-l">😆</span><span class="emoji-l">😆</span>
+<span class="emoji-l random-number">😆</span><span class="emoji-l random-number">😆</span><span class="emoji-l random-number">😆</span>
 
 Chopper!
