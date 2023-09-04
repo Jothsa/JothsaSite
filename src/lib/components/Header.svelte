@@ -45,6 +45,7 @@
       'title title preferences'
       'navigation navigation navigation'
       'notice notice notice';
+    view-transition-name: header;
 
     & h1 {
       display: flex;

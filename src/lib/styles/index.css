@@ -8,6 +8,7 @@
 @import url('./sizing.css');
 @import url('./colors.css');
 @import url('./base.css');
+@import url('./viewTransitions.css');
 @import url('./utils.css');
 @import url('./animations.css');
 @import url('./style.css');
