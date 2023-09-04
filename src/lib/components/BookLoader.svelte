@@ -30,9 +30,9 @@
     --line-width: 1ch;
     --_border-width: calc(var(--line-width) / 2);
     --duration: 2s;
-    --spine-length: 8ch;
+    --spine-length: 5ch;
     --spine-height: calc(var(--spine-length) * 0.5);
-    --page-length: 15ch;
+    --page-length: 7ch;
 
     /* something is wacky w/ --cover-length */
     --cover-length: calc(var(--page-length) + 0ch);
