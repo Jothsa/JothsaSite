@@ -53,6 +53,7 @@
     justify-content: center;
     padding-block: var(--space-2xs);
     gap: var(--space-s);
+    view-transition-name: footer;
   }
 
   .button-wrapper {

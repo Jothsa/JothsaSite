@@ -33,6 +33,7 @@
 
     /* block-size: fit-content; */
     container: tags / inline-size;
+    view-transition-name: tags-cloud;
 
     & .post-tag {
       display: flex;
