@@ -6,6 +6,7 @@
   import Footer from '$components/Footer.svelte';
   import { description, siteTitle } from '$utils/config';
   import { onMount } from 'svelte';
+  import { onNavigate } from '$app/navigation';
   import {
     setRandomGlobalProps,
     setRandomLocalProps,
@@ -28,6 +29,19 @@
   onMount(() => {
     setRandomGlobalProps(randomPalette, 2, 0, 1, 2);
     setRandomLocalProps(randomPalette);
+  });
+
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) {
+      return;
+    }
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
   });
 </script>
 
