@@ -23,6 +23,8 @@
 <style>
   /* based on https://codepen.io/aaroniker/pen/zYOewEP */
 
+  /* TODO fix units for sizes (don't use ch w/o max) */
+
   .book-loader-container {
     --color: var(--accent);
     --line-width: 1ch;
@@ -31,6 +33,8 @@
     --spine-length: 8ch;
     --spine-height: calc(var(--spine-length) * 0.5);
     --page-length: 15ch;
+
+    /* something is wacky w/ --cover-length */
     --cover-length: calc(var(--page-length) + 0ch);
     --page-offset-y: 0.4ch;
     --page-offset-x: 0.5ch;
