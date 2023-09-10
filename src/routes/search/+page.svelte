@@ -1,11 +1,32 @@
 <script lang="ts">
-  import { enhance } from '$app/forms';
   import Search from '$components/Search.svelte';
   import type { ActionData } from './$types';
   const filters = ['author', 'TODO'];
   export let form: ActionData;
 
+  let searchQuery = '';
+
   // make sure query doesn't need to be sanitized or w/e
+
+  import { goto } from '$app/navigation';
+  import { browser } from '$app/environment';
+
+  async function onSubmit() {
+    let currentSearchTerm = '';
+    let filtersParam: string[] = [];
+
+    if (browser) {
+      const urlParams = new URLSearchParams(window.location.search);
+      currentSearchTerm = urlParams.get('q') || '';
+    }
+    if (searchQuery.trim() === currentSearchTerm?.trim()) {
+      return;
+    }
+
+    await goto(`/?q=${encodeURIComponent(searchQuery.trim())}`, {
+      keepFocus: true,
+    });
+  }
 </script>
 
 <main id="#content">
@@ -14,10 +35,10 @@
   </div>
   <!-- should have no-js class -->
   <div class="fallback-search-container">
-    <form id="search-form" method="post" use:enhance>
+    <form id="search-form">
       <div class="search-input-wrapper">
         <input type="search" name="query" aria-label="site search" />
-        <input type="submit" value="Search" class="button-accent" />
+        <button type="submit" value="Search" class="button-accent" />
       </div>
       <div class="filters-wrapper">
         <!-- TODO decide on heading level -->
@@ -34,13 +55,13 @@
   </div>
 
   {#if form?.results}
-    <div id="search-results">
+    <ul id="search-results">
       {#each form.results as result}
-        <div class="search-result">
+        <li class="search-result">
           <a href={result.url}>{result.meta.title}</a>
-        </div>
+        </li>
       {/each}
-    </div>
+    </ul>
   {/if}
 </main>
 

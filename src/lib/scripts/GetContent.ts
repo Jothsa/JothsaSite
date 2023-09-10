@@ -1,8 +1,51 @@
+import { array, boolean, object, optional, parse, string } from 'valibot';
 import type { Post, TagsType } from '$utils/types';
 import { paginate } from '../utils/utils';
+import { Temporal } from '@js-temporal/polyfill';
 
 export type PostSlug = string;
 const PostSlug = await getPostsSlugs();
+
+// export const PostSlugSchema = string([
+//   (input) => {
+//     if (input.includes(' ')) {
+//       return {
+//         issue: {
+//           validation: 'custom',
+//           message: 'Post slug cannot contain spaces',
+//           input,
+//         },
+//       };
+//     }
+//     return { output: input };
+//   },
+// ]);
+
+export const PostMetadataSchema = object({
+  title: string(),
+  slug: string(),
+  description: string(),
+  featuredImg: optional(string()),
+  featuredImgAlt: optional(string()),
+  ogImage: optional(string()),
+  date: string([
+    (input) => {
+      if (Temporal.ZonedDateTime.from(input)) {
+        return {
+          issue: {
+            validation: 'custom',
+            message: 'Invalid date',
+            input,
+          },
+        };
+      }
+      return { output: input };
+    },
+  ]),
+  tags: array(string()),
+  published: optional(boolean()),
+});
+
 
 function sortPosts(
   posts: Post[],

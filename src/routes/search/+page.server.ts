@@ -1,9 +1,21 @@
 import { searchPosts } from '$scripts/Search';
 import type { PageServerLoad, Actions } from './$types';
 
-export const load = (() => {
+export const load = (async (url, fetch) => {
+  const searchUrl = '/api/search';
+
+  const searchQuery = url.query.get('q');
+  const searchHeaders = { query: searchQuery };
+  const searchResult = await (
+    await fetch(`${searchUrl}`, searchHeaders)
+  ).json();
+
   return {
-    title: `Search`,
+    status: 200,
+    props: {
+      searchQuery: searchQuery,
+      searchResult: searchResult.results,
+    },
   };
 }) satisfies PageServerLoad;
 

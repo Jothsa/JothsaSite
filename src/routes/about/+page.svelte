@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Tweet from '$components/Tweet.svelte';
+  import Tweet from '$components/TweetOld.svelte';
 
   export let data;
   const feed = data.feed;
