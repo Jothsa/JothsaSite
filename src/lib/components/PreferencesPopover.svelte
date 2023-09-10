@@ -15,6 +15,8 @@
     popovertarget="preferences"
     on:click={onPrefButtonClick}
     class="icon-only-button"
+    aria-label="preferences"
+    title="Preferences"
     ><svg
       aria-hidden="true"
       focusable="false"

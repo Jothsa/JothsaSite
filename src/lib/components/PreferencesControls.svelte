@@ -7,7 +7,6 @@
     isDeviceReducedMotion,
     isTheme,
   } from '$scripts/Preferences';
-  import PreferencesControls from './PreferencesControls.svelte';
   import ThemeModeButton from './ThemeModeButton.svelte';
   import { onMount } from 'svelte';
   let themeSelectEl: HTMLSelectElement;
@@ -62,34 +61,71 @@
   });
 </script>
 
-<div class="pref-container">
-  <div class="prefs">
-    <span class="pref-title">Preferences</span>
-    <PreferencesControls />
-  </div>
+<div class="pref-inputs">
+  <ThemeModeButton />
+  <label class="input-wrapper"
+    >{$blur ? `Disable` : `Enable`} blur effects<input
+      type="checkbox"
+      bind:checked={$blur}
+      on:change={(e) => onBlurChange(e)} /></label>
+
+  <label class="input-wrapper"
+    >{$isForcedReducedMotion ? `Force` : `Match device`} reduced motion
+    <input
+      type="checkbox"
+      on:change={(e) => onReducedMotionChange(e)} /></label>
+
+  <label for="themes" class="input-wrapper"
+    >Theme
+    <select
+      name="themes"
+      id="themes"
+      bind:this={themeSelectEl}
+      on:change={(e) => {
+        onThemeChange(e);
+      }}>
+      {#each themes as t}
+        <option value={t}>{t}</option>
+      {/each}
+    </select>
+  </label>
 </div>
 
-<style lang="postcss">
-  .pref-container {
+<style>
+  .pref-inputs {
     display: flex;
-    min-inline-size: clamp(15vw, 20ch, 70vw);
-
     flex-flow: row wrap;
-    padding: var(--space-xs);
-
-    /* container: preferences / inline-size; */
-  }
-
-  .prefs {
-    display: grid;
-    inline-size: fit-content;
+    align-items: center;
     justify-content: center;
-    text-align: center;
+    gap: var(--space-xs);
   }
 
-  .pref-title {
-    margin-block-end: var(--space-2xs);
-    font-size: var(--step-1);
+  .input-wrapper {
+    display: flex;
+    min-inline-size: fit-content;
+    flex-flow: row;
+    gap: var(--space-3xs);
+
+    /* ? is this ok or does it not seem clear what's being focused? */
+
+    & input:focus-visible {
+      border-radius: 0.75ch;
+      outline: solid 2px var(--contrast);
+      outline-offset: 2px;
+    }
   }
 
+  select {
+    border: none;
+    border-radius: 0.75ch;
+    background-color: var(--secondary);
+    outline: solid 2px var(--accent);
+    outline-offset: 1px;
+
+    &:focus-visible {
+      outline-color: var(--contrast);
+      outline-offset: 0px;
+      outline-width: 3px;
+    }
+  }
 </style>

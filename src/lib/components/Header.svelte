@@ -1,7 +1,7 @@
 <script lang="ts">
   import Navigation from './Navigation.svelte';
   import SupportsNotice from '$components/SupportsNotice.svelte';
-  import PreferencesMenu from './PreferencesMenu.svelte';
+  import PreferencesMenu from './PreferencesPopover.svelte';
   import SearchModal from './SearchModal.svelte';
 </script>
 
@@ -81,7 +81,7 @@
     }
   }
 
-  :global(:root:is(.no-anchor, .no-popover) .preference-menu-wrapper) {
+  :global(:root:is( .no-popover) .preference-menu-wrapper) {
     display: none;
   }
 </style>

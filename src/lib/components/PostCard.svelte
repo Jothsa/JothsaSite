@@ -9,6 +9,7 @@
   export let wrapperTag: string = 'li';
   export let isLIRole = true;
   export let post: Post;
+  export let loading: 'eager' | 'lazy' = 'lazy';
 </script>
 
 <svelte:element
@@ -38,7 +39,8 @@
       <Img
         src={post.featuredImage}
         alt={post?.featuredImageAlt || ``}
-        shadow={true} />
+        shadow={true}
+        {loading} />
     </div>
   {/if}
   <div class="tag-cloud">
@@ -191,6 +193,8 @@
 
     & .date {
       /* color: ; */
+      inline-size: fit-content;
+      display: inline-block;
     }
 
     & .description {
