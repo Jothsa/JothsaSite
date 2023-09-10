@@ -17,7 +17,7 @@
   const linkClasses = `icon-only-button unstyled-link`;
 </script>
 
-<div class="social-buttons-containe flex">
+<div class="social-buttons-container flex-row">
   {#if socials.twitterUsername}
     <a
       href={`https://twitter.com/${socials.twitterUsername}`}

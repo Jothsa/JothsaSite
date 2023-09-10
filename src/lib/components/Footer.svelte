@@ -29,7 +29,7 @@
   <SocialIcons
     socials={{
       twitterUsername: 'gabriellasaab_',
-      githubUsername: 'jothsa',
+      // githubUsername: 'jothsa',
       youtubeUsername: 'firebase',
       facebookUsername: 'gabriellasaab',
       goodreadsURL:
@@ -48,7 +48,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    padding-block: var(--space-2xs);
+    padding: var(--space-2xs);
     gap: var(--space-s);
     view-transition-name: footer;
   }
