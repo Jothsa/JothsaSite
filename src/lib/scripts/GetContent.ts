@@ -46,7 +46,6 @@ export const PostMetadataSchema = object({
   published: optional(boolean()),
 });
 
-
 function sortPosts(
   posts: Post[],
   method: 'date' | 'random',

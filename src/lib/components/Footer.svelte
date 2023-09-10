@@ -46,7 +46,17 @@
       </span>
       Back to top</a>
   </p>
-  <SocialIcons socials={{twitterUsername:'gabriellasaab_', githubUsername: 'jothsa', youtubeUsername:'firebase', facebookUsername: "gabriellasaab", goodreadsURL: "https://www.goodreads.com/author/show/21120217.Gabriella_Saab", instagramUsername: 'gabriellasaab', linkedinUsername: 'gabriellasaab'}} />
+  <SocialIcons
+    socials={{
+      twitterUsername: 'gabriellasaab_',
+      githubUsername: 'jothsa',
+      youtubeUsername: 'firebase',
+      facebookUsername: 'gabriellasaab',
+      goodreadsURL:
+        'https://www.goodreads.com/author/show/21120217.Gabriella_Saab',
+      instagramUsername: 'gabriellasaab',
+      linkedinUsername: 'gabriellasaab',
+    }} />
 </footer>
 
 <style>
