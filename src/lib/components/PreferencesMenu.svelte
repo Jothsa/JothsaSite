@@ -46,7 +46,7 @@
 
   button {
     --color: var(--accent);
-    --size: 3ch;
+    --size-mod: 1ch + 0.5lvi;
   }
 
   .preferences-wrapper {

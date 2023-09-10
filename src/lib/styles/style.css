@@ -210,9 +210,11 @@ media-captions-button:not([mediasubtitleslist]) {
 
 .icon-only-button {
   --color: var(--text-secondary);
+  --size-mod: 0.5lvi;
+  --_size: var(--size, clamp(24px, 2ch + var(--size-mod), 20lvi));
   display: inline-grid;
-  inline-size: var(--size, 2ch);
-  block-size: var(--size, 2ch);
+  inline-size: var(--_size);
+  block-size: var(--_size);
   padding: 0;
   border: none;
   border-radius: 0.25ch;
@@ -233,6 +235,10 @@ media-captions-button:not([mediasubtitleslist]) {
     padding: 0;
     margin: 0;
     grid-area: 1 / 1;
+  }
+
+  @media (pointer: hover) or (pointer: coarse) {
+    --_size: var(--size, clamp(36px, 2.5ch + var(--size-mod), 64px));
   }
 }
 
