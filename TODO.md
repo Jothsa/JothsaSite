@@ -47,3 +47,4 @@
 - [ ] create utils stylesheet
 - [ ] fix post card overflow/hidden
 - [x] fix reactions menu colors
+- [ ] give svg images width and height attributes
