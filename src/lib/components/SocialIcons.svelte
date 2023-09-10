@@ -9,9 +9,12 @@
     instagramUsername?: string;
     youtubeUsername?: string;
     goodreadsURL?: string;
+    rssURL?: string;
   };
 
   // add option to include name of social network in the link along with icon
+
+  const linkClasses = `icon-only-button unstyled-link`;
 </script>
 
 <div class="social-buttons-containe flex">
@@ -20,7 +23,7 @@
       href={`https://twitter.com/${socials.twitterUsername}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="twitter"
       title="Twitter">
       <svg
@@ -40,7 +43,7 @@
       href={`https://facebook.com/${socials.facebookUsername}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="facebook"
       title="Facebook">
       <svg
@@ -60,7 +63,7 @@
       href={`https://github.com/${socials.githubUsername}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="github"
       title="Github"
       ><svg
@@ -80,7 +83,7 @@
       href={`https://linkedin.com/in/${socials.linkedinUsername}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="linkedin"
       title="Linkedin"
       ><svg
@@ -100,7 +103,7 @@
       href={`https://instagram.com/${socials.instagramUsername}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="instagram"
       title="Instagram"
       ><svg
@@ -120,7 +123,7 @@
       href={`https://youtube.com/${socials.youtubeUsername}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="youtube"
       title="Youtube"
       ><svg
@@ -140,7 +143,7 @@
       href={`${socials.goodreadsURL}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="icon-only-button unstyled-link"
+      class={linkClasses}
       aria-label="goodreads"
       title="Goodreads"
       ><svg
@@ -153,6 +156,29 @@
         ><path
           fill="currentColor"
           d="M299.9 191.2c5.1 37.3-4.7 79-35.9 100.7c-22.3 15.5-52.8 14.1-70.8 5.7c-37.1-17.3-49.5-58.6-46.8-97.2c4.3-60.9 40.9-87.9 75.3-87.5c46.9-.2 71.8 31.8 78.2 78.3zM448 88v336c0 30.9-25.1 56-56 56H56c-30.9 0-56-25.1-56-56V88c0-30.9 25.1-56 56-56h336c30.9 0 56 25.1 56 56zM330 313.2s-.1-34-.1-217.3h-29v40.3c-.8.3-1.2-.5-1.6-1.2c-9.6-20.7-35.9-46.3-76-46c-51.9.4-87.2 31.2-100.6 77.8c-4.3 14.9-5.8 30.1-5.5 45.6c1.7 77.9 45.1 117.8 112.4 115.2c28.9-1.1 54.5-17 69-45.2c.5-1 1.1-1.9 1.7-2.9c.2.1.4.1.6.2c.3 3.8.2 30.7.1 34.5c-.2 14.8-2 29.5-7.2 43.5c-7.8 21-22.3 34.7-44.5 39.5c-17.8 3.9-35.6 3.8-53.2-1.2c-21.5-6.1-36.5-19-41.1-41.8c-.3-1.6-1.3-1.3-2.3-1.3h-26.8c.8 10.6 3.2 20.3 8.5 29.2c24.2 40.5 82.7 48.5 128.2 37.4c49.9-12.3 67.3-54.9 67.4-106.3z" /></svg
+      ></a>
+  {/if}
+  {#if socials.rssURL}
+    <a
+      href={`${socials.rssURL}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={linkClasses}
+      aria-label="RSS feed"
+      title="RSS Feed"
+      ><svg
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        ><g fill="none"
+          ><path
+            d="M24 0v24H0V0h24ZM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036c-.01-.003-.019 0-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.016-.018Zm.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022Zm-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01l-.184-.092Z" /><path
+            fill="currentColor"
+            d="M5 17a2 2 0 1 1 0 4a2 2 0 0 1 0-4ZM5 3c8.837 0 16 7.163 16 16c0 .184-.003.368-.01.55a1.5 1.5 0 1 1-2.997-.1A13.4 13.4 0 0 0 18 19c0-7.18-5.82-13-13-13c-.15 0-.3.003-.45.008a1.5 1.5 0 0 1-.1-2.999C4.631 3.003 4.815 3 5 3Zm0 7a9 9 0 0 1 8.98 9.599a1.5 1.5 0 1 1-2.993-.198a6 6 0 0 0-6.388-6.388a1.5 1.5 0 0 1-.197-2.993C4.6 10.007 4.799 10 5 10Z" /></g
+        ></svg
       ></a>
   {/if}
 </div>
