@@ -8,7 +8,7 @@
   <p>Welcome to my website!</p>
   <aside>
     <h2 class="h3">Check out my latest blog post</h2>
-    <PostCard post={data.latestPost} />
+    <PostCard post={data.latestPost} wrapperTag="div" isLIRole={false} loading="eager" />
   </aside>
 </main>
 
