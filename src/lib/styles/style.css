@@ -238,7 +238,8 @@ media-captions-button:not([mediasubtitleslist]) {
   }
 
   @media (pointer: hover) or (pointer: coarse) {
-    --_size: var(--size, clamp(36px, 2.5ch + var(--size-mod), 64px));
+    /* in this case make the min size 44px based on WCAG 2.2 SC 2.5.5 Target Size (Enhanced) (Level AAA) */
+    --_size: var(--size, clamp(44px, 2.5ch + var(--size-mod), 64px));
   }
 }
 
