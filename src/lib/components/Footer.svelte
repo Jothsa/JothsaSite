@@ -1,6 +1,7 @@
 <script lang="ts">
   import ThemeModeButton from './ThemeModeButton.svelte';
   import IconLink from './IconLink.svelte';
+  import SocialIcons from './SocialIcons.svelte';
 </script>
 
 <footer id="footer" class="styled-links">
@@ -45,6 +46,7 @@
       </span>
       Back to top</a>
   </p>
+  <SocialIcons socials={{twitterUsername:'gabriellasaab_', githubUsername: 'jothsa', youtubeUsername:'firebase', facebookUsername: "gabriellasaab", goodreadsURL: "https://www.goodreads.com/author/show/21120217.Gabriella_Saab", instagramUsername: 'gabriellasaab', linkedinUsername: 'gabriellasaab'}} />
 </footer>
 
 <style>
