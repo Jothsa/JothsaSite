@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^15.10.3
     version: 15.10.3
   supports-css:
-    specifier: ^0.1.5
-    version: 0.1.5
+    specifier: ^0.2.0
+    version: 0.2.0
   svelte:
     specifier: ^4.2.0
     version: 4.2.0
@@ -9835,8 +9835,8 @@ packages:
     resolution: {integrity: sha512-VL+lNrEoIXww1coLPOmiEmK/0sGigko5COxI09KzHc2VJXJsQ37UaQ+8quuxjDeA7+KnLGTWRyOXSLLR2Wb4jw==}
     engines: {node: '>=12'}
 
-  /supports-css@0.1.5:
-    resolution: {integrity: sha512-BzLpVNsqjYYpe/G/OaDu8yqdcniYRLur8y6cNRfofIh9Bskz0jI4hZD0aW+xNwTnAy/r1DJk9vzrly4MI4Rs3Q==}
+  /supports-css@0.2.0:
+    resolution: {integrity: sha512-aRBgyKbA+/GqtAV821nsJizJ/z5oZ9s1nrzIssJPvbZBNBeHnXOKgv/9aSlei014f7GZA3HI1636q8zMeZ4zNQ==}
     dev: true
 
   /supports-hyperlinks@2.3.0:
