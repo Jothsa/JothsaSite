@@ -37,7 +37,9 @@
     "mindblown",
     "palenight",
     "someattribute",
-    "sveltekittemplate"
+    "sveltekittemplate",
+    "urlset",
+    "XMLURLS"
   ],
   "githubPullRequests.ignoredPullRequestBranches": ["main"]
 }
