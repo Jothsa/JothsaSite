@@ -5,7 +5,7 @@
   import SearchModal from './SearchModal.svelte';
 </script>
 
-<div class="header-container">
+<div class="header-container" data-pagefind-ignore>
   <header id="header">
     <span class="h1">Jothsa's Site!</span>
     <div class="navigation-wrapper">

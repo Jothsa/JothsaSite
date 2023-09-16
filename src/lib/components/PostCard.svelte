@@ -192,9 +192,8 @@
     }
 
     & .date {
-      /* color: ; */
-      inline-size: fit-content;
       display: inline-block;
+      inline-size: fit-content;
     }
 
     & .description {

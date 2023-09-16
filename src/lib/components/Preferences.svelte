@@ -1,65 +1,5 @@
 <script lang="ts">
-  import {
-    theme,
-    themes,
-    blur,
-    isForcedReducedMotion,
-    isDeviceReducedMotion,
-    isTheme,
-  } from '$scripts/Preferences';
   import PreferencesControls from './PreferencesControls.svelte';
-  import ThemeModeButton from './ThemeModeButton.svelte';
-  import { onMount } from 'svelte';
-  let themeSelectEl: HTMLSelectElement;
-
-  function onBlurChange(e: Event) {
-    if ((e.currentTarget as HTMLInputElement).checked) {
-      $blur = true;
-    } else {
-      $blur = false;
-    }
-    const blurAttr = $blur ? `true` : `false`;
-    document.documentElement.setAttribute('data-blur', blurAttr);
-    localStorage.setItem('blur', blurAttr);
-  }
-  function onReducedMotionChange(e: Event) {
-    if (
-      (e.currentTarget as HTMLInputElement).checked &&
-      !isDeviceReducedMotion()
-    ) {
-      $isForcedReducedMotion = false;
-    } else {
-      $isForcedReducedMotion = true;
-    }
-    const rmAttr = $isForcedReducedMotion ? `true` : `false`;
-    document.documentElement.setAttribute('data-force-reduced-motion', rmAttr);
-    localStorage.setItem('force-reduced-motion', rmAttr);
-  }
-
-  function onThemeChange(e: Event) {
-    const t = (e.currentTarget as HTMLSelectElement).value;
-    if (isTheme(t)) {
-      $theme = t;
-    }
-    localStorage.setItem('theme', $theme);
-    document.documentElement.setAttribute('data-theme', $theme);
-  }
-
-  onMount(() => {
-    if (localStorage.getItem('force-reduced-motion') === 'true') {
-      $isForcedReducedMotion = true;
-    } else {
-      $isForcedReducedMotion = false;
-    }
-    const localTheme = localStorage.getItem('theme');
-    if (isTheme(localTheme)) {
-      $theme = localTheme;
-    } else {
-      $theme = 'normal';
-    }
-    document.documentElement.setAttribute('data-theme', $theme);
-    themeSelectEl.value = $theme;
-  });
 </script>
 
 <div class="pref-container">
@@ -91,5 +31,4 @@
     margin-block-end: var(--space-2xs);
     font-size: var(--step-1);
   }
-
 </style>

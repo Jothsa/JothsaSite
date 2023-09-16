@@ -1,4 +1,4 @@
-import { array, boolean, object, optional, parse, string } from 'valibot';
+import { array, boolean, object, optional, parseAsync, string, withDefault } from 'valibot';
 import type { Post, TagsType } from '$utils/types';
 import { paginate } from '../utils/utils';
 import { Temporal } from '@js-temporal/polyfill';
@@ -21,7 +21,7 @@ const PostSlug = await getPostsSlugs();
 //   },
 // ]);
 
-export const PostMetadataSchema = object({
+export const PostSchema = object({
   title: string(),
   slug: string(),
   description: string(),
@@ -30,7 +30,7 @@ export const PostMetadataSchema = object({
   ogImage: optional(string()),
   date: string([
     (input) => {
-      if (Temporal.ZonedDateTime.from(input)) {
+      if (!Temporal.ZonedDateTime.from(input)) {
         return {
           issue: {
             validation: 'custom',
@@ -42,8 +42,24 @@ export const PostMetadataSchema = object({
       return { output: input };
     },
   ]),
+  lastModified: optional(
+    string([
+      (input) => {
+        if (!Temporal.ZonedDateTime.from(input)) {
+          return {
+            issue: {
+              validation: 'custom',
+              message: 'Invalid date',
+              input,
+            },
+          };
+        }
+        return { output: input };
+      },
+    ]),
+  ),
   tags: array(string()),
-  published: optional(boolean()),
+  published: optional(withDefault(boolean(), true)),
 });
 
 function sortPosts(
@@ -65,7 +81,7 @@ function sortByDate(posts: Post[], order?: 'ascending' | 'descending') {
 export async function getPosts() {
   let posts: Post[] = [];
 
-  // by not using {eager: true}  the posts can be dynamically imported and chunked
+  // by not using {eager: true}  the posts can be dynamically imported and chunked (which is better?)
 
   const paths = import.meta.glob('/src/posts/*.md');
   for (const path in paths) {
@@ -85,6 +101,19 @@ export async function getPosts() {
   );
 
   return posts;
+}
+
+export async function parsePostMetadata(metadata: unknown) {
+  try {
+    const parsedMetadata = await parseAsync(PostSchema, metadata);
+
+    if (!parsedMetadata.lastModified) {
+      parsedMetadata.lastModified = parsedMetadata.date;
+    }
+    return parsedMetadata;
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 /**

@@ -26,6 +26,6 @@ interface PagefindDocument {
 }
 
 export async function loadPagefind(): Promise<Pagefind> {
-  const pf = '/_pagefind/pagefind.js';
+  const pf = '/pagefind/pagefind.js';
   return await import(/* @vite-ignore */ pf);
 }

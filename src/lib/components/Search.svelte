@@ -2,14 +2,16 @@
   import { onMount } from 'svelte';
 
   onMount(async () => {
-    await import(/* @vite-ignore */ '/_pagefind/pagefind-ui.js?url');
+    await import(/* @vite-ignore */ '/pagefind/pagefind-ui.js?url');
     new PagefindUI({ element: '#search' });
+    // await import(/* @vite-ignore */ '/pagefind/pagefind-highlight.js?url');
+    // new PagefindHighlight();
   });
 </script>
 
 <!-- these should get added on build-- ergo this won't work on dev server -->
-<link href="/_pagefind/pagefind-ui.css" rel="stylesheet" />
-<!-- <script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script> -->
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<!-- <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script> -->
 
 <div id="search" />
 
