@@ -16,5 +16,6 @@ declare namespace svelteHTML {
     popovertarget?: string;
     popovertargetaction?: 'show' | 'hide' | 'toggle';
     'data-pagefind-ignore'?: boolean | 'index' | 'all';
+    'data-pagefind-meta'?: string;
   }
 }
