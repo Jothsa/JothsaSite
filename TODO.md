@@ -48,3 +48,5 @@
 - [ ] fix post card overflow/hidden
 - [x] fix reactions menu colors
 - [ ] give svg images width and height attributes
+- [ ] add sitemap to robots.txt
+- [ ] make sure robots.txt is valid and gpt rule applies
