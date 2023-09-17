@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import '$styles/pagefind-ui.css'
 
   onMount(async () => {
     await import(/* @vite-ignore */ '/pagefind/pagefind-ui.js?url');
@@ -10,10 +11,10 @@
 </script>
 
 <!-- these should get added on build-- ergo this won't work on dev server -->
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<!-- <link href="/pagefind/pagefind-ui.css" rel="stylesheet" /> -->
 <!-- <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script> -->
 
-<div id="search" />
+<div id="search"></div>
 
 <style>
   #search {
