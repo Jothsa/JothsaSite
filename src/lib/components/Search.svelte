@@ -3,7 +3,7 @@
 
   onMount(async () => {
     await import(/* @vite-ignore */ '/pagefind/pagefind-ui.js?url');
-    new PagefindUI({ element: '#search' });
+    new PagefindUI({ element: '#search', showImages: false });
     // await import(/* @vite-ignore */ '/pagefind/pagefind-highlight.js?url');
     // new PagefindHighlight();
   });
