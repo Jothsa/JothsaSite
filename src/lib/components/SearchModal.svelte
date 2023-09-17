@@ -1,5 +1,6 @@
 <script lang="ts">
   import Search from './Search.svelte';
+  import {beforeNavigate} from '$app/navigation';
 
   let searchButton: HTMLButtonElement;
   let searchDialog: HTMLDialogElement;
@@ -38,6 +39,11 @@
       searchDialog.close();
     }
   }
+
+  beforeNavigate(() => {
+    closeModal('navigate');
+  });
+
 </script>
 
 <button
