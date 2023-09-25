@@ -36,8 +36,8 @@ dependencies:
     specifier: ^2.6.0
     version: 2.6.0
   valibot:
-    specifier: ^0.16.0
-    version: 0.16.0
+    specifier: ^0.17.1
+    version: 0.17.1
 
 devDependencies:
   '@jothsa/stylelint-config':
@@ -10787,8 +10787,8 @@ packages:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
     dev: false
 
-  /valibot@0.16.0:
-    resolution: {integrity: sha512-7Pu/1O8vQjKb0UDnipR3hwXDg/WFlTpzDOxMYsdBcbGSW4CfWo6IQM8kHvrY76AnE4iKFtBYkm5yDaD72PEOGg==}
+  /valibot@0.17.1:
+    resolution: {integrity: sha512-yfft6fqeB059vNZEdar4tcfU3ZOn4raEec790PTQe1SVfJz5CkZOlMNabkW5MA9Z10SCjUWmxBRz1SMYTGU5yg==}
     dev: false
 
   /validate-npm-package-license@3.0.4:
