@@ -83,8 +83,8 @@ devDependencies:
     specifier: ^0.11.0
     version: 0.11.0(svelte@4.2.0)
   open-props:
-    specifier: ^1.5.15
-    version: 1.5.15
+    specifier: ^1.5.16
+    version: 1.5.16
   prettier:
     specifier: 3.0.3
     version: 3.0.3
@@ -7856,8 +7856,8 @@ packages:
       mimic-fn: 4.0.0
     dev: false
 
-  /open-props@1.5.15:
-    resolution: {integrity: sha512-LwkMUm7xr7C2qt7RE1rEyAt8OTHDE2QSvWM3g2B6OCHkj+wsWhwi5unuiobM/bOWX253WjS1GmMuY36E2v0amQ==}
+  /open-props@1.5.16:
+    resolution: {integrity: sha512-qR9BYOpGVK1VxcOR7V9w963so6az0rgF5klMDxrUpQGCrTPvT7WHqLRneZUhWRRY0rYDmb7azIWPkza01qfjrQ==}
     dev: true
 
   /open@8.4.2:
