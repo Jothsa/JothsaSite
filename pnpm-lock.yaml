@@ -65,8 +65,8 @@ devDependencies:
     specifier: ^6.7.0
     version: 6.7.0(eslint@8.49.0)(typescript@5.2.2)
   '@zerodevx/svelte-img':
-    specifier: ^2.0.3
-    version: 2.0.3(svelte@4.2.0)
+    specifier: ^2.1.0
+    version: 2.1.0(svelte@4.2.0)
   csstype:
     specifier: ^3.1.2
     version: 3.1.2
@@ -3121,8 +3121,8 @@ packages:
       p-event: 5.0.1
     dev: false
 
-  /@zerodevx/svelte-img@2.0.3(svelte@4.2.0):
-    resolution: {integrity: sha512-poCFed2vUqMCF6b5fGUixf1N/WVyva5WjfgTk6NV7LOzwrK5ePfVY3aU4R0GvxCbSwZbOM1jb+hnmoxBA1zbhQ==}
+  /@zerodevx/svelte-img@2.1.0(svelte@4.2.0):
+    resolution: {integrity: sha512-ktOcv5svIm8qQQ7sBnSST1zaA5mJpTp+MbzaMeDNBEw4hulwzSD0VRPtq/pvYsjacA1OAw+JIN/qmBl7doh7HA==}
     peerDependencies:
       svelte: ^3.55.1 || ^4.0.0
     dependencies:
