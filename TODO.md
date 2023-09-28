@@ -51,4 +51,3 @@
 - [ ] add sitemap to robots.txt
 - [ ] make sure robots.txt is valid and gpt rule applies
 - [-] move preferences button in mobile menu so focus order makes sense
-w
