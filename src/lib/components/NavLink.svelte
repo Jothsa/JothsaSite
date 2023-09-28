@@ -97,7 +97,6 @@
     &:is(:hover, :focus-visible) {
       @media (prefers-contrast: no-preference) {
         background-position: 0;
-        outline: none;
       }
 
       @media (prefers-reduced-motion: no-preference) {

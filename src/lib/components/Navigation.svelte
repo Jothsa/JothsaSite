@@ -23,6 +23,8 @@
       focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 12 12"
+      width="24"
+      height="24"
       ><path
         d="M6 8.825c-.2 0-.4-.1-.5-.2l-3.3-3.3c-.3-.3-.3-.8 0-1.1c.3-.3.8-.3 1.1 0l2.7 2.7l2.7-2.7c.3-.3.8-.3 1.1 0c.3.3.3.8 0 1.1l-3.2 3.2c-.2.2-.4.3-.6.3Z" /></svg
     ></button>
@@ -35,6 +37,9 @@
     </li>
     <li>
       <NavLink href="/about" title="About" />
+    </li>
+    <li>
+      <NavLink href="/contact" title="Contact" />
     </li>
   </ul>
 </nav>

@@ -18,7 +18,7 @@
 
 <div class="pagination-container">
   <nav class="pagination" aria-label="pagination">
-    <div class="pages-links">
+    <div class="pages-links colored-links">
       {#each { length: totalPages } as _, i}
         <a
           class="page-link"
@@ -72,9 +72,6 @@
     justify-content: center;
     padding: var(--space-3xs-cqi);
     aspect-ratio: 1;
-
-    /* background: var(--text-primary);
-    color: var(--primary); */
     font-size: var(--step-2);
     font-weight: 600;
     gap: var(--space-2xs-cqi);
@@ -82,7 +79,7 @@
 
     &.current {
       background: var(--accent);
-      color: var(--text-primary);
+      color: var(--primary-text);
     }
 
     /* display only current and arrows */

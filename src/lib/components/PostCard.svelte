@@ -123,10 +123,6 @@
       inline-size: fit-content;
       font-size: var(--step-1);
       text-wrap: balance;
-
-      &:focus-visible {
-        outline: none;
-      }
     }
 
     & .unread {

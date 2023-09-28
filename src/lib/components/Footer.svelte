@@ -57,7 +57,7 @@
   .arrow-icon {
     display: inline-flex;
     inline-size: 2ch;
-    vertical-align: text-bottom;
+    vertical-align: middle;
   }
 
   svg {

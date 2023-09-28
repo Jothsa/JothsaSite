@@ -27,6 +27,8 @@
     & ol {
       padding: 0;
       margin: 0;
+    background: var(--tertiary);
+      
 
       & li {
         list-style: none;

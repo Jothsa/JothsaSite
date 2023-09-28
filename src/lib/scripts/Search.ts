@@ -8,7 +8,6 @@ import {
   type Output,
   union,
   record,
-  withDefault,
   parse,
 } from 'valibot';
 
@@ -46,8 +45,8 @@ interface PagefindDocument {
 
 export const searchRequestSchema = object({
   query: string(),
-  currentPage: optional(withDefault(number(), 1)),
-  totalPages: optional(withDefault(number(), 1)),
+  currentPage: optional(number(), 1),
+  itemsPerPage: optional(number()),
   filters: optional(record(union([string(), array(string())]))),
 });
 
@@ -67,7 +66,7 @@ export async function searchPosts(request: searchRequest) {
     return;
   }
 
-  const { query, currentPage, totalPages, filters } = request;
+  const { query, currentPage, itemsPerPage, filters } = request;
 
   let pagefindSearchResponse: PagefindResponse;
   if (filters) {
@@ -84,8 +83,8 @@ export async function searchPosts(request: searchRequest) {
     results.push(await result.data());
   });
 
-  if (totalPages > 1) {
-    const { items, totalPages } = paginate(results, currentPage, totalPages);
+  if (itemsPerPage && itemsPerPage > 1) {
+    const { items, totalPages } = paginate(results, currentPage, itemsPerPage);
     return { items: items, totalPages: totalPages };
   } else {
     return { items: results, totalPages: 1 };

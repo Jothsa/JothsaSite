@@ -5,7 +5,9 @@
  * this should probably be in a script file not the +server file
  */
 
-import { string, number, object, optional, array } from 'valibot';
+import { searchPosts } from '$scripts/Search';
+import { json } from '@sveltejs/kit';
+import { string, number, object, optional, array, output } from 'valibot';
 
 export type searchRequestHeaders = {
   query: string;
@@ -25,3 +27,11 @@ const searchResponseSchema = object({
 });
 
 export type searchFilters = {};
+
+export const GET = async (request: searchRequestHeaders) => {
+  const p = await searchPosts({
+    query: request.query,
+    currentPage: request?.currentPage || 1,
+  });
+  return json({ items: p?.items, totalPages: p?.totalPages });
+};

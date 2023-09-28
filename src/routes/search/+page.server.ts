@@ -1,13 +1,14 @@
 import { searchPosts } from '$scripts/Search';
 import type { PageServerLoad, Actions } from './$types';
 
-export const load = (async (url, fetch) => {
+export const load = (async ({ url, fetch }) => {
   const searchUrl = '/api/search';
 
-  const searchQuery = url.query.get('q');
+  const searchQuery = url.searchParams.get('q');
+  if (!searchQuery) return;
   const searchHeaders = { query: searchQuery };
   const searchResult = await (
-    await fetch(`${searchUrl}`, searchHeaders)
+    await fetch(`${searchUrl}`, { headers: searchHeaders })
   ).json();
 
   return {

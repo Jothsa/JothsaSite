@@ -7,15 +7,15 @@
 
 <div class="header-container" data-pagefind-ignore>
   <header id="header">
-    <span class="h1">Jothsa's Site!</span>
-    <div class="navigation-wrapper">
-      <Navigation />
-    </div>
+    <span class="site-title h1">Jothsa's Site!</span>
     <div class="header-buttons-wrapper">
       <SearchModal buttonStyle="grid-area: preferences" />
       <div class="preference-menu-wrapper">
         <PreferencesMenu />
       </div>
+    </div>
+    <div class="navigation-wrapper">
+      <Navigation />
     </div>
     <div class="supports-notice-wrapper">
       <SupportsNotice />
@@ -40,14 +40,14 @@
     padding-block: var(--space-3xs);
     padding-inline: var(--space-xs);
     gap: var(--space-3xs);
-    grid-auto-flow: row;
     grid-template-areas:
-      'title title preferences'
-      'navigation navigation navigation'
-      'notice notice notice';
+      'title'
+      'preferences'
+      'navigation'
+      'notice';
     view-transition-name: header;
 
-    & h1 {
+    & .site-title {
       display: flex;
       justify-content: center;
       font-family: var(--_font);
@@ -73,15 +73,19 @@
 
     @container header (inline-size > 20rem) {
       justify-content: unset;
+      grid-template-areas:
+        'title title preferences'
+        'navigation navigation navigation'
+        'notice notice notice';
       justify-items: unset;
 
-      & h1 {
+      & .site-title {
         justify-content: unset;
       }
     }
   }
 
-  :global(:root:is( .no-popover) .preference-menu-wrapper) {
+  :global(:root:is(.no-popover) .preference-menu-wrapper) {
     display: none;
   }
 </style>
