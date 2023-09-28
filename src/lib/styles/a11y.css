@@ -1,0 +1,8 @@
+.target-aa {
+  min-inline-size: 24px;
+  min-block-size: 24px;
+}
+.target-aaa {
+  min-inline-size: 44px;
+  min-block-size: 44px;
+}

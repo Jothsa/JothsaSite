@@ -25,6 +25,8 @@
   --contrast-d: oklch(61.33% 0.099 147.71);
   --accent-l: oklch(43.82% 0.284 266.82);
   --accent-d: oklch(48.68% 0.31 275.29);
+  --error-l: oklch(50.67% 0.167 12.71);
+  --error-d: oklch(50.67% 0.167 12.71);
   --increase-contrast-l: oklch(1% 0 0);
   --increase-contrast-d: oklch(99% 0 0);
   --decrease-contrast-l: oklch(99% 0 0);
@@ -72,6 +74,7 @@
     --secondary-text: var(--secondary-text-l);
     --contrast: var(--contrast-l);
     --accent: var(--accent-l);
+    --error: var(--error-l);
     --increase-contrast: var(--increase-contrast-l);
     --decrease-contrast: var(--decrease-contrast-l);
   }
@@ -84,6 +87,7 @@
     --secondary-text: var(--secondary-text-d);
     --contrast: var(--contrast-d);
     --accent: var(--accent-d);
+    --error: var(--error-d);
     --increase-contrast: var(--increase-contrast-d);
     --decrease-contrast: var(--decrease-contrast-d);
   }
@@ -96,6 +100,7 @@
     --secondary-text: var(--secondary-text-l);
     --contrast: var(--contrast-l);
     --accent: var(--accent-l);
+    --error: var(--error-l);
     --increase-contrast: var(--increase-contrast-l);
     --decrease-contrast: var(--decrease-contrast-l);
   }
@@ -108,6 +113,7 @@
     --secondary-text: var(--secondary-text-d);
     --contrast: var(--contrast-d);
     --accent: var(--accent-d);
+    --error: var(--error-d);
     --increase-contrast: var(--increase-contrast-d);
     --decrease-contrast: var(--decrease-contrast-d);
   }

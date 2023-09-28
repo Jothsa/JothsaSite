@@ -2,9 +2,30 @@
  * [1] - make sure link stays on top (ex. when <code> inside <a>
  */
 
+ a:not(.unstyled-link) {
+  color: var(--secondary-text);
+  border-radius: 4px;
+
+  &:is(:hover, :focus-visible) {
+    color: var(--accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--contrast);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    color: var(--contrast);
+  }
+
+  &:visited {
+    color: var(--secondary-text);
+  }
+ }
+
 :where(.styled-links a:not(.unstyled-link), a.styled-link) {
   position: relative;
-  color: var(--secondary-text);
   isolation: isolate;
   text-decoration: underline;
 

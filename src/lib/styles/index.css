@@ -1,15 +1,16 @@
 @layer base, base.props, base.global, base.components, utils, style, style.global, style.components, theme;
 
-@import url('./fonts.css') layer(base.global);
+@import url('./fonts.css') layer(base.props);
 @import url('./props.css') layer(base.props);
 @import 'open-props/style' layer(base.props);
 @import 'open-props/masks/edges' layer(base.props);
 @import 'open-props/masks/corner-cuts' layer(base.props);
 @import url('./sizing.css') layer(base.props);
-@import url('./colors.css') layer(theme);;
+@import url('./colors.css') layer(theme);
 @import url('./base.css') layer(base.style);
 @import url('./viewTransitions.css') layer(utils);
 @import url('./utils.css') layer(utils);
 @import url('./animations.css') layer(utils);
+@import url('./a11y.css') layer(utils);
 @import url('./style.css') layer(style.global);
 @import url('./links.css') layer(style.global);

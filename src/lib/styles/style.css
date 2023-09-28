@@ -165,7 +165,8 @@ blockquote {
     -8px 10px 1px 1px var(--accent);
 }
 
-input:is([type='checkbox'], [type='radio'], [type='range']) {
+input:is([type='checkbox'], [type='radio'], [type='range'], [type='email']),
+textarea {
   accent-color: var(--accent);
 }
 
@@ -227,7 +228,7 @@ media-captions-button:not([mediasubtitleslist]) {
     outline: solid var(--contrast) 4px;
   }
 
-  &:hover {
+  &:is(:hover, :focus-visible) {
     --color: var(--contrast);
   }
 
@@ -244,19 +245,19 @@ media-captions-button:not([mediasubtitleslist]) {
 }
 
 /* An accent button w/focus and hover styles
-** [1] - to meet a11y guidelines 
- */
+** [1] - to meet a11y guidelines
+** [2] hover intent
+*/
 .button-accent {
   min-inline-size: 24px; /* [1] */
   min-block-size: 24px; /* [1] */
   padding-block: var(--spaces-3xs);
   padding-inline: var(--space-xs);
-  border: solid var(--accent) 2px;
   border: none;
   border-radius: 0.25ch;
   background-color: var(--accent);
   color: var(--text-primary);
-  transition: background-color 300ms;
+  transition: background-color 300ms 120ms;
 
   &:is(:focus-visible, :hover) {
     background-color: var(--contrast);
@@ -264,7 +265,33 @@ media-captions-button:not([mediasubtitleslist]) {
   }
 }
 
-input:is([type='text'], [type='search']) {
+/* An contrast button w/focus and hover styles
+** this button is larger than the accent button
+** [1] - to meet a11y guidelines 
+** [2] hover intent
+*/
+.button-contrast {
+  min-inline-size: 24px;
+  min-block-size: 24px;
+  font-size: var(--step-1);
+  font-weight: 500;
+  contain: content;
+  padding-block: var(--spaces-xs);
+  padding-inline: var(--space-m);
+  border-radius: 0.5ch;
+  border: none;
+  outline: solid var(--accent) 3px;
+  background-color: var(--contrast);
+  color: var(--primary-text);
+  transition: outline-width 200ms 120ms; /* [2] */
+
+  &:is(:focus-visible, :hover) {
+    outline: solid var(--accent) 7px;
+  }
+}
+
+input:is([type='text'], [type='search'], [type='email']),
+textarea {
   border: solid var(--accent) 2px;
   border-radius: 0.25ch;
   background-color: var(--secondary);
@@ -274,5 +301,15 @@ input:is([type='text'], [type='search']) {
   &:is(:focus-visible, :hover) {
     border-color: var(--contrast);
     outline: none;
+  }
+
+  @supports not selector(input:user-invalid) {
+    &:required:invalid:not(:focus, :placeholder-shown) {
+      border-color: var(--error);
+    }
+  }
+
+  &:required:user-invalid:not(:focus) {
+    border-color: var(--error);
   }
 }
