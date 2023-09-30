@@ -178,6 +178,7 @@
     display: none;
     padding-inline: var(--space-3xs);
     margin-block-end: var(--space-xs);
+    gap: var(--space-3xs);
 
     & p {
       display: block;
@@ -205,7 +206,8 @@
   #no-js-menu,
   #supports-menu {
     block-size: fit-content;
-    justify-content: center;
+
+    /* justify-content: center; */
     border-block: dashed var(--space-3xs) var(--contrast);
     background: var(--tertiary);
     color: var(--text-primary);
