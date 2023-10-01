@@ -51,6 +51,7 @@
     padding: var(--space-2xs);
     gap: var(--space-s);
     view-transition-name: footer;
+    margin-block-start: auto;
   }
 
 

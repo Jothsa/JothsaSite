@@ -40,7 +40,7 @@ I was reading your book and..."
     min-inline-size: min(80svi, 60ch);
     gap: var(--space-s);
     grid-auto-flow: row;
-    grid-template-columns: clamp(40svi, 30ch, 95svi);
+    grid-template-columns: clamp(50svi, 45ch, 95svi);
   }
 
   h2 {
@@ -49,7 +49,8 @@ I was reading your book and..."
 
   label {
     display: flex;
-    inline-size: max-content;
+    min-inline-size: fit-content;
+    /* inline-size: max-content; */
     flex-flow: row wrap;
     align-items: center;
     font-size: var(--step-1);
