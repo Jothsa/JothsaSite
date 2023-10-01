@@ -72,6 +72,10 @@ and @mayank99
   font: inherit;
 }
 
+textarea {
+  form-sizing: normal;
+}
+
 /* makes images and videos responsive */
 :where(img, picture, svg, video) {
   display: block;
