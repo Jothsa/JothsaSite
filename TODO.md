@@ -10,11 +10,11 @@
 - [x] add md plugins
 - [ ] decide on post and slug naming scheme
 - [ ] make admin page/ easy way to make posts?
-- [-] give links a color
+- [x] give links a color
 - [ ] make sure all svg elements have aria-hidden and non-focusable
 - [ ] Tags vs tags (1 cat per post?)
 - [ ] use excerpt not description?
-- [ ] update copyright, add code and github to footer
+- [x] update copyright, add code and github to footer
 - [ ] make sure footer always at bottom
 - [x] should clicking current selected tag deselect it? (No it shouldn't)
 - [ ] handle no tags gracefully
@@ -44,10 +44,11 @@
 - [ ] focus styles for theme button
 - [ ] require lint and build for pull requests
 - [ ] don't use ch w/o max value in most cases
-- [ ] create utils stylesheet
+- [x] create utils stylesheet
 - [ ] fix post card overflow/hidden
 - [x] fix reactions menu colors
 - [ ] give svg images width and height attributes
 - [ ] add sitemap to robots.txt
 - [ ] make sure robots.txt is valid and gpt rule applies
-- [-] move preferences button in mobile menu so focus order makes sense
+- [x] move preferences button in mobile menu so focus order makes sense
+- [ ] aria-live where needed
