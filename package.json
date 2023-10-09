@@ -53,7 +53,7 @@
   "dependencies": {
     "@fec/remark-a11y-emoji": "^3.1.0",
     "@js-temporal/polyfill": "^0.4.4",
-    "media-chrome": "^1.4.2",
+    "media-chrome": "^1.4.3",
     "netlify-cli": "^16.4.2",
     "postcss": "^8.4.31",
     "postcss-preset-env": "^9.1.4",
