@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.4.4
     version: 0.4.4
   media-chrome:
-    specifier: ^1.4.2
-    version: 1.4.2
+    specifier: ^1.4.5
+    version: 1.4.5
   netlify-cli:
     specifier: ^16.4.2
     version: 16.4.2(@types/node@20.8.0)
@@ -7142,8 +7142,8 @@ packages:
       vfile-message: 2.0.4
     dev: true
 
-  /media-chrome@1.4.2:
-    resolution: {integrity: sha512-WfyNpCvkqKyC0ObIe6rUMxMOYmiyQJVkJ4koLyl87120LbN/X0UMKpoIqkw2o5m9ABWTgzq8/UKQuObnLHHD0w==}
+  /media-chrome@1.4.5:
+    resolution: {integrity: sha512-WRi+4XV4oCx8nwUEhhKxqF78mdQDVTPHgq2g/Mkt8C8lmIaca9WwnahZ0MHx8fy8XAEaiIv1B25555lpvZncJQ==}
     dev: false
 
   /media-typer@0.3.0:
